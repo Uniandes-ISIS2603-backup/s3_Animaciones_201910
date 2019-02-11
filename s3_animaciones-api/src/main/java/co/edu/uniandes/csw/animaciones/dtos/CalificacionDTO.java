@@ -18,7 +18,7 @@ public class CalificacionDTO {
  private int  id;
     
    private String comentario;
-   provate int calificacion;
+   private int calificacion;
     
    public CalificacionDTO(){
        
@@ -51,7 +51,7 @@ public class CalificacionDTO {
     }
     
      public String getComentario() {
-        return tags;
+        return comentario;
     }
 
     public void setComentario(String cometario) {
