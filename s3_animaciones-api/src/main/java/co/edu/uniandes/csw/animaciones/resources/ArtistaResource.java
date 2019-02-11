@@ -58,7 +58,7 @@ public class ArtistaResource {
     }
     
     @GET
-    @Path("{artistaId: \\d+}/animaciones/{propuestaId: \\d+}")
+    @Path("{artistaId: \\d+}/animaciones/{animacionId: \\d+}")
     public AnimacionDTO getAnimacion(@PathParam("artistaId") Long artistaId, @PathParam("animacionId") Long animacionId){
         return null;
     }
