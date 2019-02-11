@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.animaciones.dtos;
-import java.io.Serializable;
-import java.util.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -18,7 +16,7 @@ public class CalificacionDTO {
  private int  id;
     
    private String comentario;
-   provate int calificacion;
+   private int calificacion;
     
    public CalificacionDTO(){
        
@@ -51,7 +49,7 @@ public class CalificacionDTO {
     }
     
      public String getComentario() {
-        return tags;
+        return comentario;
     }
 
     public void setComentario(String cometario) {
