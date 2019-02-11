@@ -30,14 +30,14 @@ public class PropuestaResource {
     
     @GET
     @Path("{propuesaID: \\d+}")
-    public PropuestaDTO dar(PropuestaDTO yo){
-        return yo;
+    public PropuestaDTO dar(){
+        return null;
     }
     
     @GET
     @Path("{propuesaID: \\d+}/factura")
-    public PropuestaDTO darFactura(PropuestaDTO yo){
-        return yo;
+    public PropuestaDTO darFactura(){
+        return null;
     }
     
     @PUT
