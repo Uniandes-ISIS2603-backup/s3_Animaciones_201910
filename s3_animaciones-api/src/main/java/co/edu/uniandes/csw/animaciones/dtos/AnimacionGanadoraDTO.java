@@ -5,6 +5,9 @@
  */
 package co.edu.uniandes.csw.animaciones.dtos;
 
+import java.io.Serializable;
+import java.util.List;
+import co.edu.uniandes.csw.animaciones.dtos;
 /**
  *
  * @author df.perezc
@@ -43,7 +46,7 @@ public class AnimacionGanadoraDTO extends AnimacionConcursoDTO implements Serial
     /**
      * @return the id
      */
-   public List getId(){ 
+   public Integer getId(){ 
        return id;
    }
    

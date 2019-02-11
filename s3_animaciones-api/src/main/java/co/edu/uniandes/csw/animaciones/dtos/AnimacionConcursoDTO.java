@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.animaciones.dtos;
-
+import java.io.Serializable;
+import co.edu.uniandes.csw.animaciones.dtos;
 /**
  *
  * @author df.perezc

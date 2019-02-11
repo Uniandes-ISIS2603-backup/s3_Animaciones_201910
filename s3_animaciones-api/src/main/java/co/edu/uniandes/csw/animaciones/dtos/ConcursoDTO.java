@@ -6,6 +6,8 @@
 package co.edu.uniandes.csw.animaciones.dtos;
 
 import java.io.Serializable;
+import java.util.Date;
+import co.edu.uniandes.csw.animaciones.dtos;
 
 /**
  *
@@ -25,13 +27,13 @@ public class ConcursoDTO implements Serializable
         ROTOSCOPIA,
         LIVE_ACTION,
         CLAY_MOTION,
-        PIXILACION
+        PIXILACION,
         GO_MOTION,
         ANIMACION_DE_RECORTES,
         ANIMACION_FLASH,
-        CAPTURA_DE_MOVIMIENTO
+        CAPTURA_DE_MOVIMIENTO,
         MODELADO_3D_POR_ORDENADOR,
-        ANIMACION_CON_ARENA
+        ANIMACION_CON_ARENA,
         PINSCREEN
     }
     

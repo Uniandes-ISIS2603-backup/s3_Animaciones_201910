@@ -5,10 +5,10 @@
  */
 package co.edu.uniandes.csw.animaciones.dtos;
 
-/**
- *
- * @author df.perezc
- */
+import java.io.Serializable;
+
+import co.edu.uniandes.csw.animaciones.dtos;
+import java.util.List;
 
 public class ConcursoDetailDTO extends ConcursoDTO implements Serializable{
     
@@ -72,7 +72,7 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable{
      /**
      * @param rondas the rondas to set
      */
-    public void setGanadores(List rondas)
+    public void setRondas(List rondas)
     {   
         this.rondas = rondas;
     }
