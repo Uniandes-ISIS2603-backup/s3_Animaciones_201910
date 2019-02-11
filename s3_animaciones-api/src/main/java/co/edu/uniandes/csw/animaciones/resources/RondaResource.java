@@ -5,14 +5,14 @@
  */
 package co.edu.uniandes.csw.animaciones.resources;
 import co.edu.uniandes.csw.animaciones.dtos.RondaDTO;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
+import static javax.ws.rs.HttpMethod.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 /**
  *
@@ -26,13 +26,13 @@ public class RondaResource {
     private static final Logger LOGGER = Logger.getLogger(PropuestaResource.class.getName());
     
     @GET
-    public RondaDTO darRondas(){
+    public List <RondaDTO> darRondas(){
         return null;
     }
     
-    @POST
-    public RondaDTO crearRonda(RondaDTO aCrear){
-        return aCrear;
-    }
-    
+    @GET
+    @Path("{rondaId: \\d+}")
+    public RondaDTO darRonda(@PathParam("rondaId") Long rondaId){
+        return null;
+    }    
 }
