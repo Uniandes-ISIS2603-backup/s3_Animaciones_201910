@@ -43,7 +43,7 @@ public class ConcursoDTO implements Serializable
     Tecnica tecnica;
     String tema;
     String organizador ;
-    Long id;
+    Integer id;
     
     //
     //CONSTRUCTOR
@@ -91,7 +91,7 @@ public class ConcursoDTO implements Serializable
     /**
      * @return the id
      */
-    public long getId(){
+    public Integer getId(){
         return id;
     }
     
@@ -140,7 +140,7 @@ public class ConcursoDTO implements Serializable
     /**
      * @param id the id to set
      */
-    public void setId(Long id)
+    public void setId(Integer id)
     {
         this.id = id;
     }

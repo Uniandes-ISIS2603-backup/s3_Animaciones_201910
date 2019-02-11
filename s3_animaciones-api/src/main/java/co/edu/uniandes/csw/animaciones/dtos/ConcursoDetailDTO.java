@@ -45,9 +45,7 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable{
     /**
      * @return the jurados
      */
-   // public List getJurados(){
-     //   return jurados;
-    //}
+   // public List getJurados(){   return jurados;}
    
     /**
      * @return the rondas
