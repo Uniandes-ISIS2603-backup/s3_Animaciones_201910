@@ -32,9 +32,9 @@ public class PropuestaDTO implements Serializable {
     
     private Estado estado;
     
-    private int precio;
+    private Integer precio;
     
-    private int id;
+    private Integer id;
     
     private FacturaDTO factura;
     
