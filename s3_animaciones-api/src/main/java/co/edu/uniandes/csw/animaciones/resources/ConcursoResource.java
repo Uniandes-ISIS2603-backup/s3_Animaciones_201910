@@ -1,6 +1,8 @@
 package co.edu.uniandes.csw.animaciones.resources;
 
+import co.edu.uniandes.csw.animaciones.dtos.AnimacionConcursoDTO;
 import co.edu.uniandes.csw.animaciones.dtos.ConcursoDTO;
+import co.edu.uniandes.csw.animaciones.dtos.VotacionDTO;
 import java.util.ArrayList;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.*;
@@ -63,7 +65,7 @@ public class ConcursoResource {
 
     /**
      * las reglas estan en un arreglo por lo cual para acceder a ellas no se
-     * sales de concurso, el identificador de una regla será su pocision en el 
+     * sales de concurso, el identificador de una regla sera su pocision en el 
      * arreglo
      */
     @DELETE
@@ -85,7 +87,7 @@ public class ConcursoResource {
     }
     
     /**
-     * solo se usa este método en las animaciones finalistas(luego de hacer upgradeRank), solo se requiere poner dinero con un upgrade de animacionConcuso a animacionGanadora
+     * solo se usa este metodo en las animaciones finalistas(luego de hacer upgradeRank), solo se requiere poner dinero con un upgrade de animacionConcuso a animacionGanadora
      * @param concursoId
      * @param rondaId
      * @param animacionConcursoId
@@ -139,4 +141,22 @@ public class ConcursoResource {
     {
         
     }
+    /**
+    @GET
+    @Path("(concursoId: \\d+)/jurados/(juradoId: \\d+)/votaciones/(votacionesId: \\+d)")
+    public VotacionDTO getVotacion(@PathParam("concursoId") Long concursoId,@PathParam("juradoId") Long juradoId, @PathParam("votacionId") Long votacionId)
+    {
+        return null;
+    }
+    */
+    @GET
+    @Path("(concursoId: \\d+)/jurados/(juradoId: \\d+)/votaciones/(votacionesId: \\+d)")
+    public VotacionDTO getVotacion(@PathParam("concursoId") Long concursoId,@PathParam("juradoId") Long juradoId, @QueryParam("ronda") Integer ronda, @PathParam("votacionId") Long votacionId)
+    {
+        return null;
+    }   
+    
+
+
+           
             }
