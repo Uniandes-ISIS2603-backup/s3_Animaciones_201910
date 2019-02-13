@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.animaciones.dtos;
 
 import java.io.Serializable;
 import java.util.List;
-import co.edu.uniandes.csw.animaciones.dtos;
+import co.edu.uniandes.csw.animaciones.dtos.AnimacionConcursoDTO;
 /**
  *
  * @author df.perezc
@@ -19,7 +19,6 @@ public class AnimacionGanadoraDTO extends AnimacionConcursoDTO implements Serial
     //
   
     Integer dinero;
-    Integer id;
     
     //
     //CONSTRUCTOR
@@ -43,12 +42,7 @@ public class AnimacionGanadoraDTO extends AnimacionConcursoDTO implements Serial
         return dinero;
     }
    
-    /**
-     * @return the id
-     */
-   public Integer getId(){ 
-       return id;
-   }
+    
    
    /**
      * @param dinero the dinero to set
@@ -58,13 +52,7 @@ public class AnimacionGanadoraDTO extends AnimacionConcursoDTO implements Serial
         this.dinero = dinero;
     }
     
-     /**
-     * @param id the id to set
-     */
-    public void setId(Integer id)
-    {   
-        this.id = id;
-    }
+
     
     
 }

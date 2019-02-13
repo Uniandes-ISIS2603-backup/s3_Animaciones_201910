@@ -41,13 +41,13 @@ public class FacturaResource {
     
     @GET
     @Path("{facturaID: \\d+}/mdp")
-    public FacturaDTO darMDP(FacturaDTO yo){
-        return yo;
+    public FacturaDTO darMDP(){
+        return null;
     }
     
     @GET
     @Path("{facturaID: \\d+}")
-    public FacturaDTO dar(FacturaDTO yo){
-        return yo;
+    public FacturaDTO dar(){
+        return null;
     }
 }

@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.animaciones.dtos;
 
 import java.io.Serializable;
-import co.edu.uniandes.csw.animaciones.dtos;
+import co.edu.uniandes.csw.animaciones.dtos.AnimacionDTO;
 /**
  *
  * @author df.perezc
@@ -20,7 +20,6 @@ public class AnimacionConcursoDTO extends AnimacionDTO implements Serializable{
     Double puntaje;
     Integer puesto;
     Boolean finalista;
-    Integer id;
     
     //
     //CONSTRUCTOR
@@ -57,12 +56,7 @@ public class AnimacionConcursoDTO extends AnimacionDTO implements Serializable{
     public Boolean getFinalista(){
         return finalista;
     }
-    /**
-     * @return the finalista
-     */
-    public Integer getId(){
-        return id;
-    }    
+   
  
     /**
      * @param puntaje the puntaje to set
@@ -85,11 +79,5 @@ public class AnimacionConcursoDTO extends AnimacionDTO implements Serializable{
     {   
         this.finalista = finalista;
     }
-     /**
-     * @param id the finalistato set
-     */
-    public void setId(Integer id)
-    {   
-        this.id = id;
-    }
+    
 }

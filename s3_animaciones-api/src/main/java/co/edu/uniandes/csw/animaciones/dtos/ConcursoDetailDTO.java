@@ -7,8 +7,9 @@ package co.edu.uniandes.csw.animaciones.dtos;
 
 import java.io.Serializable;
 
-import co.edu.uniandes.csw.animaciones.*;
+import co.edu.uniandes.csw.animaciones.dtos.ConcursoDTO;
 import java.util.List;
+import java.util.ArrayList;
 
 public class ConcursoDetailDTO extends ConcursoDTO implements Serializable{
     
@@ -18,7 +19,7 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable{
   
     List<AnimacionGanadoraDTO> ganadores = new ArrayList<AnimacionGanadoraDTO>();
     //List<JuradoDTO> jurados = new ArrayList<JuradoDTO>();
-    List<Ronda> rondas = new ArrayList<Ronda>();
+    //List<Ronda> rondas = new ArrayList<Ronda>();
     
     //
     //CONSTRUCTOR
@@ -50,9 +51,9 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable{
     /**
      * @return the rondas
      */
-    public List getRondas(){
-        return rondas;
-    }
+   // public List getRondas(){
+     //   return rondas;
+   //}
     
  
     /**
@@ -72,9 +73,9 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable{
      /**
      * @param rondas the rondas to set
      */
-    public void setRondas(List rondas)
-    {   
-        this.rondas = rondas;
-    }
+    // public void setRondas(List rondas)
+    //{   
+    //    this.rondas = rondas;
+    //}
     
 }

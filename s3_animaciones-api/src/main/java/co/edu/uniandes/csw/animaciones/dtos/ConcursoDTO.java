@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.animaciones.dtos;
 
 import java.io.Serializable;
 import java.util.Date;
-import co.edu.uniandes.csw.animaciones.dtos;
 
 /**
  *
