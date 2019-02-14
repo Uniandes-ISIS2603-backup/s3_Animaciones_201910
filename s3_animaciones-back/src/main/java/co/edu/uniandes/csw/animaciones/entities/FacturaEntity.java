@@ -4,6 +4,7 @@ package co.edu.uniandes.csw.animaciones.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -11,12 +12,12 @@ import javax.persistence.Entity;
  */
 @Entity
 public class FacturaEntity extends BaseEntity implements Serializable {
-    private Integer id;
     
     private Integer idAnim;
     
-    private Estado estado;
+    private Estado estado;    
     
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
     
     //private MedioDePagoEntity medioDePago;
@@ -29,21 +30,7 @@ public class FacturaEntity extends BaseEntity implements Serializable {
         
     }
 
-    /**
-     * @return the id
-     */
-    @Override
-    public Long getId() {
-        return Long.parseLong(id+"");
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
+    
     /**
      * @return the idAnim
      */
