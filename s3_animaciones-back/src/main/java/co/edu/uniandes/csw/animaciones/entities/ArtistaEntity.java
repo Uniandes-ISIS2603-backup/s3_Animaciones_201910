@@ -3,6 +3,7 @@ package co.edu.uniandes.csw.animaciones.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -10,6 +11,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  *
  * @author Nicolas Alvarado
  */
+@Entity
 public class ArtistaEntity extends BaseEntity implements Serializable {
     
     private Boolean privado;
@@ -20,11 +22,11 @@ public class ArtistaEntity extends BaseEntity implements Serializable {
     private String contraseña;
     
     @PodamExclude
-    @OneToMany(mappedBy = "video", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "artista", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private ArrayList<AnimacionEntity> animaciones = new ArrayList<>();
     
     @PodamExclude
-    @OneToMany(mappedBy = "video", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "artista", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private ArrayList<PropuestaEntity> propuestas = new ArrayList<>();
 
     public Boolean getPrivado() {
