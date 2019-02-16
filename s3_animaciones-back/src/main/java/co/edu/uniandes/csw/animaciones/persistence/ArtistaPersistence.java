@@ -27,7 +27,7 @@ public class ArtistaPersistence {
     }
     
     public List<ArtistaEntity> findAll(){
-        Query q = em.createQuery("selec u from ArtistaEntity u");
+        Query q = em.createQuery("select u from ArtistaEntity u");
         return q.getResultList();
     }
     

@@ -3,33 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.animaciones.dtos;
+package co.edu.uniandes.csw.animaciones.entities;
 
 import java.io.Serializable;
-import java.util.List;
-import co.edu.uniandes.csw.animaciones.dtos.AnimacionConcursoDTO;
+import javax.persistence.Entity;
+
 /**
  *
- * @author by.cuta10
+ * @author by.cuta10   
  */
-public class AnimacionGanadoraDTO extends AnimacionConcursoDTO implements Serializable
-{
-    //
+@Entity
+public class AnimacionGanadoraEntity extends BaseEntity implements Serializable{
+    
+     //
     // ATRIBUTOS
     //
   
     Integer dinero;
-    
-    //
-    //CONSTRUCTOR
-    //
-    
-    /**
-     * constructor
-     */
-    public AnimacionGanadoraDTO(){
-        
-    }
+
     
     //
     //METODOS
@@ -51,8 +42,5 @@ public class AnimacionGanadoraDTO extends AnimacionConcursoDTO implements Serial
     {
         this.dinero = dinero;
     }
-    
-
-    
     
 }

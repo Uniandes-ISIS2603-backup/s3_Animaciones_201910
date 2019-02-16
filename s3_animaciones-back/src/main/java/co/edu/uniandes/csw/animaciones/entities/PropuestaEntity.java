@@ -26,9 +26,11 @@ public class PropuestaEntity extends BaseEntity implements Serializable {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private ArtistaEntity artista;
     
+
     
     @OneToOne(mappedBy = "propuesta", fetch =FetchType.LAZY)
     private FacturaEntity factura;
+
     
     public PropuestaEntity(){
         
