@@ -12,8 +12,7 @@ import javax.persistence.TypedQuery;
 
 /**
  *
- * @author sigo siendo yo; no me he movido de aquí
- * (García)
+ * @author sigo siendo yo; no me he movido de aquí (García)
  */
 @Stateless
 public class PropuestaPersistence {

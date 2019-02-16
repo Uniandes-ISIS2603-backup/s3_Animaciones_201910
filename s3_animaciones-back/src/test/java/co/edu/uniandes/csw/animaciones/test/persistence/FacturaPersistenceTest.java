@@ -4,6 +4,8 @@ package co.edu.uniandes.csw.animaciones.test.persistence;
 import co.edu.uniandes.csw.animaciones.entities.FacturaEntity;
 import javax.inject.Inject;
 import co.edu.uniandes.csw.animaciones.persistence.FacturaPersistence;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -43,10 +45,40 @@ public class FacturaPersistenceTest {
        FacturaEntity e = f.manufacturePojo(FacturaEntity.class);
        
        FacturaEntity eTest = fp.create(e);       
-       Assert.assertNotNull(eTest);
+       Assert.assertNotNull(eTest);      
        
+    }
+    
+    @Test
+    public void findTest(){
+       PodamFactory f = new PodamFactoryImpl();
+       FacturaEntity e = f.manufacturePojo(FacturaEntity.class);       
+       FacturaEntity eTest = fp.create(e); 
        FacturaEntity fe = em.find(FacturaEntity.class, eTest.getId());
        Assert.assertEquals(e.getIdAnim(), fe.getIdAnim());
+    }
+    
+    @Test
+    public void findAllTest(){
+       PodamFactory f = new PodamFactoryImpl();
+       ArrayList<FacturaEntity> facE = new ArrayList<FacturaEntity>();
+       for(int x = 0;x<10;x++){
+           FacturaEntity e = f.manufacturePojo(FacturaEntity.class);       
+           FacturaEntity eTest = fp.create(e); 
+           facE.add(eTest);
+       }
+       boolean sentry = true;
+       List<FacturaEntity> ich = fp.findAll();
+       for(FacturaEntity ff: facE){
+           boolean tempcheck = false;
+           for(FacturaEntity fcheck: ich){
+               if(ff.getIdAnim().equals(fcheck.getIdAnim())){
+                   tempcheck = true;
+               }
+           }
+           sentry = sentry && tempcheck;
+       }
+       Assert.assertTrue(sentry);
     }
     
 }

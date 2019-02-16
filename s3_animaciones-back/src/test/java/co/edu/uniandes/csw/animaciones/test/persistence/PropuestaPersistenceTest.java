@@ -4,6 +4,8 @@ package co.edu.uniandes.csw.animaciones.test.persistence;
 import co.edu.uniandes.csw.animaciones.entities.PropuestaEntity;
 import javax.inject.Inject;
 import co.edu.uniandes.csw.animaciones.persistence.PropuestaPersistence;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -44,9 +46,38 @@ public class PropuestaPersistenceTest {
        
        PropuestaEntity eTest = fp.create(e);       
        Assert.assertNotNull(eTest);
-       
+    }
+    
+    @Test
+    public void findTest(){
+       PodamFactory f = new PodamFactoryImpl();
+       PropuestaEntity e = f.manufacturePojo(PropuestaEntity.class);       
+       PropuestaEntity eTest = fp.create(e); 
        PropuestaEntity fe = em.find(PropuestaEntity.class, eTest.getId());
        Assert.assertEquals(e.getPrecio(), fe.getPrecio());
+    }
+    
+    @Test
+    public void findAllTest(){
+       PodamFactory f = new PodamFactoryImpl();
+       ArrayList<PropuestaEntity> facE = new ArrayList<PropuestaEntity>();
+       for(int x = 0;x<10;x++){
+           PropuestaEntity e = f.manufacturePojo(PropuestaEntity.class);       
+           PropuestaEntity eTest = fp.create(e); 
+           facE.add(eTest);
+       }
+       boolean sentry = true;
+       List<PropuestaEntity> ich = fp.findAll();
+       for(PropuestaEntity ff: facE){
+           boolean tempcheck = false;
+           for(PropuestaEntity fcheck: ich){
+               if(ff.getPrecio().equals(fcheck.getPrecio())){
+                   tempcheck = true;
+               }
+           }
+           sentry = sentry && tempcheck;
+       }
+       Assert.assertTrue(sentry);
     }
     
 }
