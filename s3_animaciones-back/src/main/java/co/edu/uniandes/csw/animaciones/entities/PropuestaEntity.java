@@ -25,7 +25,7 @@ public class PropuestaEntity extends BaseEntity implements Serializable {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private ArtistaEntity artista;
     
-    @PodamExclude
+    
     @OneToOne
     private FacturaEntity factura;
     
