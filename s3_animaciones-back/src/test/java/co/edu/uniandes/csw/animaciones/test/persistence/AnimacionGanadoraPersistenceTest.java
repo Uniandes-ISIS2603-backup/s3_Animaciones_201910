@@ -66,7 +66,7 @@ public class AnimacionGanadoraPersistenceTest{
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(AnimacionGanadoraEntity.class.getPackage())
-                .addPackage(AnimacionGanadoraEntity.class.getPackage())
+                .addPackage(AnimacionGanadoraPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
