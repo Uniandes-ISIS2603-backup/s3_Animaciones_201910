@@ -37,4 +37,15 @@ public class PropuestaPersistence {
         TypedQuery<PropuestaEntity> qu = em.createQuery("select u from PropuestaEntity u", PropuestaEntity.class);
         return qu.getResultList();
     }
+    
+    public PropuestaEntity update(PropuestaEntity fE){
+        LOGGER.log(Level.INFO, "Actualizando el elemento de ID = {0}", fE.getId());
+        return em.merge(fE);
+    }
+    
+    public void delete(Long id){
+        LOGGER.log(Level.INFO, "DESTRUYENDO el elemento de ID = {0}",id);
+        PropuestaEntity fE = em.find(PropuestaEntity.class, id);
+        em.remove(fE);
+    }
 }

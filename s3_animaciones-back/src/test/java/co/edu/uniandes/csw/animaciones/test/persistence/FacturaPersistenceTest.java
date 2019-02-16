@@ -81,4 +81,27 @@ public class FacturaPersistenceTest {
        Assert.assertTrue(sentry);
     }
     
+    @Test
+    public void updateTest(){
+       PodamFactory f = new PodamFactoryImpl();
+       FacturaEntity e = f.manufacturePojo(FacturaEntity.class);
+       FacturaEntity eTest = fp.create(e);
+       Integer idTemp = (int) (Math.random() * 1000);
+       eTest.setIdAnim(idTemp);
+       fp.update(eTest);
+       e = fp.find(eTest.getId());
+       Assert.assertEquals(idTemp, e.getIdAnim());
+    }
+    
+    @Test
+    public void deleteTest(){
+       PodamFactory f = new PodamFactoryImpl();
+       FacturaEntity e = f.manufacturePojo(FacturaEntity.class);
+       FacturaEntity eTest = fp.create(e);
+       Long id = eTest.getId();
+       fp.delete(id);
+       FacturaEntity fe = em.find(FacturaEntity.class, id);
+       Assert.assertNull(fe);
+    }
+    
 }

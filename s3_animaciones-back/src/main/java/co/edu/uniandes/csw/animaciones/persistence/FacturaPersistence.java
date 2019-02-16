@@ -37,4 +37,17 @@ public class FacturaPersistence {
         TypedQuery<FacturaEntity> qu = em.createQuery("select u from FacturaEntity u", FacturaEntity.class);
         return qu.getResultList();
     }
+    
+    public FacturaEntity update(FacturaEntity fE){
+        LOGGER.log(Level.INFO, "Actualizando el elemento de ID = {0}", fE.getId());
+        return em.merge(fE);
+    }
+    
+    public void delete(Long id){
+        LOGGER.log(Level.INFO, "DESTRUYENDO el elemento de ID = {0}",id);
+        FacturaEntity fE = em.find(FacturaEntity.class, id);
+        em.remove(fE);
+    }
+    
+    
 }

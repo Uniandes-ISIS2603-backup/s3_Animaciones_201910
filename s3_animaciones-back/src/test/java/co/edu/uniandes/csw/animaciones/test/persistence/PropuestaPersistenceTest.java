@@ -80,4 +80,27 @@ public class PropuestaPersistenceTest {
        Assert.assertTrue(sentry);
     }
     
+    @Test
+    public void updateTest(){
+       PodamFactory f = new PodamFactoryImpl();
+       PropuestaEntity e = f.manufacturePojo(PropuestaEntity.class);
+       PropuestaEntity eTest = fp.create(e);
+       Integer idTemp = (int) (Math.random() * 1000);
+       eTest.setPrecio(idTemp);
+       fp.update(eTest);
+       e = fp.find(eTest.getId());
+       Assert.assertEquals(idTemp, e.getPrecio());
+    }
+    
+    @Test
+    public void deleteTest(){
+       PodamFactory f = new PodamFactoryImpl();
+       PropuestaEntity e = f.manufacturePojo(PropuestaEntity.class);
+       PropuestaEntity eTest = fp.create(e);
+       Long id = eTest.getId();
+       fp.delete(id);
+       PropuestaEntity fe = em.find(PropuestaEntity.class, id);
+       Assert.assertNull(fe);
+    }
+    
 }

@@ -22,7 +22,7 @@ public class FacturaEntity extends BaseEntity implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
     
-    //@OneToOne
+    //@OneToOne(mappedBy="factura", fetch=FetchType.LAZY)
     //private MedioDePagoEntity medioDePago;
     
     @PodamExclude
