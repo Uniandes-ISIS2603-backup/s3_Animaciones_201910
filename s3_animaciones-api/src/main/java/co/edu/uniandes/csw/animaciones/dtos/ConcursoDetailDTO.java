@@ -17,7 +17,7 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable{
     // ATRIBUTOS
     //
   
-    List<AnimacionGanadoraDTO> ganadores = new ArrayList<AnimacionGanadoraDTO>();
+    List<AnimacionParticipanteDTO> ganadores = new ArrayList<AnimacionParticipanteDTO>();
     //List<JuradoDTO> jurados = new ArrayList<JuradoDTO>();
     //List<Ronda> rondas = new ArrayList<Ronda>();
     
