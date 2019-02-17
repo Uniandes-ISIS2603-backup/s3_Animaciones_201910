@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.animaciones.resources;
 
-import co.edu.uniandes.csw.animaciones.dtos.AnimacionGanadoraDTO;
+import co.edu.uniandes.csw.animaciones.dtos.AnimacionParticipanteDTO;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -30,14 +30,14 @@ public class AnimacionGanadoraResource {
             
     @GET
     @Path("concursos/{id1: \\d+}/animacionesGanadoras/{id2: \\d+}")
-    public AnimacionGanadoraDTO getAnimacionesGanadoras (@PathParam("id1")Long id1, @PathParam("id2")Long id2){
-        return new AnimacionGanadoraDTO() ;
+    public AnimacionParticipanteDTO getAnimacionesGanadoras (@PathParam("id1")Long id1, @PathParam("id2")Long id2){
+        return new AnimacionParticipanteDTO() ;
     }
     
     @GET
     @Path("concursos/{id1: \\d+}/animacionesGanadoras")
-    public AnimacionGanadoraDTO getAnimacionesGanadoras (@PathParam("id1")Long id1){
-        return new AnimacionGanadoraDTO() ;
+    public AnimacionParticipanteDTO getAnimacionesGanadoras (@PathParam("id1")Long id1){
+        return new AnimacionParticipanteDTO() ;
     }
     
     @POST
@@ -49,8 +49,8 @@ public class AnimacionGanadoraResource {
     
     @DELETE
     @Path("concursos/{id1: \\d+}/animacionesGanadoras/{id2: \\d+}")
-    public AnimacionGanadoraDTO deleteAnimacionesGanadoras (@PathParam("id1")Long id1,@PathParam("id2")Long id2){
-        return new AnimacionGanadoraDTO() ;
+    public AnimacionParticipanteDTO deleteAnimacionesGanadoras (@PathParam("id1")Long id1,@PathParam("id2")Long id2){
+        return new AnimacionParticipanteDTO() ;
     }
     
     

@@ -12,7 +12,7 @@ import co.edu.uniandes.csw.animaciones.dtos.AnimacionConcursoDTO;
  *
  * @author by.cuta10
  */
-public class AnimacionGanadoraDTO extends AnimacionConcursoDTO implements Serializable
+public class AnimacionParticipanteDTO extends AnimacionConcursoDTO implements Serializable
 {
     //
     // ATRIBUTOS
@@ -27,7 +27,7 @@ public class AnimacionGanadoraDTO extends AnimacionConcursoDTO implements Serial
     /**
      * constructor
      */
-    public AnimacionGanadoraDTO(){
+    public AnimacionParticipanteDTO(){
         
     }
     
