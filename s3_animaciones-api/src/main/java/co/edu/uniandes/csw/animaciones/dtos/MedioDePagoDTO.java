@@ -21,20 +21,21 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
+
 package co.edu.uniandes.csw.animaciones.dtos;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class MedioDePagoDTO implements Serializable {
     
-    private int id;
+    private Integer id;
     
-    private int numeroTarjeta;
+    private Integer numeroTarjeta;
     
-    private int codigo;
+    private Integer codigo;
     
     private Date fechaVencimiento;
     
@@ -47,51 +48,46 @@ public class MedioDePagoDTO implements Serializable {
     public MedioDePagoDTO(){
         
     }
-    
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
 
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     /**
      * @return the numeroTarjeta
      */
-    public int getNumeroTarjeta() {
+    public Integer getNumeroTarjeta() {
         return numeroTarjeta;
     }
 
     /**
      * @param numeroTarjeta the numeroTarjeta to set
      */
-    public void setNumeroTarjeta(int numeroTarjeta) {
+    public void setNumeroTarjeta(Integer numeroTarjeta) {
         this.numeroTarjeta = numeroTarjeta;
     }
 
     /**
      * @return the codigo
      */
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
     /**
      * @param codigo the codigo to set
      */
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 
@@ -122,4 +118,5 @@ public class MedioDePagoDTO implements Serializable {
     public void setFormaDePago(FormaDePago formaDePago) {
         this.formaDePago = formaDePago;
     }
+
 }

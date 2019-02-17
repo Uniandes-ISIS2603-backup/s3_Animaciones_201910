@@ -9,13 +9,13 @@ import java.io.Serializable;
 
 /**
  *
- * @author estudiante
+ * @author df.serrano
  */
 public class VotacionDTO implements Serializable{
-    private int id;
-    private int idAnimacion;
-    private int puntos;
-    private int ronda;
+    private Integer id;
+    private Integer idAnimacion;
+    private Integer puntos;
+    private Integer ronda;
     
     public VotacionDTO(){
         
@@ -24,56 +24,58 @@ public class VotacionDTO implements Serializable{
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     /**
      * @return the idAnimacion
      */
-    public int getIdAnimacion() {
+    public Integer getIdAnimacion() {
         return idAnimacion;
     }
 
     /**
      * @param idAnimacion the idAnimacion to set
      */
-    public void setIdAnimacion(int idAnimacion) {
+    public void setIdAnimacion(Integer idAnimacion) {
         this.idAnimacion = idAnimacion;
     }
 
     /**
      * @return the puntos
      */
-    public int getPuntos() {
+    public Integer getPuntos() {
         return puntos;
     }
 
     /**
      * @param puntos the puntos to set
      */
-    public void setPuntos(int puntos) {
+    public void setPuntos(Integer puntos) {
         this.puntos = puntos;
     }
 
     /**
      * @return the ronda
      */
-    public int getRonda() {
+    public Integer getRonda() {
         return ronda;
     }
 
     /**
      * @param ronda the ronda to set
      */
-    public void setRonda(int ronda) {
+    public void setRonda(Integer ronda) {
         this.ronda = ronda;
     }
+
+    
 }
