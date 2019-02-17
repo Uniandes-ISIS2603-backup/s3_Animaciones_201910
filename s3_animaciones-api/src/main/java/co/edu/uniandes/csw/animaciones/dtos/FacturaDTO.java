@@ -30,9 +30,9 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class FacturaDTO implements Serializable {
     
-    private int id;
+    private Integer id;
     
-    private int idAnim;
+    private Integer idAnim;
     
     private Date fecha;
     
