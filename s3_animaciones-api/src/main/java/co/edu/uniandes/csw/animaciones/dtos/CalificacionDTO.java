@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.animaciones.dtos;
+import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -11,7 +12,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * @author ld.manrique
  */
-public class CalificacionDTO {
+public class CalificacionDTO implements Serializable {
     
  private Integer  id;
     

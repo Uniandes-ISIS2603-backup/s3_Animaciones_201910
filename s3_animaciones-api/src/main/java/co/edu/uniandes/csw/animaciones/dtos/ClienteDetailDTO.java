@@ -5,13 +5,14 @@
  */
 package co.edu.uniandes.csw.animaciones.dtos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author ld.manrique
  */
-public class ClienteDetailDTO {
+public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     
      ArrayList<FacturaDTO> facturas;
     ArrayList<PropuestaDTO> propuestas;
