@@ -6,15 +6,18 @@
 package co.edu.uniandes.csw.animaciones.dtos;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 /**
  *
- * @author estudiante
+ * @author df.serrano
  */
 public class RondaDTO implements Serializable{
     
-    private int id;
-    private int numero;
+    private Integer id;
+    private Integer numero;
+    private Date fechaInicio;
+    private Date fechaFin;
     
     public RondaDTO(){
         
@@ -23,28 +26,57 @@ public class RondaDTO implements Serializable{
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     /**
      * @return the numero
      */
-    public int getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
     /**
      * @param numero the numero to set
      */
-    public void setNumero(int numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
+
+    /**
+     * @return the fechaInicio
+     */
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    /**
+     * @param fechaInicio the fechaInicio to set
+     */
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    /**
+     * @return the fechaFin
+     */
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    /**
+     * @param fechaFin the fechaFin to set
+     */
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
 }

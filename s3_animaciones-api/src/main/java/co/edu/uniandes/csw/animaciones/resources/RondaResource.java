@@ -9,21 +9,23 @@ import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import static javax.ws.rs.HttpMethod.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 /**
  *
- * @author estudiante
+ * @author df.serrano
  */
 @Path("rondas")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class RondaResource {
-    private static final Logger LOGGER = Logger.getLogger(PropuestaResource.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(RondaResource.class.getName());
     
     @GET
     public List <RondaDTO> darRondas(){
@@ -35,4 +37,18 @@ public class RondaResource {
     public RondaDTO darRonda(@PathParam("rondaId") Long rondaId){
         return null;
     }    
+    @POST
+    public RondaDTO crearRonda(RondaDTO ronda) {
+        return ronda;
+    }
+    @PUT
+       @Path("{rondaId: \\d+}")
+    public RondaDTO cambiarRonda(@PathParam("rondaId") Long rondaId, RondaDTO ronda){
+        return ronda;
+    }
+    @DELETE
+    @Path("{rondaId: \\d+}")
+    public RondaDTO eliminarRonda(@PathParam("rondaId") Long rondaId){
+        return null;
+    }
 }

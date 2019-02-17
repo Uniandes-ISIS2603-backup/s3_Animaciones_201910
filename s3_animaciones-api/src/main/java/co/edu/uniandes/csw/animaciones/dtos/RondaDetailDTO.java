@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author estudiante
+ * @author df.serrano
  */
 public class RondaDetailDTO extends RondaDTO implements Serializable {
     
@@ -24,7 +24,7 @@ public class RondaDetailDTO extends RondaDTO implements Serializable {
  *
  * Esta lista de tipo AnimacionDTO contiene las animaciones que están participando en esa ronda
  */
-    private List<AnimacionDTO> animaciones;
+    private List<AnimacionDTO> animacionesParticipantes;
     
     public RondaDetailDTO(){
         
@@ -45,16 +45,16 @@ public class RondaDetailDTO extends RondaDTO implements Serializable {
     }
 
     /**
-     * @return the animaciones
+     * @return the animacionesParticipantes
      */
-    public List<AnimacionDTO> getAnimaciones() {
-        return animaciones;
+    public List<AnimacionDTO> getAnimacionesParticipantes() {
+        return animacionesParticipantes;
     }
 
     /**
-     * @param animaciones the animaciones to set
+     * @param animacionesParticipantes the animacionesParticipantes to set
      */
-    public void setAnimaciones(List<AnimacionDTO> animaciones) {
-        this.animaciones = animaciones;
+    public void setAnimacionesParticipantes(List<AnimacionDTO> animacionesParticipantes) {
+        this.animacionesParticipantes = animacionesParticipantes;
     }
 }
