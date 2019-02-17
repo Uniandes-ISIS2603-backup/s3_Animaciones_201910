@@ -13,10 +13,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class CalificacionDTO {
     
- private int  id;
+ private Integer  id;
     
    private String comentario;
-   private int calificacion;
+   private Integer calificacion;
     
    public CalificacionDTO(){
        
@@ -24,27 +24,27 @@ public class CalificacionDTO {
  /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
   /**
      * @return the calificacion
      */
-    public int getCalificacion() {
+    public Integer getCalificacion() {
         return calificacion;
     }
 
     /**
      * @param calificacion the calificacion to set
      */
-    public void setCalificacion(int calificacion) {
+    public void setCalificacion(Integer calificacion) {
         this.calificacion = calificacion;
     }
     
