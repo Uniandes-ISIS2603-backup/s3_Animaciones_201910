@@ -20,7 +20,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-@Path("animaciones")
+@Path("animacionesParticipantes")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
