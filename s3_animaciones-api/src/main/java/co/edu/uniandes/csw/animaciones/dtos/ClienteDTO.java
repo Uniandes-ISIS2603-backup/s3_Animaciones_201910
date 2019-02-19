@@ -15,7 +15,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class ClienteDTO  implements Serializable{
     
    private Integer id;
-  
+   //QUE SI HERMANO QUE ESTE ES EL GIT FLOW CREAME
        private String nombre;
     
     private String informacion;
