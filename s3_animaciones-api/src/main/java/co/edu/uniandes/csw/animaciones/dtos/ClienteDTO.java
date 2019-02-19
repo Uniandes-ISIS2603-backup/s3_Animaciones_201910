@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * @author ld.manrique
  */
-public class ClienteDTO {
+public class ClienteDTO  implements Serializable{
     
    private Integer id;
    

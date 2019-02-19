@@ -6,19 +6,45 @@
 package co.edu.uniandes.csw.animaciones.entities;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author estudiante
+ * @author ld.manrique
  */
 @Entity
-public class CalificacionEntity extends BaseEntity implements Serializable {
+public class CalificacionEntity extends BaseEntity implements Serializable{
     
-    @PodamExclude
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private AnimacionEntity animacion;
+   /// private Integer id;
+
+  
+    
+    private String comentario;
+            
+            private Integer calificacion;
+            
+            public CalificacionEntity()
+            {
+                
+            }
+            
+    //  public Integer getId() {
+    //    return id;
+   // }
+
+  //  public void setId(Integer id) {
+  //      this.id = id;
+ //   }
+
+    public Integer getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(Integer calificacion) {
+        this.calificacion = calificacion;
+    }
+    
+    
+    
+ 
 }
