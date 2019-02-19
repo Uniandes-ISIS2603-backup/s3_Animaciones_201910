@@ -15,7 +15,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class ClienteDTO  implements Serializable{
     
    private Integer id;
-   //Aprediendo el git flow
+  
        private String nombre;
     
     private String informacion;
