@@ -25,7 +25,7 @@ import javax.ws.rs.Produces;
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class AnimacionParticipante {
+public class AnimacionParticipanteResource {
     
     @POST
     public AnimacionParticipanteDTO crearAnimacion(AnimacionParticipanteDTO animacionParticipante){
