@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -24,6 +25,20 @@ public class ArtistaPersistence {
     
     public ArtistaEntity findArtista(Long aID){
         return em.find(ArtistaEntity.class, aID);
+    }
+    
+    public ArtistaEntity findByUser(String pUsuario){
+        TypedQuery querty = em.createQuery("Select e from ArtistaEntity e where e.usuario = :usuario", ArtistaEntity.class);
+        querty = querty.setParameter("usuario", pUsuario);
+        List<ArtistaEntity> result = querty.getResultList();
+        ArtistaEntity re;
+        if(result == null || result.isEmpty()){
+            re = null;
+        }
+        else{
+            re = result.get(0);
+        }
+        return re;
     }
     
     public List<ArtistaEntity> findAll(){

@@ -130,5 +130,17 @@ public class ArtistaPersistenceTest {
         ap.deleteArtista(ae.getId());
         ArtistaEntity ae2 = em.find(ArtistaEntity.class, ae.getId());
         Assert.assertNull(ae2);
-    }    
+    }
+    
+    @Test
+    public void findByUserTest() {
+        ArtistaEntity ae = listAE.get(0);
+        ArtistaEntity ae2 = ap.findByUser(ae.getUsuario());
+        
+        Assert.assertNotNull(ae2);
+        Assert.assertEquals(ae.getUsuario(), ae2.getUsuario());
+        
+        ae2 = ap.findByUser(null);
+        Assert.assertNull(ae2);
+    }
 }
