@@ -3,6 +3,7 @@ package co.edu.uniandes.csw.animaciones.ejb;
 import co.edu.uniandes.csw.animaciones.entities.AnimacionEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.animaciones.persistence.AnimacionPersistence;
+import co.edu.uniandes.csw.animaciones.persistence.ArtistaPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -17,11 +18,14 @@ public class AnimacionLogic {
     @Inject
     private AnimacionPersistence ap;
     
+    @Inject
+    private ArtistaPersistence arp;
+    
     public AnimacionEntity createAnimacion(AnimacionEntity ae) throws BusinessLogicException {
         if(ae.getNombre() == null || ae.getFecha() == null || ae.getLink() == null){
             throw new BusinessLogicException("El nonmbre, fecha o link no puede ser nunlo");
         }
-        if(ae.getArtista() == null){
+        if(ae.getArtista() == null || arp.findArtista(ae.getArtista().getId()) == null){
             throw new BusinessLogicException("Las animaciones tienen que tener un artista");
         }
         if(ae.getPrecio() < 0){
