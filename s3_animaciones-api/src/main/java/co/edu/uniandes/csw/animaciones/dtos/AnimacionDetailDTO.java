@@ -10,6 +10,10 @@ import java.util.ArrayList;
 public class AnimacionDetailDTO extends AnimacionDTO implements Serializable {
     
     ArrayList<CalificacionDTO> calificaciones;
+    
+    public AnimacionDetailDTO () {
+        
+    }
 
     public ArrayList<CalificacionDTO> getCalificaciones() {
         return calificaciones;

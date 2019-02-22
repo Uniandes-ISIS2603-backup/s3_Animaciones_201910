@@ -11,6 +11,10 @@ public class ArtistaDetailDTO extends ArtistaDTO implements Serializable {
     
     ArrayList<AnimacionDTO> animaciones;
     ArrayList<PropuestaDTO> propuestas;
+    
+    public ArtistaDetailDTO () {
+        
+    }
 
     public ArrayList<AnimacionDTO> getAnimaciones() {
         return animaciones;
