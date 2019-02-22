@@ -1,9 +1,10 @@
 package co.edu.uniandes.csw.animaciones.test.logic;
 
-import co.edu.uniandes.csw.animaciones.ejb.ArtistaLogic;
+import co.edu.uniandes.csw.animaciones.ejb.AnimacionLogic;
+import co.edu.uniandes.csw.animaciones.entities.AnimacionEntity;
 import co.edu.uniandes.csw.animaciones.entities.ArtistaEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.animaciones.persistence.ArtistaPersistence;
+import co.edu.uniandes.csw.animaciones.persistence.AnimacionPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -26,34 +27,37 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author Nicolas Alvarado
  */
 @RunWith(Arquillian.class)
-public class ArtistaLogicTest {
-    
-    private PodamFactory pf = new PodamFactoryImpl();
-    
-    @Inject
-    private ArtistaLogic al;
-    
-    @PersistenceContext
-    private EntityManager em;
+public class AnimacionLogicTest {
     
     @Inject
     private UserTransaction utrans;
     
-    private List<ArtistaEntity> listaA = new ArrayList<>();
+    @PersistenceContext
+    private EntityManager em;
+    
+    private PodamFactory pf = new PodamFactoryImpl();
+    
+    List<AnimacionEntity> listaA = new ArrayList<>();
+    
+    @Inject
+    private AnimacionLogic al;
     
     @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(ArtistaEntity.class.getPackage())
-                .addPackage(ArtistaLogic.class.getPackage())
-                .addPackage(ArtistaPersistence.class.getPackage())
+                .addPackage(AnimacionEntity.class.getPackage())
+                .addPackage(AnimacionLogic.class.getPackage())
+                .addPackage(AnimacionPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
     private void insertData() {
         for(int i = 0; i < 5; i++){
-            ArtistaEntity ae = pf.manufacturePojo(ArtistaEntity.class);
+            AnimacionEntity ae = pf.manufacturePojo(AnimacionEntity.class);
+            ArtistaEntity are = pf.manufacturePojo(ArtistaEntity.class);
+            em.persist(are);
+            ae.setArtista(are);
             em.persist(ae);
             listaA.add(ae);
         }
@@ -63,6 +67,7 @@ public class ArtistaLogicTest {
     public void config() {
         try{
             utrans.begin();
+            em.createQuery("delete from AnimacionEntity").executeUpdate();
             em.createQuery("delete from ArtistaEntity").executeUpdate();
             insertData();
             utrans.commit();
@@ -80,42 +85,53 @@ public class ArtistaLogicTest {
     
     @Test
     public void createTest() throws BusinessLogicException {
-        ArtistaEntity ae = pf.manufacturePojo(ArtistaEntity.class);
-        al.createArtista(ae);
-        ArtistaEntity ae2 = em.find(ArtistaEntity.class, ae.getId());
+        AnimacionEntity ae = pf.manufacturePojo(AnimacionEntity.class);
+        ae.setArtista(listaA.get(0).getArtista());
+        ae.setPrecio(20);
+        al.createAnimacion(ae);
+        AnimacionEntity ae2 = em.find(AnimacionEntity.class, ae.getId());
         Assert.assertEquals(ae, ae2);
     }
     
     @Test(expected = BusinessLogicException.class)
-    public void createTestSinNombre() throws BusinessLogicException {
-        ArtistaEntity ae = pf.manufacturePojo(ArtistaEntity.class);
+    public void createSinNombreTest() throws BusinessLogicException {
+        AnimacionEntity ae = pf.manufacturePojo(AnimacionEntity.class);
         ae.setNombre(null);
-        al.createArtista(ae);
+        al.createAnimacion(ae);
     }
     
     @Test(expected = BusinessLogicException.class)
-    public void createTestUsuarioExistente() throws BusinessLogicException {
-        ArtistaEntity ae = listaA.get(0);
-        ArtistaEntity ae2 = pf.manufacturePojo(ArtistaEntity.class);
-        ae2.setUsuario(ae.getUsuario());
-        al.createArtista(ae2);
+    public void createSinArtistaTest() throws BusinessLogicException {
+        AnimacionEntity ae = pf.manufacturePojo(AnimacionEntity.class);
+        ArtistaEntity are = new ArtistaEntity();
+        are.setId(Long.MIN_VALUE);
+        ae.setArtista(are);
+        al.createAnimacion(ae);
+    }
+    
+    @Test(expected = BusinessLogicException.class)
+    public void createConPrecioNegativo() throws BusinessLogicException {
+        AnimacionEntity ae = pf.manufacturePojo(AnimacionEntity.class);
+        ae.setArtista(listaA.get(0).getArtista());
+        ae.setPrecio(-1);
+        al.createAnimacion(ae);
     }
     
     @Test
-    public void getArtistaTest() {
-        ArtistaEntity ae = listaA.get(0);
-        ArtistaEntity ae2 = al.getArtista(ae.getId());
+    public void getAnimacionTest() {
+        AnimacionEntity ae = listaA.get(0);
+        AnimacionEntity ae2 = al.getAnimacion(ae.getId());
         Assert.assertNotNull(ae2);
         Assert.assertEquals(ae, ae2);
     }
     
     @Test
-    public void getArtistasTest() {
-        List<ArtistaEntity> result = al.getArtistas();
-        Assert.assertEquals(result.size(), listaA.size());
-        for(ArtistaEntity ae : result){
+    public void getAnimacionesTest() {
+        List<AnimacionEntity> result = al.getAnimaciones();
+        Assert.assertNotNull(result);
+        for(AnimacionEntity ae : result){
             boolean encontro = false;
-            for(ArtistaEntity ae2 : listaA){
+            for(AnimacionEntity ae2 : listaA){
                 if(ae.equals(ae2)){
                     encontro = true;
                 }
@@ -126,9 +142,9 @@ public class ArtistaLogicTest {
     
     @Test
     public void deleteTest() {
-        ArtistaEntity ae = listaA.get(0);
-        al.deleteArtista(ae.getId());
-        ArtistaEntity ae2 = em.find(ArtistaEntity.class, ae.getId());
+        AnimacionEntity ae = listaA.get(0);
+        al.deleteAnimacion(ae.getId());
+        AnimacionEntity ae2 = em.find(AnimacionEntity.class, ae.getId());
         Assert.assertNull(ae2);
     }
     
