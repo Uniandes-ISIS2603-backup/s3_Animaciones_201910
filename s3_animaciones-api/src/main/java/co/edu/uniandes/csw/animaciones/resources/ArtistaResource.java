@@ -1,7 +1,9 @@
 package co.edu.uniandes.csw.animaciones.resources;
 
 import co.edu.uniandes.csw.animaciones.dtos.AnimacionDTO;
+import co.edu.uniandes.csw.animaciones.dtos.AnimacionDetailDTO;
 import co.edu.uniandes.csw.animaciones.dtos.ArtistaDTO;
+import co.edu.uniandes.csw.animaciones.dtos.ArtistaDetailDTO;
 import co.edu.uniandes.csw.animaciones.dtos.PropuestaDTO;
 import java.util.ArrayList;
 import javax.enterprise.context.RequestScoped;
@@ -24,12 +26,12 @@ public class ArtistaResource {
     
     @GET
     @Path("{artistaId: \\d+}")
-    public ArtistaDTO getArtista(@PathParam("artistaId") Long artistaId){
+    public ArtistaDetailDTO getArtista(@PathParam("artistaId") Long artistaId){
         return null;
     }
     
     @GET
-    public ArrayList<ArtistaDTO> getArtistas(){
+    public ArrayList<ArtistaDetailDTO> getArtistas(){
         return null;
     }
     
@@ -59,13 +61,13 @@ public class ArtistaResource {
     
     @GET
     @Path("{artistaId: \\d+}/animaciones/{animacionId: \\d+}")
-    public AnimacionDTO getAnimacion(@PathParam("artistaId") Long artistaId, @PathParam("animacionId") Long animacionId){
+    public AnimacionDetailDTO getAnimacion(@PathParam("artistaId") Long artistaId, @PathParam("animacionId") Long animacionId){
         return null;
     }
     
     @GET
     @Path("{artistaId: \\d+}/aninmaciones")
-    public ArrayList<AnimacionDTO> getAnimaciones(@PathParam("artistaId") Long artistaId){
+    public ArrayList<AnimacionDetailDTO> getAnimaciones(@PathParam("artistaId") Long artistaId){
         return null;
     }
     

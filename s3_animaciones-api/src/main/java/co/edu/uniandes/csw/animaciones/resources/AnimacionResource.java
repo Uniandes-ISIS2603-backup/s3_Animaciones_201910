@@ -1,6 +1,7 @@
 package co.edu.uniandes.csw.animaciones.resources;
 
 import co.edu.uniandes.csw.animaciones.dtos.AnimacionDTO;
+import co.edu.uniandes.csw.animaciones.dtos.AnimacionDetailDTO;
 import co.edu.uniandes.csw.animaciones.dtos.CalificacionDTO;
 import java.util.ArrayList;
 import javax.enterprise.context.RequestScoped;
@@ -23,12 +24,12 @@ public class AnimacionResource {
     
     @GET
     @Path("{animacionId: \\d+}")
-    public AnimacionDTO getAnimacion(@PathParam("animacionId") Long animacionID){
+    public AnimacionDetailDTO getAnimacion(@PathParam("animacionId") Long animacionID){
         return null;
     }
     
     @GET
-    public ArrayList<AnimacionDTO> getAnimaciones(){
+    public ArrayList<AnimacionDetailDTO> getAnimaciones(){
         return null;
     }
     
