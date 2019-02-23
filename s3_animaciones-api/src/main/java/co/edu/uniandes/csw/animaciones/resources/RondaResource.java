@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.animaciones.resources;
 import co.edu.uniandes.csw.animaciones.dtos.RondaDTO;
+import co.edu.uniandes.csw.animaciones.dtos.RondaDetailDTO;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -28,13 +29,13 @@ public class RondaResource {
     private static final Logger LOGGER = Logger.getLogger(RondaResource.class.getName());
     
     @GET
-    public List <RondaDTO> darRondas(){
+    public List <RondaDetailDTO> darRondas(){
         return null;
     }
     
     @GET
     @Path("{rondaId: \\d+}")
-    public RondaDTO darRonda(@PathParam("rondaId") Long rondaId){
+    public RondaDetailDTO darRonda(@PathParam("rondaId") Long rondaId){
         return null;
     }    
     @POST
