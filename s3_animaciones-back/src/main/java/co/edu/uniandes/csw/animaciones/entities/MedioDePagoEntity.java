@@ -17,8 +17,8 @@ import uk.co.jemos.podam.common.PodamExclude;
  *
  * @author df.serrano
  */
+@Entity
 public class MedioDePagoEntity extends BaseEntity implements Serializable{
-    private Long id;
     private Integer numeroTarjeta;
     private Integer codigo;
     @Temporal(TemporalType.DATE)
@@ -27,28 +27,16 @@ public class MedioDePagoEntity extends BaseEntity implements Serializable{
     public enum FormaDePago{
         DEBITO, CREDITO, PAYPAL, PSE
     }
-
-   // @PodamExclude
-   // @ManyToOne(cascade = CascadeType.PERSIST)
-   // private ClienteEntity cliente;
+    public MedioDePagoEntity(){
+        
+    }
+   @PodamExclude
+   @ManyToOne(cascade = CascadeType.PERSIST)
+   private ClienteEntity cliente;
     
     @PodamExclude
     @ManyToOne(cascade = CascadeType.PERSIST)
     private FacturaEntity factura;
-
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     /**
      * @return the numeroTarjeta
@@ -107,6 +95,20 @@ public class MedioDePagoEntity extends BaseEntity implements Serializable{
     }
 
     /**
+     * @return the cliente
+     */
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
+
+    /**
      * @return the factura
      */
     public FacturaEntity getFactura() {
@@ -119,4 +121,6 @@ public class MedioDePagoEntity extends BaseEntity implements Serializable{
     public void setFactura(FacturaEntity factura) {
         this.factura = factura;
     }
+    
+    
 }
