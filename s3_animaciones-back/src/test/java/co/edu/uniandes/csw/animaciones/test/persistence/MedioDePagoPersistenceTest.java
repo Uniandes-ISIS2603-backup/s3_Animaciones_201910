@@ -106,6 +106,7 @@ public class MedioDePagoPersistenceTest {
     public void getMediosDePagoTest() {
         List<MedioDePagoEntity> listT = mdpp.findAll();
         Assert.assertEquals(listT.size(), listMDPE.size());
+        
         for(MedioDePagoEntity mdpe : listT){
             boolean encontro = false;
             for(MedioDePagoEntity mdpe2 : listMDPE){
