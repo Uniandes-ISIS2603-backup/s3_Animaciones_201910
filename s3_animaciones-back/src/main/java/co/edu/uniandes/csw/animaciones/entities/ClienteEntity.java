@@ -28,7 +28,7 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     private String contrasenia;
     
     @PodamExclude
-    @OneToMany(mappedBy = "artista", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private ArrayList<PropuestaEntity> propuestas = new ArrayList<>(); 
 
     public ClienteEntity(){
