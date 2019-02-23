@@ -4,6 +4,7 @@ package co.edu.uniandes.csw.animaciones.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -22,8 +23,9 @@ public class FacturaEntity extends BaseEntity implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
     
-    //@OneToOne(mappedBy="factura", fetch=FetchType.LAZY)
-    //private MedioDePagoEntity medioDePago;
+    @PodamExclude
+    @OneToOne(mappedBy="factura", fetch=FetchType.LAZY)
+    private MedioDePagoEntity medioDePago;
     
     @PodamExclude
     @OneToOne
@@ -78,5 +80,33 @@ public class FacturaEntity extends BaseEntity implements Serializable {
      */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    /**
+     * @return the propuesta
+     */
+    public PropuestaEntity getPropuesta() {
+        return propuesta;
+    }
+
+    /**
+     * @param propuesta the propuesta to set
+     */
+    public void setPropuesta(PropuestaEntity propuesta) {
+        this.propuesta = propuesta;
+    }
+
+    /**
+     * @return the medioDePago
+     */
+    public MedioDePagoEntity getMedioDePago() {
+        return medioDePago;
+    }
+
+    /**
+     * @param medioDePago the medioDePago to set
+     */
+    public void setMedioDePago(MedioDePagoEntity medioDePago) {
+        this.medioDePago = medioDePago;
     }
 }
