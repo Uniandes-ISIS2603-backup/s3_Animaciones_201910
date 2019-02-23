@@ -26,6 +26,9 @@ public class PropuestaEntity extends BaseEntity implements Serializable {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private ArtistaEntity artista;
     
+    @PodamExclude
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private ClienteEntity cliente;    
 
     
     @OneToOne(mappedBy = "propuesta", fetch =FetchType.LAZY)

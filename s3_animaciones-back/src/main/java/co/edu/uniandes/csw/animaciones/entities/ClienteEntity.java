@@ -6,7 +6,11 @@
 package co.edu.uniandes.csw.animaciones.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -22,6 +26,10 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     private String usuario;
     
     private String contrasenia;
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "artista", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private ArrayList<PropuestaEntity> propuestas = new ArrayList<>(); 
 
     public ClienteEntity(){
         
