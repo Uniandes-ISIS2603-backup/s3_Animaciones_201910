@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.animaciones.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -19,42 +20,30 @@ import uk.co.jemos.podam.common.PodamExclude;
  *
  * @author df.serrano
  */
+@Entity
 public class RondaEntity extends BaseEntity implements Serializable{
     
-    private Long id;
     private Integer numero;
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
     
+    public RondaEntity(){
+        
+    }
     
    // @PodamExclude
    // @ManyToOne(cascade = CascadeType.PERSIST)
    // private ConcursoEntity concurso;
 
    //@PodamExclude
-   //@OneToMany(mappedBy = "video", cascade = CascadeType.PERSIST, orphanRemoval = true)
-   // Animaciones Participantes
+   //@OneToMany(mappedBy = "ronda", cascade = CascadeType.PERSIST, orphanRemoval = true)
+   // private List <AnimacionParticipanteEntity> animacionesParticipantes;
     
-   //@PodamExclude
-   //@OneToMany(mappedBy = "video", cascade = CascadeType.PERSIST, orphanRemoval = true)
-   // Votaciones
-    
-    
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+   @PodamExclude
+   @OneToMany(mappedBy = "ronda", cascade = CascadeType.PERSIST, orphanRemoval = true)
+   private ArrayList <VotacionEntity> votaciones = new ArrayList<>();
 
     /**
      * @return the numero
@@ -97,5 +86,22 @@ public class RondaEntity extends BaseEntity implements Serializable{
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
+
+    /**
+     * @return the votaciones
+     */
+    public ArrayList <VotacionEntity> getVotaciones() {
+        return votaciones;
+    }
+
+    /**
+     * @param votaciones the votaciones to set
+     */
+    public void setVotaciones(ArrayList <VotacionEntity> votaciones) {
+        this.votaciones = votaciones;
+    }
     
+
+
+   
 }
