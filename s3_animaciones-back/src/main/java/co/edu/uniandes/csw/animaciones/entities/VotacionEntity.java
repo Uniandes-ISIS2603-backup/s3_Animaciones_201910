@@ -6,21 +6,17 @@
 package co.edu.uniandes.csw.animaciones.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 /**
  *
- * @author estudiante
+ * @author df.serrano
  */
+@Entity
 public class VotacionEntity extends BaseEntity implements Serializable{
     
-    private Long id;
     private Integer idAnimacion;
     private Double puntos;
     private Integer numRonda;
@@ -31,20 +27,9 @@ public class VotacionEntity extends BaseEntity implements Serializable{
     @ManyToOne(cascade = CascadeType.PERSIST)
     private JuradoEntity jurado;
 
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return id;
+    public VotacionEntity(){
+        
     }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     /**
      * @return the idAnimacion
      */
