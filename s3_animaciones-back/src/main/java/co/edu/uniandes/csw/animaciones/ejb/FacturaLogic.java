@@ -19,8 +19,8 @@ public class FacturaLogic {
     private FacturaPersistence factura;
     
     public FacturaEntity createF(FacturaEntity f) throws BusinessLogicException{
-        if(f.getMedioDePago()==null||f.getEstado()==null){
-            throw new BusinessLogicException("Esta factura tiene datos nulos (Medio de pago o estado), y por esto no se puede crear.");
+        if(f.getEstado()==null){
+            throw new BusinessLogicException("Esta factura tiene Estado nulo, y por esto no se puede crear.");
         }       
         f = factura.create(f);
         return f;
@@ -36,9 +36,9 @@ public class FacturaLogic {
         return alle;
     }
     
-    public FacturaEntity updateF(FacturaEntity f) throws Exception{
-        if(f.getMedioDePago()==null||f.getEstado()==null){
-            throw new BusinessLogicException("Esta factura tiene datos nulos (Medio de pago o estado), y por esto no se puede actualizar.");
+    public FacturaEntity updateF(FacturaEntity f) throws BusinessLogicException{
+        if(f.getEstado()==null){
+            throw new BusinessLogicException("Esta factura tiene Estado nulo44444, y por esto no se puede actualizar.");
         }
         FacturaEntity newF = factura.update(f);
         return newF;
