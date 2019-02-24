@@ -118,4 +118,24 @@ public class MedioDePagoPersistenceTest {
         }
     }
     
+    @Test
+    public void updatMedioDePagoTest() {
+        MedioDePagoEntity mdpe = listMDPE.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        MedioDePagoEntity mdpe2 = factory.manufacturePojo(MedioDePagoEntity.class);
+        mdpe2.setId(mdpe.getId());
+        mdpp.update(mdpe2);
+        
+        MedioDePagoEntity mdpe3 = em.find(MedioDePagoEntity.class, mdpe.getId());
+        Assert.assertEquals(mdpe2, mdpe3);
+    }
+    
+    @Test
+    public void deleteMedioDePagoTest() {
+        MedioDePagoEntity mdpe = listMDPE.get(0);
+        mdpp.delete(mdpe.getId());
+        MedioDePagoEntity mdpe2 = em.find(MedioDePagoEntity.class, mdpe.getId());
+        Assert.assertNull(mdpe2);
+    }
+    
 }

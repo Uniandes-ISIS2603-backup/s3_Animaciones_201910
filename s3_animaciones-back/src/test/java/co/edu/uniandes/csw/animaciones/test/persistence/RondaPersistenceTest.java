@@ -117,4 +117,25 @@ public class RondaPersistenceTest {
             Assert.assertTrue(encontro);
         }
     }
+    
+        
+    @Test
+    public void updatRondaTest() {
+        RondaEntity re = listRE.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        RondaEntity re2 = factory.manufacturePojo(RondaEntity.class);
+        re2.setId(re.getId());
+        rp.update(re2);
+        
+        RondaEntity re3 = em.find(RondaEntity.class, re.getId());
+        Assert.assertEquals(re2, re3);
+    }
+    
+    @Test
+    public void deleteRondaTest() {
+        RondaEntity re = listRE.get(0);
+        rp.delete(re.getId());
+        RondaEntity re2 = em.find(RondaEntity.class, re.getId());
+        Assert.assertNull(re2);
+    }
 }
