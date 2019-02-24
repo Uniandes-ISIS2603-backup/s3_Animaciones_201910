@@ -32,4 +32,14 @@ public class RondaPersistence {
         TypedQuery<RondaEntity> query = em.createQuery("select u from RondaEntity u", RondaEntity.class);
         return query.getResultList();
     }
+    
+        
+        public RondaEntity update(RondaEntity re){
+        return em.merge(re);
+    }
+    
+    public void delete(Long aID){
+        RondaEntity re = em.find(RondaEntity.class, aID);
+        em.remove(re);
+    }
 }

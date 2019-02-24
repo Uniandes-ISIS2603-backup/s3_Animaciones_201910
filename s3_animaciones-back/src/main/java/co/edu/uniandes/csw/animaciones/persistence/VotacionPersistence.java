@@ -31,4 +31,14 @@ public class VotacionPersistence {
         TypedQuery<VotacionEntity> query = em.createQuery("select u from VotacionEntity u", VotacionEntity.class);
         return query.getResultList();
     }
+    
+        
+        public VotacionEntity update(VotacionEntity ve){
+        return em.merge(ve);
+    }
+    
+    public void delete(Long aID){
+        VotacionEntity ve = em.find(VotacionEntity.class, aID);
+        em.remove(ve);
+    }
 }

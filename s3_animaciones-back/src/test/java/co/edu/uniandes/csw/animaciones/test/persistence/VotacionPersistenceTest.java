@@ -115,4 +115,25 @@ public class VotacionPersistenceTest {
             Assert.assertTrue(encontro);
         }
     }
+    
+        
+    @Test
+    public void updatPagoPagoTest() {
+        VotacionEntity ve = listVE.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        VotacionEntity ve2 = factory.manufacturePojo(VotacionEntity.class);
+        ve2.setId(ve.getId());
+        vp.update(ve2);
+        
+        VotacionEntity ve3 = em.find(VotacionEntity.class, ve.getId());
+        Assert.assertEquals(ve2, ve3);
+    }
+    
+    @Test
+    public void deleteVotacionTest() {
+        VotacionEntity ve = listVE.get(0);
+        vp.delete(ve.getId());
+        VotacionEntity ve2 = em.find(VotacionEntity.class, ve.getId());
+        Assert.assertNull(ve2);
+    }
 }
