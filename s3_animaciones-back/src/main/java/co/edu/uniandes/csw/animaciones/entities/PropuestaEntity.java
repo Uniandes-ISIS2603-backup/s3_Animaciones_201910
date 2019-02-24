@@ -26,8 +26,11 @@ public class PropuestaEntity extends BaseEntity implements Serializable {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private ArtistaEntity artista;
     
+    @PodamExclude
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private ClienteEntity cliente;    
 
-    
+    @PodamExclude
     @OneToOne(mappedBy = "propuesta", fetch =FetchType.LAZY)
     private FacturaEntity factura;
 
@@ -62,6 +65,48 @@ public class PropuestaEntity extends BaseEntity implements Serializable {
      */
     public void setEstado(Estado estado) {
         this.estado = estado;
+    }
+
+    /**
+     * @return the artista
+     */
+    public ArtistaEntity getArtista() {
+        return artista;
+    }
+
+    /**
+     * @param artista the artista to set
+     */
+    public void setArtista(ArtistaEntity artista) {
+        this.artista = artista;
+    }
+
+    /**
+     * @return the cliente
+     */
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
+
+    /**
+     * @return the factura
+     */
+    public FacturaEntity getFactura() {
+        return factura;
+    }
+
+    /**
+     * @param factura the factura to set
+     */
+    public void setFactura(FacturaEntity factura) {
+        this.factura = factura;
     }
     
    
