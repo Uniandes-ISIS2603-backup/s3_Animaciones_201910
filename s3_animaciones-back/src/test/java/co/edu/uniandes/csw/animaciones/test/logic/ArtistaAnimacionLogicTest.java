@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -94,6 +94,7 @@ public class ArtistaAnimacionLogicTest {
     public void addAnimacionTest() throws BusinessLogicException {
         AnimacionEntity nueva = pf.manufacturePojo(AnimacionEntity.class);
         nueva.setArtista(ae);
+        nueva.setPrecio(5);
         anl.createAnimacion(nueva);
         
         AnimacionEntity result1 = aal.addAnimacion(ae.getId(), nueva.getId());
