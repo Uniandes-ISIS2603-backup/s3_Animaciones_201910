@@ -6,9 +6,13 @@
 package co.edu.uniandes.csw.animaciones.resources;
 import co.edu.uniandes.csw.animaciones.dtos.RondaDTO;
 import co.edu.uniandes.csw.animaciones.dtos.RondaDetailDTO;
+import co.edu.uniandes.csw.animaciones.ejb.RondaLogic;
+import co.edu.uniandes.csw.animaciones.entities.RondaEntity;
+import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -27,7 +31,8 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class RondaResource {
     private static final Logger LOGGER = Logger.getLogger(RondaResource.class.getName());
-    
+    @Inject
+    private RondaLogic rl;
     @GET
     public List <RondaDetailDTO> darRondas(){
         return null;
@@ -39,8 +44,10 @@ public class RondaResource {
         return null;
     }    
     @POST
-    public RondaDTO crearRonda(RondaDTO ronda) {
-        return ronda;
+    public RondaDTO createRonda(RondaDTO ronda) throws BusinessLogicException {
+        RondaEntity re = ronda.toEntity();
+        re = rl.createRonda(re);
+        return new RondaDTO(re);
     }
     @PUT
        @Path("{rondaId: \\d+}")
