@@ -103,4 +103,28 @@ public class AnimacionCalificacionLogicTest {
         Assert.assertEquals(result2, nueva);
     }
     
+    @Test
+    public void getCalificacionesTest() {
+        ArrayList<CalificacionEntity> result = acl.getAnimaciones(ae.getId());
+        Assert.assertEquals(result.size(), listCal.size());
+        for(int i = 0; i < listCal.size(); i++){
+            Assert.assertTrue(result.contains(listCal.get(i)));
+        }
+    }
+    
+    @Test
+    public void getCalificacionTest() {
+        CalificacionEntity ce = listCal.get(0);
+        CalificacionEntity result = acl.getAimacion(ae.getId(), ce.getId());
+        Assert.assertNotNull(result);
+        Assert.assertEquals(ce, result);
+    }
+    
+    @Test
+    public void deleteCalificacionTest() {
+        acl.deleteCalificacion(ae.getId(), listCal.get(0).getId());
+        CalificacionEntity result = acl.getAimacion(ae.getId(), listCal.get(0).getId());
+        Assert.assertNull(result);
+    }
+    
 }
