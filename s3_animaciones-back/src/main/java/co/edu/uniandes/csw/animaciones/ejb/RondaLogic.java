@@ -67,7 +67,7 @@ public class RondaLogic {
         }
         // que la ronda le pertenezca a un concurso
         // que la un concurso solo puede tener una ronda 2 si ya tenía creada una ronda 1
-        if(ronda.getFechaInicio().before(new Date(119, 0, 1))|| ronda.getFechaInicio().before(new Date(119, 0, 2))){
+        if(ronda.getFechaInicio().before(new Date(119, 0, 1))|| ronda.getFechaFin().before(new Date(119, 0, 2))){
             throw new BusinessLogicException("Las fechas de las rondas deben ser del 2019");
         }
         RondaEntity newre = persistence.update(ronda);
