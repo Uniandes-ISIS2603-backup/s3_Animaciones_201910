@@ -1,7 +1,7 @@
 package co.edu.uniandes.csw.animaciones.dtos;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -9,17 +9,17 @@ import java.util.ArrayList;
  */
 public class AnimacionDetailDTO extends AnimacionDTO implements Serializable {
     
-    ArrayList<CalificacionDTO> calificaciones;
+    List<CalificacionDTO> calificaciones;
     
     public AnimacionDetailDTO () {
         
     }
 
-    public ArrayList<CalificacionDTO> getCalificaciones() {
+    public List<CalificacionDTO> getCalificaciones() {
         return calificaciones;
     }
 
-    public void setCalificaciones(ArrayList<CalificacionDTO> calificaciones) {
+    public void setCalificaciones(List<CalificacionDTO> calificaciones) {
         this.calificaciones = calificaciones;
     }
     

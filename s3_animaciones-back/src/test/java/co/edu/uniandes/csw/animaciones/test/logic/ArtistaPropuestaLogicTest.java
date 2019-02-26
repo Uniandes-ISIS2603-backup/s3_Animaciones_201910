@@ -7,6 +7,7 @@ import co.edu.uniandes.csw.animaciones.entities.PropuestaEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.animaciones.persistence.ArtistaPersistence;
 import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -106,7 +107,7 @@ public class ArtistaPropuestaLogicTest {
     
     @Test
     public void getPropuestasTest() {
-        ArrayList<PropuestaEntity> result = apl.getPrestamos(ae.getId());
+        List<PropuestaEntity> result = apl.getPrestamos(ae.getId());
         Assert.assertEquals(result.size(), listPro.size());
         for(int i = 0; i < listPro.size(); i++){
             Assert.assertTrue(result.contains(listPro.get(i)));

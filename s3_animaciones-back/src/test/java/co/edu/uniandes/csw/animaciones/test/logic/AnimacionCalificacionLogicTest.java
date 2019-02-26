@@ -7,6 +7,7 @@ import co.edu.uniandes.csw.animaciones.entities.CalificacionEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.animaciones.persistence.AnimacionPersistence;
 import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -105,7 +106,7 @@ public class AnimacionCalificacionLogicTest {
     
     @Test
     public void getCalificacionesTest() {
-        ArrayList<CalificacionEntity> result = acl.getAnimaciones(ae.getId());
+        List<CalificacionEntity> result = acl.getAnimaciones(ae.getId());
         Assert.assertEquals(result.size(), listCal.size());
         for(int i = 0; i < listCal.size(); i++){
             Assert.assertTrue(result.contains(listCal.get(i)));

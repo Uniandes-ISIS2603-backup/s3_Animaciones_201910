@@ -4,7 +4,7 @@ import co.edu.uniandes.csw.animaciones.entities.AnimacionEntity;
 import co.edu.uniandes.csw.animaciones.entities.ArtistaEntity;
 import co.edu.uniandes.csw.animaciones.persistence.AnimacionPersistence;
 import co.edu.uniandes.csw.animaciones.persistence.ArtistaPersistence;
-import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -28,12 +28,12 @@ public class ArtistaAnimacionLogic {
         return ane;
     }
     
-    public ArrayList<AnimacionEntity> getAnimaciones(Long artistaId) {
+    public List<AnimacionEntity> getAnimaciones(Long artistaId) {
         return arp.findArtista(artistaId).getAnimaciones();
     }
     
     public AnimacionEntity getAnimacion(Long ArtistaId, Long AnimacionId) {
-        ArrayList<AnimacionEntity> list = getAnimaciones(ArtistaId);
+        List<AnimacionEntity> list = getAnimaciones(ArtistaId);
         AnimacionEntity ane = anp.find(AnimacionId);
         int i = list.indexOf(ane);
         if(i >= 0){

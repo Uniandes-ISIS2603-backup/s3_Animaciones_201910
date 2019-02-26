@@ -4,7 +4,7 @@ import co.edu.uniandes.csw.animaciones.entities.AnimacionEntity;
 import co.edu.uniandes.csw.animaciones.entities.CalificacionEntity;
 import co.edu.uniandes.csw.animaciones.persistence.AnimacionPersistence;
 import co.edu.uniandes.csw.animaciones.persistence.CalificacionPersistence;
-import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -28,12 +28,12 @@ public class AnimacionCalificacionLogic {
         return ce;
     }
     
-    public ArrayList<CalificacionEntity> getAnimaciones(Long idAnimacion) {
+    public List<CalificacionEntity> getAnimaciones(Long idAnimacion) {
         return ap.find(idAnimacion).getCalificaciones();
     }
     
     public CalificacionEntity getAimacion(Long idAnimacion, Long idCalificacion) {
-        ArrayList<CalificacionEntity> list = getAnimaciones(idAnimacion);
+        List<CalificacionEntity> list = getAnimaciones(idAnimacion);
         CalificacionEntity ce = cp.find(idCalificacion);
         int i = list.indexOf(ce);
         if(i >= 0){
