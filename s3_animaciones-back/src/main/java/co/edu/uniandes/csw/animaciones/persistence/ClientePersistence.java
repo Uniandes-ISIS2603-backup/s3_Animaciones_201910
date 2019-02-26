@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -37,11 +38,23 @@ public class ClientePersistence {
     public ClienteEntity find(Long id){
         return em.find(ClienteEntity.class, id);
     }
+    public ClienteEntity findByUser(String pUsuario){
+        TypedQuery querty = em.createQuery("Select e from ClienteEntity e where e.usuario = :usuario", ClienteEntity.class);
+        querty = querty.setParameter("usuario", pUsuario);
+        List<ClienteEntity> result = querty.getResultList();
+        ClienteEntity re;
+        if(result == null || result.isEmpty()){
+            re = null;
+        }
+        else{
+            re = result.get(0);
+        }
+        return re;
+    }
     
     public List<ClienteEntity> findAll(){
-        
-        TypedQuery<ClienteEntity> qu = em.createQuery("select u from CalificacionEntity u", ClienteEntity.class);
-        return qu.getResultList();
+        Query q = em.createQuery("select u from ClienteEntity u");
+        return q.getResultList();
     }
     
     public ClienteEntity update(ClienteEntity cE){
