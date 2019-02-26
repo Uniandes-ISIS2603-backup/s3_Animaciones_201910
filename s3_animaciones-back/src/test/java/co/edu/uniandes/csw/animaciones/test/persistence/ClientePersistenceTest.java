@@ -148,28 +148,28 @@ public class ClientePersistenceTest {
         junit.framework.Assert.assertEquals(ae, ae2);
     }
     
-//    @Test
-//    public void findAllTest() {
-//        PodamFactory f = new PodamFactoryImpl();
-//       ArrayList<ClienteEntity> calE = new ArrayList<ClienteEntity>();
-//       for(int x = 0;x<10;x++){
-//           ClienteEntity e = f.manufacturePojo(ClienteEntity.class);       
-//           ClienteEntity eTest = clientePersistence.create(e); 
-//           calE.add(eTest);
-//       }
-//       boolean sentry = true;
-//       List<ClienteEntity> ich = clientePersistence.findAll();
-//       for(ClienteEntity ff: calE){
-//           boolean tempcheck = false;
-//           for(ClienteEntity fcheck: ich){
-//               if(ff.getId().equals(fcheck.getId())){
-//                   tempcheck = true;
-//               }
-//           }
-//           sentry = sentry && tempcheck;
-//       }
-//       Assert.assertTrue(sentry);
-//    }
+    @Test
+    public void findAllTest() {
+        PodamFactory f = new PodamFactoryImpl();
+       ArrayList<ClienteEntity> calE = new ArrayList<ClienteEntity>();
+       for(int x = 0;x<10;x++){
+           ClienteEntity e = f.manufacturePojo(ClienteEntity.class);       
+           ClienteEntity eTest = clientePersistence.create(e); 
+           calE.add(eTest);
+       }
+       boolean sentry = true;
+       List<ClienteEntity> ich = clientePersistence.findAll();
+       for(ClienteEntity ff: calE){
+           boolean tempcheck = false;
+           for(ClienteEntity fcheck: ich){
+               if(ff.getId().equals(fcheck.getId())){
+                   tempcheck = true;
+               }
+           }
+           sentry = sentry && tempcheck;
+       }
+       Assert.assertTrue(sentry);
+    }
     
     @Test
     public void updateTest() {
@@ -181,6 +181,18 @@ public class ClientePersistenceTest {
         
         ClienteEntity ae3 = em.find(ClienteEntity.class, ae.getId());
         junit.framework.Assert.assertEquals(ae2, ae3);
+    }
+    
+      @Test
+    public void findByUserTest() {
+        ClienteEntity ae = data.get(0);
+        ClienteEntity ae2 = clientePersistence.findByUser(ae.getUsuario());
+        
+        Assert.assertNotNull(ae2);
+        Assert.assertEquals(ae.getUsuario(), ae2.getUsuario());
+        
+        ae2 = clientePersistence.findByUser(null);
+        Assert.assertNull(ae2);
     }
     /**
      * Prueba para eliminar un Client.

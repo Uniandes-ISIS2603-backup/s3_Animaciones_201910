@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.animaciones.dtos;
+import co.edu.uniandes.csw.animaciones.entities.ClienteEntity;
 import java.io.Serializable;
 import java.util.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -28,13 +29,21 @@ public class ClienteDTO  implements Serializable{
         
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+//    public ClienteDTO(ClienteEntity entity)
+//    {
+//       entity.setContrasenia(contrasenia);
+//       entity.setInformacion(informacion);
+//       entity.setNombre(nombre);
+//       entity.setUsuario(usuario);
+//    }
+    
+//    public Integer getId() {
+//        return id;
+//    }
+//
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
 
     public String getNombre() {
         return nombre;
@@ -72,4 +81,14 @@ public class ClienteDTO  implements Serializable{
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
+    
+//    public ClienteEntity toEntity()
+//    {
+//        ClienteEntity entity= new ClienteEntity();
+//        entity.setContrasenia(contrasenia);
+//        entity.setInformacion(informacion);
+//        entity.setNombre(nombre);
+//        entity.setUsuario(usuario);
+//        return entity;
+//    }
 }
