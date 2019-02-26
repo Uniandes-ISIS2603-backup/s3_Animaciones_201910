@@ -8,6 +8,7 @@ import co.edu.uniandes.csw.animaciones.entities.ArtistaEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.animaciones.persistence.ArtistaPersistence;
 import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -107,7 +108,7 @@ public class ArtistaAnimacionLogicTest {
     
     @Test
     public void getAnimacionesTest() {
-        ArrayList<AnimacionEntity> result = aal.getAnimaciones(ae.getId());
+        List<AnimacionEntity> result = aal.getAnimaciones(ae.getId());
         Assert.assertEquals(result.size(), listAn.size());
         for(int i = 0; i < listAn.size(); i++){
             Assert.assertTrue(result.contains(listAn.get(i)));

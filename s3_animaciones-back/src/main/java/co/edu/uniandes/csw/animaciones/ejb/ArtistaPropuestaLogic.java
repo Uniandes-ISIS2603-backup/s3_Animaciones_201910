@@ -4,7 +4,7 @@ import co.edu.uniandes.csw.animaciones.entities.ArtistaEntity;
 import co.edu.uniandes.csw.animaciones.entities.PropuestaEntity;
 import co.edu.uniandes.csw.animaciones.persistence.ArtistaPersistence;
 import co.edu.uniandes.csw.animaciones.persistence.PropuestaPersistence;
-import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -28,12 +28,12 @@ public class ArtistaPropuestaLogic {
         return pe;
     }
     
-    public ArrayList<PropuestaEntity> getPrestamos(Long ArtistaId) {
+    public List<PropuestaEntity> getPrestamos(Long ArtistaId) {
         return ap.findArtista(ArtistaId).getPropuestas();
     }
     
     public PropuestaEntity getPropuesta(Long ArtistaId, Long PropuestaId) {
-        ArrayList<PropuestaEntity> list = getPrestamos(ArtistaId);
+        List<PropuestaEntity> list = getPrestamos(ArtistaId);
         PropuestaEntity pe = pp.find(PropuestaId);
         int i = list.indexOf(pe);
         if(i >= 0){
