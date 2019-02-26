@@ -64,8 +64,14 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
-    
-    
+
+    public AnimacionEntity getAnimacion() {
+        return animacion;
+    }
+
+    public void setAnimacion(AnimacionEntity animacion) {
+        this.animacion = animacion;
+    }
     
  
 }
