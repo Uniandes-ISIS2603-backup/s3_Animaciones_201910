@@ -1,0 +1,205 @@
+{
+	"info": {
+		"_postman_id": "0ce1ff7a-78a0-4e23-806a-435b2ef3a7e2",
+		"name": "TestArtista",
+		"description": "Test Artista",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Todos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b933d1f7-5836-428d-b4fc-8d7947722937",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
+							"tests[\"editorials count\"] = data.length > 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/artistas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"artistas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Un",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f1375d28-5dc6-456a-a963-1799af71b256",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/artistas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"artistas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Artista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c6efc1eb-6755-4111-8a76-bf8e21192118",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/artistas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"artistas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Artista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc3ee0b9-8a1b-4fda-b5d7-a7ad8dcb3baf",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/artistas/{{id-nuevo}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"artistas",
+						"{{id-nuevo}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "496fe1e9-1173-409c-b8a4-508a91b089cc",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/artistas/{{id-nuevo}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"artistas",
+						"{{id-nuevo}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
