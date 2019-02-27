@@ -23,10 +23,7 @@ public class AnimacionParticipanteEntity extends BaseEntity implements Serializa
     private Integer puesto;
     private Boolean finalista;
     private Integer dinero;
-    
-    @PodamExclude
-    @ManyToOne( cascade = CascadeType.PERSIST)
-    private RondaEntity ronda;
+
 
 
 
@@ -85,21 +82,4 @@ public class AnimacionParticipanteEntity extends BaseEntity implements Serializa
     public void setDinero(Integer dinero) {
         this.dinero = dinero;
     }
-
-    /**
-     * @return the ronda
-     */
-    public RondaEntity getRonda() {
-        return ronda;
-    }
-
-    /**
-     * @param ronda the ronda to set
-     */
-    public void setRonda(RondaEntity ronda) {
-        this.ronda = ronda;
-    }
-    
-    
-    
 }

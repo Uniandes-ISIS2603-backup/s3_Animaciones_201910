@@ -22,15 +22,13 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
     private String tema;
     private String tecnica;
     private Long organizador;
+    
+    /*
 
     @PodamExclude
     @OneToMany(mappedBy = "concurso", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private ArrayList<JuradoEntity> juradosa;
-
-    @PodamExclude
-    @OneToMany(mappedBy = "concurso", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private ArrayList<RondaEntity> rondas = new ArrayList<RondaEntity>();
-
+*/
 
     /**
      * @return the tema

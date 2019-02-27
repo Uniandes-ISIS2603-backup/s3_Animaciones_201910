@@ -23,10 +23,11 @@ public class JuradoEntity extends BaseEntity implements Serializable{
     private String usuario;
     private String contraseña;
     
+    /*
     @PodamExclude
     @ManyToOne(cascade = CascadeType.PERSIST)
     private ConcursoEntity concurso;
-
+   */
 
     public void setCredencial(String credencial) {
         this.credencial = credencial;
