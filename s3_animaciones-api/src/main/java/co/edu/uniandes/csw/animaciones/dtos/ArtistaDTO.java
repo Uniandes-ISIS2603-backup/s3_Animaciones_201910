@@ -1,5 +1,6 @@
 package co.edu.uniandes.csw.animaciones.dtos;
 
+import co.edu.uniandes.csw.animaciones.entities.ArtistaEntity;
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -20,6 +21,18 @@ public class ArtistaDTO implements Serializable{
     
     public ArtistaDTO(){
         
+    }
+
+    ArtistaDTO(ArtistaEntity artista) {
+        if(artista != null){
+            this.id = artista.getId();
+            this.contraseña = artista.getContraseña();
+            this.usuario = artista.getUsuario();
+            this.tema = artista.getTema();
+            this.tecnica = artista.getTecnina();
+            this.nombre = artista.getNombre();
+            this.privado = artista.getPrivado();
+        }
     }
 
     public Long getId() {
@@ -81,6 +94,18 @@ public class ArtistaDTO implements Serializable{
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+    
+    public ArtistaEntity toEntity(){
+        ArtistaEntity ae = new ArtistaEntity();
+        ae.setId(id);
+        ae.setContraseña(contraseña);
+        ae.setUsuario(usuario);
+        ae.setTema(tema);
+        ae.setTecnina(tecnica);
+        ae.setNombre(nombre);
+        ae.setPrivado(privado);
+        return ae;
     }
     
 }

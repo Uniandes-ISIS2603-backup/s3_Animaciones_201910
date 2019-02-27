@@ -1,6 +1,7 @@
 package co.edu.uniandes.csw.animaciones.dtos;
 
 import co.edu.uniandes.csw.animaciones.adapters.DateAdapter;
+import co.edu.uniandes.csw.animaciones.entities.AnimacionEntity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -22,11 +23,33 @@ public class AnimacionDTO implements Serializable{
     private String link;
     private Double calificacion;
     
+    private ArtistaDTO artista;
+    
     @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fecha;
     
     public AnimacionDTO(){
         
+    }
+    
+    public AnimacionDTO(AnimacionEntity ae){
+        if(ae != null){
+            this.id = ae.getId();
+            this.nombre = ae.getNombre();
+            this.descripcionn = ae.getDescripcion();
+            this.precio = ae.getPrecio();
+            this.tecnica = ae.getTecnica();
+            this.tags = ae.getTags();
+            this.link = ae.getLink();
+            this.calificacion = ae.getCalificacion();
+            this.fecha = ae.getFecha();
+            if(ae.getArtista() != null){
+                this.artista = new ArtistaDTO(ae.getArtista());
+            }
+            else{
+                this.artista = null;
+            }
+        }
     }
 
     public Long getId() {
@@ -104,6 +127,23 @@ public class AnimacionDTO implements Serializable{
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+    
+    public AnimacionEntity toEntity(){
+        AnimacionEntity ae = new AnimacionEntity();
+        ae.setId(id);
+        ae.setNombre(nombre);
+        ae.setDescripcion(descripcionn);
+        ae.setPrecio(precio);
+        ae.setTecnica(tecnica);
+        ae.setTags(tags);
+        ae.setLink(link);
+        ae.setCalificacion(calificacion);
+        ae.setFecha(fecha);
+        if(this.artista != null){
+            ae.setArtista(artista.toEntity());
+        }
+        return ae;
     }
     
 }
