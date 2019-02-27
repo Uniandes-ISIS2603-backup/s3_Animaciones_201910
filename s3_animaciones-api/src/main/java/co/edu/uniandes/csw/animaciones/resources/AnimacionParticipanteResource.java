@@ -13,6 +13,7 @@ package co.edu.uniandes.csw.animaciones.resources;
 import co.edu.uniandes.csw.animaciones.dtos.AnimacionDTO;
 import co.edu.uniandes.csw.animaciones.dtos.AnimacionParticipanteDTO;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -27,10 +28,15 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class AnimacionParticipanteResource {
     
+    /**
+    @Inject
+    private AnimacionParticipanteLogic 
+    */
     @POST
     public AnimacionParticipanteDTO crearAnimacion(AnimacionParticipanteDTO animacionParticipante){
         return animacionParticipante;
     }
+   
    /*
      * @param concursoId
      * @param animacionParticipanteId
