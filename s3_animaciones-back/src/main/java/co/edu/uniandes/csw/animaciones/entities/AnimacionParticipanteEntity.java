@@ -3,41 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.animaciones.dtos;
+package co.edu.uniandes.csw.animaciones.entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
+import java.util.List;
 /**
  *
  * @author df.perezc
  */
-public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializable
-{
-    //
-    // ATRIBUTOS
-    //
-  
+@Entity
+public class AnimacionParticipanteEntity extends BaseEntity implements Serializable {
+    
     private Double puntaje;
     private Integer puesto;
     private Boolean finalista;
     private Integer dinero;
-    
-    
-    //
-    //CONSTRUCTOR
-    //
-    
-    /**
-     * constructor
-     */
-    public AnimacionParticipanteDTO(){
-        
-    }
-    
-    
-    
-    //
-    //METODOS
-    //
+
+
+
 
     /**
      * @return the puntaje
@@ -94,10 +82,4 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
     public void setDinero(Integer dinero) {
         this.dinero = dinero;
     }
-
-   
-  
-
-    
-    
 }

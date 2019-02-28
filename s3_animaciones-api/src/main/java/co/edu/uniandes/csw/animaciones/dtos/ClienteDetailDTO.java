@@ -5,13 +5,15 @@
  */
 package co.edu.uniandes.csw.animaciones.dtos;
 
+import co.edu.uniandes.csw.animaciones.entities.ClienteEntity;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author ld.manrique
  */
-public class ClienteDetailDTO {
+public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     
      ArrayList<FacturaDTO> facturas;
     ArrayList<PropuestaDTO> propuestas;
@@ -20,8 +22,18 @@ public class ClienteDetailDTO {
     
     public ClienteDetailDTO()
     {
-        
+        super();
     }
+    
+//    public ClienteDetailDTO( ClienteEntity entity)
+//    {
+//        super(entity);
+//        if (entity!= null)
+//        {
+//            
+//        }
+//    }
+    
     
         public ArrayList<FacturaDTO> getFacturas() {
         return facturas;

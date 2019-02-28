@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "e59feacd-7718-462c-a4a8-0d9160a11003",
+		"name": "TestAnimacion",
+		"description": "Test Animacion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Todas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "05028007-961d-45f3-be0a-7dc958922e83",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
+							"tests[\"animaciones count\"] = data.length > 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"animaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Una",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4f1a8b52-b5b8-41e4-aec9-9c0b9aa6d4b5",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones/{{id-nuevo}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"animaciones",
+						"{{id-nuevo}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Animacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1dfb65b5-07cf-4998-b112-658e6fabf840",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id-nuevo\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"animaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Animacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f2f6e8cf-ec03-44c1-96c6-9d3a151e8861",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones/{{id-nuevo}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"animaciones",
+						"{{id-nuevo}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fc5b1133-dad1-4527-8469-cfeb70e066b4",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones/{{id-nuevo}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"animaciones",
+						"{{id-nuevo}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

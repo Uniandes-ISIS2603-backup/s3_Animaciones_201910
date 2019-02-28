@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.animaciones.dtos;
+import co.edu.uniandes.csw.animaciones.entities.ClienteEntity;
 import java.io.Serializable;
 import java.util.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -12,10 +13,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * @author ld.manrique
  */
-public class ClienteDTO {
+public class ClienteDTO  implements Serializable{
     
    private Integer id;
-   
+   //QUE SI HERMANO QUE ESTE ES EL GIT FLOW CREAME
        private String nombre;
     
     private String informacion;
@@ -28,13 +29,21 @@ public class ClienteDTO {
         
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+//    public ClienteDTO(ClienteEntity entity)
+//    {
+//       entity.setContrasenia(contrasenia);
+//       entity.setInformacion(informacion);
+//       entity.setNombre(nombre);
+//       entity.setUsuario(usuario);
+//    }
+    
+//    public Integer getId() {
+//        return id;
+//    }
+//
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
 
     public String getNombre() {
         return nombre;
@@ -72,4 +81,14 @@ public class ClienteDTO {
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
+    
+//    public ClienteEntity toEntity()
+//    {
+//        ClienteEntity entity= new ClienteEntity();
+//        entity.setContrasenia(contrasenia);
+//        entity.setInformacion(informacion);
+//        entity.setNombre(nombre);
+//        entity.setUsuario(usuario);
+//        return entity;
+//    }
 }

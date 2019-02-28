@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.animaciones.test.persistence;
 
-import co.edu.uniandes.csw.animaciones.entities.RondaEntity;
-import co.edu.uniandes.csw.animaciones.persistence.RondaPersistence;
+import co.edu.uniandes.csw.animaciones.entities.VotacionEntity;
+import co.edu.uniandes.csw.animaciones.persistence.VotacionPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -29,10 +29,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author df.serrano
  */
 @RunWith(Arquillian.class)
-public class RondaPersistenceTest {
-
+public class VotacionPersistenceTest {
+    
     @Inject
-    private RondaPersistence rp;
+    private VotacionPersistence vp;
     
     @PersistenceContext
     private EntityManager em;
@@ -40,13 +40,13 @@ public class RondaPersistenceTest {
     @Inject
     UserTransaction ut;
     
-    private List <RondaEntity> listRE = new ArrayList<RondaEntity>(); 
+    private List <VotacionEntity> listVE = new ArrayList<VotacionEntity>(); 
     
-    @Deployment
+     @Deployment
         public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(RondaEntity.class.getPackage())
-                .addPackage(RondaPersistence.class.getPackage())
+                .addPackage(VotacionEntity.class.getPackage())
+                .addPackage(VotacionPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }
@@ -55,11 +55,11 @@ public class RondaPersistenceTest {
     PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
 
-        RondaEntity rt = factory.manufacturePojo(RondaEntity.class);
+        VotacionEntity ve = factory.manufacturePojo(VotacionEntity.class);
 
-        em.persist(rt);
+        em.persist(ve);
 
-        listRE.add(rt);
+        listVE.add(ve);
         }
     }
       
@@ -68,7 +68,7 @@ public class RondaPersistenceTest {
         try {
             ut.begin();
             em.joinTransaction();
-            em.createQuery("delete from RondaEntity").executeUpdate();
+            em.createQuery("delete from VotacionEntity").executeUpdate();
             insertData();
             ut.commit();
         } catch (Exception e) {
@@ -82,35 +82,33 @@ public class RondaPersistenceTest {
     }
     
     @Test
-    public void createRondaTest(){
+    public void createVotacionTest(){
         PodamFactory factory = new PodamFactoryImpl();
-        RondaEntity newRondaEntity = factory.manufacturePojo(RondaEntity.class);
-        RondaEntity re = rp.create(newRondaEntity);
+        VotacionEntity newVotacionEntity = factory.manufacturePojo(VotacionEntity.class);
+        VotacionEntity ve = vp.create(newVotacionEntity);
        
-        Assert.assertNotNull(re);
+        Assert.assertNotNull(ve);
         
-        RondaEntity rondaEntity = em.find(RondaEntity.class, re.getId());
-        //Assert.assertEquals(newRondaEntity.getFechaInicio(), rondaEntity.getFechaInicio());
-        //Assert.assertEquals(newRondaEntity.getFechaFin(), rondaEntity.getFechaFin());
-          Assert.assertEquals(newRondaEntity.getNumero(), rondaEntity.getNumero());
+        VotacionEntity VotacionEntity = em.find(VotacionEntity.class, ve.getId());
+           Assert.assertEquals(newVotacionEntity.getIdAnimacion(), VotacionEntity.getIdAnimacion());
     }
     
         @Test
-    public void getRondaTest() {
-        RondaEntity re = listRE.get(0);
-        RondaEntity re2 = rp.find(re.getId());
-        Assert.assertNotNull(re2);
-        Assert.assertEquals(re2, re);
+    public void getVotacionTest() {
+        VotacionEntity ve = listVE.get(0);
+        VotacionEntity ve2 = vp.find(ve.getId());
+        Assert.assertNotNull(ve2);
+        Assert.assertEquals(ve2, ve);
     }
     
     @Test
-    public void getRondassTest() {
-        List<RondaEntity> listT = rp.findAll();
-        Assert.assertEquals(listT.size(), listRE.size());
-        for(RondaEntity re : listT){
+    public void getVotacionesTest() {
+        List<VotacionEntity> listT = vp.findAll();
+        Assert.assertEquals(listT.size(), listVE.size());
+        for(VotacionEntity ve : listT){
             boolean encontro = false;
-            for(RondaEntity re2 : listRE){
-                if(re.getId().equals(re2.getId())){
+            for(VotacionEntity ve2 : listVE){
+                if(ve.getId().equals(ve2.getId())){
                     encontro = true;
                 }
             }
@@ -120,22 +118,22 @@ public class RondaPersistenceTest {
     
         
     @Test
-    public void updatRondaTest() {
-        RondaEntity re = listRE.get(0);
+    public void updatPagoPagoTest() {
+        VotacionEntity ve = listVE.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        RondaEntity re2 = factory.manufacturePojo(RondaEntity.class);
-        re2.setId(re.getId());
-        rp.update(re2);
+        VotacionEntity ve2 = factory.manufacturePojo(VotacionEntity.class);
+        ve2.setId(ve.getId());
+        vp.update(ve2);
         
-        RondaEntity re3 = em.find(RondaEntity.class, re.getId());
-        Assert.assertEquals(re2, re3);
+        VotacionEntity ve3 = em.find(VotacionEntity.class, ve.getId());
+        Assert.assertEquals(ve2, ve3);
     }
     
     @Test
-    public void deleteRondaTest() {
-        RondaEntity re = listRE.get(0);
-        rp.delete(re.getId());
-        RondaEntity re2 = em.find(RondaEntity.class, re.getId());
-        Assert.assertNull(re2);
+    public void deleteVotacionTest() {
+        VotacionEntity ve = listVE.get(0);
+        vp.delete(ve.getId());
+        VotacionEntity ve2 = em.find(VotacionEntity.class, ve.getId());
+        Assert.assertNull(ve2);
     }
 }

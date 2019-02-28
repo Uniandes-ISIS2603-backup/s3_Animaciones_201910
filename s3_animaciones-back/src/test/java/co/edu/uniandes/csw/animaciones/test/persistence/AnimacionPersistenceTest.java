@@ -1,18 +1,18 @@
 package co.edu.uniandes.csw.animaciones.test.persistence;
 
-import co.edu.uniandes.csw.animaciones.entities.ArtistaEntity;
-import co.edu.uniandes.csw.animaciones.persistence.ArtistaPersistence;
+import co.edu.uniandes.csw.animaciones.entities.AnimacionEntity;
+import co.edu.uniandes.csw.animaciones.persistence.AnimacionPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
-import org.junit.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,24 +24,24 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author Nicolas Alvarado
  */
 @RunWith(Arquillian.class)
-public class ArtistaPersistenceTest {
+public class AnimacionPersistenceTest {
     
     @PersistenceContext
     private EntityManager em;
     
     @Inject
-    private ArtistaPersistence ap;
+    private AnimacionPersistence ap;
     
     @Inject
     UserTransaction ut;
     
-    private List<ArtistaEntity> listAE = new ArrayList<ArtistaEntity>();
+    private List<AnimacionEntity> listAE = new ArrayList<AnimacionEntity>();
     
     @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(ArtistaEntity.class.getPackage())
-                .addPackage(ArtistaPersistence.class.getPackage())
+                .addPackage(AnimacionEntity.class.getPackage())
+                .addPackage(AnimacionPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -50,7 +50,7 @@ public class ArtistaPersistenceTest {
     PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
 
-        ArtistaEntity et = factory.manufacturePojo(ArtistaEntity.class);
+        AnimacionEntity et = factory.manufacturePojo(AnimacionEntity.class);
 
         em.persist(et);
 
@@ -63,7 +63,7 @@ public class ArtistaPersistenceTest {
         try {
             ut.begin();
             em.joinTransaction();
-            em.createQuery("delete from ArtistaEntity").executeUpdate();
+            em.createQuery("delete from AnimacionEntity").executeUpdate();
             insertData();
             ut.commit();
         } catch (Exception e) {
@@ -77,33 +77,33 @@ public class ArtistaPersistenceTest {
     }
     
     @Test
-    public void createArtistaTest() {
+    public void createAnimacionTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        ArtistaEntity ae = factory.manufacturePojo(ArtistaEntity.class);
-        ArtistaEntity result = ap.createArtista(ae);
+        AnimacionEntity ae = factory.manufacturePojo(AnimacionEntity.class);
+        AnimacionEntity result = ap.create(ae);
         
         Assert.assertNotNull(result);
         
-        ArtistaEntity clone = em.find(ArtistaEntity.class, result.getId());
+        AnimacionEntity clone = em.find(AnimacionEntity.class, result.getId());
         
         Assert.assertEquals(ae.getNombre(), clone.getNombre());
     }
     
     @Test
-    public void getArtistaTest() {
-        ArtistaEntity ae = listAE.get(0);
-        ArtistaEntity ae2 = ap.findArtista(ae.getId());
+    public void getAnimacionTest() {
+        AnimacionEntity ae = listAE.get(0);
+        AnimacionEntity ae2 = ap.find(ae.getId());
         Assert.assertNotNull(ae2);
         Assert.assertEquals(ae, ae2);
     }
     
     @Test
-    public void getArtistasTest() {
-        List<ArtistaEntity> listF = ap.findAll();
-        Assert.assertEquals(listF.size(), listAE.size());
-        for(ArtistaEntity ae : listF){
+    public void getAnimacionesTest() {
+        List<AnimacionEntity> listT = ap.finndAll();
+        Assert.assertEquals(listT.size(), listAE.size());
+        for(AnimacionEntity ae : listT){
             boolean encontro = false;
-            for(ArtistaEntity ae2 : listAE){
+            for(AnimacionEntity ae2 : listAE){
                 if(ae.getId().equals(ae2.getId())){
                     encontro = true;
                 }
@@ -113,34 +113,23 @@ public class ArtistaPersistenceTest {
     }
     
     @Test
-    public void updateArtistaTest() {
-        ArtistaEntity ae = listAE.get(0);
+    public void updateAnimacionTest() {
+        AnimacionEntity ae = listAE.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        ArtistaEntity ae2 = factory.manufacturePojo(ArtistaEntity.class);
+        AnimacionEntity ae2 = factory.manufacturePojo(AnimacionEntity.class);
         ae2.setId(ae.getId());
-        ap.updateArtista(ae2);
+        ap.update(ae2);
         
-        ArtistaEntity ae3 = em.find(ArtistaEntity.class, ae.getId());
+        AnimacionEntity ae3 = em.find(AnimacionEntity.class, ae.getId());
         Assert.assertEquals(ae2, ae3);
     }
     
     @Test
-    public void deleteArtistaEntity() {
-        ArtistaEntity ae = listAE.get(0);
-        ap.deleteArtista(ae.getId());
-        ArtistaEntity ae2 = em.find(ArtistaEntity.class, ae.getId());
+    public void deleteAnimacionTest() {
+        AnimacionEntity ae = listAE.get(0);
+        ap.delete(ae.getId());
+        AnimacionEntity ae2 = em.find(AnimacionEntity.class, ae.getId());
         Assert.assertNull(ae2);
     }
     
-    @Test
-    public void findByUserTest() {
-        ArtistaEntity ae = listAE.get(0);
-        ArtistaEntity ae2 = ap.findByUser(ae.getUsuario());
-        
-        Assert.assertNotNull(ae2);
-        Assert.assertEquals(ae.getUsuario(), ae2.getUsuario());
-        
-        ae2 = ap.findByUser(null);
-        Assert.assertNull(ae2);
-    }
 }

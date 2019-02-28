@@ -5,8 +5,9 @@
  */
 package co.edu.uniandes.csw.animaciones.test.persistence;
 
-import co.edu.uniandes.csw.animaciones.entities.RondaEntity;
-import co.edu.uniandes.csw.animaciones.persistence.RondaPersistence;
+import co.edu.uniandes.csw.animaciones.entities.MedioDePagoEntity;
+import co.edu.uniandes.csw.animaciones.persistence.MedioDePagoPersistence;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -29,10 +30,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author df.serrano
  */
 @RunWith(Arquillian.class)
-public class RondaPersistenceTest {
-
+public class MedioDePagoPersistenceTest {
+    
     @Inject
-    private RondaPersistence rp;
+    private MedioDePagoPersistence mdpp;
     
     @PersistenceContext
     private EntityManager em;
@@ -40,13 +41,13 @@ public class RondaPersistenceTest {
     @Inject
     UserTransaction ut;
     
-    private List <RondaEntity> listRE = new ArrayList<RondaEntity>(); 
+    private List <MedioDePagoEntity> listMDPE = new ArrayList<MedioDePagoEntity>(); 
     
-    @Deployment
+     @Deployment
         public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(RondaEntity.class.getPackage())
-                .addPackage(RondaPersistence.class.getPackage())
+                .addPackage(MedioDePagoEntity.class.getPackage())
+                .addPackage(MedioDePagoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }
@@ -55,11 +56,11 @@ public class RondaPersistenceTest {
     PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
 
-        RondaEntity rt = factory.manufacturePojo(RondaEntity.class);
+        MedioDePagoEntity mdpe = factory.manufacturePojo(MedioDePagoEntity.class);
 
-        em.persist(rt);
+        em.persist(mdpe);
 
-        listRE.add(rt);
+        listMDPE.add(mdpe);
         }
     }
       
@@ -68,7 +69,7 @@ public class RondaPersistenceTest {
         try {
             ut.begin();
             em.joinTransaction();
-            em.createQuery("delete from RondaEntity").executeUpdate();
+            em.createQuery("delete from MedioDePagoEntity").executeUpdate();
             insertData();
             ut.commit();
         } catch (Exception e) {
@@ -82,35 +83,34 @@ public class RondaPersistenceTest {
     }
     
     @Test
-    public void createRondaTest(){
+    public void createMedioDePagoTest(){
         PodamFactory factory = new PodamFactoryImpl();
-        RondaEntity newRondaEntity = factory.manufacturePojo(RondaEntity.class);
-        RondaEntity re = rp.create(newRondaEntity);
+        MedioDePagoEntity newMedioDePagoEntity = factory.manufacturePojo(MedioDePagoEntity.class);
+        MedioDePagoEntity mdpe = mdpp.create(newMedioDePagoEntity);
        
-        Assert.assertNotNull(re);
+        Assert.assertNotNull(mdpe);
         
-        RondaEntity rondaEntity = em.find(RondaEntity.class, re.getId());
-        //Assert.assertEquals(newRondaEntity.getFechaInicio(), rondaEntity.getFechaInicio());
-        //Assert.assertEquals(newRondaEntity.getFechaFin(), rondaEntity.getFechaFin());
-          Assert.assertEquals(newRondaEntity.getNumero(), rondaEntity.getNumero());
+        MedioDePagoEntity MedioDePagoEntity = em.find(MedioDePagoEntity.class, mdpe.getId());
+           Assert.assertEquals(newMedioDePagoEntity.getNumeroTarjeta(), MedioDePagoEntity.getNumeroTarjeta());
     }
     
         @Test
-    public void getRondaTest() {
-        RondaEntity re = listRE.get(0);
-        RondaEntity re2 = rp.find(re.getId());
-        Assert.assertNotNull(re2);
-        Assert.assertEquals(re2, re);
+    public void getMedioDePagoTest() {
+        MedioDePagoEntity mdpe = listMDPE.get(0);
+        MedioDePagoEntity mdpe2 = mdpp.find(mdpe.getId());
+        Assert.assertNotNull(mdpe2);
+        Assert.assertEquals(mdpe2, mdpe);
     }
     
     @Test
-    public void getRondassTest() {
-        List<RondaEntity> listT = rp.findAll();
-        Assert.assertEquals(listT.size(), listRE.size());
-        for(RondaEntity re : listT){
+    public void getMediosDePagoTest() {
+        List<MedioDePagoEntity> listT = mdpp.findAll();
+        Assert.assertEquals(listT.size(), listMDPE.size());
+        
+        for(MedioDePagoEntity mdpe : listT){
             boolean encontro = false;
-            for(RondaEntity re2 : listRE){
-                if(re.getId().equals(re2.getId())){
+            for(MedioDePagoEntity mdpe2 : listMDPE){
+                if(mdpe.getId().equals(mdpe2.getId())){
                     encontro = true;
                 }
             }
@@ -118,24 +118,24 @@ public class RondaPersistenceTest {
         }
     }
     
-        
     @Test
-    public void updatRondaTest() {
-        RondaEntity re = listRE.get(0);
+    public void updatMedioDePagoTest() {
+        MedioDePagoEntity mdpe = listMDPE.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        RondaEntity re2 = factory.manufacturePojo(RondaEntity.class);
-        re2.setId(re.getId());
-        rp.update(re2);
+        MedioDePagoEntity mdpe2 = factory.manufacturePojo(MedioDePagoEntity.class);
+        mdpe2.setId(mdpe.getId());
+        mdpp.update(mdpe2);
         
-        RondaEntity re3 = em.find(RondaEntity.class, re.getId());
-        Assert.assertEquals(re2, re3);
+        MedioDePagoEntity mdpe3 = em.find(MedioDePagoEntity.class, mdpe.getId());
+        Assert.assertEquals(mdpe2, mdpe3);
     }
     
     @Test
-    public void deleteRondaTest() {
-        RondaEntity re = listRE.get(0);
-        rp.delete(re.getId());
-        RondaEntity re2 = em.find(RondaEntity.class, re.getId());
-        Assert.assertNull(re2);
+    public void deleteMedioDePagoTest() {
+        MedioDePagoEntity mdpe = listMDPE.get(0);
+        mdpp.delete(mdpe.getId());
+        MedioDePagoEntity mdpe2 = em.find(MedioDePagoEntity.class, mdpe.getId());
+        Assert.assertNull(mdpe2);
     }
+    
 }
