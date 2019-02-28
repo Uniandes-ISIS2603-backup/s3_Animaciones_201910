@@ -69,7 +69,7 @@ public class AnimacionParticipanteResource {
      * @param dinero
      * @return
      */
-    /**
+    /*
     @POST
     @Path("{concursoId: \\d+}/rondas/{ronda: \\d+}/animacionesParticipantesId/{animacionParticipanteId: \\+d}")
     public Long premiarAnimacion(@PathParam("concursoId") Long concursoId, @PathParam("rondaId") Long rondaId, @PathParam("animacionId") Long animacionParticipanteId, Integer dinero) {

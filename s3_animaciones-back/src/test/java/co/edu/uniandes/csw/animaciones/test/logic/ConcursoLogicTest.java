@@ -21,6 +21,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.Before;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -34,8 +35,6 @@ public class ConcursoLogicTest {
 
     private PodamFactory factory = new PodamFactoryImpl();
 
-    private ConcursoPersistence cp;
-
     @Inject
     private ConcursoLogic cl;
 
@@ -43,18 +42,42 @@ public class ConcursoLogicTest {
     private EntityManager em;
 
     @Inject
-    private UserTransaction us;
+    private UserTransaction utx;
 
     private List<ConcursoEntity> dataCE = new ArrayList<>();
+
+    
+    private void clearData() {
+        em.createQuery("delete from ConcursoEntity").executeUpdate();
+    }
 
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            ConcursoEntity ce = factory.manufacturePojo(ConcursoEntity.class);
-            em.persist(ce);
-            dataCE.add(ce);
+            ConcursoEntity ape = factory.manufacturePojo(ConcursoEntity.class);
+            em.persist(ape);
+            dataCE.add(ape);
         }
     }
+
+    @Before
+    public void setUp() {
+        try {
+            utx.begin();
+            em.joinTransaction();
+            clearData();
+            insertData();
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+   
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -67,14 +90,10 @@ public class ConcursoLogicTest {
     }
 
     @Test
-    public void createConcursoTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-
+    public void createConcursoTest() throws BusinessLogicException{
         ConcursoEntity newConcursoEntity = factory.manufacturePojo(ConcursoEntity.class);
-        ConcursoEntity ce = cp.create(newConcursoEntity);
-
+        ConcursoEntity ce = cl.createConcursoEntity(newConcursoEntity);
         Assert.assertNotNull(ce);
-
         ConcursoEntity concursoE = em.find(ConcursoEntity.class, ce.getId());
         Assert.assertEquals(newConcursoEntity.getId(), concursoE.getId());
 
@@ -87,8 +106,8 @@ public class ConcursoLogicTest {
         cl.createConcursoEntity(newConcursoEntity);
 
     }
-
-    @Test(expected = BusinessLogicException.class)
+    
+     @Test(expected = BusinessLogicException.class)
     public void createConcursoConTemaDemasiadoExtensoTest() throws BusinessLogicException {
         ConcursoEntity newConcursoEntity = factory.manufacturePojo(ConcursoEntity.class);
         String tema = "";
@@ -100,20 +119,19 @@ public class ConcursoLogicTest {
         tema += "d";
         newConcursoEntity.setTema(tema);
         cl.createConcursoEntity(newConcursoEntity);
-
     }
-
-    @Test
+    
+      @Test
     public void getConcursoTest() {
         ConcursoEntity ce = dataCE.get(0);
-        ConcursoEntity ce2 = cp.find(ce.getId());
+        ConcursoEntity ce2 = cl.find(ce.getId());
         Assert.assertNotNull(ce2);
         Assert.assertEquals(ce, ce2);
     }
-
-    @Test
+    
+      @Test
     public void getCocursosTest() {
-        List<ConcursoEntity> ces = cp.findAll();
+        List<ConcursoEntity> ces = cl.findAll();
         Assert.assertEquals(ces.size(), dataCE.size());
         for (ConcursoEntity ce : ces) {
             boolean encontro = false;
@@ -125,14 +143,15 @@ public class ConcursoLogicTest {
             Assert.assertTrue(encontro);
         }
     }
-
+    
+    
     @Test
     public void updateConcursoTest() {
         ConcursoEntity ce = dataCE.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         ConcursoEntity ce2 = factory.manufacturePojo(ConcursoEntity.class);
         ce2.setId(ce.getId());
-        cp.update(ce2);
+        cl.update(ce2);
 
         ConcursoEntity ce3 = em.find(ConcursoEntity.class, ce.getId());
         Assert.assertEquals(ce2, ce3);
@@ -141,8 +160,9 @@ public class ConcursoLogicTest {
     @Test
     public void deleteConcursoTest() {
         ConcursoEntity ce = dataCE.get(0);
-        cp.delete(ce.getId());
+        cl.delete(ce.getId());
         ConcursoEntity ce2 = em.find(ConcursoEntity.class, ce.getId());
         Assert.assertNull(ce2);
     }
+
 }

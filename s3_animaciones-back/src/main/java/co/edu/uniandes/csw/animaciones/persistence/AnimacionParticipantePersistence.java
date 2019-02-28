@@ -32,7 +32,7 @@ public class AnimacionParticipantePersistence {
     }
 
     public List<AnimacionParticipanteEntity> findAll() {
-        TypedQuery<AnimacionParticipanteEntity> query = em.createQuery("select u from ConcursoEntity u", AnimacionParticipanteEntity.class);
+        TypedQuery<AnimacionParticipanteEntity> query = em.createQuery("select u from AnimacionParticipanteEntity u", AnimacionParticipanteEntity.class);
         return query.getResultList();
     }
 

@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.animaciones.test.logic;
 
+import co.edu.uniandes.csw.animaciones.ejb.AnimacionParticipanteLogic;
 import co.edu.uniandes.csw.animaciones.entities.AnimacionParticipanteEntity;
-import co.edu.uniandes.csw.animaciones.entities.ConcursoEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.animaciones.persistence.AnimacionParticipantePersistence;
 import java.util.ArrayList;
@@ -32,21 +32,17 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class AnimacionParticipanteLogicTest {
-    
-    
+
     private PodamFactory factory = new PodamFactoryImpl();
-    
+
     @PersistenceContext
     private EntityManager em;
 
     @Inject
-    private AnimacionParticipantePersistence app;
-
-      @Inject
     private AnimacionParticipanteLogic apel;
-    
+
     @Inject
-    UserTransaction utx;
+    private UserTransaction utx;
 
     private List<AnimacionParticipanteEntity> dataAPE = new ArrayList<AnimacionParticipanteEntity>();
 
@@ -54,6 +50,7 @@ public class AnimacionParticipanteLogicTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(AnimacionParticipanteEntity.class.getPackage())
+                .addPackage(AnimacionParticipanteLogic.class.getPackage())
                 .addPackage(AnimacionParticipantePersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
@@ -64,7 +61,6 @@ public class AnimacionParticipanteLogicTest {
     }
 
     private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             AnimacionParticipanteEntity ape = factory.manufacturePojo(AnimacionParticipanteEntity.class);
             em.persist(ape);
@@ -91,19 +87,17 @@ public class AnimacionParticipanteLogicTest {
     }
 
     @Test
-    public void createAnimacionParticipanteTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-
+    public void createAnimacionParticipanteTest() throws BusinessLogicException {
         AnimacionParticipanteEntity newAnimacionParticipanteEntity = factory.manufacturePojo(AnimacionParticipanteEntity.class);
-        AnimacionParticipanteEntity ape = app.create(newAnimacionParticipanteEntity);
-
+        AnimacionParticipanteEntity ape = apel.create(newAnimacionParticipanteEntity);
         Assert.assertNotNull(ape);
-
         AnimacionParticipanteEntity ape2 = em.find(AnimacionParticipanteEntity.class, ape.getId());
         Assert.assertEquals(ape.getId(), ape2.getId());
 
     }
     
+
+
     @Test(expected = BusinessLogicException.class)
     public void createAnimacionParticipanteIdExistenteTest() throws BusinessLogicException {
         AnimacionParticipanteEntity newAPE = factory.manufacturePojo(AnimacionParticipanteEntity.class);
@@ -111,20 +105,20 @@ public class AnimacionParticipanteLogicTest {
         apel.create(newAPE);
 
     }
-     
+    
     @Test
-    public void getConcursoTest() {
+    public void getAnimacionParticipanteTest() {
         AnimacionParticipanteEntity ape = dataAPE.get(0);
-        AnimacionParticipanteEntity ape2 = app.find(ape.getId());
+        AnimacionParticipanteEntity ape2 = apel.find(ape.getId());
         Assert.assertNotNull(ape2);
         Assert.assertEquals(ape, ape2);
     }
     
     @Test
-    public void getCocursosTest() {
-        List<AnimacionParticipanteEntity> apps = app.findAll();
-        Assert.assertEquals(apps.size(), dataAPE.size());
-        for(AnimacionParticipanteEntity ape : apps){
+    public void getAnimacionesParticipantesTest() {
+        List<AnimacionParticipanteEntity> apes = apel.findAll();
+        Assert.assertEquals(apes.size(), dataAPE.size());
+        for(AnimacionParticipanteEntity ape : apes){
             boolean encontro = false;
             for(AnimacionParticipanteEntity ape2 : dataAPE){
                 if(ape.getId().equals(ape2.getId())){
@@ -136,23 +130,23 @@ public class AnimacionParticipanteLogicTest {
     }
     
     @Test
-    public void updateConcursoTest() {
+    public void updateAnimacionParticipanteTest() {
         AnimacionParticipanteEntity ape = dataAPE.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         AnimacionParticipanteEntity ape2 = factory.manufacturePojo(AnimacionParticipanteEntity.class);
         ape2.setId(ape.getId());
-        app.update(ape2);
+        apel.update(ape2);
         
         AnimacionParticipanteEntity ape3 = em.find(AnimacionParticipanteEntity.class, ape.getId());
         Assert.assertEquals(ape2, ape3);
     }
     
     @Test
-    public void deleteAnimacionTest() {
+    public void deleteAnimacionParticipanteTest() {
         AnimacionParticipanteEntity ape = dataAPE.get(0);
-        app.delete(ape.getId());
+        apel.delete(ape.getId());
         AnimacionParticipanteEntity ape2 = em.find(AnimacionParticipanteEntity.class, ape.getId());
         Assert.assertNull(ape2);
     }
-    
+
 }

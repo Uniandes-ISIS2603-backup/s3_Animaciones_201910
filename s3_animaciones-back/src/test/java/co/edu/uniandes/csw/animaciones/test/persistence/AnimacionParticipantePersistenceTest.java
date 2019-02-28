@@ -97,7 +97,7 @@ public class AnimacionParticipantePersistenceTest {
     }
      
     @Test
-    public void getConcursoTest() {
+    public void getAnimacionParticipanteTest() {
         AnimacionParticipanteEntity ape = dataAPE.get(0);
         AnimacionParticipanteEntity ape2 = app.find(ape.getId());
         Assert.assertNotNull(ape2);
@@ -105,10 +105,10 @@ public class AnimacionParticipantePersistenceTest {
     }
     
     @Test
-    public void getCocursosTest() {
-        List<AnimacionParticipanteEntity> apps = app.findAll();
-        Assert.assertEquals(apps.size(), dataAPE.size());
-        for(AnimacionParticipanteEntity ape : apps){
+    public void getAnimacionesParticipantesTest() {
+        List<AnimacionParticipanteEntity> apes = app.findAll();
+        Assert.assertEquals(apes.size(), dataAPE.size());
+        for(AnimacionParticipanteEntity ape : apes){
             boolean encontro = false;
             for(AnimacionParticipanteEntity ape2 : dataAPE){
                 if(ape.getId().equals(ape2.getId())){
@@ -120,7 +120,7 @@ public class AnimacionParticipantePersistenceTest {
     }
     
     @Test
-    public void updateConcursoTest() {
+    public void updateAnimacionParticipanteTest() {
         AnimacionParticipanteEntity ape = dataAPE.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         AnimacionParticipanteEntity ape2 = factory.manufacturePojo(AnimacionParticipanteEntity.class);
@@ -132,7 +132,7 @@ public class AnimacionParticipantePersistenceTest {
     }
     
     @Test
-    public void deleteAnimacionTest() {
+    public void deleteAnimacionParticipanteTest() {
         AnimacionParticipanteEntity ape = dataAPE.get(0);
         app.delete(ape.getId());
         AnimacionParticipanteEntity ape2 = em.find(AnimacionParticipanteEntity.class, ape.getId());
