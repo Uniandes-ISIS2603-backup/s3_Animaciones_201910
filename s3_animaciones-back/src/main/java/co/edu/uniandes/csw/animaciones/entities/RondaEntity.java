@@ -21,30 +21,22 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author df.serrano
  */
 @Entity
-public class RondaEntity extends BaseEntity implements Serializable{
-    
+public class RondaEntity extends BaseEntity implements Serializable {
+
     private Integer numero;
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
-    
-    public RondaEntity(){
-        
+
+
+    public RondaEntity() {
+
     }
-    
-   // @PodamExclude
-   // @ManyToOne(cascade = CascadeType.PERSIST)
-   // private ConcursoEntity concurso;
 
-   //@PodamExclude
-   //@OneToMany(mappedBy = "ronda", cascade = CascadeType.PERSIST, orphanRemoval = true)
-   // private List <AnimacionParticipanteEntity> animacionesParticipantes;
-    
-   @PodamExclude
-   @OneToMany(mappedBy = "ronda", cascade = CascadeType.PERSIST, orphanRemoval = true)
-   private ArrayList <VotacionEntity> votaciones = new ArrayList<>();
-
+    //@PodamExclude
+    // @OneToMany(mappedBy = "ronda")
+    //private ArrayList <VotacionEntity> votaciones = new ArrayList<>();
     /**
      * @return the numero
      */
@@ -87,21 +79,4 @@ public class RondaEntity extends BaseEntity implements Serializable{
         this.fechaFin = fechaFin;
     }
 
-    /**
-     * @return the votaciones
-     */
-    public ArrayList <VotacionEntity> getVotaciones() {
-        return votaciones;
-    }
-
-    /**
-     * @param votaciones the votaciones to set
-     */
-    public void setVotaciones(ArrayList <VotacionEntity> votaciones) {
-        this.votaciones = votaciones;
-    }
-    
-
-
-   
 }
