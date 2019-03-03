@@ -1,13 +1,10 @@
-
 package co.edu.uniandes.csw.animaciones.resources;
 
 import co.edu.uniandes.csw.animaciones.dtos.FacturaDTO;
 import co.edu.uniandes.csw.animaciones.dtos.PropuestaDTO;
 import co.edu.uniandes.csw.animaciones.ejb.PropuestaLogic;
-import co.edu.uniandes.csw.animaciones.entities.FacturaEntity;
 import co.edu.uniandes.csw.animaciones.entities.PropuestaEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -21,15 +18,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
- *
- * @author EYE OF TRUTH
+ * Segundo intento de esta clase 
+ * @author Porygon Z & Eye of Truth, parte 2
  */
 @Path("propuestas")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class PropuestaResource {
-    private static final Logger LOGGER = Logger.getLogger(PropuestaResource.class.getName());
     
     @Inject
     private PropuestaLogic pl;
@@ -46,19 +42,15 @@ public class PropuestaResource {
         PropuestaEntity fe = pl.getP(id);
         if(fe==null){
             throw new WebApplicationException("El recurso con id "+id+" no existe.",404);
+        }else{
+            return new PropuestaDTO(fe);
         }
-        return new PropuestaDTO(fe);
     }
     
     @GET
-    @Path("{propuestaID: \\d+}/factura")
+    @Path("{propuestaID: \\d+}")
     public FacturaDTO darFactura(@PathParam("propuestaID") Long id){
-        PropuestaEntity fe = pl.getP(id);
-        if(fe==null){
-            throw new WebApplicationException("El recurso con id "+id+" no existe.",404);
-        }
-        FacturaEntity yo = fe.getFactura();
-        return new FacturaDTO(yo);
+        return dar(id).getFactura();
     }
     
     @PUT
@@ -73,13 +65,14 @@ public class PropuestaResource {
     }
     
     @DELETE
-    @Path("{propuestaID: \\d+}")
-    public PropuestaDTO borrar(@PathParam("propuestaID") Long id){
+    @Path("{PropuestaID: \\d+}")
+    public PropuestaDTO eliminar(@PathParam("propuestaID") Long id){
         PropuestaEntity fe = pl.getP(id);
         if(fe==null){
             throw new WebApplicationException("El recurso con id "+id+" no existe.",404);
+        }else{
+            pl.deleteP(id);
+            return new PropuestaDTO(fe);
         }
-        pl.deleteP(id);
-        return new PropuestaDTO(fe);
     }
 }

@@ -3,6 +3,7 @@ package co.edu.uniandes.csw.animaciones.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
@@ -24,7 +25,7 @@ public class FacturaEntity extends BaseEntity implements Serializable {
     private Date fecha;
     
     @PodamExclude
-    @OneToOne(mappedBy="factura", fetch=FetchType.LAZY)
+    @OneToOne(mappedBy="factura", fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
     private MedioDePagoEntity medioDePago;
     
     @PodamExclude
