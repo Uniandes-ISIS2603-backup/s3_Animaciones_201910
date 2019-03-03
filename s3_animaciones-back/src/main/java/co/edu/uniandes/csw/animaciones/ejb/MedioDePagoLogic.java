@@ -17,6 +17,7 @@ import javax.inject.Inject;
  * @author estudiante
  */
 public class MedioDePagoLogic {
+    
     private static final Logger LOGGER = Logger.getLogger(MedioDePagoLogic.class.getName());
 
     @Inject
@@ -38,6 +39,41 @@ public class MedioDePagoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de creación de la medioDePago");
         return medioDePagoEntity;
     }
+    
+        
+    /**
+     * Actualiza la información de una instancia de MedioDePago.
+     *
+     * @param medioDePagoId Identificador de la instancia a actualizar
+     * @param medioDePagoEntity Instancia de MedioDePagoEntity con los nuevos datos.
+     * @return Instancia de MedioDePagoEntity con los datos actualizados.
+     */
+    public MedioDePagoEntity updateMedioDePago(Long medioDePagoId, MedioDePagoEntity medioDePagoEntity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el medioDePago con id = {0}", medioDePagoId);
+        MedioDePagoEntity newMedioDePagoEntity = persistence.update(medioDePagoEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el medioDePago con id = {0}", medioDePagoId);
+        return newMedioDePagoEntity;
+    }
+    
+    /**
+     *
+     * Obtener una editorial por medio de su id.
+     *
+     * @param medioDePagoId: id de la editorial para ser buscada.
+     * @return la editorial solicitada por medio de su id.
+     */
+    public MedioDePagoEntity getMedioDePago(Long medioDePagoId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el medioDePago con id = {0}", medioDePagoId);
+        // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
+        MedioDePagoEntity medioDePagoEntity = persistence.find(medioDePagoId);
+        if (medioDePagoEntity == null) {
+            LOGGER.log(Level.SEVERE, "El medioDePago con el id = {0} no existe", medioDePagoId);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consulta deñ medioDePago con id = {0}", medioDePagoId);
+        return medioDePagoEntity;
+    }
+    
+    
 
     /**
      * Borrar un medioDePago
