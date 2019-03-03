@@ -48,7 +48,7 @@ public class PropuestaResource {
     }
     
     @GET
-    @Path("{propuestaID: \\d+}")
+    @Path("{propuestaID: \\d+}/factura")
     public FacturaDTO darFactura(@PathParam("propuestaID") Long id){
         return dar(id).getFactura();
     }
