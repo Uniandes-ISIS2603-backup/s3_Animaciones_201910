@@ -27,16 +27,14 @@ public class MedioDePagoEntity extends BaseEntity implements Serializable{
     public enum FormaDePago{
         DEBITO, CREDITO, PAYPAL, PSE
     }
+
     public MedioDePagoEntity(){
         
     }
-   @PodamExclude
-   @ManyToOne(cascade = CascadeType.PERSIST)
-   private ClienteEntity cliente;
+
     
-    @PodamExclude
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private FacturaEntity factura;
+   private ClienteEntity cliente;
+   private FacturaEntity factura;
 
     /**
      * @return the numeroTarjeta
