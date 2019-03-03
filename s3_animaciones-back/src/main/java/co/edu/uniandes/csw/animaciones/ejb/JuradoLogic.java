@@ -34,13 +34,47 @@ public class JuradoLogic {
      * @throws BusinessLogicException Si la jurado a persistir ya existe.
      */
     public JuradoEntity createJurado(JuradoEntity juradoEntity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de creación de la jurado");
+        LOGGER.log(Level.INFO, "Inicia proceso de creación del jurado");
         
         // Invoca la persistencia para crear la jurado
         persistence.create(juradoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de creación de la jurado");
+        LOGGER.log(Level.INFO, "Termina proceso de creación del jurado");
         return juradoEntity;
     }
+    
+    /**
+     * Actualiza la información de una instancia de Jurado.
+     *
+     * @param juradoId Identificador de la instancia a actualizar
+     * @param juradoEntity Instancia de JuradoEntity con los nuevos datos.
+     * @return Instancia de JuradoEntity con los datos actualizados.
+     */
+    public JuradoEntity updateJurado(Long juradoId, JuradoEntity juradoEntity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el jurado con id = {0}", juradoId);
+        JuradoEntity newJuradoEntity = persistence.update(juradoEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el jurado con id = {0}", juradoId);
+        return newJuradoEntity;
+    }
+    
+    /**
+     *
+     * Obtener una editorial por medio de su id.
+     *
+     * @param juradoId: id de la editorial para ser buscada.
+     * @return la editorial solicitada por medio de su id.
+     */
+    public JuradoEntity getJurado(Long juradoId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el jurado con id = {0}", juradoId);
+        // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
+        JuradoEntity juradoEntity = persistence.find(juradoId);
+        if (juradoEntity == null) {
+            LOGGER.log(Level.SEVERE, "El jurado con el id = {0} no existe", juradoId);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consulta deñ jurado con id = {0}", juradoId);
+        return juradoEntity;
+    }
+    
+    
 
     /**
      * Borrar un jurado
