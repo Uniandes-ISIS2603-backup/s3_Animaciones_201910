@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.animaciones.dtos;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *
@@ -39,12 +38,11 @@ public class ConcursoDTO implements Serializable
     //
     // ATRIBUTOS
     //
-    Date fechaInicio;
-    Date fechaFin;
-    Tecnica tecnica;
-    String tema;
-    String organizador ;
-    Integer id;
+    private Tecnica tecnica;
+    private String tema;
+    private String organizador ;
+    private Integer id;
+    private String reglas;
     
     //
     //CONSTRUCTOR
@@ -57,93 +55,77 @@ public class ConcursoDTO implements Serializable
     //
     //METODOS
     //
-    
+
     /**
-     * @return the fechaInicio
-     */
-    public Date getFechaInicio(){
-        return fechaInicio;
-    } 
-    /**
-     * @return the fechaFin
-     */
-    public Date getFechaFin(){
-        return fechaFin;
-    } 
-    /**
-     * @return the tema
-     */
-    public String getTema(){
-        return tema;
-    }
-     /**
      * @return the tecnica
      */
-    public Tecnica getTecnica(){
+    public Tecnica getTecnica() {
         return tecnica;
-    } 
-    /**
-     * @return the corganizador
-     */
-    public String getOrganizador(){
-        return organizador;
-    } 
-   
-    /**
-     * @return the id
-     */
-    public Integer getId(){
-        return id;
-    }
-    
-
-    
-    /**
-     * @param fechaInicio the fechaInicio to set
-     */
-    public void setFechaInicio(Date fechaInicio)
-    {
-        this.fechaInicio = fechaInicio;
-    }
-
-    /**
-     * @param fechaFin the fechaFin to set
-     */
-    public void setFechaFin(Date fechaFin)
-    {
-        this.fechaFin = fechaFin;
-    }
-
-    /**
-     * @param tema the tema to set
-     */
-    public void setTema(String tema)
-    {
-        this.tema = tema;
     }
 
     /**
      * @param tecnica the tecnica to set
      */
-    public void setTecnica(Tecnica tecnica)
-    {
+    public void setTecnica(Tecnica tecnica) {
         this.tecnica = tecnica;
+    }
+
+    /**
+     * @return the tema
+     */
+    public String getTema() {
+        return tema;
+    }
+
+    /**
+     * @param tema the tema to set
+     */
+    public void setTema(String tema) {
+        this.tema = tema;
+    }
+
+    /**
+     * @return the organizador
+     */
+    public String getOrganizador() {
+        return organizador;
     }
 
     /**
      * @param organizador the organizador to set
      */
-    public void setOrganizador(String organizador )
-    {
+    public void setOrganizador(String organizador) {
         this.organizador = organizador;
+    }
+
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(Integer id)
-    {
+    public void setId(Integer id) {
         this.id = id;
     }
+
+    /**
+     * @return the reglas
+     */
+    public String getReglas() {
+        return reglas;
+    }
+
+    /**
+     * @param reglas the reglas to set
+     */
+    public void setReglas(String reglas) {
+        this.reglas = reglas;
+    }
+    
+    
 
 }

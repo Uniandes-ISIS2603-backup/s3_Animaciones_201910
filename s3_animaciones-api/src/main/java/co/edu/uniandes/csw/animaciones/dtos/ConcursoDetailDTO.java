@@ -17,9 +17,8 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable{
     // ATRIBUTOS
     //
   
-    List<AnimacionParticipanteDTO> ganadores = new ArrayList<AnimacionParticipanteDTO>();
-    //List<JuradoDTO> jurados = new ArrayList<JuradoDTO>();
-    //List<Ronda> rondas = new ArrayList<Ronda>();
+    private List<JuradoDTO> jurados = new ArrayList<JuradoDTO>();
+    private List<RondaDTO> rondas = new ArrayList<RondaDTO>();
     
     //
     //CONSTRUCTOR
@@ -35,47 +34,35 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable{
     //
     //METODOS
     //
-   
-    /**
-     * @return the ganadores
-     */
-    public List getGanadores(){
-        return ganadores;
-    }
-   
+
     /**
      * @return the jurados
      */
-   // public List getJurados(){   return jurados;}
-   
+    public List<JuradoDTO> getJurados() {
+        return jurados;
+    }
+
+    /**
+     * @param jurados the jurados to set
+     */
+    public void setJurados(List<JuradoDTO> jurados) {
+        this.jurados = jurados;
+    }
+
     /**
      * @return the rondas
      */
-   // public List getRondas(){
-     //   return rondas;
-   //}
-    
- 
-    /**
-     * @param ganadores the ganadores to set
-     */
-    public void setGanadores(List ganadores)
-    {
-        this.ganadores = ganadores;
+    public List<RondaDTO> getRondas() {
+        return rondas;
     }
-     /**
-     * @param jurados the jurados to set
-     */
-    //public void setJurados(List jurados)
-    //{
-    //    this.jurados = jurados;
-    //}
-     /**
+
+    /**
      * @param rondas the rondas to set
      */
-    // public void setRondas(List rondas)
-    //{   
-    //    this.rondas = rondas;
-    //}
+    public void setRondas(List<RondaDTO> rondas) {
+        this.rondas = rondas;
+    }
+   
+   
     
 }

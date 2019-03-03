@@ -2,9 +2,8 @@ package co.edu.uniandes.csw.animaciones.resources;
 
 import co.edu.uniandes.csw.animaciones.dtos.AnimacionParticipanteDTO;
 import co.edu.uniandes.csw.animaciones.dtos.ConcursoDTO;
-import co.edu.uniandes.csw.animaciones.dtos.JuradoDTO;
-import co.edu.uniandes.csw.animaciones.dtos.VotacionDTO;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.*;
 
@@ -16,7 +15,9 @@ import javax.ws.rs.*;
 @Consumes("application/json")
 @RequestScoped
 public class ConcursoResource {
-
+    
+    private static final Logger LOGGER = Logger.getLogger(ConcursoResource.class.getName());
+    
     @POST
     public ConcursoDTO crearConcurso(ConcursoDTO concurso) {
         return concurso;
