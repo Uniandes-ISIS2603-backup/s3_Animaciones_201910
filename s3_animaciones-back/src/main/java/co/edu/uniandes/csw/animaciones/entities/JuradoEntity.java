@@ -7,9 +7,11 @@ package co.edu.uniandes.csw.animaciones.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -23,11 +25,17 @@ public class JuradoEntity extends BaseEntity implements Serializable{
     private String usuario;
     private String contraseña;
     
-    /*
-    @PodamExclude
-    @ManyToOne(cascade = CascadeType.PERSIST)
     private ConcursoEntity concurso;
-   */
+    
+    
+    public JuradoEntity (){
+        
+    }
+    
+    
+    @PodamExclude
+    @OneToMany (mappedBy = "jurado" )
+    private List<VotacionEntity> votaciones;
 
     public void setCredencial(String credencial) {
         this.credencial = credencial;

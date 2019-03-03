@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.animaciones.dtos;
+import co.edu.uniandes.csw.animaciones.entities.JuradoEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,25 +15,51 @@ import java.util.List;
  */
 public class JuradoDTO implements Serializable{
     
+    
     String credencial;
     String usuario;
     String contraseña;
     Integer id;
+    ConcursoDTO concurso;
     private List<VotacionDTO> votaciones;
+    
     
     public JuradoDTO (){
     votaciones = new ArrayList<VotacionDTO>() ;
 }
+    public ConcursoDTO getConcursoDTO (){
+        return concurso;
+    }
     
+    public void setConcursoDTO (ConcursoDTO pConcurso){
+        concurso = pConcurso;
+    }
+    
+    /**
+     * 
+     * @return  la credencial 
+     */
     public String getCredencial (){
         return credencial;
     }
+    
+    /**
+     * @param pCredencial la credencial a cambiar
+     */
     public void setCredenciales (String pCredencial){
         credencial = pCredencial;
     }
+    
+    /**
+     * @return  el usuario
+     */
     public String getUsuario(){
         return usuario;
     }
+    
+    /**
+     * @param pUsuario 
+     */
     public void setUsuario(String pUsuario){
         usuario = pUsuario;
     }
@@ -54,4 +81,11 @@ public class JuradoDTO implements Serializable{
     public void setVotaciones (VotacionDTO pVotacion){
         votaciones.add(pVotacion);
     }
+    
+    public JuradoEntity juradoEntity(){
+        JuradoEntity theOne = new JuradoEntity();
+        
+        return theOne;
+    }
+    
 }
