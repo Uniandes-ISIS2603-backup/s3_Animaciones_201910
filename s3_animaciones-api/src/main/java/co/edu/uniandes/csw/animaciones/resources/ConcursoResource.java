@@ -1,6 +1,5 @@
 package co.edu.uniandes.csw.animaciones.resources;
 
-import co.edu.uniandes.csw.animaciones.dtos.AnimacionParticipanteDTO;
 import co.edu.uniandes.csw.animaciones.dtos.ConcursoDTO;
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -19,8 +18,8 @@ public class ConcursoResource {
     private static final Logger LOGGER = Logger.getLogger(ConcursoResource.class.getName());
     
     @POST
-    public ConcursoDTO crearConcurso(ConcursoDTO concurso) {
-        return concurso;
+    public ConcursoDTO crearConcurso(ConcursoDTO concursoDTO) {
+        return concursoDTO;
     }
 
     @GET
@@ -30,53 +29,19 @@ public class ConcursoResource {
 
     @GET
     @Path("{concursoId: \\d+}")
-    public ConcursoDTO getConcurso(@PathParam("artistaId") Long artistaId) {
-        return null;
-    }
-
-  
-/**
-    @POST
-    @Path("{concursoId: \\d+}")
-    public String createReglaConcurso(@PathParam("concursoId") Long concursoId, String reglaConcurso) {
-        return reglaConcurso;
-    }
-    */
-
-    /**
-    @GET
-    @Path("{concursoId: \\d+}")
-    public String getReglasConcurso(@PathParam("concursoId") Long concursoId) {
-        return "reglas";
-    }
-    */
-
-    /**
-     * las reglas estan en un arreglo por lo cual para acceder a ellas no se
-     * sales de concurso, el identificador de una regla sera su pocision en el
-     * arreglo
-     * 
-     */
-    @DELETE
-    @Path("{concursoId: \\d+}//")
-    public void deleteRegla(@PathParam("concursoId") Long concursoId, @PathParam("reglaId") Long reglaId) {
-
-    }
-
-   
-@POST
-    @Path("{concursoId: \\d+}")
-    public AnimacionParticipanteDTO inscribirAnimacion(@PathParam("concursoId") Long concursoId, @PathParam("animacionId") Long animacionId) {
+    public ConcursoDTO getConcurso(@PathParam("concursoId") Long artistaId) {
         return null;
     }
     
-
-
-    /**
-    @DELETE
-    @Path("{concursoId: \\d+}/rondas/{ronda: \\d+}/animacionesParticipantesId/{animacionesParticipanteId: \\+d}")
-    public void descalificarAnimacion(@PathParam("concursoId") Long concursoId, @PathParam("rondaId") Long rondaId, @PathParam("animacionId") Long animacionParticipanteId) {
+    @PUT
+    @Path("{concursoId: \\d+}")
+    public ConcursoDTO updateConcurso(@PathParam("concusoId") Long artistaId, ConcursoDTO concursoDTO){
+        return concursoDTO;
     }
-    */
+    
+    @DELETE
+    @Path("{concursoId: \\d+}//")
+    public void deleteConcurso(@PathParam("concursoId") Long concursoId) {
 
+    }
 }

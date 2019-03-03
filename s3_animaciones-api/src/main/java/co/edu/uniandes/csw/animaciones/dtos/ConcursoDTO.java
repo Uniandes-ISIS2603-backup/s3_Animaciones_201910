@@ -40,7 +40,7 @@ public class ConcursoDTO implements Serializable
     //
     private Tecnica tecnica;
     private String tema;
-    private String organizador ;
+    private Integer organizador ;
     private Integer id;
     private String reglas;
     
@@ -87,14 +87,14 @@ public class ConcursoDTO implements Serializable
     /**
      * @return the organizador
      */
-    public String getOrganizador() {
+    public Integer getOrganizador() {
         return organizador;
     }
 
     /**
      * @param organizador the organizador to set
      */
-    public void setOrganizador(String organizador) {
+    public void setOrganizador(Integer organizador) {
         this.organizador = organizador;
     }
 
