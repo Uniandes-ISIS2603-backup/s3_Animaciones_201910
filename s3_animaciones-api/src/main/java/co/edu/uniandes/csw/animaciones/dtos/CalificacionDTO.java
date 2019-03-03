@@ -24,6 +24,10 @@ public class CalificacionDTO implements Serializable {
     public CalificacionDTO() {
 
     }
+    
+    public CalificacionDTO(CalificacionEntity ce) {
+        
+    }
 
 //    public CalificacionDTO(CalificacionEntity entity) {
 //        entity.setCalificacion(calificacion);
@@ -71,10 +75,10 @@ public class CalificacionDTO implements Serializable {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 
-//    public CalificacionEntity toEntity() {
-//        CalificacionEntity entity = new CalificacionEntity();
-//        entity.setCalificacion(calificacion);
-//        entity.setComentario(comentario);
-//        return entity;
-//    }
+    public CalificacionEntity toEntity() {
+        CalificacionEntity entity = new CalificacionEntity();
+        entity.setCalificacion(calificacion);
+        entity.setComentario(comentario);
+        return entity;
+    }
 }

@@ -24,7 +24,7 @@ public class AnimacionDetailDTO extends AnimacionDTO implements Serializable {
             if(ae.getCalificaciones() != null){
                 this.calificaciones = new ArrayList<>();
                 for(CalificacionEntity ce : ae.getCalificaciones()){
-                    // TODO 
+                    calificaciones.add(new CalificacionDTO(ce));
                 }
             }
         }
@@ -36,6 +36,18 @@ public class AnimacionDetailDTO extends AnimacionDTO implements Serializable {
 
     public void setCalificaciones(List<CalificacionDTO> calificaciones) {
         this.calificaciones = calificaciones;
+    }
+    
+    public AnimacionEntity toEntity(){
+        AnimacionEntity ae = super.toEntity();
+        if(calificaciones != null){
+            ArrayList<CalificacionEntity> listC = new ArrayList<>();
+            for(CalificacionDTO cd : calificaciones){
+                listC.add(cd.toEntity());
+            }
+            ae.setCalificaciones(listC);
+        }
+        return ae;
     }
     
 }
