@@ -41,10 +41,10 @@ public class FacturaResource {
     
     @PUT
     @Path("{facturaID: \\d+}")
-    public FacturaDTO actualizar(FacturaDTO yo) throws BusinessLogicException{
-        FacturaEntity fe2 = fl.getF(yo.getId());
+    public FacturaDTO actualizar(FacturaDTO yo, @PathParam("facturaID") Long id) throws BusinessLogicException{
+        FacturaEntity fe2 = fl.getF(id);
         if(fe2==null){
-            throw new WebApplicationException("El recurso con id "+yo.getId()+" no existe.",404);
+            throw new WebApplicationException("El recurso con id "+id+" no existe.",404);
         }
         FacturaEntity fe = fl.updateF(yo.toEntity());
         return new FacturaDTO(fe);

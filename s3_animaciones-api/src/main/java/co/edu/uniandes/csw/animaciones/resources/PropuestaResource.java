@@ -55,10 +55,10 @@ public class PropuestaResource {
     
     @PUT
     @Path("{propuestaID: \\d+}")
-    public PropuestaDTO cambiar(PropuestaDTO yo) throws BusinessLogicException{
-        PropuestaEntity fe = pl.getP(yo.getId());
+    public PropuestaDTO cambiar(PropuestaDTO yo, @PathParam("propuestaID") Long id) throws BusinessLogicException{
+        PropuestaEntity fe = pl.getP(id);
         if(fe==null){
-            throw new WebApplicationException("El recurso con id "+yo.getId()+" no existe.",404);
+            throw new WebApplicationException("El recurso con id "+id+" no existe.",404);
         }
         PropuestaEntity fe2 = pl.updateP(yo.toEntity());
         return new PropuestaDTO(fe2);
