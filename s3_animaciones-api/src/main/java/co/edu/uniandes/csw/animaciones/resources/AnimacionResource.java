@@ -7,6 +7,7 @@ import co.edu.uniandes.csw.animaciones.ejb.AnimacionCalificacionLogic;
 import co.edu.uniandes.csw.animaciones.ejb.AnimacionLogic;
 import co.edu.uniandes.csw.animaciones.ejb.CalificacionLogic;
 import co.edu.uniandes.csw.animaciones.entities.AnimacionEntity;
+import co.edu.uniandes.csw.animaciones.entities.CalificacionEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,31 +81,57 @@ public class AnimacionResource {
     @POST
     @Path("{animacionId: \\d+}/calificaciones/{calificacionId: \\d+}")
     public CalificacionDTO addCalificacion(@PathParam("animacionId") Long animacionID, @PathParam("calificacionId") Long calificacionID){
-        return null;
+        CalificacionEntity ce = calificacionl.getCalificacion(calificacionID);
+        if(ce == null){
+            throw new WebApplicationException("La calificacion no existe",404);
+        }
+        CalificacionDTO re = new CalificacionDTO(acl.addCalificacion(animacionID, calificacionID));
+        return re;
     }
     
     @GET
     @Path("{animacionId: \\d+}/calificaciones/{calificacionId: \\d+}")
     public CalificacionDTO getCalificacion(@PathParam("animacionId") Long animacionID, @PathParam("calificacionId") Long calificacionID){
-        return null;
+        CalificacionEntity ce = calificacionl.getCalificacion(calificacionID);
+        if(ce == null){
+            throw new WebApplicationException("La califiocacion no existe",404);
+        }
+        CalificacionDTO re = new CalificacionDTO(acl.getAimacion(animacionID, calificacionID));
+        return re;
     }
     
     @GET
     @Path("{animacionId: \\d+}/calificaciones")
     public ArrayList<CalificacionDTO> getCalificaciones(@PathParam("animacionId") Long animacionID){
-        return null;
+        ArrayList<CalificacionDTO> list = CalificacionEntity2DTO(acl.getAnimaciones(animacionID));
+        if(list == null){
+            throw new WebApplicationException("La animacion no existe",404);
+        }
+        return list;
     }
     
     @DELETE
     @Path("{animacionId: \\d+}/calificaciones/{calificacionId: \\d+}")
     public void deleteCalifiacion(@PathParam("animacionId") Long animacionID, @PathParam("calificacionId") Long calificacionID){
-        
+        CalificacionEntity ce = calificacionl.getCalificacion(calificacionID);
+        if(ce == null){
+            throw new WebApplicationException("La califiocacion no existe",404);
+        }
+        acl.deleteCalificacion(animacionID, calificacionID);
     }
     
     private ArrayList<AnimacionDetailDTO> AnimacionEntity2DetailDTO(List<AnimacionEntity> list){
         ArrayList<AnimacionDetailDTO> re = new ArrayList<>();
         for(AnimacionEntity ae: list){
             re.add(new AnimacionDetailDTO(ae));
+        }
+        return re;
+    }
+    
+    private ArrayList<CalificacionDTO> CalificacionEntity2DTO(List<CalificacionEntity> list){
+        ArrayList<CalificacionDTO> re = new ArrayList<>();
+        for(CalificacionEntity ce: list){
+            re.add(new CalificacionDTO(ce));
         }
         return re;
     }
