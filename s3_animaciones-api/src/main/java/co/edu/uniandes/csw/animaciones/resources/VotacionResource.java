@@ -6,9 +6,13 @@
 package co.edu.uniandes.csw.animaciones.resources;
 
 import co.edu.uniandes.csw.animaciones.dtos.VotacionDTO;
+import co.edu.uniandes.csw.animaciones.ejb.VotacionLogic;
+import co.edu.uniandes.csw.animaciones.entities.VotacionEntity;
+import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -31,7 +35,8 @@ import javax.ws.rs.Produces;
  */
 public class VotacionResource {
     private static final Logger LOGGER = Logger.getLogger(VotacionResource.class.getName());
-    
+    @Inject
+    private VotacionLogic vl;
     @GET
     public List <VotacionDTO> darVotaciones(){
         return null;
@@ -43,8 +48,10 @@ public class VotacionResource {
         return null;
     }    
     @POST
-    public VotacionDTO crearVotacion(VotacionDTO votacion) {
-        return votacion;
+    public VotacionDTO crearVotacion(VotacionDTO votacion) throws BusinessLogicException{
+        VotacionEntity ve = votacion.toEntity();
+        vl.createVotacion(ve);
+        return new VotacionDTO(ve);
     }
     @PUT
     @Path("{votacionId: \\d+}")
