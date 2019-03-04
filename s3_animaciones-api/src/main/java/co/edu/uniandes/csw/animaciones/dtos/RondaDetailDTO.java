@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.animaciones.dtos;
 
+import co.edu.uniandes.csw.animaciones.entities.RondaEntity;
 import java.io.Serializable;
 import java.util.List;
 
@@ -27,9 +28,12 @@ public class RondaDetailDTO extends RondaDTO implements Serializable {
     private List<AnimacionDTO> animacionesParticipantes;
     
     public RondaDetailDTO(){
+        super();
+    }
+    
+    public RondaDetailDTO(RondaEntity re){
         
     }
-
     /**
      * @return the votaciones
      */

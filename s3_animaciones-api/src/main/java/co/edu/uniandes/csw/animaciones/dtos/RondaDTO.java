@@ -5,8 +5,9 @@
  */
 package co.edu.uniandes.csw.animaciones.dtos;
 
+import co.edu.uniandes.csw.animaciones.entities.RondaEntity;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.sql.Date;
  */
 public class RondaDTO implements Serializable{
     
-    private Integer id;
+    private Long id;
     private Integer numero;
     private Date fechaInicio;
     private Date fechaFin;
@@ -22,18 +23,24 @@ public class RondaDTO implements Serializable{
     public RondaDTO(){
         
     }
+    public RondaDTO(RondaEntity re){
+        setId(re.getId());
+        setFechaInicio(re.getFechaInicio());
+        setFechaFin(re.getFechaFin());
+        setNumero(re.getNumero());
+    }
 
     /**
      * @return the id
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -56,6 +63,16 @@ public class RondaDTO implements Serializable{
      */
     public Date getFechaInicio() {
         return fechaInicio;
+    }
+    
+    public RondaEntity toEntity()
+    {
+        RondaEntity re = new RondaEntity();
+        re.setId(this.id);
+        re.setFechaInicio(this.fechaInicio);
+        re.setFechaFin(this.fechaFin);
+        re.setNumero(this.getNumero());
+        return re;
     }
 
     /**
