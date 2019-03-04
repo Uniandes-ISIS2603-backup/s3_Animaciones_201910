@@ -85,13 +85,24 @@ public class RondaLogicTest {
     }
     
     @Test
-    public void createTest() throws BusinessLogicException{
+    public void createRondaUnoTest() throws BusinessLogicException{
        PodamFactory f = new PodamFactoryImpl();
        RondaEntity e = f.manufacturePojo(RondaEntity.class);
+       e.setNumero(1);
        RondaEntity re = rl.createRonda(e);
        Assert.assertNotNull(re);
        RondaEntity re2 = em.find(RondaEntity.class, re.getId());
-        Assert.assertEquals(re, re2);
+       Assert.assertEquals(re, re2);
+    }
+        @Test
+    public void createRondaDosTest() throws BusinessLogicException{
+       PodamFactory f = new PodamFactoryImpl();
+       RondaEntity e = f.manufacturePojo(RondaEntity.class);
+       e.setNumero(2);
+       RondaEntity re = rl.createRonda(e);
+       Assert.assertNotNull(re);
+       RondaEntity re2 = em.find(RondaEntity.class, re.getId());
+       Assert.assertEquals(re, re2);
     }
     
     @Test(expected = BusinessLogicException.class)

@@ -28,10 +28,11 @@ public class VotacionLogic {
         // la animacion con ese id tiene que existir
         //la ronda con ese id tiene que existir
         // el jurado tiene que existir
-        if(votacion.getPuntos()!= null || votacion.getPuntos() < 1 || votacion.getPuntos() > 10){
+        if(votacion.getPuntos()== null || votacion.getPuntos() < 1 || votacion.getPuntos() > 10){
+            System.out.println("puntos:" + votacion.getPuntos());
             throw new BusinessLogicException("El numero de puntos debe ser entre 1 y 10");
         }
-        if(votacion.getNumRonda()!= null || votacion.getNumRonda()!= 1 || votacion.getNumRonda()!= 2)
+        if(votacion.getNumRonda()== null || (votacion.getNumRonda()!= 1 && votacion.getNumRonda()!= 2))
         {
              throw new BusinessLogicException("El numero de la Votacion solo puede ser 1 o 2");
         }

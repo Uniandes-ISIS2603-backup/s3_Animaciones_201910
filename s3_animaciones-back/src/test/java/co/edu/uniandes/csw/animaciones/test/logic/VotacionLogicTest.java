@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -83,9 +84,27 @@ public class VotacionLogicTest {
     }
     
     @Test
-    public void createTest() throws BusinessLogicException{
+    public void createTestUno() throws BusinessLogicException{
        PodamFactory f = new PodamFactoryImpl();
        VotacionEntity e = f.manufacturePojo(VotacionEntity.class);
+       e.setIdAnimacion(Math.abs(e.getIdAnimacion()));
+        Random r = new Random();
+       e.setPuntos((double)r.nextInt(10)+1);
+       e.setNumRonda(1);
+       VotacionEntity ve = vl.createVotacion(e);
+       Assert.assertNotNull(ve);
+       VotacionEntity ve2 = em.find(VotacionEntity.class, ve.getId());
+        Assert.assertEquals(ve, ve2);
+    }
+    
+        @Test
+    public void createTestDos() throws BusinessLogicException{
+       PodamFactory f = new PodamFactoryImpl();
+       VotacionEntity e = f.manufacturePojo(VotacionEntity.class);
+       e.setIdAnimacion(Math.abs(e.getIdAnimacion()));
+        Random r = new Random();
+       e.setPuntos((double)r.nextInt(10)+1);
+       e.setNumRonda(2);
        VotacionEntity ve = vl.createVotacion(e);
        Assert.assertNotNull(ve);
        VotacionEntity ve2 = em.find(VotacionEntity.class, ve.getId());
