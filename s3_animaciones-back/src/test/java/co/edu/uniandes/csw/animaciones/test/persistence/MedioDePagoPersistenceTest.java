@@ -87,19 +87,18 @@ public class MedioDePagoPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         MedioDePagoEntity newMedioDePagoEntity = factory.manufacturePojo(MedioDePagoEntity.class);
         MedioDePagoEntity mdpe = mdpp.create(newMedioDePagoEntity);
-       
         Assert.assertNotNull(mdpe);
-        
         MedioDePagoEntity MedioDePagoEntity = em.find(MedioDePagoEntity.class, mdpe.getId());
-           Assert.assertEquals(newMedioDePagoEntity.getNumeroTarjeta(), MedioDePagoEntity.getNumeroTarjeta());
+        Assert.assertEquals(newMedioDePagoEntity.getNumeroTarjeta(), MedioDePagoEntity.getNumeroTarjeta());
     }
     
         @Test
     public void getMedioDePagoTest() {
-        MedioDePagoEntity mdpe = listMDPE.get(0);
-        MedioDePagoEntity mdpe2 = mdpp.find(mdpe.getId());
-        Assert.assertNotNull(mdpe2);
-        Assert.assertEquals(mdpe2, mdpe);
+        PodamFactory factory = new PodamFactoryImpl();
+        MedioDePagoEntity newMedioDePagoEntity = factory.manufacturePojo(MedioDePagoEntity.class);
+        MedioDePagoEntity mdpe = mdpp.create(newMedioDePagoEntity);
+        Assert.assertNotNull(mdpe);
+        Assert.assertEquals(newMedioDePagoEntity.getId(), mdpe.getId());
     }
     
     @Test

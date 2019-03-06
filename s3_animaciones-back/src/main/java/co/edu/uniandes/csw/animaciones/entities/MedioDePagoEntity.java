@@ -21,20 +21,20 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class MedioDePagoEntity extends BaseEntity implements Serializable{
     private Integer numeroTarjeta;
     private Integer codigo;
+    
     @Temporal(TemporalType.DATE)
     private Date fechaVencimiento;
-    private FormaDePago formaDePago;
+    
     public enum FormaDePago{
         DEBITO, CREDITO, PAYPAL, PSE
     }
 
+           
     public MedioDePagoEntity(){
         
     }
 
-    
-   private ClienteEntity cliente;
-   private FacturaEntity factura;
+ 
 
     /**
      * @return the numeroTarjeta
@@ -70,55 +70,10 @@ public class MedioDePagoEntity extends BaseEntity implements Serializable{
     public Date getFechaVencimiento() {
         return fechaVencimiento;
     }
-
     /**
      * @param fechaVencimiento the fechaVencimiento to set
      */
     public void setFechaVencimiento(Date fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
-    }
-
-    /**
-     * @return the formaDePago
-     */
-    public FormaDePago getFormaDePago() {
-        return formaDePago;
-    }
-
-    /**
-     * @param formaDePago the formaDePago to set
-     */
-    public void setFormaDePago(FormaDePago formaDePago) {
-        this.formaDePago = formaDePago;
-    }
-
-    /**
-     * @return the cliente
-     */
-    public ClienteEntity getCliente() {
-        return cliente;
-    }
-
-    /**
-     * @param cliente the cliente to set
-     */
-    public void setCliente(ClienteEntity cliente) {
-        this.cliente = cliente;
-    }
-
-    /**
-     * @return the factura
-     */
-    public FacturaEntity getFactura() {
-        return factura;
-    }
-
-    /**
-     * @param factura the factura to set
-     */
-    public void setFactura(FacturaEntity factura) {
-        this.factura = factura;
-    }
-    
-    
+    } 
 }

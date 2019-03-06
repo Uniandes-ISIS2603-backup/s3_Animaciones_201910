@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.csw.animaciones.persistence;
 import co.edu.uniandes.csw.animaciones.entities.MedioDePagoEntity;
 import java.util.List;
@@ -16,7 +11,9 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class MedioDePagoPersistence {
-        @PersistenceContext(unitName = "animacionesPU")
+    
+    
+    @PersistenceContext(unitName = "animacionesPU")
     protected EntityManager em;
     
     public MedioDePagoEntity create(MedioDePagoEntity medioDePagoEntity){
