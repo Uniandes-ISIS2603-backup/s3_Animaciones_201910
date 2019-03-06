@@ -1,5 +1,6 @@
 package co.edu.uniandes.csw.animaciones.dtos;
 
+import co.edu.uniandes.csw.animaciones.entities.ArtistaEntity;
 import java.io.Serializable;
 import java.util.List;
 
@@ -14,6 +15,10 @@ public class ArtistaDetailDTO extends ArtistaDTO implements Serializable {
     
     public ArtistaDetailDTO () {
         
+    }
+    
+    public ArtistaDetailDTO(ArtistaEntity ae){
+        super(ae);
     }
 
     public List<AnimacionDTO> getAnimaciones() {
