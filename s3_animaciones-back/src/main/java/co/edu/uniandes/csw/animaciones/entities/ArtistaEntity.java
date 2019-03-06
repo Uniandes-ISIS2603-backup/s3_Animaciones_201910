@@ -19,7 +19,7 @@ public class ArtistaEntity extends BaseEntity implements Serializable {
     private String tecnina;
     private String tema;
     private String usuario;
-    private String contraseña;
+    private String contrasenia;
     
     @PodamExclude
     @OneToMany(mappedBy = "artista", cascade = CascadeType.PERSIST, orphanRemoval = true)
@@ -69,12 +69,12 @@ public class ArtistaEntity extends BaseEntity implements Serializable {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public ArrayList<AnimacionEntity> getAnimaciones() {
