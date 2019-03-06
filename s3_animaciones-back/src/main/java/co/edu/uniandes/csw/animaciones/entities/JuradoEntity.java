@@ -60,6 +60,17 @@ public class JuradoEntity extends BaseEntity implements Serializable{
     public String getContraseña() {
         return contraseña;
     }
-
+    
+    public List getVotaciones()
+    {
+        return votaciones;
+    }
+    
+    public void setVotaciones(List votaciones){
+        
+        this.votaciones = votaciones;
+    }
+    
+    
    
 }

@@ -24,7 +24,7 @@ public class FacturaEntity extends BaseEntity implements Serializable {
     private Date fecha;
     
     @PodamExclude
-    @OneToOne(mappedBy="factura", fetch=FetchType.LAZY)
+    @OneToOne
     private MedioDePagoEntity medioDePago;
     
     @PodamExclude
