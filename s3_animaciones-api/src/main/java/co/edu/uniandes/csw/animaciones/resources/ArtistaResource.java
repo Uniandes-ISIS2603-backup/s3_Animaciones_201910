@@ -5,8 +5,17 @@ import co.edu.uniandes.csw.animaciones.dtos.AnimacionDetailDTO;
 import co.edu.uniandes.csw.animaciones.dtos.ArtistaDTO;
 import co.edu.uniandes.csw.animaciones.dtos.ArtistaDetailDTO;
 import co.edu.uniandes.csw.animaciones.dtos.PropuestaDTO;
+import co.edu.uniandes.csw.animaciones.ejb.AnimacionLogic;
+import co.edu.uniandes.csw.animaciones.ejb.ArtistaAnimacionLogic;
+import co.edu.uniandes.csw.animaciones.ejb.ArtistaLogic;
+import co.edu.uniandes.csw.animaciones.ejb.ArtistaPropuestaLogic;
+import co.edu.uniandes.csw.animaciones.ejb.PropuestaLogic;
+import co.edu.uniandes.csw.animaciones.entities.ArtistaEntity;
+import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.*;
 
 /**
@@ -19,20 +28,42 @@ import javax.ws.rs.*;
 @RequestScoped
 public class ArtistaResource {
     
+    @Inject
+    private ArtistaLogic artistal;
+    
+    @Inject
+    private AnimacionLogic animacionl;
+    
+    @Inject
+    private PropuestaLogic propuestal;
+    
+    @Inject
+    private ArtistaAnimacionLogic aal;
+    
+    @Inject
+    private ArtistaPropuestaLogic apl;
+    
     @POST
-    public ArtistaDTO crearArtista(ArtistaDTO artista){
-        return artista;
+    public ArtistaDTO crearArtista(ArtistaDTO artista) throws BusinessLogicException{
+        ArtistaDTO re = new ArtistaDTO(artistal.createArtista(artista.toEntity()));
+        return re;
     }
     
     @GET
     @Path("{artistaId: \\d+}")
     public ArtistaDetailDTO getArtista(@PathParam("artistaId") Long artistaId){
-        return null;
+        ArtistaEntity ae = artistal.getArtista(artistaId);
+        if(ae == null){
+            throw new WebApplicationException("El artista no existe",404);
+        }
+        ArtistaDetailDTO re = new ArtistaDetailDTO(ae);
+        return re;
     }
     
     @GET
     public ArrayList<ArtistaDetailDTO> getArtistas(){
-        return null;
+        ArrayList<ArtistaDetailDTO> re = ArtistaEntity2DetailDTO(artistal.getArtistas());
+        return re;
     }
     
     @PUT
@@ -93,5 +124,13 @@ public class ArtistaResource {
     @Path("{artistaId: \\d+}/propuestas/{propuestaId: \\d+}")
     public void deletePropuesta(@PathParam("artistaId") Long artistaId, @PathParam("propuestaId") Long PropuestaId){
         
+    }
+    
+    private ArrayList<ArtistaDetailDTO> ArtistaEntity2DetailDTO(List<ArtistaEntity> list){
+        ArrayList<ArtistaDetailDTO> re = new ArrayList<>();
+        for(ArtistaEntity ae: list){
+            re.add(new ArtistaDetailDTO(ae));
+        }
+        return re;
     }
 }

@@ -141,6 +141,7 @@ public class AnimacionDTO implements Serializable{
         ae.setCalificacion(calificacion);
         ae.setFecha(fecha);
         if(this.artista != null){
+            System.out.println("===========================================================");
             ae.setArtista(artista.toEntity());
         }
         return ae;

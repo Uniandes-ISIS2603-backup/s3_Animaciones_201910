@@ -23,7 +23,7 @@ public class ArtistaDTO implements Serializable{
         
     }
 
-    ArtistaDTO(ArtistaEntity artista) {
+    public ArtistaDTO(ArtistaEntity artista) {
         if(artista != null){
             this.id = artista.getId();
             this.contraseña = artista.getContraseña();
