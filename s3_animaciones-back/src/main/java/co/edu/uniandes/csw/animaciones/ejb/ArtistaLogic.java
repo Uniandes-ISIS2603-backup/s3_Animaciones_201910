@@ -18,7 +18,7 @@ public class ArtistaLogic {
     private ArtistaPersistence ap;
     
     public ArtistaEntity createArtista(ArtistaEntity ae) throws BusinessLogicException {
-        if(ae.getNombre() == null || ae.getUsuario() == null || ae.getContraseña() == null){
+        if(ae.getNombre() == null || ae.getUsuario() == null || ae.getContrasenia() == null){
             throw new BusinessLogicException("El nombre, usuario o contrasena no pueden ser nulos");
         }
         if(ap.findByUser(ae.getUsuario()) != null){
@@ -39,7 +39,7 @@ public class ArtistaLogic {
     }
     
     public ArtistaEntity updateArtista(ArtistaEntity ae) throws BusinessLogicException {
-        if(ae.getNombre() == null || ae.getUsuario() == null || ae.getContraseña() == null){
+        if(ae.getNombre() == null || ae.getUsuario() == null || ae.getContrasenia() == null){
             throw new BusinessLogicException("El nombre, usuario o contrasena no pueden ser nulos");
         }
         if(ap.findByUser(ae.getUsuario()) != null){

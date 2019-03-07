@@ -68,14 +68,23 @@ public class ArtistaResource {
     
     @PUT
     @Path("{artistaId: \\d+}")
-    public ArtistaDTO updateArtista(@PathParam("artistaId") Long artistaId, ArtistaDTO adto){
-        return adto;
+    public ArtistaDTO updateArtista(@PathParam("artistaId") Long artistaId, ArtistaDTO adto) throws BusinessLogicException{
+        adto.setId(artistaId);
+        if(artistal.getArtista(artistaId) == null){
+            throw new WebApplicationException("El artista no existe",404);
+        }
+        ArtistaDTO re = new ArtistaDTO(artistal.updateArtista(adto.toEntity()));
+        return re;
     }
     
     @DELETE
     @Path("{artistaId: \\d+}")
     public void deleteArtista(@PathParam("artistaId") Long artistaId){
-        
+        ArtistaEntity ae = artistal.getArtista(artistaId);
+        if(ae == null){
+            throw new WebApplicationException("El artista no existe",404);
+        }
+        artistal.deleteArtista(artistaId);
     }
     
     @POST

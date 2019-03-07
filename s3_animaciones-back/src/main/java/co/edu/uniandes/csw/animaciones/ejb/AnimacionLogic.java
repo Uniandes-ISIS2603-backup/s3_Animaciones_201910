@@ -1,6 +1,7 @@
 package co.edu.uniandes.csw.animaciones.ejb;
 
 import co.edu.uniandes.csw.animaciones.entities.AnimacionEntity;
+import co.edu.uniandes.csw.animaciones.entities.ArtistaEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.animaciones.persistence.AnimacionPersistence;
 import co.edu.uniandes.csw.animaciones.persistence.ArtistaPersistence;
@@ -25,9 +26,16 @@ public class AnimacionLogic {
         if(ae.getNombre() == null || ae.getFecha() == null || ae.getLink() == null){
             throw new BusinessLogicException("El nonmbre, fecha o link no puede ser nunlo");
         }
-        if(ae.getArtista() == null || arp.findArtista(ae.getArtista().getId()) == null){
+        if ( ae.getArtista() == null) {
             throw new BusinessLogicException("Las animaciones tienen que tener un artista");
         }
+        ArtistaEntity artista =  arp.findArtista(ae.getArtista().getId());
+        if (artista == null ){
+            throw new BusinessLogicException("El artista " + ae.getArtista().getId()+"   no existe");
+        } 
+        else {
+            ae.setArtista(artista);
+        }   
         if(ae.getPrecio() < 0){
             throw new BusinessLogicException("El precio tiene que ser positivo");
         }

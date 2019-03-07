@@ -30,7 +30,7 @@ public class AnimacionEntity extends BaseEntity implements Serializable {
     private Date fecha;
     
     @PodamExclude
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne()
     private ArtistaEntity artista;
     
     @PodamExclude
