@@ -20,6 +20,7 @@ import javax.ws.rs.Produces;
 
 /**
  *
+ * 
  * @author by.cuta10
  */
 @Path("jurados")

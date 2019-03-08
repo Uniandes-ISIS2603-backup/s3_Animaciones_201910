@@ -179,7 +179,7 @@ public class JuradoLogicTest {
         JuradoEntity entity = data.get(0);
         JuradoEntity pojoEntity = factory.manufacturePojo(JuradoEntity.class);
         pojoEntity.setId(entity.getId());
-        juradoLogic.updateJurado(pojoEntity.getId(), pojoEntity);
+        juradoLogic.updateJurado( pojoEntity);
         JuradoEntity resp = em.find(JuradoEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getUsuario(), resp.getUsuario());
