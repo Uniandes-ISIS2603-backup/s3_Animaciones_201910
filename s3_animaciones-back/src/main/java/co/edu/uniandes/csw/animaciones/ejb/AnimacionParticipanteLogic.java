@@ -21,18 +21,16 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class AnimacionParticipanteLogic {
-    
-     @PersistenceContext(unitName = "animacionesPU")
-    protected EntityManager em;
-     
-     @Inject
-    private AnimacionParticipantePersistence app;
-    
 
-    public AnimacionParticipanteEntity create(AnimacionParticipanteEntity ape)throws BusinessLogicException {
-         if(app.find(ape.getId())!=null)
-        {
-            throw new BusinessLogicException("ya existe un concurso con el id: " + ape.getId()  );
+    @PersistenceContext(unitName = "animacionesPU")
+    protected EntityManager em;
+
+    @Inject
+    private AnimacionParticipantePersistence app;
+
+    public AnimacionParticipanteEntity create(AnimacionParticipanteEntity ape) throws BusinessLogicException {
+        if (app.find(ape.getId()) != null) {
+            throw new BusinessLogicException("ya existe un concurso con el id: " + ape.getId());
         }
         em.persist(ape);
         return ape;
@@ -50,8 +48,8 @@ public class AnimacionParticipanteLogic {
     public AnimacionParticipanteEntity update(AnimacionParticipanteEntity ape) {
         return em.merge(ape);
     }
-    
-    public void delete( Long apeId){
-        em.remove( em.find(AnimacionParticipanteEntity.class, apeId));
+
+    public void delete(Long apeId) {
+        em.remove(em.find(AnimacionParticipanteEntity.class, apeId));
     }
 }
