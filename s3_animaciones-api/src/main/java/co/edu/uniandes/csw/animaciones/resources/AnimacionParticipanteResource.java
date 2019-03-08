@@ -14,6 +14,7 @@ import co.edu.uniandes.csw.animaciones.dtos.AnimacionParticipanteDTO;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -51,5 +52,10 @@ public class AnimacionParticipanteResource {
         return animacionParticipanteDTO;
     }
    
+    @DELETE
+    @Path("{animacionParticipanteId: \\+d}")
+    public void deleteAnimacionParticipante( @PathParam("animacionParticipanteId") Long animacionParticipanteId) {
+       
+    }
 
 }

@@ -89,6 +89,7 @@ public class ConcursoLogicTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
 
+    
     @Test
     public void createConcursoTest() throws BusinessLogicException{
         ConcursoEntity newConcursoEntity = factory.manufacturePojo(ConcursoEntity.class);
@@ -96,15 +97,6 @@ public class ConcursoLogicTest {
         Assert.assertNotNull(ce);
         ConcursoEntity concursoE = em.find(ConcursoEntity.class, ce.getId());
         Assert.assertEquals(newConcursoEntity.getId(), concursoE.getId());
-
-    }
-
-    @Test(expected = BusinessLogicException.class)
-    public void createConcursoConIdExistenteTest() throws BusinessLogicException {
-        ConcursoEntity newConcursoEntity = factory.manufacturePojo(ConcursoEntity.class);
-        newConcursoEntity.setId(dataCE.get(0).getId());
-        cl.createConcursoEntity(newConcursoEntity);
-
     }
     
      @Test(expected = BusinessLogicException.class)

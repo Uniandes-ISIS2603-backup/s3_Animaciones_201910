@@ -6,11 +6,7 @@
 package co.edu.uniandes.csw.animaciones.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -22,13 +18,18 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
     private String tema;
     private String tecnica;
     private Long organizador;
-    
+    private String reglas;
+
+    public ConcursoEntity() {
+
+    }
+
     /*
 
     @PodamExclude
     @OneToMany(mappedBy = "concurso", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private ArrayList<JuradoEntity> juradosa;
-*/
+     */
 
     /**
      * @return the tema
@@ -71,4 +72,20 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
     public void setOrganizador(Long organizador) {
         this.organizador = organizador;
     }
+
+    /**
+     * @return the reglas
+     */
+    public String getReglas() {
+        return reglas;
+    }
+
+    /**
+     * @param reglas the reglas to set
+     */
+    public void setReglas(String reglas) {
+        this.reglas = reglas;
+    }
+
+    
 }

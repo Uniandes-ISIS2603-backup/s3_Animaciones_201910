@@ -6,25 +6,22 @@
 package co.edu.uniandes.csw.animaciones.entities;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import uk.co.jemos.podam.common.PodamExclude;
-import java.util.List;
 /**
  *
  * @author df.perezc
  */
 @Entity
-public class AnimacionParticipanteEntity extends BaseEntity implements Serializable {
+public class AnimacionParticipanteEntity extends AnimacionEntity implements Serializable {
     
     private Double puntaje;
     private Integer puesto;
     private Boolean finalista;
     private Integer dinero;
 
-
+    public AnimacionParticipanteEntity(){
+        
+    }
 
 
     /**
