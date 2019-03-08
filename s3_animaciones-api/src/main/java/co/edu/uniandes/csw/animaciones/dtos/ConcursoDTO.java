@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.animaciones.dtos;
 
+import co.edu.uniandes.csw.animaciones.entities.ConcursoEntity;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -53,7 +54,7 @@ public class ConcursoDTO implements Serializable
     public ConcursoDTO(){
         
     }
-    
+     
     //
     //METODOS
     //

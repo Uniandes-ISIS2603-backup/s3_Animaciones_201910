@@ -1,19 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package co.edu.uniandes.csw.animaciones.resources;
 
 import co.edu.uniandes.csw.animaciones.dtos.JuradoDTO;
+import co.edu.uniandes.csw.animaciones.ejb.JuradoLogic;
 import co.edu.uniandes.csw.animaciones.entities.JuradoEntity;
+import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
@@ -21,51 +23,42 @@ import javax.ws.rs.Produces;
  * @author by.cuta10
  */
 @Path("jurados")
-@Produces("application/jason")
-@Consumes("application/jason")
-
-
+@Produces("application/json")
+@Consumes("application/json")
 public class JuradoResource {
     
-    private static final Logger LOGGER = Logger.getLogger(MedioDePagoResource.class.getName());
-    
+    @Inject
+    private JuradoLogic logic;
     
     @GET    
-    @Path("concursos/{id: \\d+}/jurados")
-    public JuradoDTO darJurado (){
-        return null;
+    public List<JuradoDTO> darJurados(){
+       List<JuradoEntity> sl= logic.getJurados();
+       List<JuradoDTO> out=new ArrayList<>();
+       for(JuradoEntity ls:sl){
+           out.add(new JuradoDTO(ls));
+       }
+       return out;
     }
     
     @POST
-    @Path("concursos/{id: \\d+}/jurados")
-    public boolean crearJurado (){
-        return false;
+    public JuradoDTO crearJurado (JuradoDTO jurado) throws BusinessLogicException{
+        return new JuradoDTO(logic.createJurado(jurado.toentity()));
     }
    
     @PUT
-    @Path("concursos/{id: \\d+}/jurados")
-    public JuradoDTO updateJurado (){
-        return null;
+    public JuradoDTO updateJurado (JuradoDTO jurado){
+        return new JuradoDTO(logic.updateJurado(jurado.toentity()));
     }
     
     @GET    
-    @Path("concursos/{idC : \\d+}/jurados/{idJ : \\d+}")
-    public JuradoDTO darUnJurado (){
-        return null;
+    @Path("concursos/jurados/{id: \\d+}")
+    public JuradoDTO darUnJurado (@PathParam("id") Long id){
+        return  new JuradoDTO(logic.getJurado(id));
     }
-    
-    
+ 
     @DELETE
-    @Path("concursos/{idC : \\d+}/jurados/ {idJ : \\d+}")
-    public void eliminarJurado (){
-        
+    @Path("concursos/{id : \\d+}")
+    public void eliminarJurado (@PathParam("id") Long id) throws BusinessLogicException{
+        logic.deleteJurado(id);
     }
-    
-    public JuradoDTO crearEntity ( JuradoEntity entity)  {
-        JuradoEntity nuevo = new JuradoEntity();
-        
-        return new JuradoDTO();
-    }
-    
-    
 }

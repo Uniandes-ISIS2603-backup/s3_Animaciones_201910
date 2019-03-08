@@ -2,8 +2,6 @@ package co.edu.uniandes.csw.animaciones.resources;
 
 import co.edu.uniandes.csw.animaciones.dtos.AnimacionParticipanteDTO;
 import co.edu.uniandes.csw.animaciones.dtos.ConcursoDTO;
-import co.edu.uniandes.csw.animaciones.dtos.JuradoDTO;
-import co.edu.uniandes.csw.animaciones.dtos.VotacionDTO;
 import java.util.ArrayList;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.*;

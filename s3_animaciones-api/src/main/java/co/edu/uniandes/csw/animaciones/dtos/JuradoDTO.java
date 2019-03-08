@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.animaciones.dtos;
 import co.edu.uniandes.csw.animaciones.entities.JuradoEntity;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,15 +17,28 @@ public class JuradoDTO implements Serializable{
     
     String credencial;
     String usuario;
-    String contraseña;
-    Integer id;
+    String contrasena;
+    Long id;
     ConcursoDTO concurso;
     private List<VotacionDTO> votaciones;
     
     
-    public JuradoDTO (){
-    votaciones = new ArrayList<VotacionDTO>() ;
-}
+    public JuradoDTO (){}
+    
+    public JuradoDTO (JuradoEntity j){
+        this.credencial=j.getCredencial();
+        this.usuario=j.getUsuario();
+        this.id=j.getId(); 
+    }
+    
+    public JuradoEntity toentity(){
+     JuradoEntity r=new JuradoEntity();
+     r.setContraseña(this.getContraseña());
+     r.setUsuario(usuario);
+     r.setCredencial(credencial);
+     return r;
+    }
+    
     public ConcursoDTO getConcursoDTO (){
         return concurso;
     }
@@ -64,15 +76,15 @@ public class JuradoDTO implements Serializable{
         usuario = pUsuario;
     }
     public String getContraseña(){
-        return contraseña;
+        return contrasena;
     }
-    public void setContraseña (String pContraseña){
-        contraseña = pContraseña;
+    public void setContraseña (String pContrasena){
+        contrasena = pContrasena;
     }
-    public int getId (){
+    public Long getId (){
         return id;
     }
-    public void setId (int pId){
+    public void setId (Long pId){
         id = pId;
     }
     public List<VotacionDTO> getVotaciones (){

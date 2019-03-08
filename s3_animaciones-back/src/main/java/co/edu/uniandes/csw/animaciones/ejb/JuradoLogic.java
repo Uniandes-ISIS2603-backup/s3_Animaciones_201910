@@ -89,8 +89,7 @@ public class JuradoLogic {
      * por ejemplo el nombre.
      * @return la jurado con los cambios actualizados en la base de datos.
      */
-    public JuradoEntity updateJurado(Long juradosId, JuradoEntity juradoEntity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la jurado con id = {0}", juradosId);
+    public JuradoEntity updateJurado(JuradoEntity juradoEntity) {
         // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
         JuradoEntity newEntity = persistence.update(juradoEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar la jurado con id = {0}", juradoEntity.getId());
