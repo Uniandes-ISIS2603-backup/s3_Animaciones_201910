@@ -49,6 +49,7 @@ public class ConcursoDTO implements Serializable {
 
     }
 
+
     public ConcursoDTO(ConcursoEntity ce) {
         this.tecnica = ce.getTecnica();
         this.tema = ce.getTema();
