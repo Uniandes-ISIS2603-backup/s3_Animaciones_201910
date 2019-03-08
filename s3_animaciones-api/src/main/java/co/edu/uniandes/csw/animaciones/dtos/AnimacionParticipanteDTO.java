@@ -25,16 +25,9 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
     //
     //CONSTRUCTOR
     //
-    
-    /**
-     * constructor
-     */
     public AnimacionParticipanteDTO(){
         
     }
-    
-    
-    
     //
     //METODOS
     //
@@ -95,9 +88,6 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
         this.dinero = dinero;
     }
 
-   
-  
-
-    
+     
     
 }

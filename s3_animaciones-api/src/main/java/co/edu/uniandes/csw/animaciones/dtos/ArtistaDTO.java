@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class ArtistaDTO implements Serializable{
     
     private Long id;
-    private String contraseña;
+    private String contrasenia;
     private String usuario;
     private String tema;
     private String tecnica;
@@ -23,10 +23,10 @@ public class ArtistaDTO implements Serializable{
         
     }
 
-    ArtistaDTO(ArtistaEntity artista) {
+    public ArtistaDTO(ArtistaEntity artista) {
         if(artista != null){
             this.id = artista.getId();
-            this.contraseña = artista.getContraseña();
+            this.contrasenia = artista.getContrasenia();
             this.usuario = artista.getUsuario();
             this.tema = artista.getTema();
             this.tecnica = artista.getTecnina();
@@ -43,12 +43,12 @@ public class ArtistaDTO implements Serializable{
         this.id = id;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public String getUsuario() {
@@ -99,7 +99,7 @@ public class ArtistaDTO implements Serializable{
     public ArtistaEntity toEntity(){
         ArtistaEntity ae = new ArtistaEntity();
         ae.setId(id);
-        ae.setContraseña(contraseña);
+        ae.setContrasenia(contrasenia);
         ae.setUsuario(usuario);
         ae.setTema(tema);
         ae.setTecnina(tecnica);

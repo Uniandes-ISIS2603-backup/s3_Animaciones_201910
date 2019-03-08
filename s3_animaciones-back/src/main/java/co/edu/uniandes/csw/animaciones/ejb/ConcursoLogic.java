@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.animaciones.entities.ConcursoEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.animaciones.persistence.ConcursoPersistence;
 import java.util.List;
+import java.util.logging.Level;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -22,7 +23,8 @@ import javax.persistence.TypedQuery;
 
 @Stateless
 public class ConcursoLogic {
- 
+    
+    
     @Inject
     private ConcursoPersistence cp;
     
@@ -31,14 +33,11 @@ public class ConcursoLogic {
 
     public ConcursoEntity createConcursoEntity(ConcursoEntity ce)throws BusinessLogicException
     {
-        if(cp.find(ce.getId())!=null)
-        {
-            throw new BusinessLogicException("ya existe un concurso con el id: " + ce.getId()  );
-        }
         if(ce.getTema().length()>=100)
         {
-         throw new BusinessLogicException("ya existe un concurso con el id: " + ce.getId()  );
+         throw new BusinessLogicException("el tema del concurso debe tener menos de 100 caracteres " + ce.getTema() );
         }
+        
         ce = cp.create(ce);
         return ce;
     }

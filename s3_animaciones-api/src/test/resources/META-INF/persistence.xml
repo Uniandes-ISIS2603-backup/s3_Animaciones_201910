@@ -3,7 +3,8 @@
   <persistence-unit name="animacionesPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <!--Toca entity por entity, exclude-unlisted-clases = false no funciona-->
-    
+    <class>co.edu.uniandes.csw.animaciones.entities.AnimacionEntity</class>
+    <class>co.edu.uniandes.csw.animaciones.entities.ArtistaEntity</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
  <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
