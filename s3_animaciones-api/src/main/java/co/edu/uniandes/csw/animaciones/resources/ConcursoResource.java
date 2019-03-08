@@ -1,11 +1,14 @@
 package co.edu.uniandes.csw.animaciones.resources;
 
-import co.edu.uniandes.csw.animaciones.dtos.AnimacionParticipanteDTO;
 import co.edu.uniandes.csw.animaciones.dtos.ConcursoDTO;
-import co.edu.uniandes.csw.animaciones.dtos.JuradoDTO;
-import co.edu.uniandes.csw.animaciones.dtos.VotacionDTO;
+import co.edu.uniandes.csw.animaciones.dtos.ConcursoDetailDTO;
+import co.edu.uniandes.csw.animaciones.ejb.ConcursoLogic;
+import co.edu.uniandes.csw.animaciones.entities.ConcursoEntity;
+import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.*;
 
 /**
@@ -16,69 +19,39 @@ import javax.ws.rs.*;
 @Consumes("application/json")
 @RequestScoped
 public class ConcursoResource {
-
+    
+    private static final Logger LOGGER = Logger.getLogger(ConcursoResource.class.getName());
+    
+    @Inject
+    private ConcursoLogic cl;
+    
     @POST
-    public ConcursoDTO crearConcurso(ConcursoDTO concurso) {
-        return concurso;
+    public ConcursoDTO crearConcurso(ConcursoDTO concursoDTO)throws BusinessLogicException {
+        ConcursoEntity ce = concursoDTO.toEntity();
+        ce = cl.createConcursoEntity(ce);
+        return new ConcursoDTO(ce);
     }
 
     @GET
-    public ArrayList<ConcursoDTO> getConcursos() {
+    public ArrayList<ConcursoDetailDTO> getConcursos() {
         return null;
     }
 
     @GET
     @Path("{concursoId: \\d+}")
-    public ConcursoDTO getConcurso(@PathParam("artistaId") Long artistaId) {
+    public ConcursoDetailDTO getConcurso(@PathParam("concursoId") Long concursoDetailId) {
         return null;
     }
-
-  
-/**
-    @POST
+    
+    @PUT
     @Path("{concursoId: \\d+}")
-    public String createReglaConcurso(@PathParam("concursoId") Long concursoId, String reglaConcurso) {
-        return reglaConcurso;
+    public ConcursoDetailDTO updateConcurso(@PathParam("concusoId") Long artistaId, ConcursoDetailDTO concursoDetailDTO){
+        return concursoDetailDTO;
     }
-    */
-
-    /**
-    @GET
-    @Path("{concursoId: \\d+}")
-    public String getReglasConcurso(@PathParam("concursoId") Long concursoId) {
-        return "reglas";
-    }
-    * /
-
-    /**
-     * las reglas estan en un arreglo por lo cual para acceder a ellas no se
-     * sales de concurso, el identificador de una regla sera su pocision en el
-     * arreglo
-     * 
-     */
+    
     @DELETE
     @Path("{concursoId: \\d+}//")
-    public void deleteRegla(@PathParam("concursoId") Long concursoId, @PathParam("reglaId") Long reglaId) {
+    public void deleteConcurso(@PathParam("concursoId") Long concursoId) {
 
     }
-
-   
-@POST
-    @Path("{concursoId: \\d+}")
-    public AnimacionParticipanteDTO inscribirAnimacion(@PathParam("concursoId") Long concursoId, @PathParam("animacionId") Long animacionId) {
-        return null;
-    }
-    
-
-
-    /**
-    @DELETE
-    @Path("{concursoId: \\d+}/rondas/{ronda: \\d+}/animacionesParticipantesId/{animacionesParticipanteId: \\+d}")
-    public void descalificarAnimacion(@PathParam("concursoId") Long concursoId, @PathParam("rondaId") Long rondaId, @PathParam("animacionId") Long animacionParticipanteId) {
-    }
-    */
-
- 
-    
-
 }

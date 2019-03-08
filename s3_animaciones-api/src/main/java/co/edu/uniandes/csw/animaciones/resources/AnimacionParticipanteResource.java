@@ -10,10 +10,9 @@ package co.edu.uniandes.csw.animaciones.resources;
  * @author df.perezc
  */
 
-import co.edu.uniandes.csw.animaciones.dtos.AnimacionDTO;
 import co.edu.uniandes.csw.animaciones.dtos.AnimacionParticipanteDTO;
+import java.util.List;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -28,52 +27,29 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class AnimacionParticipanteResource {
     
-    /**
-    @Inject
-    private AnimacionParticipanteLogic 
-    */
+
     @POST
-    public AnimacionParticipanteDTO crearAnimacion(AnimacionParticipanteDTO animacionParticipante){
+    public AnimacionParticipanteDTO crearAnimacionParticipante(AnimacionParticipanteDTO animacionParticipante){
         return animacionParticipante;
     }
    
-   /*
-     * @param concursoId
-     * @param animacionParticipanteId
-     * @param puntaje
-     * @return
-     */
-    @POST
-    @Path("{animacionParticipanteId: \\+d}")
-    public Long puntuarAnimacion(@PathParam("concursoId") Long concursoId, @PathParam("rondaId") Long rondaId, @PathParam("animacionId") Long animacionParticipanteId, Double puntaje) {
-        return animacionParticipanteId;
-    }
-
-    @PUT
-    @Path("{animacionParticipanteId: \\+d}")
-    public Long updateRankAnimacion(@PathParam("concursoId") Long concursoId, @PathParam("rondaId") Long rondaId, @PathParam("animacionId") Long animacionParticipanteId) {
-        return animacionParticipanteId;
+     
+    @GET
+    public List<AnimacionParticipanteDTO> getAnimacionesParticipantes() {
+        return null;
     }
     
     @GET
     @Path("{animacionParticipanteId: \\+d}")
-    public AnimacionParticipanteDTO getAnimacion(@PathParam("concursoId") Long concursoId, @PathParam("rondaId") Long rondaId, @PathParam("animacionId") Long animacionParticipanteId) {
+    public AnimacionParticipanteDTO getAnimacionParticipante( @PathParam("animacionParticipanteId") Long animacionParticipanteId) {
         return null;
     }
-
-     /**
-     *
-     * @param concursoId
-     * @param rondaId
-     * @param animacionParticipanteId
-     * @param dinero
-     * @return
-     */
-    /*
-    @POST
-    @Path("{concursoId: \\d+}/rondas/{ronda: \\d+}/animacionesParticipantesId/{animacionParticipanteId: \\+d}")
-    public Long premiarAnimacion(@PathParam("concursoId") Long concursoId, @PathParam("rondaId") Long rondaId, @PathParam("animacionId") Long animacionParticipanteId, Integer dinero) {
-        return animacionParticipanteId;
+    
+    @PUT
+    @Path("{animacionParticipanteId: \\+d}")
+    public AnimacionParticipanteDTO updateAnimacionParticipante( @PathParam("animacionParticipanteId") Long animacionParticipanteId, AnimacionParticipanteDTO animacionParticipanteDTO) {
+        return animacionParticipanteDTO;
     }
-    */
+   
+
 }
