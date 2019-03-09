@@ -10,10 +10,7 @@
     <packaging>pom</packaging>
     <name>s3_animaciones</name>
  
-    <modules>
-        <module>s3_animaciones-back</module>
-        <module>s3_animaciones-api</module>
-    </modules>
+    <modules></modules>
     
     <repositories>
         <repository>
