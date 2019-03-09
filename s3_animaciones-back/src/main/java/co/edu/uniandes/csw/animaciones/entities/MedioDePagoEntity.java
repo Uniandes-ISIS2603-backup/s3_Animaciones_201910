@@ -10,6 +10,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -24,6 +25,10 @@ public class MedioDePagoEntity extends BaseEntity implements Serializable{
     
     @Temporal(TemporalType.DATE)
     private Date fechaVencimiento;
+    
+    @PodamExclude
+    @OneToOne
+    private FacturaEntity factura;
     
     public enum FormaDePago{
         DEBITO, CREDITO, PAYPAL, PSE

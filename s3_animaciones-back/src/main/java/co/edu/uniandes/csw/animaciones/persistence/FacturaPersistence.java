@@ -33,7 +33,6 @@ public class FacturaPersistence {
     }
     
     public List<FacturaEntity> findAll(){
-        
         TypedQuery<FacturaEntity> qu = em.createQuery("select u from FacturaEntity u", FacturaEntity.class);
         return qu.getResultList();
     }

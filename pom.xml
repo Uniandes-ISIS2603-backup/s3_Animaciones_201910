@@ -11,8 +11,8 @@
     <name>s3_animaciones</name>
  
     <modules>
-        <module>s3_animaciones-back</module>
         <module>s3_animaciones-api</module>
+        <module>s3_animaciones-back</module>
     </modules>
     
     <repositories>

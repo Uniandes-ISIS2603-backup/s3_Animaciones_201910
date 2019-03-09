@@ -1,0 +1,245 @@
+{
+	"info": {
+		"_postman_id": "ba6dfcfb-fc3c-4ca1-94c0-4382666baf0b",
+		"name": "FacturaResourceTest",
+		"description": "Colección Postman del recurso Factura",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/facturas/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0ca4b108-87ff-4b50-8ab2-4522d13f4e28",
+						"exec": [
+							"var yo = JSON.parse(responseBody);",
+							"tests[\"El post no lanza error\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idAnim\": 10\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/facturas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"facturas"
+					]
+				},
+				"description": "Get Factura"
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/facturas/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0ca4b108-87ff-4b50-8ab2-4522d13f4e28",
+						"exec": [
+							"var yo = JSON.parse(responseBody);",
+							"tests[\"El get no lanza error\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/facturas/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"facturas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/facturas/0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0ca4b108-87ff-4b50-8ab2-4522d13f4e28",
+						"exec": [
+							"tests[\"El get lanza 404 cuando el recurso no existe\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/facturas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"facturas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/facturas/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0ca4b108-87ff-4b50-8ab2-4522d13f4e28",
+						"exec": [
+							"var yo = JSON.parse(responseBody);",
+							"tests[\"El put no lanza error\"] = responseCode.code === 200;",
+							"tests[\"El put hace lo que debe\"] = responseBody.has(\"40\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idAnim\": 40,\n    \"id\": 1\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/facturas/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"facturas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/facturas/0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0ca4b108-87ff-4b50-8ab2-4522d13f4e28",
+						"exec": [
+							"tests[\"El put lanza 404 cuando no existe el recurso\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"estado\": \"ENPROCESO\",\n    \"fecha\": \"2019-03-03T00:00:00-05:00\",\n    \"id\": 1,\n    \"idAnim\": 40\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/facturas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"facturas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
