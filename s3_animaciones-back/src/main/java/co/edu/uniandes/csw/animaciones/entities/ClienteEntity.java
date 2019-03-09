@@ -37,9 +37,7 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "cliente")
     private List<CalificacionEntity> calificaciones = new ArrayList<>();
 
-    @PodamExclude
-    @OneToMany(mappedBy = "cliente",fetch=FetchType.LAZY)
-    private List<MedioDePagoEntity> mediosPago = new ArrayList<>();
+
 
 
     public ClienteEntity(){
@@ -106,18 +104,5 @@ public class ClienteEntity extends BaseEntity implements Serializable {
         this.calificaciones = calificaciones;
     }
 
-    /**
-     * @return the mediosPago
-     */
-    public List<MedioDePagoEntity> getMediosPago() {
-        return mediosPago;
-    }
 
-    /**
-     * @param mediosPago the mediosPago to set
-     */
-    public void setMediosPago(List<MedioDePagoEntity> mediosPago) {
-        this.mediosPago = mediosPago;
-    }
-    
 }
