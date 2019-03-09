@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     
-     ArrayList<FacturaDTO> facturas;
+ 
     ArrayList<PropuestaDTO> propuestas;
     ArrayList<MedioDePagoDTO> mediosPago;
     
@@ -25,23 +25,57 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
         super();
     }
     
-//    public ClienteDetailDTO( ClienteEntity entity)
-//    {
+  /**
+     * Crea un objeto ClienteDetailDTO a partir de un objeto ClienterEntity
+     * incluyendo los atributos de AuthorDTO.
+     *
+     * @param entity Entidad AuthorEntity desde la cual se va a crear el
+     * nuevo objeto.
+     *
+     */
+//    public ClienteDetailDTO(ClienteEntity entity) {
 //        super(entity);
-//        if (entity!= null)
-//        {
-//            
+//        if (entity != null) {
+//            propuestas = new ArrayList<>();
+//            for (PropuestaEntity entityPropuestas : entity.getBooks()) {
+//                books.add(new BookDTO(entityBooks));
+//            }
+//            prizes = new ArrayList();
+//            for (PrizeEntity entityPrize : authorEntity.getPrizes()) {
+//                prizes.add(new PrizeDTO(entityPrize));
+//            }
 //        }
+//    }
+
+    /**
+     * Convierte un objeto AuthorDetailDTO a AuthorEntity incluyendo los
+     * atributos de AuthorDTO.
+     *
+     * @return Nueva objeto AuthorEntity.
+     *
+     */
+//    @Override
+//    public AuthorEntity toEntity() {
+//        AuthorEntity authorEntity = super.toEntity();
+//        if (books != null) {
+//            List<BookEntity> booksEntity = new ArrayList<>();
+//            for (BookDTO dtoBook : books) {
+//                booksEntity.add(dtoBook.toEntity());
+//            }
+//            authorEntity.setBooks(booksEntity);
+//        }
+//        if (prizes != null) {
+//            List<PrizeEntity> prizesEntity = new ArrayList<>();
+//            for (PrizeDTO dtoPrize : prizes) {
+//                prizesEntity.add(dtoPrize.toEntity());
+//            }
+//            authorEntity.setPrizes(prizesEntity);
+//        }
+//        return authorEntity;
 //    }
     
     
-        public ArrayList<FacturaDTO> getFacturas() {
-        return facturas;
-    }
 
-    public void setFacturas(ArrayList<FacturaDTO> facturas) {
-        this.facturas = facturas;
-    }
 
     public ArrayList<PropuestaDTO> getPropuestas() {
         return propuestas;
