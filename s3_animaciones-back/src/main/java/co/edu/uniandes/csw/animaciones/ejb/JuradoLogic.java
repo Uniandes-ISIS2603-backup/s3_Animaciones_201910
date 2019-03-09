@@ -21,7 +21,10 @@ import javax.inject.Inject;
  */
 @Stateless
 public class JuradoLogic {
-
+    
+    /**
+     * Atributo que permite llamar logger
+     */
     private static final Logger LOGGER = Logger.getLogger(JuradoLogic.class.getName());
 
     @Inject
