@@ -40,6 +40,10 @@ public class PropuestaDTO implements Serializable {
     
     private FacturaDTO factura;
     
+   // private ClienteDTO cliente;
+    
+   // private ArtistaDTO artista;
+    
     public PropuestaDTO(){
         
     }
