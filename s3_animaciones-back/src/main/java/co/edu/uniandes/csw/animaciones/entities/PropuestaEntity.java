@@ -31,7 +31,7 @@ public class PropuestaEntity extends BaseEntity implements Serializable {
     private ClienteEntity cliente;    
 
     @PodamExclude
-    @OneToOne(mappedBy = "propuesta", fetch =FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "propuesta", fetch =FetchType.LAZY/*, cascade = CascadeType.PERSIST*/)
     private FacturaEntity factura;
 
     
