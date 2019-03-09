@@ -24,6 +24,8 @@ SOFTWARE.
 package co.edu.uniandes.csw.animaciones.dtos;
 
 import co.edu.uniandes.csw.animaciones.dtos.FacturaDTO.Estado;
+import co.edu.uniandes.csw.animaciones.entities.FacturaEntity;
+import co.edu.uniandes.csw.animaciones.entities.PropuestaEntity;
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -34,12 +36,29 @@ public class PropuestaDTO implements Serializable {
     
     private Integer precio;
     
-    private Integer id;
+    private Long id;
     
     private FacturaDTO factura;
     
+   // private ClienteDTO cliente;
+    
+   // private ArtistaDTO artista;
+    
     public PropuestaDTO(){
         
+    }
+    
+    public PropuestaDTO(PropuestaEntity yo){
+        id = yo.getId();
+        precio = yo.getPrecio();
+        if(yo.getEstado()==FacturaEntity.Estado.ACEPTADO){
+            estado = Estado.ACEPTADO;
+        }else if(yo.getEstado()==FacturaEntity.Estado.RECHAZADO){
+            estado = Estado.RECHAZADO;
+        }else{
+            estado = Estado.ENPROCESO;
+        }
+        factura = new FacturaDTO(yo.getFactura());
     }
     
     @Override
@@ -78,14 +97,14 @@ public class PropuestaDTO implements Serializable {
     /**
      * @return the id
      */
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -101,5 +120,20 @@ public class PropuestaDTO implements Serializable {
      */
     public void setFactura(FacturaDTO factura) {
         this.factura = factura;
+    }
+    
+    public PropuestaEntity toEntity(){
+        PropuestaEntity yo = new PropuestaEntity();
+        if(estado==Estado.ACEPTADO){
+            yo.setEstado(FacturaEntity.Estado.ACEPTADO);
+        }else if(estado==Estado.RECHAZADO){
+            yo.setEstado(FacturaEntity.Estado.RECHAZADO);
+        }else{
+            yo.setEstado(FacturaEntity.Estado.ENPROCESO);
+        }
+        yo.setId(id);
+        yo.setPrecio(precio);
+        yo.setFactura(factura.toEntity());
+        return yo;
     }
 }

@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.animaciones.dtos.RondaDetailDTO;
 import co.edu.uniandes.csw.animaciones.ejb.RondaLogic;
 import co.edu.uniandes.csw.animaciones.entities.RondaEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -21,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 /**
  *
  * @author df.serrano
@@ -35,13 +37,23 @@ public class RondaResource {
     private RondaLogic rl;
     @GET
     public List <RondaDetailDTO> darRondas(){
-        return null;
+        List<RondaDetailDTO> rLista= convertir(rl.getRondas());
+        if(rLista == null)
+        {
+            throw new WebApplicationException("La lista no existe",404);
+        }
+        return rLista;
     }
     
     @GET
     @Path("{rondaId: \\d+}")
     public RondaDetailDTO darRonda(@PathParam("rondaId") Long rondaId){
-        return null;
+        RondaEntity re = rl.getRonda(rondaId);
+        if(re == null)
+        {
+            throw new WebApplicationException("La ronda no existe",404);
+        }
+        return new RondaDetailDTO(re);
     }    
     @POST
     public RondaDTO createRonda(RondaDTO ronda) throws BusinessLogicException {
@@ -50,13 +62,30 @@ public class RondaResource {
         return new RondaDTO(re);
     }
     @PUT
-       @Path("{rondaId: \\d+}")
-    public RondaDTO cambiarRonda(@PathParam("rondaId") Long rondaId, RondaDTO ronda){
-        return ronda;
+    @Path("{rondaId: \\d+}")
+    public RondaDTO cambiarRonda(@PathParam("rondaId") Long rondaId, RondaDTO ronda) throws BusinessLogicException{
+        ronda.setId(rondaId);
+        if(rl.getRonda(rondaId)==null)
+        {
+            throw new WebApplicationException("La ronda no existe",404);
+        }
+        return new RondaDTO(rl.updateRonda(ronda.toEntity()));
     }
     @DELETE
     @Path("{rondaId: \\d+}")
-    public RondaDTO eliminarRonda(@PathParam("rondaId") Long rondaId){
-        return null;
+    public void eliminarRonda(@PathParam("rondaId") Long rondaId){
+        RondaEntity re = rl.getRonda(rondaId);
+        if(re == null)
+        {
+             throw new WebApplicationException("La ronda no existe",404);
+        }
+        rl.deleteRonda(rondaId);
+    }
+    private List<RondaDetailDTO> convertir(List<RondaEntity> lista){
+        List<RondaDetailDTO> aRetornar = new ArrayList();
+        for(RondaEntity re : lista){
+            aRetornar.add(new RondaDetailDTO(re));
+        }
+        return aRetornar;
     }
 }

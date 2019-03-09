@@ -45,7 +45,7 @@ public class VotacionLogic {
         return re;
     }
     
-    public List<VotacionEntity> getVotacions(){
+    public List<VotacionEntity> getVotaciones(){
         List<VotacionEntity> list = persistence.findAll();
         return list;
     }

@@ -184,7 +184,7 @@ public class VotacionLogicTest {
     @Test
     public void getVotacionesTest(){
         
-         List<VotacionEntity> result = vl.getVotacions();
+         List<VotacionEntity> result = vl.getVotaciones();
         Assert.assertEquals(result.size(), listaRE.size());
         for(VotacionEntity ve : result){
             boolean encontro = false;

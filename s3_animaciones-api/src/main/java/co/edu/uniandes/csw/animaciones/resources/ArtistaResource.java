@@ -10,7 +10,9 @@ import co.edu.uniandes.csw.animaciones.ejb.ArtistaAnimacionLogic;
 import co.edu.uniandes.csw.animaciones.ejb.ArtistaLogic;
 import co.edu.uniandes.csw.animaciones.ejb.ArtistaPropuestaLogic;
 import co.edu.uniandes.csw.animaciones.ejb.PropuestaLogic;
+import co.edu.uniandes.csw.animaciones.entities.AnimacionEntity;
 import co.edu.uniandes.csw.animaciones.entities.ArtistaEntity;
+import co.edu.uniandes.csw.animaciones.entities.PropuestaEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,55 +92,107 @@ public class ArtistaResource {
     @POST
     @Path("{artistaId: \\d+}/animaciones/{animacionId: \\d+}")
     public AnimacionDTO addAnimacion(@PathParam("artistaId") Long artistaId, @PathParam("animacionId") Long animacionId){
-        return null;
+        AnimacionEntity ae = animacionl.getAnimacion(animacionId);
+        if(ae == null){
+            throw new WebApplicationException("La annimacion no existe",404);
+        }
+        AnimacionDTO re = new AnimacionDTO(aal.addAnimacion(artistaId, animacionId));
+        return re;
     }
     
     @POST
     @Path("{artistaId: \\d+}/propuestas/{propuestaId: \\d+}")
     public PropuestaDTO addPropuesta(@PathParam("artistaId") Long artistaId, @PathParam("propuestaId") Long PropuestaId){
-        return null;
+        PropuestaEntity pe = propuestal.getP(PropuestaId);
+        if(pe == null){
+            throw new WebApplicationException("La propuesta no existe",404);
+        }
+        PropuestaDTO re = new PropuestaDTO(apl.addPropuesta(artistaId, PropuestaId));
+        return re;
     }
     
     @GET
     @Path("{artistaId: \\d+}/animaciones/{animacionId: \\d+}")
     public AnimacionDetailDTO getAnimacion(@PathParam("artistaId") Long artistaId, @PathParam("animacionId") Long animacionId){
-        return null;
+        AnimacionEntity ae = animacionl.getAnimacion(animacionId);
+        if(ae == null){
+            throw new WebApplicationException("La annimacion no existe",404);
+        }
+        AnimacionDetailDTO re = new AnimacionDetailDTO(aal.getAnimacion(artistaId, animacionId));
+        return re;
     }
     
     @GET
     @Path("{artistaId: \\d+}/aninmaciones")
     public ArrayList<AnimacionDetailDTO> getAnimaciones(@PathParam("artistaId") Long artistaId){
-        return null;
+        ArrayList<AnimacionDetailDTO> re = AnimacionEntity2DetailDTO(aal.getAnimaciones(artistaId));
+        if(re == null){
+            throw new WebApplicationException("El artista no existe",404);
+        }
+        return re;
     }
     
     @GET
     @Path("{artistaId: \\d+}/propuestas/{propuestaId: \\d+}")
     public PropuestaDTO getPropuesta(@PathParam("artistaId") Long artistaId, @PathParam("propuestaId") Long PropuestaId){
-        return null;
+        PropuestaEntity pe = propuestal.getP(PropuestaId);
+        if(pe == null){
+            throw new WebApplicationException("La propuesta no existe",404);
+        }
+        PropuestaDTO re = new PropuestaDTO(apl.getPropuesta(artistaId, PropuestaId));
+        return re;
     }
     
     @GET
     @Path("{artistaId: \\d+}/propuestas")
     public ArrayList<PropuestaDTO> getPropuestas(@PathParam("artistaId") Long artistaId){
-        return null;
+        ArrayList<PropuestaDTO> re = PropuestaEntity2DTO(apl.getPropuestas(artistaId));
+        if(re == null){
+            throw new WebApplicationException("El artista no existe",404);
+        }
+        return re;
     }
     
     @DELETE
     @Path("{artistaId: \\d+}/animaciones/{animacionId: \\d+}")
     public void deleteAnimacion(@PathParam("artistaId") Long artistaId, @PathParam("animacionId") Long animacionId){
-        
+        AnimacionEntity ae = animacionl.getAnimacion(animacionId);
+        if(ae == null){
+            throw new WebApplicationException("La animacion no existe",404);
+        }
+        aal.removeAnimacion(artistaId, animacionId);
     }
     
     @DELETE
     @Path("{artistaId: \\d+}/propuestas/{propuestaId: \\d+}")
     public void deletePropuesta(@PathParam("artistaId") Long artistaId, @PathParam("propuestaId") Long PropuestaId){
-        
+        PropuestaEntity pe = propuestal.getP(PropuestaId);
+        if(pe == null){
+            throw new WebApplicationException("La propuesta no existe",404);
+        }
+        apl.removePropuesta(artistaId, PropuestaId);
     }
     
     private ArrayList<ArtistaDetailDTO> ArtistaEntity2DetailDTO(List<ArtistaEntity> list){
         ArrayList<ArtistaDetailDTO> re = new ArrayList<>();
         for(ArtistaEntity ae: list){
             re.add(new ArtistaDetailDTO(ae));
+        }
+        return re;
+    }
+    
+    private ArrayList<AnimacionDetailDTO> AnimacionEntity2DetailDTO(List<AnimacionEntity> list){
+        ArrayList<AnimacionDetailDTO> re = new ArrayList<>();
+        for(AnimacionEntity ce: list){
+            re.add(new AnimacionDetailDTO(ce));
+        }
+        return re;
+    }
+    
+    private ArrayList<PropuestaDTO> PropuestaEntity2DTO(List<PropuestaEntity> list){
+        ArrayList<PropuestaDTO> re = new ArrayList<>();
+        for(PropuestaEntity ce: list){
+            re.add(new PropuestaDTO(ce));
         }
         return re;
     }

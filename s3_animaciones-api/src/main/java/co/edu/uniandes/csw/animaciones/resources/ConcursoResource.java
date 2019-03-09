@@ -1,6 +1,7 @@
 package co.edu.uniandes.csw.animaciones.resources;
 
 import co.edu.uniandes.csw.animaciones.dtos.ConcursoDTO;
+
 import co.edu.uniandes.csw.animaciones.dtos.ConcursoDetailDTO;
 import co.edu.uniandes.csw.animaciones.ejb.ConcursoLogic;
 import co.edu.uniandes.csw.animaciones.entities.ConcursoEntity;

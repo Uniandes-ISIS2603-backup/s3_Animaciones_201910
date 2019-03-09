@@ -1,6 +1,7 @@
 delete from AnimacionEntity;
 delete from ArtistaEntity;
-
+delete from RondaEntity;
+delete from VotacionEntity;
 
 insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contraseña) values (1, 1, 'Dayle', 'Candice', 'Erin', 'eibbitt0', 'fZR73XIKI');
 insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contraseña) values (2, 0, 'Caitlin', 'Normy', 'Trevar', 'tgiacubo1', 'p77HvSdgaO');

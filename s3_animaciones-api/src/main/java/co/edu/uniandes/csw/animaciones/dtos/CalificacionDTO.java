@@ -25,14 +25,20 @@ public class CalificacionDTO implements Serializable {
 
     }
     
-    public CalificacionDTO(CalificacionEntity ce) {
-        
+ /**
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
+     *
+     * @param entity: Es la entidad que se va a convertir a DTO
+     */
+    public CalificacionDTO(CalificacionEntity entity) {
+        if (entity != null) {
+           // this.id = entity.getId();
+            this.comentario = entity.getComentario();
+            this.calificacion= entity.getCalificacion();
+        }
     }
 
-//    public CalificacionDTO(CalificacionEntity entity) {
-//        entity.setCalificacion(calificacion);
-//        entity.setComentario(comentario);
-//    }
 
     /**
      * @return the id
@@ -75,10 +81,16 @@ public class CalificacionDTO implements Serializable {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 
+     /**
+     * Convertir DTO a Entity
+     *
+     * @return Un Entity con los valores del DTO
+     */
     public CalificacionEntity toEntity() {
         CalificacionEntity entity = new CalificacionEntity();
-        entity.setCalificacion(calificacion);
-        entity.setComentario(comentario);
+       // entity.setId(this.id);
+        entity.setCalificacion(this.calificacion);
+        entity.setComentario(this.comentario);
         return entity;
     }
 }
