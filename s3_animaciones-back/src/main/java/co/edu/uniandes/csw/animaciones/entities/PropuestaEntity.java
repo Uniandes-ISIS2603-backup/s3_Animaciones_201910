@@ -23,15 +23,15 @@ public class PropuestaEntity extends BaseEntity implements Serializable {
     private Estado estado;
     
     @PodamExclude
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private ArtistaEntity artista;
     
     @PodamExclude
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private ClienteEntity cliente;    
 
     @PodamExclude
-    @OneToOne(mappedBy = "propuesta", fetch =FetchType.LAZY)
+    @OneToOne(mappedBy = "propuesta", fetch =FetchType.LAZY/*, cascade = CascadeType.PERSIST*/)
     private FacturaEntity factura;
 
     

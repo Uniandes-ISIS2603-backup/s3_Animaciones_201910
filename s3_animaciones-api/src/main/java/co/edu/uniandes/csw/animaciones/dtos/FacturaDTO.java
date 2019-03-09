@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.animaciones.dtos;
 
+import co.edu.uniandes.csw.animaciones.entities.FacturaEntity;
 import java.io.Serializable;
 import java.util.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -30,7 +31,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class FacturaDTO implements Serializable {
     
-    private Integer id;
+    private Long id;
     
     private Integer idAnim;
     
@@ -48,6 +49,20 @@ public class FacturaDTO implements Serializable {
         
     }
     
+    public FacturaDTO(FacturaEntity yo){
+        id = yo.getId();
+        idAnim = yo.getIdAnim();
+        fecha = yo.getFecha();
+        if(yo.getEstado()==FacturaEntity.Estado.ACEPTADO){
+            estado = Estado.ACEPTADO;
+        }else if(yo.getEstado()==FacturaEntity.Estado.RECHAZADO){
+            estado = Estado.RECHAZADO;
+        }else{
+            estado = Estado.ENPROCESO;
+        }
+        //medioDePago = new MedioDePagoDTO(yo.getMedioDePago());
+    }
+    
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
@@ -56,14 +71,14 @@ public class FacturaDTO implements Serializable {
     /**
      * @return the id
      */
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -121,5 +136,25 @@ public class FacturaDTO implements Serializable {
      */
     public void setMedioDePago(MedioDePagoDTO medioDePago) {
         this.medioDePago = medioDePago;
+    }
+    
+    public FacturaEntity toEntity(){
+        FacturaEntity yo = new FacturaEntity();
+        if(estado==Estado.ACEPTADO){
+            yo.setEstado(FacturaEntity.Estado.ACEPTADO);
+        }else if(estado==Estado.RECHAZADO){
+            yo.setEstado(FacturaEntity.Estado.RECHAZADO);
+        }else{
+            yo.setEstado(FacturaEntity.Estado.ENPROCESO);
+        }
+        if(fecha!=null){
+           yo.setFecha(fecha); 
+        }else{
+           yo.setFecha(new Date());
+        }        
+        yo.setId(id);
+        yo.setIdAnim(idAnim);
+        //yo.setMedioDePago(medioDePago.toEntity());
+        return yo;
     }
 }

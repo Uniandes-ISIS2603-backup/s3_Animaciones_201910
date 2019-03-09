@@ -34,11 +34,12 @@ public class JuradoEntity extends BaseEntity implements Serializable{
      */
     private String contrasena;
     
+
     /**
      * Relacion many to one a la clase concurso
      */
-    //@PodamExclude
-    //@ManyToOne (cascade = CascadeType.PERSIST)
+    @PodamExclude
+    @ManyToOne (cascade = CascadeType.PERSIST)
     private ConcursoEntity concurso;
     
     /**

@@ -6,7 +6,11 @@
 package co.edu.uniandes.csw.animaciones.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -15,21 +19,66 @@ import javax.persistence.Entity;
 @Entity
 public class ConcursoEntity extends BaseEntity implements Serializable {
 
+    //----------------------------------------------------------
+    //RELACIONES
+    //----------------------------------------------------------
+  
+    @PodamExclude
+    @OneToMany(mappedBy = "concurso", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private ArrayList<JuradoEntity> jurados;
+     /** al descomentar esto descomentar tambien los seters y geters
+    @PodamExclude
+    @OneToMany(mappedBy = "concurso", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private ArrayList<RondaEntity> rondas;
+    */
+    
+     //----------------------------------------------------------
+    
+    
     private String tema;
     private String tecnica;
     private Long organizador;
     private String reglas;
+    
 
     public ConcursoEntity() {
 
     }
+    
+       public void nohacernada() {
+        tema = tema;
+    }
+    
 
-    /*
-
-    @PodamExclude
-    @OneToMany(mappedBy = "concurso", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private ArrayList<JuradoEntity> juradosa;
+    /**
+     * @return the juradosa
      */
+    public ArrayList<JuradoEntity> getJurados() {
+       // return jurados;
+        return new ArrayList();
+    }
+
+    /**
+     * @param juradosa the juradosa to set
+     */
+    public void setJurados(ArrayList<JuradoEntity> juradosa) {
+        //this.jurados = juradosa;
+    }
+
+    /**
+     * @return the rondas
+     */
+    public ArrayList<RondaEntity> getRondas() {
+        //return rondas;
+         return new ArrayList();
+    }
+
+    /**
+     * @param rondas the rondas to set
+     */
+    public void setRondas(ArrayList<RondaEntity> rondas) {
+       //this.rondas = rondas;
+    }
 
     /**
      * @return the tema
@@ -87,5 +136,9 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
         this.reglas = reglas;
     }
 
+   
+
+
+   
     
 }
