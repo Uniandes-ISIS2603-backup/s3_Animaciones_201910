@@ -8,32 +8,76 @@ package co.edu.uniandes.csw.animaciones.dtos;
 import java.io.Serializable;
 
 import co.edu.uniandes.csw.animaciones.dtos.ConcursoDTO;
+import co.edu.uniandes.csw.animaciones.entities.ConcursoEntity;
+import co.edu.uniandes.csw.animaciones.entities.JuradoEntity;
+import co.edu.uniandes.csw.animaciones.entities.RondaEntity;
 import java.util.List;
 import java.util.ArrayList;
 
-public class ConcursoDetailDTO extends ConcursoDTO implements Serializable{
-    
+public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
+
     //
     // ATRIBUTOS
     //
-  
     private List<JuradoDTO> jurados = new ArrayList<JuradoDTO>();
     private List<RondaDTO> rondas = new ArrayList<RondaDTO>();
-    
+
     //
     //CONSTRUCTOR
     //
-    
     /**
-     * constructor
+     * constructores
      */
-    public ConcursoDetailDTO(){
-        
+    public ConcursoDetailDTO() {
+
     }
-    
+
+    public ConcursoDetailDTO(ConcursoEntity ce) {
+        super(ce);
+        if (ce != null) {
+            if (ce.getJurados() != null) {
+                for (JuradoEntity je : ce.getJurados()) {
+                    jurados.add(new JuradoDTO( //__________________________________________________________________________        
+                            //        je
+                            ));
+                }
+            }
+        }
+        if (ce != null) {
+            if (ce.getRondas() != null) {
+                for (RondaEntity re : ce.getRondas()) {
+                    rondas.add(new RondaDTO(
+                            re
+                    ));
+                }
+            }
+        }
+    }
+
     //
     //METODOS
     //
+    public ConcursoEntity toEntity() {
+        ConcursoEntity ce = super.toEntity();
+        if (jurados != null) {
+            ArrayList<JuradoEntity> listJus = new ArrayList<>();
+            for (JuradoDTO cd : jurados) {
+                listJus.add(
+                        //--------------------------------------------------
+                        //cd.toEntity()
+                null);
+            }
+            ce.setJurados(listJus);
+        }
+         if (rondas != null) {
+            ArrayList<RondaEntity> listRos = new ArrayList<>();
+            for (RondaDTO rd : rondas) {
+                listRos.add(rd.toEntity());
+            }
+            ce.setRondas(listRos);
+        }
+        return ce;
+    }
 
     /**
      * @return the jurados
@@ -62,7 +106,5 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable{
     public void setRondas(List<RondaDTO> rondas) {
         this.rondas = rondas;
     }
-   
-   
-    
+
 }
