@@ -24,7 +24,7 @@ public class VotacionLogic {
         @Inject
     private JuradoLogic jl;
            @Inject
-    private AnimacionLogic al;
+    private AnimacionLogic anl;
     
     public VotacionEntity createVotacion(VotacionEntity votacion) throws BusinessLogicException{
         if(votacion.getIdAnimacion()==null || votacion.getIdAnimacion() <= 0){
