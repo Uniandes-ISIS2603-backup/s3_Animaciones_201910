@@ -10,7 +10,7 @@ import co.edu.uniandes.csw.animaciones.entities.CalificacionEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.animaciones.persistence.AnimacionPersistence;
 import co.edu.uniandes.csw.animaciones.persistence.CalificacionPersistence;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+
 import java.util.List;
 import java.util.logging.Level;
 import javax.ejb.Stateless;
