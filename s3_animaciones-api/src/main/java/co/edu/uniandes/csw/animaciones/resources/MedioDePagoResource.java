@@ -28,26 +28,49 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class MedioDePagoResource {
     private static final Logger LOGGER = Logger.getLogger(MedioDePagoResource.class.getName());
-    
-   @GET
+    /**
+     * Retorna los medios de pago
+     * @return Lista de medios de pago
+     */
+    @GET
     public List <MedioDePagoDTO> darMediosDePago(){
         return null;
     }
-    
+    /**
+     * Obtiene un medio de pago
+     * @param medioDePagoId
+     * @return MedioDePagoDTO retorna el medio de pago dado
+     */
     @GET
     @Path("{medioDePagoId: \\d+}")
     public MedioDePagoDTO darMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId){
         return null;
     }    
+    /**
+     * Crea un nuevo pago
+     * @param medioDePago
+     * @return MedioDePagoDTO returna el medio de pago creado
+     */
     @POST
     public MedioDePagoDTO crearMedioDePago(MedioDePagoDTO medioDePago) {
         return medioDePago;
     }
+    /**
+     * Cambio un medio de pago
+     * @param medioDePagoId
+     * @param medioDePago
+     * @return MediodePago que fue cambiado 
+     */
     @PUT
        @Path("{medioDePagoIdId: \\d+}")
     public MedioDePagoDTO cambiarMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId, MedioDePagoDTO medioDePago){
         return medioDePago;
     }
+    /**
+     * Elmina un medio de pago
+     * @param medioDePagoId
+     * @return  MedioDePago
+     */
     @DELETE
     @Path("{medioDePagoIdId: \\d+}")
     public MedioDePagoDTO eliminarMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId){
