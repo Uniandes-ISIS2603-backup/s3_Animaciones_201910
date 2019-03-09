@@ -107,7 +107,7 @@ public class ArtistaPropuestaLogicTest {
     
     @Test
     public void getPropuestasTest() {
-        List<PropuestaEntity> result = apl.getPrestamos(ae.getId());
+        List<PropuestaEntity> result = apl.getPropuestas(ae.getId());
         Assert.assertEquals(result.size(), listPro.size());
         for(int i = 0; i < listPro.size(); i++){
             Assert.assertTrue(result.contains(listPro.get(i)));

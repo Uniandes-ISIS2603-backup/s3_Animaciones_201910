@@ -28,12 +28,12 @@ public class ArtistaPropuestaLogic {
         return pe;
     }
     
-    public List<PropuestaEntity> getPrestamos(Long ArtistaId) {
+    public List<PropuestaEntity> getPropuestas(Long ArtistaId) {
         return ap.findArtista(ArtistaId).getPropuestas();
     }
     
     public PropuestaEntity getPropuesta(Long ArtistaId, Long PropuestaId) {
-        List<PropuestaEntity> list = getPrestamos(ArtistaId);
+        List<PropuestaEntity> list = getPropuestas(ArtistaId);
         PropuestaEntity pe = pp.find(PropuestaId);
         int i = list.indexOf(pe);
         if(i >= 0){
