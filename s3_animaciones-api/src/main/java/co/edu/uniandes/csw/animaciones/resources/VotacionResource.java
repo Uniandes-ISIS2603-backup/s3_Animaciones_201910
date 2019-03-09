@@ -42,7 +42,10 @@ public class VotacionResource {
     @GET
     public List <VotacionDTO> darVotaciones(){
         List <VotacionEntity> lista = vl.getVotaciones();
-        
+        if(lista == null)
+        {
+            throw new WebApplicationException("La lista no existe", 404);
+        }
         return convertir(lista);
     }
     

@@ -38,6 +38,10 @@ public class RondaResource {
     @GET
     public List <RondaDetailDTO> darRondas(){
         List<RondaDetailDTO> rLista= convertir(rl.getRondas());
+        if(rLista == null)
+        {
+            throw new WebApplicationException("La lista no existe",404);
+        }
         return rLista;
     }
     

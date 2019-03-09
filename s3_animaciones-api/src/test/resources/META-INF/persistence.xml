@@ -4,7 +4,17 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <!--Toca entity por entity, exclude-unlisted-clases = false no funciona-->
     <class>co.edu.uniandes.csw.animaciones.entities.AnimacionEntity</class>
+    <class>co.edu.uniandes.csw.animaciones.entities.AnimacionParticipanteEntity</class>
     <class>co.edu.uniandes.csw.animaciones.entities.ArtistaEntity</class>
+    <class>co.edu.uniandes.csw.animaciones.entities.CalificacionEntity</class>
+    <class>co.edu.uniandes.csw.animaciones.entities.ClienteEntity</class>
+    <class>co.edu.uniandes.csw.animaciones.entities.ConcursoEntity</class>
+    <class>co.edu.uniandes.csw.animaciones.entities.FacturaEntity</class>
+    <class>co.edu.uniandes.csw.animaciones.entities.JuradoEntity</class>
+    <class>co.edu.uniandes.csw.animaciones.entities.MedioDePagoEntity</class>
+    <class>co.edu.uniandes.csw.animaciones.entities.PropuestaEntity</class>
+    <class>co.edu.uniandes.csw.animaciones.entities.RondaEntity</class>
+    <class>co.edu.uniandes.csw.animaciones.entities.VotacionEntity</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
  <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
