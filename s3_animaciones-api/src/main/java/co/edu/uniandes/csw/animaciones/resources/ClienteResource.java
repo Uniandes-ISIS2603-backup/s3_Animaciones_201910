@@ -11,8 +11,6 @@ import co.edu.uniandes.csw.animaciones.dtos.ClienteDetailDTO;
 import co.edu.uniandes.csw.animaciones.ejb.ClienteLogic;
 import co.edu.uniandes.csw.animaciones.entities.ClienteEntity;
 import co.edu.uniandes.csw.animaciones.entities.ClienteEntity;import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
