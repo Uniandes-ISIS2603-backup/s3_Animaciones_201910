@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.animaciones.ejb;
 
+import co.edu.uniandes.csw.animaciones.entities.JuradoEntity;
 import co.edu.uniandes.csw.animaciones.entities.VotacionEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.animaciones.persistence.VotacionPersistence;
@@ -20,14 +21,23 @@ public class VotacionLogic {
     
         @Inject
     private VotacionPersistence persistence;
+        @Inject
+    private JuradoLogic jl;
+           @Inject
+    private AnimacionLogic al;
     
     public VotacionEntity createVotacion(VotacionEntity votacion) throws BusinessLogicException{
         if(votacion.getIdAnimacion()==null || votacion.getIdAnimacion() <= 0){
             throw new BusinessLogicException("El numero de id de animacion tiene que ser mayor a cero");
         }
+      // el jurado tiene que existir
+      //  JuradoEntity je = votacion.getJurado();
+      //  if(jl.getJurado(je.getId())==null){
+      //      throw new BusinessLogicException("El numero de id de animacion tiene que ser mayor a cero");
+      //  }
         // la animacion con ese id tiene que existir
         //la ronda con ese id tiene que existir
-        // el jurado tiene que existir
+
         if(votacion.getPuntos()== null || votacion.getPuntos() < 1 || votacion.getPuntos() > 10){
             System.out.println("puntos:" + votacion.getPuntos());
             throw new BusinessLogicException("El numero de puntos debe ser entre 1 y 10");
