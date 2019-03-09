@@ -15,7 +15,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class ClienteDTO  implements Serializable{
     
-   private Integer id;
+   private Long id;
    //QUE SI HERMANO QUE ESTE ES EL GIT FLOW CREAME
        private String nombre;
     
@@ -29,13 +29,21 @@ public class ClienteDTO  implements Serializable{
         
     }
 
-//    public ClienteDTO(ClienteEntity entity)
-//    {
-//       entity.setContrasenia(contrasenia);
-//       entity.setInformacion(informacion);
-//       entity.setNombre(nombre);
-//       entity.setUsuario(usuario);
-//    }
+ /**
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
+     *
+     * @param entity: Es la entidad que se va a convertir a DTO
+     */
+    public ClienteDTO(ClienteEntity entity) {
+        if (entity != null) {
+            this.id = entity.getId();
+            this.nombre = entity.getNombre();
+            this.informacion= entity.getInformacion();
+            this.usuario=entity.getUsuario();
+            this.contrasenia= entity.getContrasenia();
+        }
+    }
     
 //    public Integer getId() {
 //        return id;
@@ -82,13 +90,18 @@ public class ClienteDTO  implements Serializable{
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
     
-//    public ClienteEntity toEntity()
-//    {
-//        ClienteEntity entity= new ClienteEntity();
-//        entity.setContrasenia(contrasenia);
-//        entity.setInformacion(informacion);
-//        entity.setNombre(nombre);
-//        entity.setUsuario(usuario);
-//        return entity;
-//    }
+     /**
+     * Convertir DTO a Entity
+     *
+     * @return Un Entity con los valores del DTO
+     */
+    public ClienteEntity toEntity() {
+        ClienteEntity entity = new ClienteEntity();
+        entity.setId(this.id);
+        entity.setNombre(this.nombre);
+        entity.setInformacion(this.informacion);
+         entity.setUsuario(this.usuario);
+          entity.setContrasenia(this.contrasenia);
+        return entity;
+    }
 }

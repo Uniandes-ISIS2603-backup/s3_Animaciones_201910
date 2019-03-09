@@ -7,8 +7,10 @@ package co.edu.uniandes.csw.animaciones.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -30,6 +32,15 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private ArrayList<PropuestaEntity> propuestas = new ArrayList<>(); 
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "cliente")
+    private List<CalificacionEntity> calificaciones = new ArrayList<>();
+
+    @PodamExclude
+    @OneToMany(mappedBy = "cliente",fetch=FetchType.LAZY)
+    private List<MedioDePagoEntity> mediosPago = new ArrayList<>();
+
 
     public ClienteEntity(){
         
@@ -65,6 +76,48 @@ public class ClienteEntity extends BaseEntity implements Serializable {
 
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
+    }
+
+    /**
+     * @return the propuestas
+     */
+    public ArrayList<PropuestaEntity> getPropuestas() {
+        return propuestas;
+    }
+
+    /**
+     * @param propuestas the propuestas to set
+     */
+    public void setPropuestas(ArrayList<PropuestaEntity> propuestas) {
+        this.propuestas = propuestas;
+    }
+
+    /**
+     * @return the calificaciones
+     */
+    public List<CalificacionEntity> getCalificaciones() {
+        return calificaciones;
+    }
+
+    /**
+     * @param calificaciones the calificaciones to set
+     */
+    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+
+    /**
+     * @return the mediosPago
+     */
+    public List<MedioDePagoEntity> getMediosPago() {
+        return mediosPago;
+    }
+
+    /**
+     * @param mediosPago the mediosPago to set
+     */
+    public void setMediosPago(List<MedioDePagoEntity> mediosPago) {
+        this.mediosPago = mediosPago;
     }
     
 }
