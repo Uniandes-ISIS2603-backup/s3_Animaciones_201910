@@ -85,7 +85,7 @@ public class CalificacionLogicTest {
     @Test
     public void createTest() throws BusinessLogicException {
         CalificacionEntity temp = pf.manufacturePojo(CalificacionEntity.class);
-        calificacionLogic.create(temp);
+        calificacionLogic.create(data.get(1).getId(),temp);
         CalificacionEntity temp2 = em.find(CalificacionEntity.class, temp.getId());
         Assert.assertEquals(temp, temp2);
     }
@@ -94,7 +94,7 @@ public class CalificacionLogicTest {
     public void createTestSinComentario() throws BusinessLogicException {
         CalificacionEntity temp = pf.manufacturePojo(CalificacionEntity.class);
         temp.setComentario(null);
-        calificacionLogic.create(temp);
+        calificacionLogic.create(data.get(1).getId(),temp);
     }
     
 //    @Test(expected = BusinessLogicException.class)
