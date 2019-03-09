@@ -53,6 +53,8 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
             }
         }
     }
+    
+  
 
     //
     //METODOS
@@ -78,6 +80,12 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
         }
         return ce;
     }
+    
+    
+      public void nohacernada() {
+        jurados = jurados;
+    }
+
 
     /**
      * @return the jurados
