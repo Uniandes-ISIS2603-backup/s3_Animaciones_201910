@@ -90,19 +90,19 @@ public class AnimacionCalificacionLogicTest {
         }
     }
     
-    @Test
-    public void addCalificacionTest() throws BusinessLogicException {
-        CalificacionEntity nueva = pf.manufacturePojo(CalificacionEntity.class);
-        nueva.setAnimacion(ae);
-        cl.create(nueva);
-        
-        CalificacionEntity result1 = acl.addCalificacion(ae.getId(), nueva.getId());
-        Assert.assertNotNull(result1);
-        Assert.assertEquals(result1, nueva);
-        
-        CalificacionEntity result2 = acl.getAimacion(ae.getId(), nueva.getId());
-        Assert.assertEquals(result2, nueva);
-    }
+//    @Test
+//    public void addCalificacionTest() throws BusinessLogicException {
+//        CalificacionEntity nueva = pf.manufacturePojo(CalificacionEntity.class);
+//        nueva.setAnimacion(ae);
+//        cl.create(nueva);
+//        
+//        CalificacionEntity result1 = acl.addCalificacion(ae.getId(), nueva.getId());
+//        Assert.assertNotNull(result1);
+//        Assert.assertEquals(result1, nueva);
+//        
+//        CalificacionEntity result2 = acl.getAimacion(ae.getId(), nueva.getId());
+//        Assert.assertEquals(result2, nueva);
+//    }
     
     @Test
     public void getCalificacionesTest() {
