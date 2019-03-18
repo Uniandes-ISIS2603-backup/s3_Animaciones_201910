@@ -16,7 +16,7 @@
 						"exec": [
 							"var data= JSON.parse(responseBody);",
 							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
-							"tests[\"editorials count\"] = data.length > 1;"
+							"tests[\"artistas count\"] = data.length > 1;"
 						],
 						"type": "text/javascript"
 					}
@@ -69,7 +69,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/artistas",
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/artistas/1",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -78,7 +78,8 @@
 					"path": [
 						"s3_animaciones-api",
 						"api",
-						"artistas"
+						"artistas",
+						"1"
 					]
 				}
 			},
@@ -93,7 +94,7 @@
 						"id": "c6efc1eb-6755-4111-8a76-bf8e21192118",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"postman.setGlobalVariable(\"id-nuevo\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -102,10 +103,17 @@
 			],
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{ \"nombre\" : \"juan\",\n\t\"usuario\": \"juan\",\n\t\"contrasenia\": \"juan\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/artistas",
@@ -141,10 +149,16 @@
 			],
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{ \"nombre\" : \"juan\",\n\t\"usuario\": \"juan\",\n\t\"contrasenia\": \"juan5\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/artistas/{{id-nuevo}}",
