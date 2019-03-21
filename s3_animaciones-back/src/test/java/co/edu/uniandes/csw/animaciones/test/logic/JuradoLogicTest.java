@@ -34,20 +34,38 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class JuradoLogicTest {
-
+    
+    /**
+     * Atributo factory que mapea el PdanFactory
+     */
     private PodamFactory factory = new PodamFactoryImpl();
 
+    /**
+     * Atributo que contiene la clase juradoLogic
+     */
     @Inject
     private JuradoLogic juradoLogic;
-
+    
+    /**
+     * Atributo que contiene la clase EntityManager
+     */
     @PersistenceContext
     private EntityManager em;
-
+    
+    /**
+     * Atributo que contiene la clase UserTransaccion
+     */
     @Inject
     private UserTransaction utx;
 
+    /**
+     * Lista de datos de JuradoEntity
+     */
     private List<JuradoEntity> data = new ArrayList<JuradoEntity>();
-
+    
+    /**
+     * Lista de datos de VotacionEntity
+     */
     private List<VotacionEntity> votacionsData = new ArrayList();
 
     /**

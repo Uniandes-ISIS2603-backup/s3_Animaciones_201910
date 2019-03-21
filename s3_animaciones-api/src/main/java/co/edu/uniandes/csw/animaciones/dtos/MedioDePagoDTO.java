@@ -31,16 +31,29 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class MedioDePagoDTO implements Serializable {
     
+    /**
+     * Atributo que contiene el id del medio de pago
+     */
     private Integer id;
-    
+    /**
+     * Atributo que contiene el numero de la tarjeta 
+     */
     private Integer numeroTarjeta;
-    
+    /**
+     * Atributo que contiene el codigo del medio de pago
+     */
     private Integer codigo;
-    
+    /**
+     * Atributo que contiene el Date de la fecha de vencimiento del  medio de pago
+     */
     private Date fechaVencimiento;
-    
+    /**
+     * Atributo que contiene la forma de pago
+     */
     private FormaDePago formaDePago;
-    
+    /**
+     * Enumetacion con las formas de pago
+    */
     public enum FormaDePago{
         DEBITO, CREDITO, PAYPAL, PSE
     }

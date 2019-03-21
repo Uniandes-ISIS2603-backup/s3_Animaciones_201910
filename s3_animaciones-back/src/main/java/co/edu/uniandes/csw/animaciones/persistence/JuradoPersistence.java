@@ -25,32 +25,54 @@ public class JuradoPersistence {
     @PersistenceContext (unitName = "animacionesPU")
         protected EntityManager em;
     
-    
+    /**
+     * Crea un nuevo jurado con el usuario que entra como parametro e implementa persistencia
+     * @param usuario
+     * @return usuraio 
+     */
     public JuradoEntity create (JuradoEntity usuario){
         em.persist(usuario);
         return usuario;
     }
     
-    
+    /**
+     * Encuentra el id del usuario que entra como parametro
+     * @param userId
+     * @return fin JuradoEntity
+     */
     public JuradoEntity find (Long userId){
         JuradoEntity find = em.find(JuradoEntity.class, userId);
         return find;
     }
-    
+    /**
+     * Ontiene todos los jurados del concurso
+     * @return List lista con los jurados
+     */
     public List<JuradoEntity> getAll (){
         TypedQuery<JuradoEntity> tp = em.createQuery("SELECT j FROM JuradoEntity j", JuradoEntity.class);
         return tp.getResultList();
     }
-    
+    /**
+     * Actualiza el jurado con el nuevo jurado que entra como parametro
+     * @param juradoEntity
+     * @return JuradoEntity
+     */
     public JuradoEntity update (JuradoEntity juradoEntity){
         return em.merge(juradoEntity);
     }
-    
+    /**
+     * Elimina un jurado
+     * @param userId 
+     */
     public void delete (Long userId){
         JuradoEntity del = find(userId);
         em.remove(del);
     }
-    
+    /**
+     * Encuentra el jurado dado el nombre que entra como parametro
+     * @param name
+     * @return JuradoEntity jurado buscado 
+     */
     public JuradoEntity findByName(String name)
     {
         
@@ -70,7 +92,10 @@ public class JuradoPersistence {
   
         return result;
     }
-
+    /**
+     * Encuentra todos los jurados 
+     * @return List lista con lo juradods
+     */
     public List<JuradoEntity> findAll() {
         TypedQuery query = em.createQuery("Select e from JuradoEntity e", JuradoEntity.class);
     return query.getResultList();

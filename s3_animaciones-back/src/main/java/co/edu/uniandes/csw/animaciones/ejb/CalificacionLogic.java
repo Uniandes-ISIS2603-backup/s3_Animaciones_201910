@@ -5,10 +5,14 @@
  */
 package co.edu.uniandes.csw.animaciones.ejb;
 
+import co.edu.uniandes.csw.animaciones.entities.AnimacionEntity;
 import co.edu.uniandes.csw.animaciones.entities.CalificacionEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.animaciones.persistence.AnimacionPersistence;
 import co.edu.uniandes.csw.animaciones.persistence.CalificacionPersistence;
+
 import java.util.List;
+import java.util.logging.Level;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -22,15 +26,23 @@ public class CalificacionLogic {
     @Inject
     private CalificacionPersistence calificacion;
     
-    public CalificacionEntity create(CalificacionEntity temp) throws BusinessLogicException {
+     @Inject
+    private AnimacionPersistence animacionPersistence;
+    
+    public CalificacionEntity create(long animacionId, CalificacionEntity temp) throws BusinessLogicException {
         if(temp.getCalificacion()== null || temp.getComentario()== null ){
             throw new BusinessLogicException("El comentario, o calificación no pueden ser nulos");
         }
 //        if(temp.getCalificacion()<0 || temp.getCalificacion()>10){
 //            throw new BusinessLogicException("La calificación debe ser un número entre 0 y 10");
 //        }
-        calificacion.create(temp);
-        return temp;
+
+
+   
+        AnimacionEntity animacion = animacionPersistence.find(animacionId);
+        temp.setAnimacion(animacion);
+    
+        return calificacion.create(temp);
     }
     
     public CalificacionEntity getCalificacion(Long id){

@@ -20,12 +20,26 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class MedioDePagoEntity extends BaseEntity implements Serializable{
+    
+    /**
+     * Atributo que contiene el numero de la tarjeta con el cual 
+     * se hace el pago
+     */
     private Integer numeroTarjeta;
+    /**
+     * Atributo que contiene el codigo con el cual se va a aprobar el pago
+     */
     private Integer codigo;
     
+    /**
+     * Atributo que Guarda la fecha de vencimiento del pago
+     */
     @Temporal(TemporalType.DATE)
     private Date fechaVencimiento;
     
+    /**
+     * Enumeracion con las formas de pago
+     */
     @PodamExclude
     @OneToOne
     private FacturaEntity factura;
