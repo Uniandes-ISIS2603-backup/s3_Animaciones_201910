@@ -4,7 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -16,6 +21,9 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author Nicolas Alvarado
  */
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "typeofanimation", discriminatorType = DiscriminatorType.CHAR)
+@DiscriminatorValue("A")
 public class AnimacionEntity extends BaseEntity implements Serializable {
     
     private String nombre;
