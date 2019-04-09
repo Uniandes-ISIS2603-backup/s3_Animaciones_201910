@@ -45,12 +45,23 @@ public class ArtistaResource {
     @Inject
     private ArtistaPropuestaLogic apl;
     
+    /**
+     * Metodo que crea un artista llamando a la persistencia 
+     * @param artista, el artista que se quiere crear
+     * @return El artista creado
+     * @throws BusinessLogicException 
+     */
     @POST
     public ArtistaDTO crearArtista(ArtistaDTO artista) throws BusinessLogicException{
         ArtistaDTO re = new ArtistaDTO(artistal.createArtista(artista.toEntity()));
         return re;
     }
     
+    /**
+     * Metodo para obtener un artista 
+     * @param artistaId, el id del artista que se quiere obtener
+     * @return El artista que se quiere
+     */
     @GET
     @Path("{artistaId: \\d+}")
     public ArtistaDetailDTO getArtista(@PathParam("artistaId") Long artistaId){
@@ -62,12 +73,23 @@ public class ArtistaResource {
         return re;
     }
     
+    /**
+     * Metodo para obtener todos los artistas
+     * @return Todos los artistas
+     */
     @GET
     public ArrayList<ArtistaDetailDTO> getArtistas(){
         ArrayList<ArtistaDetailDTO> re = ArtistaEntity2DetailDTO(artistal.getArtistas());
         return re;
     }
     
+    /**
+     * Metodo para actualizar un artista
+     * @param artistaId, el id del artista que se quiere actualizar
+     * @param adto, la informacion nueva del artista
+     * @return El artista actualizado
+     * @throws BusinessLogicException 
+     */
     @PUT
     @Path("{artistaId: \\d+}")
     public ArtistaDTO updateArtista(@PathParam("artistaId") Long artistaId, ArtistaDTO adto) throws BusinessLogicException{
@@ -79,6 +101,10 @@ public class ArtistaResource {
         return re;
     }
     
+    /**
+     * Metodo para borrar un artista
+     * @param artistaId, id del artista que se quiere borrar
+     */
     @DELETE
     @Path("{artistaId: \\d+}")
     public void deleteArtista(@PathParam("artistaId") Long artistaId){
