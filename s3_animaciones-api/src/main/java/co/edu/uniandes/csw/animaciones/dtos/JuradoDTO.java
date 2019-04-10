@@ -61,9 +61,9 @@ public class JuradoDTO implements Serializable{
      */
     public JuradoEntity toentity(){
      JuradoEntity r=new JuradoEntity();
-     r.setContrasena(this.getContrasena());
-     r.setUsuario(usuario);
-     r.setCredencial(credencial);
+     r.setContrasena(this.contrasena);
+     r.setUsuario(this.usuario);
+     r.setCredencial(this.credencial);
      return r;
     }
     
@@ -94,7 +94,7 @@ public class JuradoDTO implements Serializable{
     /**
      * @param pCredencial la credencial a cambiar
      */
-    public void setCredenciales (String pCredencial){
+    public void setCredencial (String pCredencial){
         credencial = pCredencial;
     }
     

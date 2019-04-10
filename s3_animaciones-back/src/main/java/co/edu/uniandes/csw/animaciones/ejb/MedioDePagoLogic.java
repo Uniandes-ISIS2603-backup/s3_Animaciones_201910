@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.animaciones.ejb;
 import co.edu.uniandes.csw.animaciones.entities.MedioDePagoEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.animaciones.persistence.MedioDePagoPersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -71,6 +72,10 @@ public class MedioDePagoLogic {
         }
         LOGGER.log(Level.INFO, "Termina proceso de consulta deñ medioDePago con id = {0}", medioDePagoId);
         return medioDePagoEntity;
+    }
+    
+    public List<MedioDePagoEntity> getAll (){
+        return persistence.findAll();
     }
     
     

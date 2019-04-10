@@ -7,9 +7,14 @@
 package co.edu.uniandes.csw.animaciones.resources;
 
 import co.edu.uniandes.csw.animaciones.dtos.MedioDePagoDTO;
+import co.edu.uniandes.csw.animaciones.ejb.MedioDePagoLogic;
+import co.edu.uniandes.csw.animaciones.entities.MedioDePagoEntity;
+import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -28,13 +33,21 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class MedioDePagoResource {
     private static final Logger LOGGER = Logger.getLogger(MedioDePagoResource.class.getName());
+    @Inject
+    private MedioDePagoLogic medioDePagoLogic ;
     /**
      * Retorna los medios de pago
      * @return Lista de medios de pago
      */
     @GET
+    @Path("all")
     public List <MedioDePagoDTO> darMediosDePago(){
-        return null;
+        List<MedioDePagoDTO> n = new ArrayList<>();
+        List<MedioDePagoEntity> n2 =  medioDePagoLogic.getAll();
+        for (MedioDePagoEntity a : n2){
+            n.add(new MedioDePagoDTO(a));
+        }
+        return n;
     }
     /**
      * Obtiene un medio de pago
@@ -52,8 +65,8 @@ public class MedioDePagoResource {
      * @return MedioDePagoDTO returna el medio de pago creado
      */
     @POST
-    public MedioDePagoDTO crearMedioDePago(MedioDePagoDTO medioDePago) {
-        return medioDePago;
+    public MedioDePagoDTO crearMedioDePago(MedioDePagoDTO medioDePago) throws BusinessLogicException {
+        return new MedioDePagoDTO( medioDePagoLogic.createMedioDePago(medioDePago.toEntity()));
     }
     /**
      * Cambio un medio de pago
@@ -73,8 +86,9 @@ public class MedioDePagoResource {
      */
     @DELETE
     @Path("{medioDePagoIdId: \\d+}")
-    public MedioDePagoDTO eliminarMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId){
-        return null;
+    public String eliminarMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId){
+       medioDePagoLogic.deleteMedioDePago(medioDePagoId);
+       return "eliminado";
     }
 
 }
