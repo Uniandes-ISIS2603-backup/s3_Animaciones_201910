@@ -1,0 +1,54 @@
+{
+	"info": {
+		"_postman_id": "f7fb9059-4a9e-430d-b53b-e549e3e3a7d4",
+		"name": "concurso",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/concursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ff96d466-19bb-4f1a-b93b-8f4cca1605f1",
+						"exec": [
+							"tests[\"no genera error en el post\"]= responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\"id\":3,\n\"organizador\": 2,\n\"tema\": \"patos\",\n\"tecnica\": \"animacionCompleta\",\n\"reglas\":\"no Mas De 30 minutos por animacion\"\n\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/concursos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"concursos"
+					]
+				},
+				"description": "a"
+			},
+			"response": []
+		}
+	]
+}
