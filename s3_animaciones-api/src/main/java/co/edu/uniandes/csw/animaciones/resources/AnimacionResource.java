@@ -34,12 +34,23 @@ public class AnimacionResource {
     @Inject
     private AnimacionCalificacionLogic acl;
     
+    /**
+     * Metodo para crear una Animacion
+     * @param animacion, la animacion que se quiere crear
+     * @return La animacion que se creo
+     * @throws BusinessLogicException 
+     */
     @POST
     public AnimacionDTO crearAnimacion(AnimacionDTO animacion) throws BusinessLogicException{
         AnimacionDTO re = new AnimacionDTO(animacionl.createAnimacion(animacion.toEntity()));
         return re;
     }
     
+    /**
+     * Metodo para obtener una animacion
+     * @param animacionID, id de la animacion que se quiere obtener
+     * @return La animacion deseada
+     */
     @GET
     @Path("{animacionId: \\d+}")
     public AnimacionDetailDTO getAnimacion(@PathParam("animacionId") Long animacionID){
@@ -51,12 +62,23 @@ public class AnimacionResource {
         return re;
     }
     
+    /**
+     * Metodo para obtener todas las animaciones
+     * @return Todas las animaciones
+     */
     @GET
     public ArrayList<AnimacionDetailDTO> getAnimaciones(){
         ArrayList<AnimacionDetailDTO> re = AnimacionEntity2DetailDTO(animacionl.getAnimaciones());
         return re;
     }
     
+    /**
+     * Metodo para actualizar una animacion
+     * @param animacionID, id de la animacion que se quiere actualizar
+     * @param adto, la nueva informacion de la animacion
+     * @return La animacion con la nueva informacion
+     * @throws BusinessLogicException 
+     */
     @PUT
     @Path("{animacionId: \\d+}")
     public AnimacionDTO updateAnnimacion(@PathParam("animacionId") Long animacionID, AnimacionDTO adto) throws BusinessLogicException{
@@ -68,6 +90,10 @@ public class AnimacionResource {
         return re;
     }
     
+    /**
+     * Metodo para eliminar una animacion
+     * @param animacionID, id de la annimacion que se quiere eliminar 
+     */
     @DELETE
     @Path("{animacionId: \\d+}")
     public void deleteAnimacion(@PathParam("animacionId") Long animacionID){
