@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -34,8 +36,7 @@ public class MedioDePagoEntity extends BaseEntity implements Serializable{
     /**
      * Atributo que Guarda la fecha de vencimiento del pago
      */
-    @Temporal(TemporalType.DATE)
-    private Date fechaVencimiento;
+    private String fechaVencimiento;
     
     /**
      * Enumeracion con las formas de pago
@@ -43,6 +44,12 @@ public class MedioDePagoEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @OneToOne
     private FacturaEntity factura;
+    
+    /**
+     * Enumeracion con las formas de pago
+     */
+    @Enumerated (EnumType.STRING)
+    private FormaDePago formaDePago;
     
     public enum FormaDePago{
         DEBITO, CREDITO, PAYPAL, PSE
@@ -52,7 +59,7 @@ public class MedioDePagoEntity extends BaseEntity implements Serializable{
     public MedioDePagoEntity(){
         
     }
-
+    
  
 
     /**
@@ -86,13 +93,27 @@ public class MedioDePagoEntity extends BaseEntity implements Serializable{
     /**
      * @return the fechaVencimiento
      */
-    public Date getFechaVencimiento() {
+    public String getFechaVencimiento() {
         return fechaVencimiento;
     }
     /**
      * @param fechaVencimiento the fechaVencimiento to set
      */
-    public void setFechaVencimiento(Date fechaVencimiento) {
+    public void setFechaVencimiento(String fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     } 
+
+    /**
+     * @return the formaDePago
+     */
+    public FormaDePago getFormaDePago() {
+        return formaDePago;
+    }
+
+    /**
+     * @param formaDePago the formaDePago to set
+     */
+    public void setFormaDePago(FormaDePago formaDePago) {
+        this.formaDePago = formaDePago;
+    }
 }

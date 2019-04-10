@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "3d500570-a394-467f-abe8-598139d4d5df",
+		"name": "Jurado",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST Jurados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2f4eb22b-f5a3-4e51-a5bb-c90103fa6141",
+						"exec": [
+							"var response=JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id\",response.id);",
+							"tests[\"No genera error\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usuario\": \"usuario1\",\r\n    \"contrasena\": \"contrasena1\",\r\n    \"id\": 1,\r\n    \"concurso\":\"\",\r\n    \"votaciones\": \"\",\r\n    \"credencial\": \"holaHijeuputa\"\r\n  }"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/jurados",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"jurados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET jurado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6923bb75-c978-48e9-aff9-d6f30a327a3d",
+						"exec": [
+							"tests[\"No genera error\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/jurados/all",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"jurados",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

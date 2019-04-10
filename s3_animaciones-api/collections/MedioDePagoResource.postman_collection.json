@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "ca3fc892-953c-4609-a4fd-39a8adbf2752",
+		"name": "Medio de pago",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST medio de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f4784f3-6712-47f8-9ccc-a244a3849838",
+						"exec": [
+							"var response=JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id\",response.id);",
+							"tests[\"No genera error\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"codigo\": 32,\n        \"fechaVencimiento\": \"1212-12-12\",\n        \"formaDePago\": \"DEBITO\",\n        \"id\": 1,\n        \"numeroTarjeta\": 323\n }\n    "
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/mediosDePago",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"mediosDePago"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get medio de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "54365cc8-f461-4d19-a469-f3de7b5d83a2",
+						"exec": [
+							"tests[\"No genera error\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/mediosDePago/all",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"mediosDePago",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
