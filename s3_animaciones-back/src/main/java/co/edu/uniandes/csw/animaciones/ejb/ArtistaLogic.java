@@ -42,9 +42,6 @@ public class ArtistaLogic {
         if(ae.getNombre() == null || ae.getUsuario() == null || ae.getContrasenia() == null){
             throw new BusinessLogicException("El nombre, usuario o contrasena no pueden ser nulos");
         }
-        if(ap.findByUser(ae.getUsuario()) != null){
-            throw new BusinessLogicException("El nombre de usuario ya existe");
-        }
         ArtistaEntity ae2 = ap.updateArtista(ae);
         return ae2;
     }

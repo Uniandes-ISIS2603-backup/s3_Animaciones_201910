@@ -6,12 +6,14 @@
 package co.edu.uniandes.csw.animaciones.entities;
 
 import java.io.Serializable;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 /**
  *
  * @author df.perezc
  */
 @Entity
+@DiscriminatorValue("P")
 public class AnimacionParticipanteEntity extends AnimacionEntity implements Serializable {
     
     private Double puntaje;

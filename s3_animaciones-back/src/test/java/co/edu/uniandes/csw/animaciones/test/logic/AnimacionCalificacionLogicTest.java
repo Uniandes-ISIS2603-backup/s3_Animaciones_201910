@@ -94,7 +94,7 @@ public class AnimacionCalificacionLogicTest {
     public void addCalificacionTest() throws BusinessLogicException {
         CalificacionEntity nueva = pf.manufacturePojo(CalificacionEntity.class);
         nueva.setAnimacion(ae);
-        cl.create(nueva);
+        cl.create(ae.getId(), nueva);
         
         CalificacionEntity result1 = acl.addCalificacion(ae.getId(), nueva.getId());
         Assert.assertNotNull(result1);
