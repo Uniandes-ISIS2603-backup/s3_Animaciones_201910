@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.animaciones.dtos;
 
 import java.io.Serializable;
 /**
- * es la clase que maneja el detail de la animaicionParticipante 
+ * es la clase que maneja el detail de la animaicion que participa en un concurso
  * @author df.perezc
  */
 public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializable
