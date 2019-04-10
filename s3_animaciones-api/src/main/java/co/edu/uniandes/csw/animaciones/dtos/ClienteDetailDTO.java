@@ -5,9 +5,12 @@
  */
 package co.edu.uniandes.csw.animaciones.dtos;
 
+import co.edu.uniandes.csw.animaciones.entities.CalificacionEntity;
 import co.edu.uniandes.csw.animaciones.entities.ClienteEntity;
+import co.edu.uniandes.csw.animaciones.entities.PropuestaEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,7 +20,7 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     
  
     ArrayList<PropuestaDTO> propuestas;
-    ArrayList<MedioDePagoDTO> mediosPago;
+    ArrayList<CalificacionDTO> calificaciones;
     
     
     public ClienteDetailDTO()
@@ -27,52 +30,52 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     
   /**
      * Crea un objeto ClienteDetailDTO a partir de un objeto ClienterEntity
-     * incluyendo los atributos de AuthorDTO.
+     * incluyendo los atributos de ClienteDTO.
      *
-     * @param entity Entidad AuthorEntity desde la cual se va a crear el
+     * @param entity Entidad ClienteEntity desde la cual se va a crear el
      * nuevo objeto.
      *
      */
-//    public ClienteDetailDTO(ClienteEntity entity) {
-//        super(entity);
-//        if (entity != null) {
-//            propuestas = new ArrayList<>();
-//            for (PropuestaEntity entityPropuestas : entity.getBooks()) {
-//                books.add(new BookDTO(entityBooks));
-//            }
-//            prizes = new ArrayList();
-//            for (PrizeEntity entityPrize : authorEntity.getPrizes()) {
-//                prizes.add(new PrizeDTO(entityPrize));
-//            }
-//        }
-//    }
+    public ClienteDetailDTO(ClienteEntity entity) {
+        super(entity);
+        if (entity != null) {
+            propuestas = new ArrayList<>();
+            for (PropuestaEntity entityPropuestas : entity.getPropuestas()) {
+                propuestas.add(new PropuestaDTO(entityPropuestas));
+            }
+            calificaciones = new ArrayList();
+            for (CalificacionEntity entityCalificacion : entity.getCalificaciones()) {
+                calificaciones.add(new CalificacionDTO(entityCalificacion));
+            }
+        }
+    }
 
     /**
-     * Convierte un objeto AuthorDetailDTO a AuthorEntity incluyendo los
-     * atributos de AuthorDTO.
+     * Convierte un objeto ClienteDetailDTO a ClienteEntity incluyendo los
+     * atributos de ClienteDTO.
      *
-     * @return Nueva objeto AuthorEntity.
+     * @return Nueva objeto ClienteEntity.
      *
      */
-//    @Override
-//    public AuthorEntity toEntity() {
-//        AuthorEntity authorEntity = super.toEntity();
-//        if (books != null) {
-//            List<BookEntity> booksEntity = new ArrayList<>();
-//            for (BookDTO dtoBook : books) {
-//                booksEntity.add(dtoBook.toEntity());
-//            }
-//            authorEntity.setBooks(booksEntity);
-//        }
-//        if (prizes != null) {
-//            List<PrizeEntity> prizesEntity = new ArrayList<>();
-//            for (PrizeDTO dtoPrize : prizes) {
-//                prizesEntity.add(dtoPrize.toEntity());
-//            }
-//            authorEntity.setPrizes(prizesEntity);
-//        }
-//        return authorEntity;
-//    }
+    @Override
+    public ClienteEntity toEntity() {
+        ClienteEntity entity = super.toEntity();
+        if (propuestas != null) {
+            ArrayList<PropuestaEntity> propuestasEntity = new ArrayList<>();
+            for (PropuestaDTO dtoPropuesta : propuestas) {
+                propuestasEntity.add(dtoPropuesta.toEntity());
+            }
+            entity.setPropuestas(propuestasEntity);
+        }
+        if (calificaciones != null) {
+            ArrayList<CalificacionEntity> calificacionesEntity = new ArrayList<>();
+            for (CalificacionDTO dtoCalificacion : calificaciones) {
+                calificacionesEntity.add(dtoCalificacion.toEntity());
+            }
+            entity.setCalificaciones(calificacionesEntity);
+        }
+        return entity;
+    }
     
     
 
@@ -81,15 +84,15 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
         return propuestas;
     }
 
-    public void setPropuestas(ArrayList<PropuestaDTO> propuestas) {
+    public void setPropuestass(ArrayList<PropuestaDTO> propuestas) {
         this.propuestas = propuestas;
     }
     
-        public ArrayList<MedioDePagoDTO> getMediosDePago() {
-        return mediosPago;
+        public ArrayList<CalificacionDTO> getCalificaciones() {
+        return calificaciones;
     }
 
-    public void setMediosDePago(ArrayList<MedioDePagoDTO> mediosPago) {
-        this.mediosPago = mediosPago;
+    public void setMediosDePago(ArrayList<CalificacionDTO> calificaciones) {
+        this.calificaciones = calificaciones;
     }
 }
