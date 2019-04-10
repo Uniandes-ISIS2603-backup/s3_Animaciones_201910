@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.animaciones.dtos;
 
 import java.io.Serializable;
 /**
- *
+ * es la clase que maneja el detail de la animaicionParticipante 
  * @author df.perezc
  */
 public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializable
@@ -16,15 +16,25 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
     // ATRIBUTOS
     //
   
+    // atributo que indica puntaje que le otorgan los jueces a la animacion
     private Double puntaje;
+    
+    // atributo que indica que puesto ocupa la animacion en el concurso en base al puntaje
     private Integer puesto;
+    
+    //atributo que indica si la animacion pasa a segunda ronda (true en caso de hacerlo 
     private Boolean finalista;
+    
+    //atributo que indica cuanto dinero gana la animacion
     private Integer dinero;
     
     
     //
     //CONSTRUCTOR
     //
+    /**
+     * metodo que construye una animacion participante vacia
+     */
     public AnimacionParticipanteDTO(){
         
     }
@@ -33,6 +43,7 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
     //
 
     /**
+     * metodo que retorna el puntaje de la animacion participante
      * @return the puntaje
      */
     public Double getPuntaje() {
@@ -40,6 +51,7 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
     }
 
     /**
+     * metodo que modifica el puntaje de la animacion participante
      * @param puntaje the puntaje to set
      */
     public void setPuntaje(Double puntaje) {
@@ -47,6 +59,7 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
     }
 
     /**
+     * metodo que retorna el puesto de la animacion participante
      * @return the puesto
      */
     public Integer getPuesto() {
@@ -54,20 +67,21 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
     }
 
     /**
+     * metodo que modifica el puesto de la animacion participante
      * @param puesto the puesto to set
      */
     public void setPuesto(Integer puesto) {
         this.puesto = puesto;
     }
 
-    /**
+    /**metodo que true si la animacion participante pasa a segunda ronda
      * @return the finalista
      */
     public Boolean getFinalista() {
         return finalista;
     }
 
-    /**
+    /**metodo que modifica el atributo que indica si la animacion pasa a la siguiente ronda
      * @param finalista the finalista to set
      */
     public void setFinalista(Boolean finalista) {
@@ -75,6 +89,7 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
     }
 
     /**
+     * metodo que retorna el dinero obtenido por la animacionParticipante, como premio
      * @return the dinero
      */
     public Integer getDinero() {
@@ -82,6 +97,7 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
     }
 
     /**
+     * metodo que modifica el dinero obtenido por animacion participante, como premio
      * @param dinero the dinero to set
      */
     public void setDinero(Integer dinero) {
