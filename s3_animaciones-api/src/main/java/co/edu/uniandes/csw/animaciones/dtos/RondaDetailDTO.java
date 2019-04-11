@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  *
- * @author df.serrano
+ * @author dfserrano
  */
 public class RondaDetailDTO extends RondaDTO implements Serializable {
     
