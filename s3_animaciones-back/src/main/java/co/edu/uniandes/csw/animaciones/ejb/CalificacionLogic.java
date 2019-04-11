@@ -33,9 +33,9 @@ public class CalificacionLogic {
         if(temp.getCalificacion()== null || temp.getComentario()== null ){
             throw new BusinessLogicException("El comentario, o calificación no pueden ser nulos");
         }
-//        if(temp.getCalificacion()<0 || temp.getCalificacion()>10){
-//            throw new BusinessLogicException("La calificación debe ser un número entre 0 y 10");
-//        }
+        if(temp.getCalificacion()<0 || temp.getCalificacion()>10){
+            throw new BusinessLogicException("La calificación debe ser un número entre 0 y 10");
+        }
 
 
    
@@ -45,28 +45,65 @@ public class CalificacionLogic {
         return calificacion.create(temp);
     }
     
-    public CalificacionEntity getCalificacion(Long id){
-        CalificacionEntity temp = calificacion.find(id);
+        /**
+     * Obtiene la lista de los registros de Calificacion que pertenecen a un Animacion.
+     *
+     * @param animacionId id del Animacion el cual es padre de los Calificaciones.
+     * @return Colección de objetos de ReviewEntity.
+     */
+    public List<CalificacionEntity> getCalificacionesAnimacion(Long animacionId) {
+          AnimacionEntity entity = animacionPersistence.find(animacionId);
+       return entity.getCalificaciones();
+    }
+
+    /**
+     * Obtiene una calificacion dada por unid de una animación dada por un id
+     * @param idCal id calificacion
+     * @param idAnim id animacion
+     * @return la calificacion deseada
+     */
+    public CalificacionEntity getCalificacion(Long idAnim, Long idCal){
+        CalificacionEntity temp = calificacion.find(idAnim, idCal);
         return temp;
     }
     
+    /**
+     * Obtiene todas las calificaicones existentes
+     * @return lista con todas las calificaiones existentes
+     */
     public List<CalificacionEntity> getCalificaciones() {
         List<CalificacionEntity> list = calificacion.findAll();
         return list;
     }
     
-    public CalificacionEntity update(CalificacionEntity temp) throws BusinessLogicException {
-        if(temp.getCalificacion()== null || temp.getComentario()== null ){
-            throw new BusinessLogicException("El comentario, o calificación no pueden ser nulos");
-        }
-       if(temp.getCalificacion()<0 || temp.getCalificacion()>10){
-            throw new BusinessLogicException("La calificación debe ser un número entre 0 y 10");
-        }
-        CalificacionEntity temp2 = calificacion.update(temp);
-        return temp2;
+   /**
+     * Actualiza la información de una instancia de Calificacion.
+     *
+     * @param entity Instancia de CalificacionEntity con los nuevos datos.
+     * @param animacionId id del Animacion el cual sera padre del Calificacion actualizado.
+     * @return Instancia de CalificacionEnjtity con los datos actualizados.
+     *
+     */
+    public CalificacionEntity update(Long animacionId, CalificacionEntity entity) {
+         AnimacionEntity animacion = animacionPersistence.find(animacionId);
+        entity.setAnimacion(animacion);
+        calificacion.update(entity);
+         return entity;
     }
-    
-    public void delete(Long id){
-        calificacion.delete(id);
-    }
+
+    /**
+     * Elimina una instancia de Calificacion de la base de datos.
+     *
+     * @param calificacionId Identificador de la instancia a eliminar.
+     * @param animacionId id del animacion el cual es padre del Review.
+     * @throws BusinessLogicException Si la reseña no esta asociada al libro.
+     *
+     */
+    public void delete(Long animacionId, Long calificacionId) throws BusinessLogicException {
+        CalificacionEntity old = getCalificacion(animacionId, calificacionId);
+        if (old == null) {
+            throw new BusinessLogicException("El calificacion con id = " + calificacionId + " no esta asociado a el animacion con id = " + animacionId);
+        }
+        calificacion.delete(old.getId());
+           }
 }
