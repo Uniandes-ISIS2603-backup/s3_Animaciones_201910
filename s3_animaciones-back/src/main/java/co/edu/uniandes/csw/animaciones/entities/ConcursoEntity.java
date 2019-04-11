@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
+ * clase que maneja la entidad del concurso
  * @author df.perezc
  */
 @Entity
@@ -34,24 +34,37 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
     
      //----------------------------------------------------------
     
-    
+    /**
+     * atributo que guarda el tema del concurso
+     */
     private String tema;
+    
+    /**
+     * atributo que guarda la tecnica del concurso
+     */
     private String tecnica;
+    
+    /** 
+     * atributo que guarda la id del organizador
+     */
     private Long organizador;
+    
+    /**
+     * atributo que guarda las reglas del concurso
+     */
     private String reglas;
     
 
+    /**
+     * metodo que crea una entidad de concurso vacia
+     */
     public ConcursoEntity() {
 
     }
-    
-       public void nohacernada() {
-        tema = tema;
-    }
-    
 
     /**
-     * @return the juradosa
+     * metodo que retorna la lista de jurados del concurso
+     * @return the juradosa es la lista de jurados del concurso
      */
     public ArrayList<JuradoEntity> getJurados() {
        // return jurados;
@@ -59,6 +72,7 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
     }
 
     /**
+     * metodo que modifica la lista de jurados del concurso
      * @param juradosa the juradosa to set
      */
     public void setJurados(ArrayList<JuradoEntity> juradosa) {
@@ -66,7 +80,8 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * @return the rondas
+     * metodo que retorna una lista las entidades de rondas del concurso
+     * @return the rondas lista de las entidades de rondas del concurso
      */
     public ArrayList<RondaEntity> getRondas() {
         //return rondas;
@@ -74,6 +89,7 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
     }
 
     /**
+     * metodo que modifica las rondas de la entidad del concurso
      * @param rondas the rondas to set
      */
     public void setRondas(ArrayList<RondaEntity> rondas) {
@@ -81,13 +97,15 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * @return the tema
+     * metodo que retorna el tema de la entidad del concurso
+     * @return the tema es la cadena de caracteres del tema
      */
     public String getTema() {
         return tema;
     }
 
     /**
+     * metodo que modifica el tema de la entidad del concurso
      * @param tema the tema to set
      */
     public void setTema(String tema) {
@@ -95,6 +113,7 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
     }
 
     /**
+     * metodo que retrona la tecnica de la entidad del concurso
      * @return the tecnica
      */
     public String getTecnica() {
@@ -102,6 +121,7 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
     }
 
     /**
+     * metodo que modifica la tecnica de la entidad del concurso
      * @param tecnica the tecnica to set
      */
     public void setTecnica(String tecnica) {
@@ -109,13 +129,15 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * @return the organizador
+     * metodo que obtiene la id del organizador del concurso
+     * @return the organizador es la id del organizador
      */
     public Long getOrganizador() {
         return organizador;
     }
 
     /**
+     * metodo que modifica el organizador del concurso
      * @param organizador the organizador to set
      */
     public void setOrganizador(Long organizador) {
@@ -123,6 +145,7 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
     }
 
     /**
+     * metodo que retorna las reglas del concurso
      * @return the reglas
      */
     public String getReglas() {
@@ -130,6 +153,7 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
     }
 
     /**
+     * metodo que modifica las reglas del concurso
      * @param reglas the reglas to set
      */
     public void setReglas(String reglas) {
