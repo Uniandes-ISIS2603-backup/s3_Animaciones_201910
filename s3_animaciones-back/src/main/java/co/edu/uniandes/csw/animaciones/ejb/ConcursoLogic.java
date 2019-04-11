@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ * Clase que maneja la logica de un concurso
  * @author df.perezc
  */
 
@@ -31,6 +31,12 @@ public class ConcursoLogic {
      @PersistenceContext(unitName = "animacionesPU")
     protected EntityManager em;
 
+     /**
+      * medoto que crea la entidad de un concurso
+      * @param ce es el concurso qeu se quiere crear
+      * @return el concurso que se crea
+      * @throws BusinessLogicException se lanza si el tema es demasiado largo
+      */
     public ConcursoEntity createConcursoEntity(ConcursoEntity ce)throws BusinessLogicException
     {
         if(ce.getTema().length()>=100)
@@ -42,19 +48,37 @@ public class ConcursoLogic {
         return ce;
     }
     
+    /**
+     * metodo que retorna un concurso teniendo su id
+     * @param concursoEntityId la id del concurso buscado
+     * @return el concurso correspondiente a la id ingresada
+     */
      public ConcursoEntity find(Long concursoEntityId) {
         return em.find(ConcursoEntity.class, concursoEntityId);
     }
 
+     /**
+      * metodo que retorna la lista de todas las entidades de concursos
+      * @return la lista del entidades de los concursos
+      */
     public List<ConcursoEntity> findAll() {
         TypedQuery<ConcursoEntity> query = em.createQuery("select u from ConcursoEntity u", ConcursoEntity.class);
         return query.getResultList();
     }
     
+    /** 
+     * metodo que actualiza la entidad un concurso 
+     * @param ce la entidad que va a actualizar el concurso
+     * @return la entidad actualizada
+     */
      public ConcursoEntity update(ConcursoEntity ce){
         return em.merge(ce);
     }
      
+     /**
+      * metodo que borra la entidad de un concurso teniendo su id
+      * @param ceId la id de la entidad del concurso a eliminar
+      */
     public void delete(Long ceId) {
         em.remove(em.find(ConcursoEntity.class, ceId));
     }

@@ -14,24 +14,42 @@ import co.edu.uniandes.csw.animaciones.entities.RondaEntity;
 import java.util.List;
 import java.util.ArrayList;
 
+
+/**
+ * clase que maneja el detalle del concurso
+ * @author dfperezc
+ */
+
 public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
 
     //
     // ATRIBUTOS
     //
+    /**
+     * atributo que maneja la lista de jurados escogidos para el concurso
+     */
     private List<JuradoDTO> jurados = new ArrayList<JuradoDTO>();
+    
+    /**
+     * atributo que maneja la lista de rondas que posee el concurso
+     */
     private List<RondaDTO> rondas = new ArrayList<RondaDTO>();
 
     //
     //CONSTRUCTOR
     //
     /**
+     * metodo que contruye un detalle vacio de concurso
      * constructores
      */
     public ConcursoDetailDTO() {
 
     }
 
+    /**
+     * medtodo que conctruye un detalle de concurso a partir de una como entidad equivalente a concurso
+     * @param ce la entidad de concurso respectiva
+     */
     public ConcursoDetailDTO(ConcursoEntity ce) {
         super(ce);
         if (ce != null) {
