@@ -9,16 +9,31 @@ import java.io.Serializable;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 /**
- *
+ * clase que maneja la entidad Animacion participante
  * @author df.perezc
  */
 @Entity
 @DiscriminatorValue("P")
 public class AnimacionParticipanteEntity extends AnimacionEntity implements Serializable {
     
+    /**
+     * atributo que guarda el puntaje, otorgado por los jueces, de la entidad de la animacionParticipante
+     */
     private Double puntaje;
+    
+    /**
+     * atributo que guarda el puesto de la entidad de la animacion participante en el concuso
+     */
     private Integer puesto;
+    
+    /**
+     * atributo que indica si la entidad de la animacion participante pasa a segunda ronda
+     */
     private Boolean finalista;
+    
+    /**
+     * atributo que guarda cuantó dinero gano la animacionParicipante correspondiente a la entidad
+     */
     private Integer dinero;
 
     public AnimacionParticipanteEntity(){
@@ -27,13 +42,15 @@ public class AnimacionParticipanteEntity extends AnimacionEntity implements Seri
 
 
     /**
-     * @return the puntaje
+     * metodo que retorna el puntaje de la animacion participante correspondiente a la entidad
+     * @return the puntaje asignado por los jurados
      */
     public Double getPuntaje() {
         return puntaje;
     }
 
     /**
+     * metodo que modifica el puntaje de la animacion participante correspondiente a la entidad
      * @param puntaje the puntaje to set
      */
     public void setPuntaje(Double puntaje) {
@@ -41,13 +58,15 @@ public class AnimacionParticipanteEntity extends AnimacionEntity implements Seri
     }
 
     /**
-     * @return the puesto
+     * metodo que retorna el pueso de la animacion participante correspondiente a la entidad
+     * @return the puesto obtenido por la animacion 
      */
     public Integer getPuesto() {
         return puesto;
     }
 
     /**
+     * metodo que modifica el puesto de la animacion participante correspondiente a la entidad
      * @param puesto the puesto to set
      */
     public void setPuesto(Integer puesto) {
@@ -55,6 +74,7 @@ public class AnimacionParticipanteEntity extends AnimacionEntity implements Seri
     }
 
     /**
+     * metodo que retorna true si la entidad corresponde a una animacion que clasifica a segunda ronda
      * @return the finalista
      */
     public Boolean getFinalista() {
@@ -62,6 +82,7 @@ public class AnimacionParticipanteEntity extends AnimacionEntity implements Seri
     }
 
     /**
+     * metodo que modifica si la animacion participante correspondiente a la entidad clasifica a segunda ronda
      * @param finalista the finalista to set
      */
     public void setFinalista(Boolean finalista) {
@@ -69,6 +90,7 @@ public class AnimacionParticipanteEntity extends AnimacionEntity implements Seri
     }
 
     /**
+     * metodo que retorna el dinero obtenido como premio por la animacion participante correspondiente a la entidad
      * @return the dinero
      */
     public Integer getDinero() {
@@ -76,6 +98,7 @@ public class AnimacionParticipanteEntity extends AnimacionEntity implements Seri
     }
 
     /**
+     * metodo que modifica el dinero obtenido como premio por la animacion participante correspondiente a la entidad
      * @param dinero the dinero to set
      */
     public void setDinero(Integer dinero) {
