@@ -171,9 +171,9 @@ public class CalificacionLogicTest {
     }
     
     @Test
-    public void deleteTest() {
+    public void deleteTest() throws BusinessLogicException {
         CalificacionEntity temp = data.get(0);
-        calificacionLogic.delete(temp.getId());
+        calificacionLogic.delete(dataAnimacion.get(1).getId(), temp.getId());
         CalificacionEntity temp2 = em.find(CalificacionEntity.class, temp.getId());
         Assert.assertNull(temp2);
     } 
