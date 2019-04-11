@@ -33,9 +33,9 @@ public class CalificacionLogic {
         if(temp.getCalificacion()== null || temp.getComentario()== null ){
             throw new BusinessLogicException("El comentario, o calificación no pueden ser nulos");
         }
-//        if(temp.getCalificacion()<0 || temp.getCalificacion()>10){
-//            throw new BusinessLogicException("La calificación debe ser un número entre 0 y 10");
-//        }
+        if(temp.getCalificacion()<0 || temp.getCalificacion()>10){
+            throw new BusinessLogicException("La calificación debe ser un número entre 0 y 10");
+        }
 
 
    
@@ -45,11 +45,32 @@ public class CalificacionLogic {
         return calificacion.create(temp);
     }
     
-    public CalificacionEntity getCalificacion(Long id){
-        CalificacionEntity temp = calificacion.find(id);
+        /**
+     * Obtiene la lista de los registros de Calificacion que pertenecen a un Animacion.
+     *
+     * @param animacionId id del Animacion el cual es padre de los Calificaciones.
+     * @return Colección de objetos de ReviewEntity.
+     */
+    public List<CalificacionEntity> getCalificacionesAnimacion(Long animacionId) {
+          AnimacionEntity entity = animacionPersistence.find(animacionId);
+       return entity.getCalificaciones();
+    }
+
+    /**
+     * Obtiene una calificacion dada por unid de una animación dada por un id
+     * @param idCal id calificacion
+     * @param idAnim id animacion
+     * @return la calificacion deseada
+     */
+    public CalificacionEntity getCalificacion(Long idAnim, Long idCal){
+        CalificacionEntity temp = calificacion.find(idAnim, idCal);
         return temp;
     }
     
+    /**
+     * Obtiene todas las calificaicones existentes
+     * @return lista con todas las calificaiones existentes
+     */
     public List<CalificacionEntity> getCalificaciones() {
         List<CalificacionEntity> list = calificacion.findAll();
         return list;
