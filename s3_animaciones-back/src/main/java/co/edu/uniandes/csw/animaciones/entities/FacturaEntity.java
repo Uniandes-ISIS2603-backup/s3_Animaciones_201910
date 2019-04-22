@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -19,6 +20,7 @@ public class FacturaEntity extends BaseEntity implements Serializable {
     
     private Integer idAnim;
     
+    @Enumerated
     private Estado estado;    
     
     @Temporal(javax.persistence.TemporalType.DATE)
