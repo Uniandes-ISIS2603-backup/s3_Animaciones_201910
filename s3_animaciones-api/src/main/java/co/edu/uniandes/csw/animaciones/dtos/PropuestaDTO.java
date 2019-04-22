@@ -49,16 +49,19 @@ public class PropuestaDTO implements Serializable {
     }
     
     public PropuestaDTO(PropuestaEntity yo){
-        id = yo.getId();
-        precio = yo.getPrecio();
-        if(yo.getEstado()==FacturaEntity.Estado.ACEPTADO){
-            estado = Estado.ACEPTADO;
-        }else if(yo.getEstado()==FacturaEntity.Estado.RECHAZADO){
-            estado = Estado.RECHAZADO;
-        }else{
-            estado = Estado.ENPROCESO;
+        if(yo!=null){
+            id = yo.getId();
+            precio = yo.getPrecio();
+            if(yo.getEstado()==FacturaEntity.Estado.ACEPTADO){
+                estado = Estado.ACEPTADO;
+            }else if(yo.getEstado()==FacturaEntity.Estado.RECHAZADO){
+                estado = Estado.RECHAZADO;
+            }else{
+                estado = Estado.ENPROCESO;
+            }
+            factura = new FacturaDTO(yo.getFactura());  
         }
-        factura = new FacturaDTO(yo.getFactura());
+    
     }
     
     @Override
