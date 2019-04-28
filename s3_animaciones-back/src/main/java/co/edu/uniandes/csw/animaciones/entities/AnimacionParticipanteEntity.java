@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.animaciones.entities;
 import java.io.Serializable;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 /**
  * clase que maneja la entidad Animacion participante
  * @author df.perezc
@@ -16,6 +18,10 @@ import javax.persistence.Entity;
 @DiscriminatorValue("P")
 public class AnimacionParticipanteEntity extends AnimacionEntity implements Serializable {
     
+    //relacion con la ronda
+    @PodamExclude
+    @ManyToOne()
+    private RondaEntity ronda;
     /**
      * atributo que guarda el puntaje, otorgado por los jueces, de la entidad de la animacionParticipante
      */
@@ -103,5 +109,13 @@ public class AnimacionParticipanteEntity extends AnimacionEntity implements Seri
      */
     public void setDinero(Integer dinero) {
         this.dinero = dinero;
+    }
+    
+    public RondaEntity getRonda(){
+        return ronda;
+    }
+    
+    public  void setRonda(RondaEntity re){
+        this.ronda = re;
     }
 }

@@ -34,6 +34,14 @@ public class RondaEntity extends BaseEntity implements Serializable {
 
     }
 
+    @PodamExclude
+    @ManyToOne()
+    private ConcursoEntity concurso;
+
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "ronda", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private ArrayList<AnimacionParticipanteEntity> animacionesPartcipantes = new ArrayList<>();
     //@PodamExclude
     // @OneToMany(mappedBy = "ronda")
     //private ArrayList <VotacionEntity> votaciones = new ArrayList<>();

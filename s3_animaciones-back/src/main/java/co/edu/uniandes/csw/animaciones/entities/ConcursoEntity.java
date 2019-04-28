@@ -26,11 +26,10 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "concurso", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private ArrayList<JuradoEntity> jurados;
-     /** al descomentar esto descomentar tambien los seters y geters
+    
     @PodamExclude
     @OneToMany(mappedBy = "concurso", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private ArrayList<RondaEntity> rondas;
-    */
+    private ArrayList<RondaEntity> rondas = new ArrayList<>();
     
      //----------------------------------------------------------
     
@@ -67,16 +66,15 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
      * @return the juradosa es la lista de jurados del concurso
      */
     public ArrayList<JuradoEntity> getJurados() {
-       // return jurados;
-        return new ArrayList();
+       return jurados;
     }
 
     /**
      * metodo que modifica la lista de jurados del concurso
-     * @param juradosa the juradosa to set
+     * @param juradosa the jurados to set
      */
-    public void setJurados(ArrayList<JuradoEntity> juradosa) {
-        //this.jurados = juradosa;
+    public void setJurados(ArrayList<JuradoEntity> jurados) {
+        this.jurados = jurados;
     }
 
     /**
@@ -84,8 +82,7 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
      * @return the rondas lista de las entidades de rondas del concurso
      */
     public ArrayList<RondaEntity> getRondas() {
-        //return rondas;
-         return new ArrayList();
+        return rondas;
     }
 
     /**
@@ -93,7 +90,7 @@ public class ConcursoEntity extends BaseEntity implements Serializable {
      * @param rondas the rondas to set
      */
     public void setRondas(ArrayList<RondaEntity> rondas) {
-       //this.rondas = rondas;
+       this.rondas = rondas;
     }
 
     /**
