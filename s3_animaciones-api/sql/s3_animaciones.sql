@@ -2,6 +2,7 @@ delete from AnimacionEntity;
 delete from ArtistaEntity;
 delete from RondaEntity;
 delete from VotacionEntity;
+delete from CalificacionEntity;
 
 insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (1, 1, 'Dayle', 'Candice', 'Erin', 'eibbitt0', 'fZR73XIKI');
 insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (2, 0, 'Caitlin', 'Normy', 'Trevar', 'tgiacubo1', 'p77HvSdgaO');
@@ -32,3 +33,6 @@ insert into VotacionEntity (id, idAnimacion, puntos, numRonda, ronda_id, jurado_
 insert into VotacionEntity (id, idAnimacion, puntos, numRonda, ronda_id, jurado_id) values (11, 2, 1, 1, 5, 1);
 insert into VotacionEntity (id, idAnimacion, puntos, numRonda, ronda_id, jurado_id) values (12, 2, 5, 2, 3, 2);
 
+insert into ClienteEntity (id, nombre, informacion, usuario, contrasenia) values (1, 'Juan', 'yo soy juan', 'JJ', 'popo');
+
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario) values (1, 1, 1, 'Muy buena me gusto mucho');

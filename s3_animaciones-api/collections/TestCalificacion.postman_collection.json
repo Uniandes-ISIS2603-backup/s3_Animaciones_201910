@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "e723f1b1-a238-428c-b83c-409a5b821ad7",
+		"name": "TestCalificacion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Todas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "635e1fe7-1c61-457e-8a51-35653b567547",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones/1/calificaciones/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"animaciones",
+						"1",
+						"calificaciones",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Una",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4c9c6712-4c4b-40e6-99ea-e74331b4b07f",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones/1/calificaciones/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"animaciones",
+						"1",
+						"calificaciones",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Calificacion",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"cliente\": {\n\t\t\"id\":1\n\t},\n\t\"comentario\":\"orrrrrrible\",\n\t\"calificacion\":2\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones/1/calificaciones/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"animaciones",
+						"1",
+						"calificaciones",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
