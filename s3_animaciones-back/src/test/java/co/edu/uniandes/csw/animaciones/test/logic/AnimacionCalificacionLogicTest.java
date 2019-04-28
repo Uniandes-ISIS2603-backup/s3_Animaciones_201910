@@ -96,7 +96,7 @@ public class AnimacionCalificacionLogicTest {
         nueva.setAnimacion(ae);
         cl.create(ae.getId(), nueva);
         
-        CalificacionEntity result1 = acl.addCalificacion(ae.getId(), nueva.getId());
+        CalificacionEntity result1 = acl.addCalificacion(ae.getId(), nueva);
         Assert.assertNotNull(result1);
         Assert.assertEquals(result1, nueva);
         
