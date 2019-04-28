@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.animaciones.dtos;
 
+import co.edu.uniandes.csw.animaciones.entities.AnimacionParticipanteEntity;
 import java.io.Serializable;
 /**
  * es la clase que maneja el detail de la animaicion que participa en un concurso
@@ -28,6 +29,8 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
     //atributo que indica cuanto dinero gana la animacion
     private Integer dinero;
     
+    //atributo qeu indica la ronda de la animacion
+     private RondaDTO ronda;
     
     //
     //CONSTRUCTOR
@@ -36,6 +39,22 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
      * metodo que construye una animacion participante vacia
      */
     public AnimacionParticipanteDTO(){
+        
+    }
+    
+    public AnimacionParticipanteDTO(AnimacionParticipanteEntity ape){
+        super(ape);
+        if (ape != null)
+        {
+            this.puntaje = ape.getPuntaje();
+            this.puesto = ape.getPuesto();
+            this.finalista = ape.getFinalista();
+            this.dinero = ape.getDinero();
+        }
+        if (ape.getRonda()!= null)
+        {
+            this.ronda = new RondaDTO(ape.getRonda());
+        }
         
     }
     //

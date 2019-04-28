@@ -7,19 +7,17 @@ package co.edu.uniandes.csw.animaciones.dtos;
 
 import java.io.Serializable;
 
-import co.edu.uniandes.csw.animaciones.dtos.ConcursoDTO;
 import co.edu.uniandes.csw.animaciones.entities.ConcursoEntity;
 import co.edu.uniandes.csw.animaciones.entities.JuradoEntity;
 import co.edu.uniandes.csw.animaciones.entities.RondaEntity;
 import java.util.List;
 import java.util.ArrayList;
 
-
 /**
  * clase que maneja el detalle del concurso
+ *
  * @author dfperezc
  */
-
 public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
 
     //
@@ -29,7 +27,7 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
      * atributo que maneja la lista de jurados escogidos para el concurso
      */
     private List<JuradoDTO> jurados = new ArrayList<JuradoDTO>();
-    
+
     /**
      * atributo que maneja la lista de rondas que posee el concurso
      */
@@ -39,15 +37,16 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
     //CONSTRUCTOR
     //
     /**
-     * metodo que contruye un detalle vacio de concurso
-     * constructores
+     * metodo que contruye un detalle vacio de concurso constructores
      */
     public ConcursoDetailDTO() {
 
     }
 
     /**
-     * medtodo que conctruye un detalle de concurso a partir de una como entidad equivalente a concurso
+     * medtodo que conctruye un detalle de concurso a partir de una como entidad
+     * equivalente a concurso
+     *
      * @param ce la entidad de concurso respectiva
      */
     public ConcursoDetailDTO(ConcursoEntity ce) {
@@ -55,9 +54,9 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
         if (ce != null) {
             if (ce.getJurados() != null) {
                 for (JuradoEntity je : ce.getJurados()) {
-                    jurados.add(new JuradoDTO( //__________________________________________________________________________        
-                            //        je
-                            ));
+                    jurados.add(new JuradoDTO(
+                            je
+                    ));
                 }
             }
         }
@@ -71,8 +70,6 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
             }
         }
     }
-    
-  
 
     //
     //METODOS
@@ -81,15 +78,12 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
         ConcursoEntity ce = super.toEntity();
         if (jurados != null) {
             ArrayList<JuradoEntity> listJus = new ArrayList<>();
-            for (JuradoDTO cd : jurados) {
-                listJus.add(
-                        //--------------------------------------------------
-                        //cd.toEntity()
-                null);
+            for (JuradoDTO cj : jurados) {
+                listJus.add(cj.toentity());
             }
             ce.setJurados(listJus);
         }
-         if (rondas != null) {
+        if (rondas != null) {
             ArrayList<RondaEntity> listRos = new ArrayList<>();
             for (RondaDTO rd : rondas) {
                 listRos.add(rd.toEntity());
@@ -98,12 +92,6 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
         }
         return ce;
     }
-    
-    
-      public void nohacernada() {
-        jurados = jurados;
-    }
-
 
     /**
      * @return the jurados
