@@ -24,6 +24,8 @@ SOFTWARE.
 
 package co.edu.uniandes.csw.animaciones.dtos;
 
+import co.edu.uniandes.csw.animaciones.entities.MedioDePagoEntity;
+import co.edu.uniandes.csw.animaciones.entities.MedioDePagoEntity.FormaDePago;
 import java.io.Serializable;
 import java.sql.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -34,7 +36,7 @@ public class MedioDePagoDTO implements Serializable {
     /**
      * Atributo que contiene el id del medio de pago
      */
-    private Integer id;
+    private Long id;
     /**
      * Atributo que contiene el numero de la tarjeta 
      */
@@ -46,33 +48,37 @@ public class MedioDePagoDTO implements Serializable {
     /**
      * Atributo que contiene el Date de la fecha de vencimiento del  medio de pago
      */
-    private Date fechaVencimiento;
+    private String fechaVencimiento;
     /**
      * Atributo que contiene la forma de pago
      */
     private FormaDePago formaDePago;
-    /**
-     * Enumetacion con las formas de pago
-    */
-    public enum FormaDePago{
-        DEBITO, CREDITO, PAYPAL, PSE
-    }
+
+   
     
     public MedioDePagoDTO(){
         
+    }
+    
+    public MedioDePagoDTO (MedioDePagoEntity mDPE){
+        this.id = mDPE.getId();
+        this.codigo = mDPE.getCodigo();
+        this.fechaVencimiento = mDPE.getFechaVencimiento();
+        this.formaDePago = mDPE.getFormaDePago();
+        this.numeroTarjeta = mDPE.getNumeroTarjeta();
     }
 
     /**
      * @return the id
      */
-    public Integer getId() {
+    public Long  getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -107,14 +113,14 @@ public class MedioDePagoDTO implements Serializable {
     /**
      * @return the fechaVencimiento
      */
-    public Date getFechaVencimiento() {
+    public String getFechaVencimiento() {
         return fechaVencimiento;
     }
 
     /**
      * @param fechaVencimiento the fechaVencimiento to set
      */
-    public void setFechaVencimiento(Date fechaVencimiento) {
+    public void setFechaVencimiento(String fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
 
@@ -131,5 +137,18 @@ public class MedioDePagoDTO implements Serializable {
     public void setFormaDePago(FormaDePago formaDePago) {
         this.formaDePago = formaDePago;
     }
+    
+    
+    public MedioDePagoEntity toEntity( ){
+        MedioDePagoEntity n = new MedioDePagoEntity();
+        n.setCodigo(this.codigo);
+        n.setFechaVencimiento(this.fechaVencimiento);
+        n.setNumeroTarjeta(this.numeroTarjeta);
+        n.setFormaDePago(this.formaDePago);
+        n.setId(this.id);
+        
+        return n;
+    
+    }
 
-}
+}   

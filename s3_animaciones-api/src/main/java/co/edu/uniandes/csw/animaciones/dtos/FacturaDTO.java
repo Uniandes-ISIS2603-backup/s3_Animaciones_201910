@@ -50,17 +50,19 @@ public class FacturaDTO implements Serializable {
     }
     
     public FacturaDTO(FacturaEntity yo){
-        id = yo.getId();
-        idAnim = yo.getIdAnim();
-        fecha = yo.getFecha();
-        if(yo.getEstado()==FacturaEntity.Estado.ACEPTADO){
-            estado = Estado.ACEPTADO;
-        }else if(yo.getEstado()==FacturaEntity.Estado.RECHAZADO){
-            estado = Estado.RECHAZADO;
-        }else{
-            estado = Estado.ENPROCESO;
-        }
-        //medioDePago = new MedioDePagoDTO(yo.getMedioDePago());
+        if(yo!=null){
+            id = yo.getId();
+            idAnim = yo.getIdAnim();
+            fecha = yo.getFecha();
+            if(yo.getEstado()==FacturaEntity.Estado.ACEPTADO){
+                estado = Estado.ACEPTADO;
+            }else if(yo.getEstado()==FacturaEntity.Estado.RECHAZADO){
+                estado = Estado.RECHAZADO;
+            }else{
+                estado = Estado.ENPROCESO;
+            }
+            medioDePago = new MedioDePagoDTO(yo.getMedioDePago());  
+        }        
     }
     
     @Override
@@ -154,7 +156,7 @@ public class FacturaDTO implements Serializable {
         }        
         yo.setId(id);
         yo.setIdAnim(idAnim);
-        //yo.setMedioDePago(medioDePago.toEntity());
+        yo.setMedioDePago(medioDePago.toEntity());
         return yo;
     }
 }

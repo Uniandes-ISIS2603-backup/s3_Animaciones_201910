@@ -33,7 +33,8 @@ public class JuradoResource {
     @Inject
     private JuradoLogic logic;
     
-    @GET    
+    @GET
+    @Path("all")
     public List<JuradoDTO> darJurados(){
        List<JuradoEntity> sl= logic.getJurados();
        List<JuradoDTO> out=new ArrayList<>();

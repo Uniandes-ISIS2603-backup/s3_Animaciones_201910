@@ -16,11 +16,15 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class CalificacionDTO implements Serializable {
 
-    private Integer id;
+    private Long id;
 
     private String comentario;
     private Integer calificacion;
-
+   /*
+    * Relación a un animación
+    * dado que esta tiene cardinalidad 1.
+     */
+    private AnimacionDTO animacion;
     public CalificacionDTO() {
 
     }
@@ -32,25 +36,32 @@ public class CalificacionDTO implements Serializable {
      * @param entity: Es la entidad que se va a convertir a DTO
      */
     public CalificacionDTO(CalificacionEntity entity) {
-        if (entity != null) {
-           // this.id = entity.getId();
+          if (entity != null) {
+            this.id = entity.getId();
             this.comentario = entity.getComentario();
-            this.calificacion= entity.getCalificacion();
+            this.calificacion = entity.getCalificacion();
+
+            if (entity.getAnimacion()!= null) {
+                this.animacion = new AnimacionDTO(entity.getAnimacion());
+            } else {
+                this.animacion = null;
+            }
         }
     }
+
 
 
     /**
      * @return the id
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -88,9 +99,12 @@ public class CalificacionDTO implements Serializable {
      */
     public CalificacionEntity toEntity() {
         CalificacionEntity entity = new CalificacionEntity();
-       // entity.setId(this.id);
+       entity.setId(this.id);
         entity.setCalificacion(this.calificacion);
         entity.setComentario(this.comentario);
+           if (this.animacion != null) {
+            entity.setAnimacion(this.animacion.toEntity());}
+        
         return entity;
     }
 }

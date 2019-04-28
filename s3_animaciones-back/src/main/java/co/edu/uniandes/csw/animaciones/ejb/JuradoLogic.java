@@ -41,9 +41,9 @@ public class JuradoLogic {
     public JuradoEntity createJurado(JuradoEntity juradoEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la jurado");
         // Verifica la regla de negocio que dice que no puede haber dos juradoes con el mismo usuario
-        if (persistence.findByName(juradoEntity.getUsuario()) != null) {
+ /**       if (persistence.findByName(juradoEntity.getUsuario()) != null) {
             throw new BusinessLogicException("Ya existe un Jurado con el usuario \"" + juradoEntity.getUsuario() + "\"");
-        }
+        } */
         // Invoca la persistencia para crear la jurado
         persistence.create(juradoEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la jurado");

@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.animaciones.test.persistence;
 
+import co.edu.uniandes.csw.animaciones.entities.AnimacionEntity;
 import co.edu.uniandes.csw.animaciones.entities.CalificacionEntity;
 import co.edu.uniandes.csw.animaciones.persistence.CalificacionPersistence;
 import java.util.ArrayList;
@@ -57,12 +58,12 @@ public class CalificacionPersistenceTest {
      */
     private List<CalificacionEntity> data = new ArrayList<CalificacionEntity>();
 
-    /**
-     *
-     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de Calificacion, el descriptor de la
-     * base de datos y el archivo beans.xml para resolver la inyección de
-     * dependencias.
+     private List<AnimacionEntity> dataAnimacion = new ArrayList<AnimacionEntity>();
+
+      /**
+     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     * El jar contiene las clases, el descriptor de la base de datos y el
+     * archivo beans.xml para resolver la inyección de dependencias.
      */
     @Deployment
     public static JavaArchive createDeployment() {
@@ -96,31 +97,32 @@ public class CalificacionPersistenceTest {
 
     /**
      * Limpia las tablas que están implicadas en la prueba.
-     *
-     *
      */
     private void clearData() {
-        em.createQuery("delete from ClienteEntity").executeUpdate();
+        em.createQuery("delete from CalificacionEntity").executeUpdate();
+        em.createQuery("delete from AnimacionEntity").executeUpdate();
     }
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
-     *
-     *
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-
-            CalificacionEntity entity = factory.manufacturePojo(CalificacionEntity.class);
-
+            AnimacionEntity entity = factory.manufacturePojo(AnimacionEntity.class);
             em.persist(entity);
-
+            dataAnimacion.add(entity);
+        }
+        for (int i = 0; i < 3; i++) {
+            CalificacionEntity entity = factory.manufacturePojo(CalificacionEntity.class);
+            if (i == 0) {
+                entity.setAnimacion(dataAnimacion.get(0));
+            }
+            em.persist(entity);
             data.add(entity);
         }
     }
-
     /**
      * Prueba para crear una Calificacion.
      *
@@ -138,13 +140,17 @@ public class CalificacionPersistenceTest {
 
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
-
- @Test
+  /**
+     * Prueba para consultar un Review.
+     */
+    @Test
     public void findTest() {
-        CalificacionEntity ae = data.get(0);
-        CalificacionEntity ae2 = calificacionPersistence.find(ae.getId());
-        junit.framework.Assert.assertNotNull(ae2);
-        junit.framework.Assert.assertEquals(ae, ae2);
+        CalificacionEntity entity = data.get(0);
+        CalificacionEntity newEntity = calificacionPersistence.find(dataAnimacion.get(0).getId(), entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getComentario(), newEntity.getComentario());
+        Assert.assertEquals(entity.getCalificacion(), newEntity.getCalificacion());
+      
     }
     
     @Test

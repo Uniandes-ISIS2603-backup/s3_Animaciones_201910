@@ -4,6 +4,7 @@ import co.edu.uniandes.csw.animaciones.entities.FacturaEntity.Estado;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -20,6 +21,7 @@ public class PropuestaEntity extends BaseEntity implements Serializable {
     
     private Integer precio;
     
+    @Enumerated
     private Estado estado;
     
     @PodamExclude
