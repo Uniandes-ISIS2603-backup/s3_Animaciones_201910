@@ -81,11 +81,14 @@ public class ConcursoDTO implements Serializable {
     * @param ce 
     */
     public ConcursoDTO(ConcursoEntity ce) {
+        if(ce!=null)
+        {
         this.tecnica = ce.getTecnica();
         this.tema = ce.getTema();
         this.organizador = ce.getOrganizador();
         this.id = ce.getId();
         this.reglas = ce.getReglas();
+        }
     }
 
     //
