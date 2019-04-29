@@ -61,7 +61,9 @@ public class FacturaDTO implements Serializable {
             }else{
                 estado = Estado.ENPROCESO;
             }
-            medioDePago = new MedioDePagoDTO(yo.getMedioDePago());  
+            if(yo.getMedioDePago()!=null){
+               medioDePago = new MedioDePagoDTO(yo.getMedioDePago());  
+            }             
         }        
     }
     
@@ -156,7 +158,9 @@ public class FacturaDTO implements Serializable {
         }        
         yo.setId(id);
         yo.setIdAnim(idAnim);
-        yo.setMedioDePago(medioDePago.toEntity());
+        if(medioDePago!=null){
+           yo.setMedioDePago(medioDePago.toEntity()); 
+        }        
         return yo;
     }
 }
