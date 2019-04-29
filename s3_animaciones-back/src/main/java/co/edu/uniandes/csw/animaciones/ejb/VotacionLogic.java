@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.animaciones.ejb;
-
+import co.edu.uniandes.csw.animaciones.entities.AnimacionEntity;
 import co.edu.uniandes.csw.animaciones.entities.JuradoEntity;
 import co.edu.uniandes.csw.animaciones.entities.VotacionEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
@@ -31,11 +31,12 @@ public class VotacionLogic {
             throw new BusinessLogicException("El numero de id de animacion tiene que ser mayor a cero");
         }
       // el jurado tiene que existir
-      //  JuradoEntity je = votacion.getJurado();
-      //  if(jl.getJurado(je.getId())==null){
-      //      throw new BusinessLogicException("El numero de id de animacion tiene que ser mayor a cero");
-      //  }
+      JuradoEntity je = votacion.getJurado();
+      if(jl.getJurado(je.getId())==null){
+          throw new BusinessLogicException("El numero de id de animacion tiene que ser mayor a cero");
+      }
         // la animacion con ese id tiene que existir
+        AnimacionEntity ae = anl.getAnimacion(votacion.getIdAnimacion().longValue());
         //la ronda con ese id tiene que existir
 
         if(votacion.getPuntos()== null || votacion.getPuntos() < 1 || votacion.getPuntos() > 10){

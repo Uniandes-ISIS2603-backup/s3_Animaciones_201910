@@ -23,6 +23,48 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class RondaEntity extends BaseEntity implements Serializable {
 
+    /**
+     * @return the votaciones
+     */
+    public ArrayList <VotacionEntity> getVotaciones() {
+        return votaciones;
+    }
+
+    /**
+     * @param votaciones the votaciones to set
+     */
+    public void setVotaciones(ArrayList <VotacionEntity> votaciones) {
+        this.votaciones = votaciones;
+    }
+
+    /**
+     * @return the animacionesPartcipantes
+     */
+    public ArrayList<AnimacionParticipanteEntity> getAnimacionesPartcipantes() {
+        return animacionesPartcipantes;
+    }
+
+    /**
+     * @param animacionesPartcipantes the animacionesPartcipantes to set
+     */
+    public void setAnimacionesPartcipantes(ArrayList<AnimacionParticipanteEntity> animacionesPartcipantes) {
+        this.animacionesPartcipantes = animacionesPartcipantes;
+    }
+
+    /**
+     * @return the concurso
+     */
+    public ConcursoEntity getConcurso() {
+        return concurso;
+    }
+
+    /**
+     * @param concurso the concurso to set
+     */
+    public void setConcurso(ConcursoEntity concurso) {
+        this.concurso = concurso;
+    }
+
     private Integer numero;
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
@@ -42,9 +84,9 @@ public class RondaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "ronda", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private ArrayList<AnimacionParticipanteEntity> animacionesPartcipantes = new ArrayList<>();
-    //@PodamExclude
-    // @OneToMany(mappedBy = "ronda")
-    //private ArrayList <VotacionEntity> votaciones = new ArrayList<>();
+    @PodamExclude
+    @OneToMany(mappedBy = "ronda")
+    private ArrayList <VotacionEntity> votaciones = new ArrayList<>();
     /**
      * @return the numero
      */

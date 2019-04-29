@@ -125,6 +125,13 @@ public class AnimacionResource {
         return list;
     }
     
+    @POST
+    @Path("{animacionId: \\d+}/calificaciones")
+    public CalificacionDTO createCalificacion(@PathParam("animacionId") Long animacionId, CalificacionDTO calificacion) throws BusinessLogicException {
+        CalificacionDTO nuevoCalificacionDTO = new CalificacionDTO(acl.addCalificacion( animacionId, calificacion.toEntity()));
+        return nuevoCalificacionDTO;
+    }
+    
     @DELETE
     @Path("{animacionId: \\d+}/calificaciones/{calificacionId: \\d+}")
     public void deleteCalifiacion(@PathParam("animacionId") Long animacionID, @PathParam("calificacionId") Long calificacionID){
