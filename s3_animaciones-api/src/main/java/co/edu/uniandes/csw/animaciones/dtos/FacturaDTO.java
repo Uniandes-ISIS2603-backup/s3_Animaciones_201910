@@ -89,14 +89,14 @@ public class FacturaDTO implements Serializable {
     /**
      * @return the idAnim
      */
-    public int getIdAnim() {
+    public Integer getIdAnim() {
         return idAnim;
     }
 
     /**
      * @param idAnim the idAnim to set
      */
-    public void setIdAnim(int idAnim) {
+    public void setIdAnim(Integer idAnim) {
         this.idAnim = idAnim;
     }
 
