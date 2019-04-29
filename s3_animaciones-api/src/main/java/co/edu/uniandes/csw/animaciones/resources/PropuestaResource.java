@@ -50,7 +50,16 @@ public class PropuestaResource {
     @GET
     @Path("{propuestaID: \\d+}/factura")
     public FacturaDTO darFactura(@PathParam("propuestaID") Long id){
-        return dar(id).getFactura();
+        try{
+          if(dar(id)!=null){
+            return dar(id).getFactura(); 
+          }else{
+            return null;
+          }   
+        }catch(WebApplicationException e){
+            return null;
+        }
+               
     }
     
     @PUT
