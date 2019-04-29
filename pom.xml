@@ -13,6 +13,7 @@
     <modules>
         <module>s3_animaciones-api</module>
         <module>s3_animaciones-back</module>
+
     </modules>
     
     <repositories>
