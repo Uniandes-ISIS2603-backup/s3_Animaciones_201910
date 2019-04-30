@@ -70,7 +70,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones/1/calificaciones/1",
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones/1/calificaciones/2",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -82,7 +82,7 @@
 						"animaciones",
 						"1",
 						"calificaciones",
-						"1"
+						"2"
 					]
 				}
 			},
@@ -117,6 +117,94 @@
 						"1",
 						"calificaciones",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Calificacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d21fe7b8-7f6c-4494-b9c6-406e1c0f699d",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"cliente\": {\n\t\t\"id\":1\n\t},\n\t\"comentario\":\"Maso Maso\",\n\t\"calificacion\":3\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones/1/calificaciones/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"animaciones",
+						"1",
+						"calificaciones",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dcdf59bf-46e7-4616-abd2-c91603c467cd",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones/1/calificaciones/2",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"animaciones",
+						"1",
+						"calificaciones",
+						"2"
 					]
 				}
 			},

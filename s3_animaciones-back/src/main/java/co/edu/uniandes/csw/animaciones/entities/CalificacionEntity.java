@@ -29,13 +29,10 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     @ManyToOne(cascade = CascadeType.PERSIST)
     private ClienteEntity cliente ;
     
-   /// private Integer id;
-
-  
     
     private String comentario;
             
-            private Integer calificacion;
+    private Integer calificacion;
             
             public CalificacionEntity()
             {
