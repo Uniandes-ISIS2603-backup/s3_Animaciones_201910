@@ -26,7 +26,7 @@ public class RondaVotacionLogic {
     private VotacionPersistence votacionPersistence;
 
     @Inject
-    private RondaPersistence RondaPersistence;
+    private RondaPersistence rondaPersistence;
 
     /**
      * Agregar un votacion a la Ronda
@@ -35,12 +35,12 @@ public class RondaVotacionLogic {
      * @param RondasId El id de la Ronda en la cual se va a guardar la votacion
      * @return El votacion creada.
      */
-    public VotacionEntity addVotacion(Long votacionsId, Long RondasId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de agregarle un libro a la Ronda con id = {0}", RondasId);
-        RondaEntity RondaEntity = RondaPersistence.find(RondasId);
+    public VotacionEntity addVotacion(Long votacionsId, Long rondasId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de agregarle una votacion a la Ronda con id = {0}", rondasId);
+        RondaEntity rondaEntity = rondaPersistence.find(rondasId);
         VotacionEntity votacionEntity = votacionPersistence.find(votacionsId);
-        votacionEntity.setRonda(RondaEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de agregarle un libro a la Ronda con id = {0}", RondasId);
+        votacionEntity.setRonda(rondaEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de agregarle una votacion a la Ronda con id = {0}", rondasId);
         votacionPersistence.update(votacionEntity);
         return votacionEntity;
     }
@@ -51,9 +51,9 @@ public class RondaVotacionLogic {
      * @param RondasId El ID de la Ronda buscada
      * @return La lista de libros de la Ronda
      */
-    public List<VotacionEntity> getVotaciones(Long RondasId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar los libros asociados a la Ronda con id = {0}", RondasId);
-        return RondaPersistence.find(RondasId).getVotaciones();
+    public List<VotacionEntity> getVotaciones(Long rondasId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar las votaciones asociadas a la Ronda con id = {0}", rondasId);
+        return rondaPersistence.find(rondasId).getVotaciones();
     }
 
     /**
@@ -67,7 +67,7 @@ public class RondaVotacionLogic {
      */
     public VotacionEntity getVotacion(Long RondasId, Long votacionsId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el libro con id = {0} de la Ronda con id = " + RondasId, votacionsId);
-        List<VotacionEntity> votacions = RondaPersistence.find(RondasId).getVotaciones();
+        List<VotacionEntity> votacions = rondaPersistence.find(RondasId).getVotaciones();
         VotacionEntity votacionEntity = votacionPersistence.find(votacionsId);
         int index = votacions.indexOf(votacionEntity);
         LOGGER.log(Level.INFO, "Termina proceso de consultar el libro con id = {0} de la Ronda con id = " + RondasId, votacionsId);
@@ -84,19 +84,19 @@ public class RondaVotacionLogic {
      * @param RondasId El id de la Ronda que se quiere actualizar.
      * @return La lista de votaciones actualizada.
      */
-    public List<VotacionEntity> replaceVotaciones(Long RondasId, List<VotacionEntity> votacions) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la Ronda con id = {0}", RondasId);
-        RondaEntity RondaEntity = RondaPersistence.find(RondasId);
+    public List<VotacionEntity> replaceVotaciones(Long rondasId, List<VotacionEntity> votacions) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la Ronda con id = {0}", rondasId);
+        RondaEntity rondaEntity = rondaPersistence.find(rondasId);
         List<VotacionEntity> votacionList = votacionPersistence.findAll();
         for (VotacionEntity votacion : votacionList) {
             if (votacions.contains(votacion)) {
-                votacion.setRonda(RondaEntity);
-            } else if (votacion.getRonda() != null && votacion.getRonda().equals(RondaEntity)) {
+                votacion.setRonda(rondaEntity);
+            } else if (votacion.getRonda() != null && votacion.getRonda().equals(rondaEntity)) {
                 votacion.setRonda(null);
             }
             votacionPersistence.update(votacion);
         }
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar la Ronda con id = {0}", RondasId);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar la Ronda con id = {0}", rondasId);
         return votacions;
     }
 }

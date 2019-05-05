@@ -8,7 +8,9 @@ package co.edu.uniandes.csw.animaciones.ejb;
 import co.edu.uniandes.csw.animaciones.entities.RondaEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.animaciones.persistence.RondaPersistence;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -33,17 +35,17 @@ public class RondaLogic {
         if(ronda.getNumero()!= 1 && ronda.getNumero()!= 2)
         {
            throw new BusinessLogicException("El numero de la ronda solo puede ser 1 o 2");
-        }       
-        if(ronda.getFechaInicio().before(new Date(119, 0, 1))|| ronda.getFechaFin().before(new Date(119, 0, 1))){
-            throw new BusinessLogicException("Las fechas de las rondas deben ser del 2019");
+        }
+        Calendar cal = new GregorianCalendar(2019, 0, 1);
+        if(ronda.getFechaInicio().before(cal.getTime())|| ronda.getFechaFin().before(cal.getTime())){
+            throw new BusinessLogicException("Las fechas de las rondas deben ser del minimo del 2019");
         }
         persistence.create(ronda);
         return ronda;
     }
     
         public RondaEntity getRonda(Long id){
-        RondaEntity re = persistence.find(id);
-        return re;
+        return  persistence.find(id);
     }
     
     public List<RondaEntity> getRondas(){
@@ -63,11 +65,11 @@ public class RondaLogic {
         {
              throw new BusinessLogicException("El numero de la ronda solo puede ser 1 o 2");
         }
-        if(ronda.getFechaInicio().before(new Date(119, 0, 1))|| ronda.getFechaFin().before(new Date(119, 0, 2))){
+        Calendar cal = new GregorianCalendar(2019, 0, 1);
+        if(ronda.getFechaInicio().before(cal.getTime())|| ronda.getFechaFin().before(cal.getTime())){
             throw new BusinessLogicException("Las fechas de las rondas deben ser del 2019");
         }
-        RondaEntity newre = persistence.update(ronda);
-        return newre;
+        return persistence.update(ronda);
     }
     
     public void deleteRonda(Long id){
