@@ -24,10 +24,12 @@ public class RondaDTO implements Serializable{
         
     }
     public RondaDTO(RondaEntity re){
+        if(re != null){
         setId(re.getId());
         setFechaInicio(re.getFechaInicio());
         setFechaFin(re.getFechaFin());
         setNumero(re.getNumero());
+        }
     }
 
     /**

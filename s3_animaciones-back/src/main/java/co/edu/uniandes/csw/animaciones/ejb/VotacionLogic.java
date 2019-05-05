@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.animaciones.ejb;
 import co.edu.uniandes.csw.animaciones.entities.AnimacionEntity;
 import co.edu.uniandes.csw.animaciones.entities.JuradoEntity;
 import co.edu.uniandes.csw.animaciones.entities.VotacionEntity;
+import co.edu.uniandes.csw.animaciones.entities.RondaEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.animaciones.persistence.VotacionPersistence;
 import java.util.List;
@@ -25,6 +26,8 @@ public class VotacionLogic {
     private JuradoLogic jl;
            @Inject
     private AnimacionLogic anl;
+           @Inject
+          private RondaLogic rl;
     
     public VotacionEntity createVotacion(VotacionEntity votacion) throws BusinessLogicException{
         if(votacion.getIdAnimacion()==null || votacion.getIdAnimacion() <= 0){
@@ -33,12 +36,21 @@ public class VotacionLogic {
       // el jurado tiene que existir
       JuradoEntity je = votacion.getJurado();
       if(jl.getJurado(je.getId())==null){
-          throw new BusinessLogicException("El numero de id de animacion tiene que ser mayor a cero");
+          throw new BusinessLogicException("El jurado tiene que existir");
       }
-        // la animacion con ese id tiene que existir
-        AnimacionEntity ae = anl.getAnimacion(votacion.getIdAnimacion().longValue());
-        //la ronda con ese id tiene que existir
+      // la animacion con ese id tiene que existir
+      AnimacionEntity ae = anl.getAnimacion(votacion.getIdAnimacion().longValue());
+      if(ae == null)
+      {
+          throw new BusinessLogicException("La animación tiene que existir");
+      }
+      //la ronda con ese id tiene que existir
 
+      RondaEntity re = votacion.getRonda();
+      if(rl.getRonda(re.getId())==null){
+          throw new BusinessLogicException("La ronda tiene que existir");
+      }
+      
         if(votacion.getPuntos()== null || votacion.getPuntos() < 1 || votacion.getPuntos() > 10){
             System.out.println("puntos:" + votacion.getPuntos());
             throw new BusinessLogicException("El numero de puntos debe ser entre 1 y 10");
