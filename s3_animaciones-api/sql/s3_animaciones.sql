@@ -20,6 +20,12 @@ insert into RondaEntity (id, numero, fechaInicio, fechaFin) values (3, 2, '5/8/2
 insert into RondaEntity (id, numero, fechaInicio, fechaFin) values (4, 2, '4/28/2018', '5/1/2018');
 insert into RondaEntity (id, numero, fechaInicio, fechaFin) values (5, 1, '4/11/2018', '5/2/2018');
 
+insert into JuradoEntity (id, credencial, usuario, contrasena) values (1, 'Jurado1', 'J1', 'J1');
+insert into JuradoEntity (id, credencial, usuario, contrasena) values (2, 'Jurado2', 'J2', 'J2');
+insert into JuradoEntity (id, credencial, usuario, contrasena) values (3, 'Jurado3', 'J3', 'J3');
+insert into JuradoEntity (id, credencial, usuario, contrasena) values (4, 'Jurado4', 'J4', 'J4');
+insert into JuradoEntity (id, credencial, usuario, contrasena) values (5, 'Jurado5', 'J5', 'J5');
+
 insert into VotacionEntity (id, idAnimacion, puntos, numRonda, ronda_id, jurado_id) values (1, 1, 4, 2, 5, 5);
 insert into VotacionEntity (id, idAnimacion, puntos, numRonda, ronda_id, jurado_id) values (2, 1, 1, 1, 3, 1);
 insert into VotacionEntity (id, idAnimacion, puntos, numRonda, ronda_id, jurado_id) values (3, 2, 2, 2, 4, 1);
