@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.animaciones.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -26,28 +27,28 @@ public class RondaEntity extends BaseEntity implements Serializable {
     /**
      * @return the votaciones
      */
-    public ArrayList <VotacionEntity> getVotaciones() {
+    public List <VotacionEntity> getVotaciones() {
         return votaciones;
     }
 
     /**
      * @param votaciones the votaciones to set
      */
-    public void setVotaciones(ArrayList <VotacionEntity> votaciones) {
+    public void setVotaciones(List <VotacionEntity> votaciones) {
         this.votaciones = votaciones;
     }
 
     /**
      * @return the animacionesPartcipantes
      */
-    public ArrayList<AnimacionParticipanteEntity> getAnimacionesPartcipantes() {
+    public List<AnimacionParticipanteEntity> getAnimacionesPartcipantes() {
         return animacionesPartcipantes;
     }
 
     /**
      * @param animacionesPartcipantes the animacionesPartcipantes to set
      */
-    public void setAnimacionesPartcipantes(ArrayList<AnimacionParticipanteEntity> animacionesPartcipantes) {
+    public void setAnimacionesPartcipantes(List<AnimacionParticipanteEntity> animacionesPartcipantes) {
         this.animacionesPartcipantes = animacionesPartcipantes;
     }
 
@@ -75,6 +76,7 @@ public class RondaEntity extends BaseEntity implements Serializable {
     public RondaEntity() {
 
     }
+       
 
     @PodamExclude
     @ManyToOne()
@@ -83,10 +85,10 @@ public class RondaEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @OneToMany(mappedBy = "ronda", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private ArrayList<AnimacionParticipanteEntity> animacionesPartcipantes = new ArrayList<>();
+    private List<AnimacionParticipanteEntity> animacionesPartcipantes = new ArrayList<>();
     @PodamExclude
     @OneToMany(mappedBy = "ronda")
-    private ArrayList <VotacionEntity> votaciones = new ArrayList<>();
+    private List <VotacionEntity> votaciones = new ArrayList<>();
     /**
      * @return the numero
      */
@@ -127,6 +129,23 @@ public class RondaEntity extends BaseEntity implements Serializable {
      */
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
+    }
+    
+    public boolean equals(Object obj){
+        if (! super.equals(obj)) {
+      return false;
+    }
+        RondaEntity re = (RondaEntity) obj;
+        if(this.numero == re.getNumero()
+        && this.animacionesPartcipantes == re.getAnimacionesPartcipantes()
+        && this.concurso.equals(re.getConcurso())
+        && this.fechaFin.equals(re.getFechaFin())
+        && this.fechaInicio.equals(re.getFechaInicio())
+        && this.votaciones == re.getVotaciones())
+        {
+            return true;
+        }
+        return false;
     }
 
 }
