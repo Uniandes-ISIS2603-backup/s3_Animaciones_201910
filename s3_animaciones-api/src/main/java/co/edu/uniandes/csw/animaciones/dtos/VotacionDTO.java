@@ -24,7 +24,8 @@ public class VotacionDTO implements Serializable{
     public VotacionDTO(VotacionEntity ve){
         if(ve!=null)
         {
-                    setId(ve.getId());
+            
+         setId(ve.getId());
         setIdAnimacion(ve.getIdAnimacion());
         setPuntos(ve.getPuntos());
         setRonda(ve.getNumRonda());
