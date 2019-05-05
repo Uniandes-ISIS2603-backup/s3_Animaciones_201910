@@ -59,7 +59,9 @@ public class PropuestaDTO implements Serializable {
             }else{
                 estado = Estado.ENPROCESO;
             }
-            factura = new FacturaDTO(yo.getFactura());  
+            if(yo.getFactura()!=null){
+                factura = new FacturaDTO(yo.getFactura()); 
+            }             
         }
     
     }
@@ -86,14 +88,14 @@ public class PropuestaDTO implements Serializable {
     /**
      * @return the precio
      */
-    public int getPrecio() {
+    public Integer getPrecio() {
         return precio;
     }
 
     /**
      * @param precio the precio to set
      */
-    public void setPrecio(int precio) {
+    public void setPrecio(Integer precio) {
         this.precio = precio;
     }
 
@@ -136,7 +138,9 @@ public class PropuestaDTO implements Serializable {
         }
         yo.setId(id);
         yo.setPrecio(precio);
-        yo.setFactura(factura.toEntity());
+        if(factura!=null){
+            yo.setFactura(factura.toEntity());
+        }        
         return yo;
     }
 }

@@ -60,6 +60,18 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
     //
     //METODOS
     //
+    
+     public AnimacionParticipanteEntity toEntity(){
+        AnimacionParticipanteEntity ape = new AnimacionParticipanteEntity();
+        ape.setPuntaje(puntaje);
+        ape.setPuesto(puesto);
+        ape.setFinalista(finalista);
+        ape.setDinero(dinero);
+        if(ronda != null){
+            ape.setRonda(ronda.toEntity());
+        }
+        return ape;
+    }
 
     /**
      * metodo que retorna el puntaje de la animacion participante
@@ -121,6 +133,22 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
      */
     public void setDinero(Integer dinero) {
         this.dinero = dinero;
+    }
+
+   /**
+     * metodo que retorna la ronda a la que pertenece la animacionParticipante
+     * @return the ronda
+     */
+    public RondaDTO getRonda() {
+        return ronda;
+    }
+
+    /**
+     * metodo que modifica la ronda a la que pertenece la animacionParticipante
+     * @param ronda the ronda to set
+     */
+    public void setRonda(RondaDTO ronda) {
+        this.ronda = ronda;
     }
 
      

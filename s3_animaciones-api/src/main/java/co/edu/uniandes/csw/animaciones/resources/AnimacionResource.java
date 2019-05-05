@@ -132,6 +132,14 @@ public class AnimacionResource {
         return nuevoCalificacionDTO;
     }
     
+    @PUT
+    @Path("{animacionId: \\d+}/calificaciones/{calificacionId: \\d+}")
+    public CalificacionDTO updateCalificacion(@PathParam("animacionId") Long animacionId, @PathParam("calificacionId") Long calificacionId, CalificacionDTO calificacion){
+        calificacion.setId(calificacionId);
+        CalificacionDTO nueva = new CalificacionDTO(acl.update(calificacion.toEntity()));
+        return nueva;
+    }
+    
     @DELETE
     @Path("{animacionId: \\d+}/calificaciones/{calificacionId: \\d+}")
     public void deleteCalifiacion(@PathParam("animacionId") Long animacionID, @PathParam("calificacionId") Long calificacionID){

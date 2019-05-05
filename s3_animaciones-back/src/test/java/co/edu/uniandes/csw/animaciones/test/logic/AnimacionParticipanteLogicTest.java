@@ -129,7 +129,7 @@ public class AnimacionParticipanteLogicTest {
         }
     }
     
-    @Test
+   /** @Test ni se debe actualizar ni se debe borrar animaciones
     public void updateAnimacionParticipanteTest() {
         AnimacionParticipanteEntity ape = dataAPE.get(0);
         PodamFactory factory = new PodamFactoryImpl();
@@ -148,5 +148,6 @@ public class AnimacionParticipanteLogicTest {
         AnimacionParticipanteEntity ape2 = em.find(AnimacionParticipanteEntity.class, ape.getId());
         Assert.assertNull(ape2);
     }
+*/
 
 }

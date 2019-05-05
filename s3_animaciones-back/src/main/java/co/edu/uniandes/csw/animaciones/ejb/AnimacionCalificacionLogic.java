@@ -39,6 +39,11 @@ public class AnimacionCalificacionLogic {
         return calificacion;
     }
     
+    public CalificacionEntity update(CalificacionEntity entity) {
+        cp.update(entity);
+        return entity;
+    }
+    
     public List<CalificacionEntity> getAnimaciones(Long idAnimacion) {
         return ap.find(idAnimacion).getCalificaciones();
     }
