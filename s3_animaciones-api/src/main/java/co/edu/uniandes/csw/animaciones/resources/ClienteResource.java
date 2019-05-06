@@ -110,17 +110,17 @@ public class ClienteResource {
      *
      * @param clienteId Identificador del cliente que se desea actualizar. Este
      * debe ser una cadena de dígitos.
-     * @param cliente {@link AuthorDetailDTO} El cliente que se desea guardar.
-     * @return JSON {@link AuthorDetailDTO} - El cliente guardado.
+     * @param cliente {@link ClienteDto} El cliente que se desea guardar.
+     * @return JSON {@link ClienteDto} - El cliente guardado.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra el cliente a
      * actualizar.
      */
     @PUT
     @Path("{clienteId: \\d+}")
-    public ClienteDetailDTO updateCliente(@PathParam("clienteId") Long clienteId, ClienteDetailDTO cliente) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "ClienteResource updateAuthor: input: clienteId: {0} , cliente: {1}", new Object[]{clienteId, cliente});
-       // cliente.setId(clienteId);
+    public ClienteDetailDTO updateCliente(@PathParam("clienteId") Long clienteId, ClienteDTO cliente) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "ClienteResource updateCliente: input: clienteId: {0} , cliente: {1}", new Object[]{clienteId, cliente});
+        cliente.setId(clienteId);
         if (logic.getCliente(clienteId) == null) {
             throw new WebApplicationException("El recurso /cliente/" + clienteId + " no existe.", 404);
         }

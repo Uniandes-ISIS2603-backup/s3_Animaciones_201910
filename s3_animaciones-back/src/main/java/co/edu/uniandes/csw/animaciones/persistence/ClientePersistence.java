@@ -23,7 +23,7 @@ import javax.persistence.TypedQuery;
 public class ClientePersistence {
     
     
-      private final static Logger  LOGGER = Logger.getLogger(FacturaPersistence.class.getName());
+      private final static Logger  LOGGER = Logger.getLogger(ClientePersistence.class.getName());
     
     @PersistenceContext(unitName = "animacionesPU")
     protected EntityManager em;
