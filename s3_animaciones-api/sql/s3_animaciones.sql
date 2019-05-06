@@ -11,9 +11,7 @@ insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrase
 insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (4, 1, 'Sherlocke', 'Tildie', 'Tanhya', 'tcammacke3', 'UINQxq0kw1i');
 insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (5, 0, 'Ebba', 'Nollie', 'Kali', 'kquinnell4', 'eILC4Qe3tapk');
 
-insert into AnimacionEntity (id, nombre, descripcion, precio, tecnica, tags, calificacion, link, fecha, artista_id, typeofanimation) values (1, 'Xunlei Limited', 'Mock Goldenweed', 867, 'Striped hyena', 'Hyaena hyaena', 5, 'Eget.jpeg', '10/20/2018', 1, 'A');
-insert into AnimacionEntity (id, nombre, descripcion, precio, tecnica, tags, calificacion, link, fecha, artista_id, typeofanimation) values (2, 'Public Storage', 'British Felt Lichen', 385, 'Long-necked turtle', 'Chelodina longicollis', 1, 'SedInterdumVenenatis.pdf', '3/15/2018', 2, 'A');
-insert into AnimacionEntity (id, nombre, descripcion, precio, tecnica, tags, calificacion, link, fecha, artista_id, typeofanimation) values (3, 'Ares Capital Corporation', 'Blessed Thistle', 148, 'Trumpeter, green-winged', 'Psophia viridis', 1, 'DonecSemper.jpeg', '8/2/2018', 2, 'A');
+insert into AnimacionEntity (id, nombre, descripcion, precio, tecnica, tags, calificacion, link, fecha, artista_id, typeofanimation) values (1, 'Xunlei Limited', 'Mock Goldenweed', 867, 'Striped hyena', 'Hyaena hyaena', 5, 'https://www.youtube.com/embed/M3iOROuTuMA', '10/20/2018', 1, 'A');
 
 insert into RondaEntity (id, numero, fechaInicio, fechaFin) values (1, 2, '4/14/2018', '5/6/2018');
 insert into RondaEntity (id, numero, fechaInicio, fechaFin) values (2, 1, '4/30/2018', '5/8/2018');
