@@ -40,6 +40,8 @@ public class PropuestaDTO implements Serializable {
     
     private FacturaDTO factura;
     
+    private Long idCliente;
+    
    // private ClienteDTO cliente;
     
    // private ArtistaDTO artista;
@@ -52,6 +54,7 @@ public class PropuestaDTO implements Serializable {
         if(yo!=null){
             id = yo.getId();
             precio = yo.getPrecio();
+            idCliente = yo.getIdCliente();
             if(yo.getEstado()==FacturaEntity.Estado.ACEPTADO){
                 estado = Estado.ACEPTADO;
             }else if(yo.getEstado()==FacturaEntity.Estado.RECHAZADO){
@@ -127,6 +130,14 @@ public class PropuestaDTO implements Serializable {
         this.factura = factura;
     }
     
+    public Long getIdCliente(){
+        return idCliente;
+    }
+    
+    public void setIdCliente(Long sapo){
+        this.idCliente = sapo;
+    }
+    
     public PropuestaEntity toEntity(){
         PropuestaEntity yo = new PropuestaEntity();
         if(estado==Estado.ACEPTADO){
@@ -138,6 +149,7 @@ public class PropuestaDTO implements Serializable {
         }
         yo.setId(id);
         yo.setPrecio(precio);
+        yo.setIdCliente(idCliente);
         if(factura!=null){
             yo.setFactura(factura.toEntity());
         }        

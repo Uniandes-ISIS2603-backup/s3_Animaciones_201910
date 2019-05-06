@@ -35,6 +35,8 @@ public class PropuestaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToOne(mappedBy = "propuesta", fetch =FetchType.LAZY/*, cascade = CascadeType.PERSIST*/)
     private FacturaEntity factura;
+    
+    private Long idCliente;
 
     
     public PropuestaEntity(){
@@ -109,6 +111,14 @@ public class PropuestaEntity extends BaseEntity implements Serializable {
      */
     public void setFactura(FacturaEntity factura) {
         this.factura = factura;
+    }
+    
+    public Long getIdCliente(){
+        return idCliente;
+    }
+    
+    public void setIdCliente(Long sapo){
+        this.idCliente = sapo;
     }
     
    
