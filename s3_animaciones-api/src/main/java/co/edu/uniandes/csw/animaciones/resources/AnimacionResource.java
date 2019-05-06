@@ -129,6 +129,9 @@ public class AnimacionResource {
     @Path("{animacionId: \\d+}/calificaciones")
     public CalificacionDTO createCalificacion(@PathParam("animacionId") Long animacionId, CalificacionDTO calificacion) throws BusinessLogicException {
         CalificacionDTO nuevoCalificacionDTO = new CalificacionDTO(acl.addCalificacion( animacionId, calificacion.toEntity()));
+        if(nuevoCalificacionDTO == null){
+            throw new WebApplicationException("Error la califiacion no puede ser nula",404);
+        }
         return nuevoCalificacionDTO;
     }
     
@@ -137,6 +140,9 @@ public class AnimacionResource {
     public CalificacionDTO updateCalificacion(@PathParam("animacionId") Long animacionId, @PathParam("calificacionId") Long calificacionId, CalificacionDTO calificacion){
         calificacion.setId(calificacionId);
         CalificacionDTO nueva = new CalificacionDTO(acl.update(calificacion.toEntity()));
+        if(nueva == null){
+            throw new WebApplicationException("La calificacon nueva no puede ser nula", 404);
+        }
         return nueva;
     }
     
