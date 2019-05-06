@@ -5,6 +5,8 @@ import co.edu.uniandes.csw.animaciones.dtos.PropuestaDTO;
 import co.edu.uniandes.csw.animaciones.ejb.PropuestaLogic;
 import co.edu.uniandes.csw.animaciones.entities.PropuestaEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -34,6 +36,19 @@ public class PropuestaResource {
     public PropuestaDTO crear(PropuestaDTO yo) throws BusinessLogicException{
         PropuestaEntity fe = pl.createP(yo.toEntity());
         return new PropuestaDTO(fe);
+    }
+    
+    @GET
+    public List<PropuestaDTO> darPropuestas(){
+        List<PropuestaEntity> sapos = pl.getAllP();
+        List<PropuestaDTO> bigSapos = new ArrayList();
+        if (sapos!=null){            
+            for(PropuestaEntity sapingo: sapos){
+                PropuestaDTO granSapo = new PropuestaDTO(sapingo);
+                bigSapos.add(granSapo);
+            }
+        }
+        return bigSapos;
     }
     
     @GET
@@ -84,4 +99,6 @@ public class PropuestaResource {
             return new PropuestaDTO(fe);
         }
     }
+    
+    
 }
