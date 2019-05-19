@@ -1,9 +1,19 @@
-delete from AnimacionEntity;
 delete from ArtistaEntity;
+delete from MediodepagoEntity;
+
 delete from RondaEntity;
+delete from AnimacionEntity;
+
+delete from RondaEntity;
+delete from JuradoEntity;
 delete from VotacionEntity;
 delete from CalificacionEntity;
 delete from ClienteEntity;
+
+delete from facturaEntity;
+delete from ConcursoEntity;
+
+
 
 insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (1, 0, 'David Firth', 'Candice', 'Erin', 'DavidFirth', 'fZR73XIKI');
 insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (2, 0, 'Becky and Joe', 'Normy', 'Trevar', 'beckyandjoe', 'p77HvSdgaO');
