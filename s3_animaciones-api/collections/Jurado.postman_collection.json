@@ -1,21 +1,21 @@
 {
 	"info": {
-		"_postman_id": "03b0afd0-ad21-4d22-b220-36b9d5dc27f3",
-		"name": "concurso",
+		"_postman_id": "ac1aea4d-a40e-4383-91e1-5a8ff18a0b55",
+		"name": "Jurado",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/concursos",
+			"name": "POST Jurados",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "ff96d466-19bb-4f1a-b93b-8f4cca1605f1",
+						"id": "2f4eb22b-f5a3-4e51-a5bb-c90103fa6141",
 						"exec": [
-							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"id-concurso\",data.id);",
-							"tests[\"no genera error en el post\"]= responseCode.code === 200;"
+							"var response=JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_jurado\",response.id);",
+							"tests[\"No genera error\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
 					}
@@ -33,10 +33,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\n\"id\":3,\n\"organizador\": 2,\n\"tema\": \"patos\",\n\"tecnica\": \"animacionCompleta\",\n\"reglas\":\"no Mas De 30 minutos por animacion\"\n\n}"
+					"raw": "{\r\n    \"usuario\": \"usuario1\",\r\n    \"contrasena\": \"contrasena1\",\r\n    \"id\": 1,\r\n    \"concurso\":\"\",\r\n    \"votaciones\": \"\",\r\n    \"credencial\": \"\"\r\n  }"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/concursos",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/jurados",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -45,22 +45,21 @@
 					"path": [
 						"s3_animaciones-api",
 						"api",
-						"concursos"
+						"jurados"
 					]
-				},
-				"description": "a"
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get concurso",
+			"name": "GET jurado",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "8caac25f-f496-47a7-993f-e6731896fda7",
+						"id": "6923bb75-c978-48e9-aff9-d6f30a327a3d",
 						"exec": [
-							"tests[\"no genera error en el post\"]= responseCode.code === 200;"
+							"tests[\"No genera error\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
 					}
@@ -74,7 +73,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/concursos/{{id-concurso}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/jurados/concursos/jurados/{{new_jurado}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -83,22 +82,24 @@
 					"path": [
 						"s3_animaciones-api",
 						"api",
+						"jurados",
 						"concursos",
-						"{{id-concurso}}"
+						"jurados",
+						"{{new_jurado}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get concursos",
+			"name": "GET jurado all",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "8caac25f-f496-47a7-993f-e6731896fda7",
+						"id": "6923bb75-c978-48e9-aff9-d6f30a327a3d",
 						"exec": [
-							"tests[\"no genera error en el post\"]= responseCode.code === 200;"
+							"tests[\"No genera error\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
 					}
@@ -112,7 +113,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/concursos",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/jurados/all",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -121,7 +122,8 @@
 					"path": [
 						"s3_animaciones-api",
 						"api",
-						"concursos"
+						"jurados",
+						"all"
 					]
 				}
 			},

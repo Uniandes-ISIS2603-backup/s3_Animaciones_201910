@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ba6dfcfb-fc3c-4ca1-94c0-4382666baf0b",
+		"_postman_id": "434a67eb-1244-47f1-b89c-a3bdca994aee",
 		"name": "FacturaResourceTest",
 		"description": "Colección Postman del recurso Factura",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -14,7 +14,8 @@
 					"script": {
 						"id": "0ca4b108-87ff-4b50-8ab2-4522d13f4e28",
 						"exec": [
-							"var yo = JSON.parse(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id-factura\",data.id);",
 							"tests[\"El post no lanza error\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -85,7 +86,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/facturas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/facturas/{{id-factura}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -95,7 +96,7 @@
 						"s3_animaciones-api",
 						"api",
 						"facturas",
-						"1"
+						"{{id-factura}}"
 					]
 				}
 			},
@@ -180,7 +181,7 @@
 					"raw": "{\n    \"idAnim\": 40,\n    \"id\": 1\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/facturas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/facturas/{{id-factura}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -190,7 +191,7 @@
 						"s3_animaciones-api",
 						"api",
 						"facturas",
-						"1"
+						"{{id-factura}}"
 					]
 				}
 			},
