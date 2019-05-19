@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/facturas/1",
+			"name": "Crear Factura",
 			"event": [
 				{
 					"listen": "test",
@@ -28,8 +28,8 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {
