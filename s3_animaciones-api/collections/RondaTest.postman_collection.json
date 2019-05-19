@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "3b07a281-5db0-4ae2-b30d-56113561f337",
+		"name": "RondaTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear Ronda",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0dd8e1ea-77d2-43db-a914-4e24691d1332",
+						"exec": [
+							"var response=JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_ronda\",response.id);",
+							"tests[\"Crear ronda  funciona\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"numero\": 1,\n\"fechaInicio\":\"2019-08-20T00:00:00-05:00\",\n\"fechaFin\": \"2019-10-20T00:00:00-05:00\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/rondas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"rondas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get una Ronda",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0dd8e1ea-77d2-43db-a914-4e24691d1332",
+						"exec": [
+							"",
+							"tests[\"Get una ronda  funciona\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/rondas/{{new_ronda}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"rondas",
+						"{{new_ronda}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
