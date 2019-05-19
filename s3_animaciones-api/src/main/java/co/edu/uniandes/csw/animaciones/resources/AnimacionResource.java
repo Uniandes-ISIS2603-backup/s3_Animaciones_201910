@@ -128,6 +128,9 @@ public class AnimacionResource {
     @POST
     @Path("{animacionId: \\d+}/calificaciones")
     public CalificacionDTO createCalificacion(@PathParam("animacionId") Long animacionId, CalificacionDTO calificacion) throws BusinessLogicException {
+       if ( animacionl.getAnimacion(animacionId) == null)
+           throw new WebApplicationException("Error la animacion no existe",404);
+       
         CalificacionDTO nuevoCalificacionDTO = new CalificacionDTO(acl.addCalificacion( animacionId, calificacion.toEntity()));
         if(nuevoCalificacionDTO == null){
             throw new WebApplicationException("Error la califiacion no puede ser nula",404);
