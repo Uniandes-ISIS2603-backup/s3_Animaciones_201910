@@ -1,11 +1,57 @@
 {
 	"info": {
-		"_postman_id": "0ce1ff7a-78a0-4e23-806a-435b2ef3a7e2",
+		"_postman_id": "9696a821-d5c5-44ce-b89e-9e8773b40109",
 		"name": "TestArtista",
 		"description": "Test Artista",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "POST Artista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c6efc1eb-6755-4111-8a76-bf8e21192118",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id-artista\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"nombre\" : \"luis\",\n\t\"usuario\": \"luis\",\n\t\"contrasenia\": \"luis\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/artistas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"artistas"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "GET Todos",
 			"event": [
@@ -16,7 +62,7 @@
 						"exec": [
 							"var data= JSON.parse(responseBody);",
 							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
-							"tests[\"artistas count\"] = data.length > 1;"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -30,12 +76,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/artistas",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/artistas",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{port}}",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_animaciones-api",
 						"api",
@@ -69,63 +115,17 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/artistas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/artistas/{{id-artista}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{port}}",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_animaciones-api",
 						"api",
 						"artistas",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST Artista",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "c6efc1eb-6755-4111-8a76-bf8e21192118",
-						"exec": [
-							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"id-nuevo\",data.id);",
-							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{ \"nombre\" : \"juan\",\n\t\"usuario\": \"juan\",\n\t\"contrasenia\": \"juan\"\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/artistas",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"s3_animaciones-api",
-						"api",
-						"artistas"
+						"{{id-artista}}"
 					]
 				}
 			},
@@ -161,17 +161,17 @@
 					"raw": "{ \"nombre\" : \"juan\",\n\t\"usuario\": \"juan\",\n\t\"contrasenia\": \"juan5\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/artistas/{{id-nuevo}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/artistas/{{id-artista}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{port}}",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_animaciones-api",
 						"api",
 						"artistas",
-						"{{id-nuevo}}"
+						"{{id-artista}}"
 					]
 				}
 			},
@@ -199,17 +199,17 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/artistas/{{id-nuevo}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/artistas/{{id-artista}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{port}}",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_animaciones-api",
 						"api",
 						"artistas",
-						"{{id-nuevo}}"
+						"{{id-artista}}"
 					]
 				}
 			},
