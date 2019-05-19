@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "ffebfb16-b04e-4c11-9e7e-a7061f379e78",
+		"name": "TestAnimacionParticipante",
+		"description": "Test Animacion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST Artista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1dfb65b5-07cf-4998-b112-658e6fabf840",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id-artista\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"nombre\" : \"juan\",\n\t\"usuario\": \"juan\",\n\t\"contrasenia\": \"juan\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/artistas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"artistas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Animacion Participante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1dfb65b5-07cf-4998-b112-658e6fabf840",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id-animacionP\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"asdf\",\n\t\"descripcionn\": \"muy bueno\",\n\t\"precio\": 5,\n\t\"tecnica\": \"grasd\",\n\t\"tags\": \"fun lol omg\",\n\t\"link\": \"./asdf.PNG\",\n\t\"calificacion\": 0,\n\t\"artista\": { \"id\": {{id-artista}} },\n\t\"fecha\": \"2000-08-20T00:00:00-05:00\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/animacionesParticipantes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"animacionesParticipantes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Una",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4f1a8b52-b5b8-41e4-aec9-9c0b9aa6d4b5",
+						"exec": [
+							"",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/animacionesParticipantes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"animacionesParticipantes"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "7ad17c63-dc09-46bf-81b4-7a96ecca0de1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "64b1993f-df75-443d-82df-e0fdb98deace",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

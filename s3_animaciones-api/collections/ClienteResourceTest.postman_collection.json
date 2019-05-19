@@ -64,7 +64,7 @@
 						"id": "065e8496-a209-4bc6-9c0e-551b41916ba3",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"id-nuevo\",data.id);",
+							"postman.setGlobalVariable(\"id-cliente\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -135,7 +135,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/clientes/{{id-nuevo}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/clientes/{{id-cliente}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -145,7 +145,7 @@
 						"s3_animaciones-api",
 						"api",
 						"clientes",
-						"{{id-nuevo}}"
+						"{{id-cliente}}"
 					]
 				}
 			},
@@ -182,7 +182,7 @@
 					"raw": "\n{\n\"nombre\": \"Juanito \" , \n\"informacion\": \"The king in the north\",\n\"usuario\":\"Aegon \", \n\n\"contrasenia\": \"lordcomander123\"\n\t\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/clientes/{{id-nuevo}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/clientes/{{id-cliente}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -192,7 +192,7 @@
 						"s3_animaciones-api",
 						"api",
 						"clientes",
-						"{{id-nuevo}}"
+						"{{id-cliente}}"
 					]
 				}
 			},
@@ -227,7 +227,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/clientes/{{id-nuevo}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/clientes/{{id-cliente}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -237,7 +237,7 @@
 						"s3_animaciones-api",
 						"api",
 						"clientes",
-						"{{id-nuevo}}"
+						"{{id-cliente}}"
 					]
 				}
 			},
