@@ -179,7 +179,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "\n{\n\"nombre\": \"Juanito Nieves\" , \n\"informacion\": \"The king in the north\",\n\"usuario\":\"Aegon Targaryen\", \n\n\"contrasenia\": \"lordcomander123\"\n\t\n}"
+					"raw": "\n{\n\"nombre\": \"Juanito \" , \n\"informacion\": \"The king in the north\",\n\"usuario\":\"Aegon \", \n\n\"contrasenia\": \"lordcomander123\"\n\t\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/clientes/{{id-nuevo}}",
