@@ -2,7 +2,6 @@ package co.edu.uniandes.csw.animaciones.entities;
 
 import co.edu.uniandes.csw.animaciones.entities.FacturaEntity.Estado;
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -33,7 +32,7 @@ public class PropuestaEntity extends BaseEntity implements Serializable {
     private ClienteEntity cliente;    
 
     @PodamExclude
-    @OneToOne(mappedBy = "propuesta", fetch =FetchType.LAZY/*, cascade = CascadeType.PERSIST*/)
+    @OneToOne(mappedBy = "propuesta", fetch =FetchType.LAZY)
     private FacturaEntity factura;
     
     private Long idCliente;

@@ -18,7 +18,6 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -69,7 +68,7 @@ public class AnimacionParticipanteResource {
      * @return dto de la animacion buscada
      */
     @GET
-    @Path("{animacionParticipanteId: \\+d}")
+    @Path("{animacionParticipanteId: \\d+}")
     public AnimacionParticipanteDTO getAnimacionParticipante(@PathParam("animacionParticipanteId") Long animacionParticipanteId) {
         AnimacionParticipanteEntity ape = apl.find(animacionParticipanteId);
         if (ape == null) {

@@ -1,21 +1,21 @@
 {
 	"info": {
-		"_postman_id": "03b0afd0-ad21-4d22-b220-36b9d5dc27f3",
-		"name": "concurso",
+		"_postman_id": "745a0738-7dc6-48bd-99f3-731972b42644",
+		"name": "Medio de pago",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/concursos",
+			"name": "POST medio de pago",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "ff96d466-19bb-4f1a-b93b-8f4cca1605f1",
+						"id": "5f4784f3-6712-47f8-9ccc-a244a3849838",
 						"exec": [
-							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"id-concurso\",data.id);",
-							"tests[\"no genera error en el post\"]= responseCode.code === 200;"
+							"var response=JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_mediopago\",response.id);",
+							"tests[\"No genera error\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
 					}
@@ -33,10 +33,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\n\"id\":3,\n\"organizador\": 2,\n\"tema\": \"patos\",\n\"tecnica\": \"animacionCompleta\",\n\"reglas\":\"no Mas De 30 minutos por animacion\"\n\n}"
+					"raw": "{\n        \"codigo\": 32,\n        \"fechaVencimiento\": \"1212-12-12\",\n        \"formaDePago\": \"DEBITO\",\n        \"id\": 1,\n        \"numeroTarjeta\": 323\n }\n    "
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/concursos",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/mediosDePago",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -45,22 +45,21 @@
 					"path": [
 						"s3_animaciones-api",
 						"api",
-						"concursos"
+						"mediosDePago"
 					]
-				},
-				"description": "a"
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get concurso",
+			"name": "Get medio de pago",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "8caac25f-f496-47a7-993f-e6731896fda7",
+						"id": "54365cc8-f461-4d19-a469-f3de7b5d83a2",
 						"exec": [
-							"tests[\"no genera error en el post\"]= responseCode.code === 200;"
+							"tests[\"No genera error\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
 					}
@@ -68,13 +67,20 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/concursos/{{id-concurso}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/mediosDePago/all",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -83,22 +89,22 @@
 					"path": [
 						"s3_animaciones-api",
 						"api",
-						"concursos",
-						"{{id-concurso}}"
+						"mediosDePago",
+						"all"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get concursos",
+			"name": "Get un medio de pago",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "8caac25f-f496-47a7-993f-e6731896fda7",
+						"id": "54365cc8-f461-4d19-a469-f3de7b5d83a2",
 						"exec": [
-							"tests[\"no genera error en el post\"]= responseCode.code === 200;"
+							"tests[\"No genera error\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
 					}
@@ -106,13 +112,20 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/concursos",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/mediosDePago/{{new_mediopago}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -121,7 +134,8 @@
 					"path": [
 						"s3_animaciones-api",
 						"api",
-						"concursos"
+						"mediosDePago",
+						"{{new_mediopago}}"
 					]
 				}
 			},
