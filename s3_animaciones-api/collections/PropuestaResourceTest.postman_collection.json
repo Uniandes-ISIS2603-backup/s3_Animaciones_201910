@@ -1,10 +1,56 @@
 {
 	"info": {
-		"_postman_id": "23d64b8e-4cff-4cc2-9fe8-b75cbc812173",
+		"_postman_id": "780a4aa9-07fe-469a-86e6-3bd7c704f28e",
 		"name": "PropuestaResourceTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Crear Factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9503037-f87a-4b5e-a3d7-339e9682f3d1",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id-factura\",data.id);",
+							"tests[\"El post no lanza error\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idAnim\": 10\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/facturas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"facturas"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/propuestas",
 			"event": [
@@ -13,6 +59,8 @@
 					"script": {
 						"id": "0ca4b108-87ff-4b50-8ab2-4522d13f4e28",
 						"exec": [
+							"var response=JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_propuesta\",response.id);",
 							"tests[\"El post funciona\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -31,7 +79,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"estado\": \"ENPROCESO\",\n    \"precio\": 500,\n    \"factura\":{\n    \t\"idAnim\": 10\n    }\n}"
+					"raw": "{\n    \"estado\": \"ENPROCESO\",\n    \"precio\": 500,\n    \"factura\":{\n    \t\"id\": {{id-factura}}\n    }\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/propuestas",
@@ -81,7 +129,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/propuestas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/propuestas/{{new_propuesta}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -91,7 +139,55 @@
 						"s3_animaciones-api",
 						"api",
 						"propuestas",
-						"1"
+						"{{new_propuesta}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all propuestas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0ca4b108-87ff-4b50-8ab2-4522d13f4e28",
+						"exec": [
+							"tests[\"El get funciona\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/propuestas/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"propuestas",
+						""
 					]
 				}
 			},
@@ -129,7 +225,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/propuestas/1/factura",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/propuestas/{{new_propuesta}}/factura",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -139,7 +235,7 @@
 						"s3_animaciones-api",
 						"api",
 						"propuestas",
-						"1",
+						"{{new_propuesta}}",
 						"factura"
 					]
 				}
@@ -272,7 +368,7 @@
 					"raw": "{\n\t\"precio\": 600\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/propuestas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/propuestas/{{new_propuesta}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -282,7 +378,7 @@
 						"s3_animaciones-api",
 						"api",
 						"propuestas",
-						"1"
+						"{{new_propuesta}}"
 					]
 				}
 			},

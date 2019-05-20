@@ -1,11 +1,101 @@
 {
 	"info": {
-		"_postman_id": "bde27770-ebc5-4924-a262-d3d5ea24a5fc",
+		"_postman_id": "f83550b0-231b-4351-8bf1-0c8320bdb968",
 		"name": "TestAnimacion",
 		"description": "Test Animacion",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "POST Artista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1dfb65b5-07cf-4998-b112-658e6fabf840",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id-artista\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"nombre\" : \"juan\",\n\t\"usuario\": \"juan\",\n\t\"contrasenia\": \"juan\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/artistas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"artistas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Animacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1dfb65b5-07cf-4998-b112-658e6fabf840",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id-animacion\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"asdf\",\n\t\"descripcionn\": \"muy bueno\",\n\t\"precio\": 5,\n\t\"tecnica\": \"grasd\",\n\t\"tags\": \"fun lol omg\",\n\t\"link\": \"./asdf.PNG\",\n\t\"calificacion\": 0,\n\t\"artista\": { \"id\": {{id-artista}} },\n\t\"fecha\": \"2000-08-20T00:00:00-05:00\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/animaciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"animaciones"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "GET Todas",
 			"event": [
@@ -16,7 +106,7 @@
 						"exec": [
 							"var data= JSON.parse(responseBody);",
 							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
-							"tests[\"animaciones count\"] = data.length > 1;"
+							"tests[\"animaciones count\"] = data.length > 0;"
 						],
 						"type": "text/javascript"
 					}
@@ -30,12 +120,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/animaciones",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{port}}",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_animaciones-api",
 						"api",
@@ -69,62 +159,17 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones/{{id-nuevo}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/animaciones/{{id-animacion}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{port}}",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_animaciones-api",
 						"api",
 						"animaciones",
-						"{{id-nuevo}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST Animacion",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "1dfb65b5-07cf-4998-b112-658e6fabf840",
-						"exec": [
-							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"id-nuevo\",data.id);",
-							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"asdf\",\n\t\"descripcionn\": \"muy bueno\",\n\t\"precio\": 5,\n\t\"tecnica\": \"grasd\",\n\t\"tags\": \"fun lol omg\",\n\t\"link\": \"./asdf.PNG\",\n\t\"calificacion\": 0,\n\t\"artista\": { \"id\": 1 },\n\t\"fecha\": \"2000-08-20T00:00:00-05:00\"\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"s3_animaciones-api",
-						"api",
-						"animaciones"
+						"{{id-animacion}}"
 					]
 				}
 			},
@@ -157,20 +202,20 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"asdf\",\n\t\"descripcionn\": \"muy bueno\",\n\t\"precio\": 10,\n\t\"tecnica\": \"grasd\",\n\t\"tags\": \"fun lol omg\",\n\t\"link\": \"./asdf.PNG\",\n\t\"calificacion\": 0,\n\t\"artista\": { \"id\": 1 },\n\t\"fecha\": \"2000-08-20T00:00:00-05:00\"\n}"
+					"raw": "{\n\t\"nombre\": \"asdf\",\n\t\"descripcionn\": \"muy bueno\",\n\t\"precio\": 10,\n\t\"tecnica\": \"grasd\",\n\t\"tags\": \"fun lol omg\",\n\t\"link\": \"./asdf.PNG\",\n\t\"calificacion\": 0,\n\t\"artista\": { \"id\": {{id-artista}} },\n\t\"fecha\": \"2000-08-20T00:00:00-05:00\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones/{{id-nuevo}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/animaciones/{{id-animacion}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{port}}",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_animaciones-api",
 						"api",
 						"animaciones",
-						"{{id-nuevo}}"
+						"{{id-animacion}}"
 					]
 				}
 			},
@@ -198,17 +243,17 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones/{{id-nuevo}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/animaciones/{{id-animacion}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{port}}",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_animaciones-api",
 						"api",
 						"animaciones",
-						"{{id-nuevo}}"
+						"{{id-animacion}}"
 					]
 				}
 			},
