@@ -21,10 +21,17 @@ public class CalificacionDTO implements Serializable {
     private String comentario;
     private Integer calificacion;
    /*
-    * Relación a un animación
+    * Relación a una animación
     * dado que esta tiene cardinalidad 1.
      */
     private AnimacionDTO animacion;
+    
+       /*
+    * Relación a un cliente
+    * dado que esta tiene cardinalidad 1.
+     */
+        private ClienteDTO cliente;
+    
     public CalificacionDTO() {
 
     }
@@ -45,6 +52,14 @@ public class CalificacionDTO implements Serializable {
                 this.animacion = new AnimacionDTO(entity.getAnimacion());
             } else {
                 this.animacion = null;
+            }
+            
+            
+            
+            if (entity.getCliente()!= null) {
+                this.cliente = new ClienteDTO(entity.getCliente());
+            } else {
+                this.cliente = null;
             }
         }
     }
@@ -104,7 +119,23 @@ public class CalificacionDTO implements Serializable {
         entity.setComentario(this.comentario);
            if (this.animacion != null) {
             entity.setAnimacion(this.animacion.toEntity());}
+             if (this.cliente != null) {
+            entity.setCliente(this.cliente.toEntity());}
         
         return entity;
+    }
+
+    /**
+     * @return the cliente
+     */
+    public ClienteDTO getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(ClienteDTO cliente) {
+        this.cliente = cliente;
     }
 }
