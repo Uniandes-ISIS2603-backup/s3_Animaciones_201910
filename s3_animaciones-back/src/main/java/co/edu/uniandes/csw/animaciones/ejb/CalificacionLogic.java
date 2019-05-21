@@ -62,8 +62,8 @@ public class CalificacionLogic {
      * @param idAnim id animacion
      * @return la calificacion deseada
      */
-    public CalificacionEntity getCalificacion(Long idAnim, Long idCal){
-        CalificacionEntity temp = calificacion.find(idAnim, idCal);
+    public CalificacionEntity getCalificacion(Long idCal){
+        CalificacionEntity temp = calificacion.find(idCal);
         return temp;
     }
     
@@ -100,7 +100,7 @@ public class CalificacionLogic {
      *
      */
     public void delete(Long animacionId, Long calificacionId) throws BusinessLogicException {
-        CalificacionEntity old = getCalificacion(animacionId, calificacionId);
+        CalificacionEntity old = getCalificacion(calificacionId);
         if (old == null) {
             throw new BusinessLogicException("El calificacion con id = " + calificacionId + " no esta asociado a el animacion con id = " + animacionId);
         }

@@ -1,8 +1,8 @@
+delete from AnimacionEntity;
 delete from ArtistaEntity;
 delete from MediodepagoEntity;
 
 delete from RondaEntity;
-delete from AnimacionEntity;
 
 delete from RondaEntity;
 delete from JuradoEntity;
@@ -17,9 +17,6 @@ delete from ConcursoEntity;
 
 insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (1, 0, 'David Firth', 'Candice', 'Erin', 'DavidFirth', 'fZR73XIKI');
 insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (2, 0, 'Becky and Joe', 'Normy', 'Trevar', 'beckyandjoe', 'p77HvSdgaO');
-insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (3, 0, 'Alissa', 'Elena', 'Thaxter', 'tmclagan2', 'nqhjex6D');
-insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (4, 0, 'Sherlocke', 'Tildie', 'Tanhya', 'tcammacke3', 'UINQxq0kw1i');
-insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (5, 0, 'Ebba', 'Nollie', 'Kali', 'kquinnell4', 'eILC4Qe3tapk');
 
 insert into AnimacionEntity (id, nombre, descripcion, precio, tecnica, tags, calificacion, link, fecha, artista_id, typeofanimation) values (1, 'Salad Fingers 1: Spoons', 'The very first episode of Salad Fingers', 867, 'Striped hyena', 'Hyaena hyaena', 5, 'OWBFKL6H7rI', '9/3/2013', 1, 'A');
 insert into AnimacionEntity (id, nombre, descripcion, precio, tecnica, tags, calificacion, link, fecha, artista_id, typeofanimation) values (2, 'Salad Fingers 2: Friends', 'Salad Fingers has a few friends over for a fish supper', 385, 'Long-necked turtle', 'Chelodina longicollis', 1, 'cuCw5k-Lph0', '7/4/2008', 1, 'A');
@@ -109,3 +106,4 @@ insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, califi
 
 --select * from AnimacionEntity;
 --select * from ArtistaEntity;
+select * from CalificacionEntity;
