@@ -119,4 +119,4 @@ insert into AnimacionEntity ( id, typeofanimation, ronda_id, puntaje, puesto, fi
 
 --select * from AnimacionEntity;
 --select * from ArtistaEntity;
-select * from CalificacionEntity;
+--select * from CalificacionEntity;
