@@ -88,21 +88,24 @@ public class ConcursoResource {
         return cdd;
     }
 
-    /**
-     * Metodo que actualiza un concurso
-     *
-     * @param concursoId es la id del concurso que se busca actualizar
-     * @param concursoDetailDTO es el detalle actualizado del recurso
-     * @return el detalle actualizado del concurso
-     *
-     * @PUT
-     * @Path("{concursoId: \\d+}") public ConcursoDTO
-     * updateConcurso(@PathParam("concusoId") Long concursoId, ConcursoDetailDTO
-     * concursoDetailDTO) { concursoDetailDTO.setId(concursoId);
-     * if(cl.find(concursoId) == null){ throw new WebApplicationException("El
-     * concurso no existe",404); } ConcursoDTO cd = new
-     * ConcursoDTO(cl.update(concursoDetailDTO.toEntity())); return cd; }
+ 
+     /**Metodo que actualiza un concurso
+     
+      @param concursoId es la id del concurso que se busca actualizar
+      @param concursoDetailDTO es el detalle actualizado del recurso
+     @return el detalle actualizado del concurso
      */
+      @PUT
+      @Path("{concursoId: \\d+}") 
+      public ConcursoDTO updateConcurso(@PathParam("concusoId") Long concursoId, ConcursoDetailDTO concursoDetailDTO){
+      concursoDetailDTO.setId(concursoId);
+      if(cl.find(concursoId) == null){
+          throw new WebApplicationException("Elconcurso no existe",404);
+      } 
+      ConcursoDTO cd = new ConcursoDTO(cl.update(concursoDetailDTO.toEntity())); 
+      return cd;
+      }
+     
     /**
      * metodo que elimina el concurso correspondiente al id ingresado
      *
