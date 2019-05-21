@@ -14,19 +14,19 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class AnimacionDTO implements Serializable{
     
-    private Long id;
-    private String nombre;
-    private String descripcionn;
-    private Integer precio;
-    private String tecnica;
-    private String tags;
-    private String link;
-    private Double calificacion;
+    protected Long id;
+    protected String nombre;
+    protected String descripcionn;
+    protected Integer precio;
+    protected String tecnica;
+    protected String tags;
+    protected String link;
+    protected Double calificacion;
     
-    private ArtistaDTO artista;
+    protected ArtistaDTO artista;
     
     @XmlJavaTypeAdapter(DateAdapter.class)
-    private Date fecha;
+    protected Date fecha;
     
     public AnimacionDTO(){
         
