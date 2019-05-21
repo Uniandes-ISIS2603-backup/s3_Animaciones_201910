@@ -138,4 +138,14 @@ public class CalificacionDTO implements Serializable {
     public void setCliente(ClienteDTO cliente) {
         this.cliente = cliente;
     }
+
+    public AnimacionDTO getAnimacion() {
+        return animacion;
+    }
+
+    public void setAnimacion(AnimacionDTO animacion) {
+        this.animacion = animacion;
+    }
+    
+    
 }

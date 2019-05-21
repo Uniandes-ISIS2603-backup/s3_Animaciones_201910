@@ -146,7 +146,7 @@ public class CalificacionPersistenceTest {
     @Test
     public void findTest() {
         CalificacionEntity entity = data.get(0);
-        CalificacionEntity newEntity = calificacionPersistence.find(dataAnimacion.get(0).getId(), entity.getId());
+        CalificacionEntity newEntity = calificacionPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getComentario(), newEntity.getComentario());
         Assert.assertEquals(entity.getCalificacion(), newEntity.getCalificacion());
