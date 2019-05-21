@@ -128,7 +128,7 @@ public class CalificacionLogicTest {
     @Test
     public void getCalificacionTest() {
          CalificacionEntity entity = data.get(0);
-        CalificacionEntity resultEntity = calificacionLogic.getCalificacion(dataAnimacion.get(1).getId(), entity.getId());
+        CalificacionEntity resultEntity = calificacionLogic.getCalificacion(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getCalificacion(), resultEntity.getCalificacion());

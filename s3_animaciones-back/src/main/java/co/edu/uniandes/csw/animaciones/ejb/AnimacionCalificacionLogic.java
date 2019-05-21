@@ -50,7 +50,7 @@ public class AnimacionCalificacionLogic {
     
     public CalificacionEntity getAimacion(Long idAnimacion, Long idCalificacion) {
         List<CalificacionEntity> list = getAnimaciones(idAnimacion);
-        CalificacionEntity ce = cp.find(idAnimacion,idCalificacion);
+        CalificacionEntity ce = cp.find(idCalificacion);
         int i = list.indexOf(ce);
         if(i >= 0){
             return list.get(i);
@@ -60,7 +60,7 @@ public class AnimacionCalificacionLogic {
     
     public void deleteCalificacion(Long idAnimacion, Long idCalificacion) {
         AnimacionEntity ae = ap.find(idAnimacion);
-        CalificacionEntity ce = cp.find(idAnimacion,idCalificacion);
+        CalificacionEntity ce = cp.find(idCalificacion);
         ae.getCalificaciones().remove(ce);
     }
     

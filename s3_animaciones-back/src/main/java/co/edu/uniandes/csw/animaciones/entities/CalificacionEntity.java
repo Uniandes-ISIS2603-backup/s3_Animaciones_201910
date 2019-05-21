@@ -22,7 +22,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class CalificacionEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private AnimacionEntity animacion;
     
      @PodamExclude

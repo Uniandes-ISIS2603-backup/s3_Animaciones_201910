@@ -1,8 +1,8 @@
+delete from AnimacionEntity;
 delete from ArtistaEntity;
 delete from MediodepagoEntity;
 
 delete from RondaEntity;
-delete from AnimacionEntity;
 
 delete from RondaEntity;
 delete from JuradoEntity;
@@ -17,9 +17,6 @@ delete from ConcursoEntity;
 
 insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (1, 0, 'David Firth', 'Candice', 'Erin', 'DavidFirth', 'fZR73XIKI');
 insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (2, 0, 'Becky and Joe', 'Normy', 'Trevar', 'beckyandjoe', 'p77HvSdgaO');
-insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (3, 0, 'Alissa', 'Elena', 'Thaxter', 'tmclagan2', 'nqhjex6D');
-insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (4, 0, 'Sherlocke', 'Tildie', 'Tanhya', 'tcammacke3', 'UINQxq0kw1i');
-insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (5, 0, 'Ebba', 'Nollie', 'Kali', 'kquinnell4', 'eILC4Qe3tapk');
 
 insert into AnimacionEntity (id, nombre, descripcion, precio, tecnica, tags, calificacion, link, fecha, artista_id, typeofanimation) values (1, 'Salad Fingers 1: Spoons', 'The very first episode of Salad Fingers', 867, 'Striped hyena', 'Hyaena hyaena', 5, 'OWBFKL6H7rI', '9/3/2013', 1, 'A');
 insert into AnimacionEntity (id, nombre, descripcion, precio, tecnica, tags, calificacion, link, fecha, artista_id, typeofanimation) values (2, 'Salad Fingers 2: Friends', 'Salad Fingers has a few friends over for a fish supper', 385, 'Long-necked turtle', 'Chelodina longicollis', 1, 'cuCw5k-Lph0', '7/4/2008', 1, 'A');
@@ -68,9 +65,45 @@ insert into VotacionEntity (id, idAnimacion, puntos, numRonda, ronda_id, jurado_
 insert into ClienteEntity (id, nombre, informacion, usuario, contrasenia) values (1, 'Juan', 'yo soy juan', 'JJ', 'jajaja123');
 insert into ClienteEntity (id, nombre, informacion, usuario, contrasenia) values (2, 'Daniel', 'yo soy Dany', 'dany', 'jeje123');
 insert into ClienteEntity (id, nombre, informacion, usuario, contrasenia) values (3, 'Camila', 'yo soy tu padre', 'camilauno', 'darcy123');
-insert into ClienteEntity (id, nombre, informacion, usuario, contrasenia) values (4, 'Juliana', 'yo soy yo', 'juliMa', 'daslkjfNÑ');
+insert into ClienteEntity (id, nombre, informacion, usuario, contrasenia) values (4, 'Light', 'El dios del nuevo mundo', 'Kira', 'daslkjfNÑ');
+insert into ClienteEntity (id, nombre, informacion, usuario, contrasenia) values (6, 'Kakaroto', 'Hola, soy Goku', 'Goku', 'vamosapelear345');
+insert into ClienteEntity (id, nombre, informacion, usuario, contrasenia) values (7, 'Shin', 'No soy raro', 'Wolford', 'fisica123');
+insert into ClienteEntity (id, nombre, informacion, usuario, contrasenia) values (8, 'Anakin Skywaler', 'yo soy tu padre', 'Darth Vader', 'darthvadersito123');
+insert into ClienteEntity (id, nombre, informacion, usuario, contrasenia) values (9, 'Naruto', 'Algún día seré Hokage', 'El Séptimo', 'elseptimo');
 
-insert into CalificacionEntity (id, animacion_id, cliente_id, comentario) values (1, 1, 1, 'Muy buena me gusto mucho');
+
+
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (1, 1, 1, 'Muy buena, me gustó mucho', 8);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (2, 1, 6, 'Buena, me gustó ', 7);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (3, 1, 7, 'Bastante buena pero no es perfecta', 9);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (4, 2, 2, 'Regular, ni buena, ni mala', 5);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (5, 2, 8, 'No me gustó pero no estuvo tan mal', 4);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (6, 3, 3, 'Me gustó ', 8);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (7, 4, 9, 'Hagan más como esta', 8);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (8, 5, 1, 'Excelente', 10);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (9, 6, 2, 'Aceptable, no es la mejor', 7);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (10, 7, 4, 'Puedo vivir con eso', 6);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (11, 8, 6, 'Toma tu like, ah cierto, no puedo dar like', 8);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (12, 9, 3, 'De lo peor', 3);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (13, 10, 2, 'Meh, aguanta', 7);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (14, 10, 1, 'Le daría me encorazona si pudiera xd :v', 8);
+
+
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (15, 10, 1, 'Muy buena, me gustó mucho', 8);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (16, 11, 7, 'Buena, me gustó ', 7);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (17, 12, 8, 'Bastante buena pero no es perfecta', 9);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (18, 12, 8, 'Regular, ni buena, ni mala', 5);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (19, 12, 2, 'No me gustó pero no estuvo tan mal', 4);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (20, 13, 9, 'Me gustó ', 8);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (21, 14, 3, 'Hagan más como esta', 8);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (22, 15, 1, 'Excelente', 10);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (23, 16, 2, 'Aceptable, no es la mejor', 7);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (24, 17, 9, 'Puedo vivir con eso', 6);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (25, 15, 4, 'Toma tu like, ah cierto, no puedo dar like', 8);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (26, 17, 8, 'De lo peor', 3);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (27, 11, 7, 'Meh, aguanta', 7);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (28, 8, 1, 'Le daría me encorazona si pudiera xd :v', 8);
 
 --select * from AnimacionEntity;
 --select * from ArtistaEntity;
+select * from CalificacionEntity;

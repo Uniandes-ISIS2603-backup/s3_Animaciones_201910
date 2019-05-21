@@ -107,7 +107,7 @@ public class AnimacionResource {
     @GET
     @Path("{animacionId: \\d+}/calificaciones/{calificacionId: \\d+}")
     public CalificacionDTO getCalificacion(@PathParam("animacionId") Long animacionID, @PathParam("calificacionId") Long calificacionID){
-        CalificacionEntity ce = calificacionl.getCalificacion(animacionID,calificacionID);
+        CalificacionEntity ce = calificacionl.getCalificacion(calificacionID);
         if(ce == null){
             throw new WebApplicationException("La califiocacion no existe",404);
         }
@@ -152,7 +152,7 @@ public class AnimacionResource {
     @DELETE
     @Path("{animacionId: \\d+}/calificaciones/{calificacionId: \\d+}")
     public void deleteCalifiacion(@PathParam("animacionId") Long animacionID, @PathParam("calificacionId") Long calificacionID){
-        CalificacionEntity ce = calificacionl.getCalificacion(animacionID,calificacionID);
+        CalificacionEntity ce = calificacionl.getCalificacion(calificacionID);
         if(ce == null){
             throw new WebApplicationException("La califiocacion no existe",404);
         }
