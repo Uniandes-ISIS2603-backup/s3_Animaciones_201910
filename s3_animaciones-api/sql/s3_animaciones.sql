@@ -106,4 +106,4 @@ insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, califi
 
 --select * from AnimacionEntity;
 --select * from ArtistaEntity;
-select * from CalificacionEntity;
+--select * from CalificacionEntity;
