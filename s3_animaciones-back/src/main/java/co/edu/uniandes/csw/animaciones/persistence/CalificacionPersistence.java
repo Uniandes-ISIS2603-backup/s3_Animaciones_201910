@@ -81,8 +81,8 @@ public class CalificacionPersistence {
      * @return La reseña encontrada o null. Nota: Si existe una o más reseñas
      * devuelve siempre la primera que encuentra
      */
-    public CalificacionEntity find(Long animacionId, Long calificacionId) {
-        LOGGER.log(Level.INFO, "Consultando el calificacion con id = {0} del animacion con id = " + animacionId, calificacionId);
+    public CalificacionEntity find(Long calificacionId) {
+        /**LOGGER.log(Level.INFO, "Consultando el calificacion con id = {0} del animacion con id = " + animacionId, calificacionId);
         TypedQuery<CalificacionEntity> q = em.createQuery("select p from CalificacionEntity p where (p.animacion.id = :animacionId) and (p.id = :calificacionId)", CalificacionEntity.class);
         q.setParameter("animacionId", animacionId);
         q.setParameter("calificacionId", calificacionId);
@@ -95,7 +95,7 @@ public class CalificacionPersistence {
         } else if (results.size() >= 1) {
             calificacion = results.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar el calificacion con id = {0} del animacion con id =" + animacionId, calificacionId);
-        return calificacion;
+        LOGGER.log(Level.INFO, "Saliendo de consultar el calificacion con id = {0} del animacion con id =" + animacionId, calificacionId);**/
+        return em.find(CalificacionEntity.class, calificacionId);
     }
 }

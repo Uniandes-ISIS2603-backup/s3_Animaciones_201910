@@ -88,11 +88,11 @@ public class CalificacionResource {
      */
     @GET
     @Path("{calificacionId: \\d+}")
-    public CalificacionDTO getCalificacion(@PathParam("animacionId") Long animacionId, @PathParam("calificacionId") Long calificacionId) throws BusinessLogicException {
+    public CalificacionDTO getCalificacion(@PathParam("calificacionId") Long calificacionId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ReviewResource getCalificacion: input: {0}", calificacionId);
-        CalificacionEntity entity = logic.getCalificacion(animacionId, calificacionId);
+        CalificacionEntity entity = logic.getCalificacion(calificacionId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /animacion/" + animacionId + "/calificacion/" + calificacionId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /animacion/" + "/calificacion/" + calificacionId + " no existe.", 404);
         }
         CalificacionDTO calificacionDTO = new CalificacionDTO(entity);
         LOGGER.log(Level.INFO, "ReviewResource getCalificacion: output: {0}", calificacionDTO);
@@ -119,7 +119,7 @@ public class CalificacionResource {
         if (calificacionId.equals(calificacion.getId())) {
             throw new BusinessLogicException("Los ids del Calificacion no coinciden.");
         }
-        CalificacionEntity entity = logic.getCalificacion(animacionId, calificacionId);
+        CalificacionEntity entity = logic.getCalificacion(calificacionId);
         if (entity == null) {
             throw new WebApplicationException("El recurso /animaciones/" + animacionId + "/reviews/" + calificacionId + " no existe.", 404);
 
@@ -143,7 +143,7 @@ public class CalificacionResource {
     @DELETE
     @Path("{calificacionId: \\d+}")
     public void delete(@PathParam("animacionId") Long animacionId, @PathParam("calificacionId") Long calificacionId) throws BusinessLogicException {
-        CalificacionEntity entity = logic.getCalificacion(animacionId, calificacionId);
+        CalificacionEntity entity = logic.getCalificacion(calificacionId);
         if (entity == null) {
             throw new WebApplicationException("El recurso /animaciones/" + animacionId + "/calificacion/" + calificacionId + " no existe.", 404);
         }
