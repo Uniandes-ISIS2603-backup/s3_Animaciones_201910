@@ -70,7 +70,36 @@ insert into ClienteEntity (id, nombre, informacion, usuario, contrasenia) values
 insert into ClienteEntity (id, nombre, informacion, usuario, contrasenia) values (3, 'Camila', 'yo soy tu padre', 'camilauno', 'darcy123');
 insert into ClienteEntity (id, nombre, informacion, usuario, contrasenia) values (4, 'Juliana', 'yo soy yo', 'juliMa', 'daslkjfNÑ');
 
-insert into CalificacionEntity (id, animacion_id, cliente_id, comentario) values (1, 1, 1, 'Muy buena me gusto mucho');
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (1, 1, 1, 'Muy buena, me gustó mucho', 8);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (2, 1, 1, 'Buena, me gustó ', 7);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (3, 1, 1, 'Bastante buena pero no es perfecta', 9);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (4, 2, 2, 'Regular, ni buena, ni mala', 5);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (5, 2, 2, 'No me gustó pero no estuvo tan mal', 4);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (6, 3, 3, 'Me gustó ', 8);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (7, 4, 3, 'Hagan más como esta', 8);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (8, 5, 1, 'Excelente', 10);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (9, 6, 2, 'Aceptable, no es la mejor', 7);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (10, 7, 4, 'Puedo vivir con eso', 6);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (11, 8, 4, 'Toma tu like, ah cierto, no puedo dar like', 8);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (12, 9, 3, 'De lo peor', 3);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (13, 10, 2, 'Meh, aguanta', 7);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (14, 10, 1, 'Le daría me encorazona si pudiera xd :v', 8);
+
+
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (15, 10, 1, 'Muy buena, me gustó mucho', 8);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (16, 11, 1, 'Buena, me gustó ', 7);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (17, 12, 1, 'Bastante buena pero no es perfecta', 9);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (18, 12, 2, 'Regular, ni buena, ni mala', 5);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (19, 12, 2, 'No me gustó pero no estuvo tan mal', 4);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (20, 13, 3, 'Me gustó ', 8);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (21, 14, 3, 'Hagan más como esta', 8);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (22, 15, 1, 'Excelente', 10);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (23, 16, 2, 'Aceptable, no es la mejor', 7);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (24, 17, 4, 'Puedo vivir con eso', 6);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (25, 15, 4, 'Toma tu like, ah cierto, no puedo dar like', 8);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (26, 17, 3, 'De lo peor', 3);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (27, 11, 2, 'Meh, aguanta', 7);
+insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (28, 8, 1, 'Le daría me encorazona si pudiera xd :v', 8);
 
 --select * from AnimacionEntity;
 --select * from ArtistaEntity;
