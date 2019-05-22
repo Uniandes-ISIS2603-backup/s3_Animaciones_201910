@@ -58,7 +58,7 @@ public class ClientePersistence {
     }
     
     public ClienteEntity update(ClienteEntity cE){
-        LOGGER.log(Level.INFO, "Actualizando el elemento de ID = {0}", cE.getId());
+      
         return em.merge(cE);
     }
     
