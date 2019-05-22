@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.csw.animaciones.dtos;
 import co.edu.uniandes.csw.animaciones.entities.JuradoEntity;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  *
@@ -29,16 +23,7 @@ public class JuradoDTO implements Serializable{
     /**
      * Atributo que contiene el id del jurado
      */
-    Long id;
-    /**
-     * Atributo que contiene el DTOConcurso
-     */
-    ConcursoDTO concurso;
-    /**
-     * Atributo que contiene las votaciones que el jurado ha hecho
-     */
-    private List<VotacionDTO> votaciones;
-    
+    Long id; 
     /**
      * Contructor vacio de Jurado DTO
      */
@@ -53,6 +38,7 @@ public class JuradoDTO implements Serializable{
         this.credencial=j.getCredencial();
         this.usuario=j.getUsuario();
         this.id=j.getId(); 
+        this.contrasena=j.getContrasena();
     }
     
     /**
@@ -66,23 +52,6 @@ public class JuradoDTO implements Serializable{
      r.setCredencial(this.credencial);
      return r;
     }
-    
-    /**
-     * Metodo que retorna el conccursoDTO
-     * @return el atributo concurso
-     */
-    public ConcursoDTO getConcursoDTO (){
-        return concurso;
-    }
-    
-    /**
-     * Cambia el valor de concurso con el nuevo concurso que entra como parametro
-     * @param pConcurso nuevo concursoDTO 
-     */
-    public void setConcursoDTO (ConcursoDTO pConcurso){
-        concurso = pConcurso;
-    }
-    
     /**
      * 
      * @return  la credencial 
@@ -138,20 +107,6 @@ public class JuradoDTO implements Serializable{
      */
     public void setId (Long pId){
         id = pId;
-    }
-    /**
-     * Retorna la lista de votaciones del jurado
-     * @return Lista de votaciones
-     */
-    public List<VotacionDTO> getVotaciones (){
-        return votaciones;
-    }
-    /**
-     * Agrega una votacion a la lista de votaciones del jurado con la votaciones
-     * @param pVotacion 
-     */
-    public void setVotaciones (VotacionDTO pVotacion){
-        votaciones.add(pVotacion);
     }
     /**
      * Da un nuevo jurado entity
