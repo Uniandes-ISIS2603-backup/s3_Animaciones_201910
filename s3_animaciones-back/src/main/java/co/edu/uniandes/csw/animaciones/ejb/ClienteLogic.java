@@ -48,9 +48,9 @@ public class ClienteLogic {
         if(temp.getNombre() == null || temp.getUsuario() == null || temp.getContrasenia() == null){
             throw new BusinessLogicException("El nombre, usuario o contrasena no pueden ser nulos");
         }
-        if(cliente.findByUser(temp.getUsuario()) != null){
+        /**if(cliente.findByUser(temp.getUsuario()) != null){
             throw new BusinessLogicException("El nombre de usuario ya existe");
-        }
+        }**/
         ClienteEntity temp2 = cliente.update(temp);
         return temp2;
     }

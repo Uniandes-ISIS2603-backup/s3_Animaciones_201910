@@ -22,7 +22,7 @@ public class ArtistaEntity extends BaseEntity implements Serializable {
     private String contrasenia;
     
     @PodamExclude
-    @OneToMany(mappedBy = "artista", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "artista", cascade = CascadeType.MERGE)
     private ArrayList<AnimacionEntity> animaciones = new ArrayList<>();
     
     @PodamExclude

@@ -2,9 +2,11 @@ package co.edu.uniandes.csw.animaciones.ejb;
 
 import co.edu.uniandes.csw.animaciones.entities.AnimacionEntity;
 import co.edu.uniandes.csw.animaciones.entities.CalificacionEntity;
+import co.edu.uniandes.csw.animaciones.entities.ClienteEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.animaciones.persistence.AnimacionPersistence;
 import co.edu.uniandes.csw.animaciones.persistence.CalificacionPersistence;
+import co.edu.uniandes.csw.animaciones.persistence.ClientePersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -22,6 +24,9 @@ public class AnimacionCalificacionLogic {
     @Inject
     private CalificacionPersistence cp;
     
+    @Inject
+    private ClientePersistence clp;
+    
     public CalificacionEntity addCalificacion(Long idAnimacion, CalificacionEntity calificacion) throws BusinessLogicException {
         if(calificacion.getCalificacion()== null || calificacion.getComentario()== null ){
             throw new BusinessLogicException("El comentario, o calificación no pueden ser nulos");
@@ -31,8 +36,10 @@ public class AnimacionCalificacionLogic {
         }
         
         AnimacionEntity ae = ap.find(idAnimacion);
+        ClienteEntity ce = clp.find(calificacion.getCliente().getId());
         
         calificacion.setAnimacion(ae);
+        calificacion.setCliente(ce);
         cp.create(calificacion);
         
         ae.getCalificaciones().add(calificacion);
