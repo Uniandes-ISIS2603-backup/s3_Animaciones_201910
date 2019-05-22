@@ -6,6 +6,7 @@
 
 package co.edu.uniandes.csw.animaciones.resources;
 
+import co.edu.uniandes.csw.animaciones.dtos.EstadoDTO;
 import co.edu.uniandes.csw.animaciones.dtos.MedioDePagoDTO;
 import co.edu.uniandes.csw.animaciones.ejb.MedioDePagoLogic;
 import co.edu.uniandes.csw.animaciones.entities.MedioDePagoEntity;
@@ -25,7 +26,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 /**
  *
- * @author df.serrano
+ * @author by.cuta
  */
 @Path("mediosDePago")
 @Produces("application/json")
@@ -57,7 +58,7 @@ public class MedioDePagoResource {
     @GET
     @Path("{medioDePagoId: \\d+}")
     public MedioDePagoDTO darMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId){
-        return null;
+        return new MedioDePagoDTO( medioDePagoLogic.getMedioDePago(medioDePagoId));
     }    
     /**
      * Crea un nuevo pago
@@ -75,9 +76,9 @@ public class MedioDePagoResource {
      * @return MediodePago que fue cambiado 
      */
     @PUT
-       @Path("{medioDePagoIdId: \\d+}")
+       @Path("{medioDePagoId: \\d+}")
     public MedioDePagoDTO cambiarMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId, MedioDePagoDTO medioDePago){
-        return medioDePago;
+        return new MedioDePagoDTO(medioDePagoLogic.updateMedioDePago(medioDePagoId,medioDePago.toEntity()));
     }
     /**
      * Elmina un medio de pago
@@ -86,9 +87,9 @@ public class MedioDePagoResource {
      */
     @DELETE
     @Path("{medioDePagoIdId: \\d+}")
-    public String eliminarMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId){
+    public EstadoDTO eliminarMedioDePago(@PathParam("medioDePagoIdId") Long medioDePagoId){
        medioDePagoLogic.deleteMedioDePago(medioDePagoId);
-       return "eliminado";
+       return new EstadoDTO("Eliminado Medio de Pago");
     }
 
 }
