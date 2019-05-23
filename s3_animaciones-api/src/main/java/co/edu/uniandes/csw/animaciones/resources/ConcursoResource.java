@@ -97,7 +97,7 @@ public class ConcursoResource {
      */
       @PUT
       @Path("{concursoId: \\d+}") 
-      public ConcursoDTO updateConcurso(@PathParam("concusoId") Long concursoId, ConcursoDetailDTO concursoDetailDTO){
+      public ConcursoDTO updateConcurso(@PathParam("concusoId") Long concursoId, ConcursoDetailDTO concursoDetailDTO)throws BusinessLogicException{
       concursoDetailDTO.setId(concursoId);
       if(cl.find(concursoId) == null){
           throw new WebApplicationException("Elconcurso no existe",404);
