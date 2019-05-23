@@ -4,6 +4,7 @@ import co.edu.uniandes.csw.animaciones.dtos.ConcursoDTO;
 
 import co.edu.uniandes.csw.animaciones.dtos.ConcursoDetailDTO;
 import co.edu.uniandes.csw.animaciones.dtos.JuradoDTO;
+import co.edu.uniandes.csw.animaciones.dtos.JuradoDTODetail;
 import co.edu.uniandes.csw.animaciones.dtos.RondaDTO;
 import co.edu.uniandes.csw.animaciones.dtos.RondaDetailDTO;
 import co.edu.uniandes.csw.animaciones.ejb.ConcursoJuradoLogic;
@@ -170,15 +171,38 @@ public class ConcursoResource {
         return rd;
     }
 
-    /*
+    
+    /**
      @GET
     @Path("{concursoId: \\d+}/jurados/{juradoId: \\d+}")
-    public JuradoDetailDTO getJurado(@PathParam("concurosId") Long concursoId, @PathParam("juradoId") Long juradoId){
+    public JuradoDTODetail getJurado(@PathParam("concurosId") Long concursoId, @PathParam("juradoId") Long juradoId){
         JuradoEntity je = jl.getJurado(juradoId);
         if(je == null){
             throw new WebApplicationException("el jurado no existe",404);
         }
-        JuradoDetailDTO jd = new JuradoDetailDTO(cjl.getJurado(concursoId, juradoId));
+        JuradoDTODetail jd = new JuradoDTODetail(cjl.getJurado(concursoId, juradoId));
+        return jd;
+    }
+    
+    @GET
+    @Path("{concursoId: \\d+}/rondas")
+    public ArrayList<JuradoDTODetail> getJurados(@PathParam("concursoId") Long concursoId) {
+        ArrayList<JuradoDTODetail> jdl = JuradoEntityToDetailDTO(cjl.getJurados(concursoId));
+        if (jdl == null) {
+            throw new WebApplicationException("el concurso no tiene jurados", 404);
+        }
+        return jdl;
+    }
+    /**
+     * metodo para obtene una lista de juradosDetailDto apartir de una lista de una lista de entity 
+     * @param list
+     * @return 
+     
+    private ArrayList<JuradoDTODetail> JuradoEntityToDetailDTO(List<JuradoEntity> list) {
+        ArrayList<JuradoDTODetail> jd = new ArrayList<>();
+        for (JuradoEntity je : list) {
+            jd.add(new JuradoDTODetail(je));
+        }
         return jd;
     }
      */
@@ -198,17 +222,8 @@ public class ConcursoResource {
         return rdl;
     }
 
-    /*
-    @GET
-    @Path("{concursoId: \\d+}/rondas")
-    public ArrayList<JuradoDetailDTO> getJurados(@PathParam("concursoId") Long concursoId) {
-        ArrayList<JuradoDetailDTO> jdl = JuradoEntityToDetailDTO(cjl.getJurados(concursoId));
-        if (jdl == null) {
-            throw new WebApplicationException("el concurso no tiene jurados", 404);
-        }
-        return jdl;
-    }
-    */
+    
+    
     
     
     /*
@@ -260,19 +275,6 @@ public class ConcursoResource {
     }
 
     
-    /**
-     * metodo para obtene una lista de juradosDetailDto apartir de una lista de una lista de entity 
-     * @param list
-     * @return 
-     */
-    /*
-    private ArrayList<JuradoDetailDTO> JuradoEntityToDetailDTO(List<JuradoEntity> list) {
-        ArrayList<JuradoDetailDTO> jd = new ArrayList<>();
-        for (JuradoEntity je : list) {
-            jd.add(new JuradoDetailDTO(je));
-        }
-        return jd;
-    }
-    */
+    
 
 }
