@@ -3,7 +3,9 @@ package co.edu.uniandes.csw.animaciones.resources;
 import co.edu.uniandes.csw.animaciones.dtos.FacturaDTO;
 import co.edu.uniandes.csw.animaciones.dtos.PropuestaDTO;
 import co.edu.uniandes.csw.animaciones.ejb.PropuestaLogic;
+import co.edu.uniandes.csw.animaciones.ejb.FacturaLogic;
 import co.edu.uniandes.csw.animaciones.entities.PropuestaEntity;
+import co.edu.uniandes.csw.animaciones.entities.FacturaEntity;
 import co.edu.uniandes.csw.animaciones.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,9 @@ public class PropuestaResource {
     
     @Inject
     private PropuestaLogic pl;
+    
+    @Inject
+    private FacturaLogic fl;
     
     @POST
     public PropuestaDTO crear(PropuestaDTO yo) throws BusinessLogicException{
@@ -65,15 +70,17 @@ public class PropuestaResource {
     @GET
     @Path("{propuestaID: \\d+}/factura")
     public FacturaDTO darFactura(@PathParam("propuestaID") Long id){
-        try{
-          if(dar(id)!=null){
-            return dar(id).getFactura(); 
+          PropuestaEntity fe = pl.getP(id);
+          if(fe==null){
+              throw new WebApplicationException("El recurso con id "+id+" no existe.",404);
           }else{
-            return null;
-          }   
-        }catch(WebApplicationException e){
-            return null;
-        }
+              if(fe.getFactura()==null){
+                  throw new WebApplicationException("LA factura del recurso con id "+id+" no existe.",404);
+              }else{
+                  FacturaEntity fact = fe.getFactura();
+                  return new FacturaDTO(fact);
+              }
+          }      
                
     }
     
@@ -87,6 +94,22 @@ public class PropuestaResource {
         PropuestaEntity fe2 = pl.updateP(yo.toEntity());
         return new PropuestaDTO(fe2);
     }
+    
+    @PUT
+    @Path("{propuestaID: \\d+}/factura")
+    public PropuestaDTO crearFactura(FacturaDTO yo, @PathParam("propuestaID")Long id) throws BusinessLogicException{
+        PropuestaEntity fe = pl.getP(id);
+        if(fe==null){
+            throw new WebApplicationException("El recurso con id "+id+" no existe.",404);
+        }else{
+            FacturaEntity fact = fl.createF(yo.toEntity());
+            fe.setFactura(fact);
+            fact.setPropuesta(fe);
+            fact = fl.updateF(fact);
+            fe = pl.updateP(fe);
+            return new PropuestaDTO(fe);
+        }
+    } 
     
     @DELETE
     @Path("{PropuestaID: \\d+}")

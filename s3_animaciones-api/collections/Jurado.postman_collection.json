@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "ac1aea4d-a40e-4383-91e1-5a8ff18a0b55",
+		"_postman_id": "3d500570-a394-467f-abe8-598139d4d5df",
 		"name": "Jurado",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "POST Jurados",
+			"name": "Create Jurado",
 			"event": [
 				{
 					"listen": "test",
@@ -14,7 +14,7 @@
 						"id": "2f4eb22b-f5a3-4e51-a5bb-c90103fa6141",
 						"exec": [
 							"var response=JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_jurado\",response.id);",
+							"postman.setGlobalVariable(\"new_id\",response.id);",
 							"tests[\"No genera error\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -33,7 +33,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"usuario\": \"usuario1\",\r\n    \"contrasena\": \"contrasena1\",\r\n    \"id\": 1,\r\n    \"concurso\":\"\",\r\n    \"votaciones\": \"\",\r\n    \"credencial\": \"\"\r\n  }"
+					"raw": "{\r\n    \"usuario\": \"usuario1\",\r\n    \"contrasena\": \"contrasena1\",\r\n    \"id\": 1,\r\n    \"credencial\": \"ADMINISTRADOR\"\r\n  }"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/jurados",
@@ -68,12 +68,8 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/jurados/concursos/jurados/{{new_jurado}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/jurados/detail/{{new_id}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -83,16 +79,15 @@
 						"s3_animaciones-api",
 						"api",
 						"jurados",
-						"concursos",
-						"jurados",
-						"{{new_jurado}}"
+						"detail",
+						"{{new_id}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "GET jurado all",
+			"name": "Get Jurados",
 			"event": [
 				{
 					"listen": "test",
@@ -108,10 +103,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/jurados/all",
 					"protocol": "http",
@@ -124,6 +115,41 @@
 						"api",
 						"jurados",
 						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Jurado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "34947a62-b90d-48b1-98f4-d03667636af5",
+						"exec": [
+							"tests[\"No genera error\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/jurados/delete/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"jurados",
+						"delete",
+						"{{new_id}}"
 					]
 				}
 			},

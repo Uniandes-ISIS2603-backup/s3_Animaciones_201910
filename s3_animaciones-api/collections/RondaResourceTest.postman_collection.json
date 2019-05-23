@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "c3078901-20f3-4db4-bf89-b3a3c96e467b",
+		"name": "RondaResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Rondas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6397a278-1fb3-4f6e-9c83-d9cddb3a7acd",
+						"exec": [
+							"tests [\"No genera error en el GET RONDAS\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/rondas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"rondas"
+					]
+				},
+				"description": "obtener las rondas"
+			},
+			"response": []
+		}
+	]
+}

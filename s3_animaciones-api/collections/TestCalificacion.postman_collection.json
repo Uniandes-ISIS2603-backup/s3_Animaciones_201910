@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8723885e-2375-44c8-98da-a02f5cd169ea",
+		"_postman_id": "34f51c48-6bf8-41b5-a96f-638fc9e21309",
 		"name": "TestCalificacion",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -124,7 +124,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\n\t\"comentario\":\"orrrrrrible\",\n\t\"calificacion\":2\n}"
+					"raw": "{\n\t\n\t\"comentario\":\"horrrrrrible\",\n\t\"calificacion\":2,\n\t\"animacion\": { \"id\":{{id-animacion}}},\n\t\"cliente\": { \"id\":{{id-cliente}}}\n\t\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/animaciones/{{id-animacion}}/calificaciones/",
@@ -163,10 +163,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/animaciones/{{id-animacion}}/calificaciones/",
 					"protocol": "http",
@@ -205,10 +201,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/animaciones/{{id-animacion}}/calificaciones/{{id-calificacion}}",
 					"protocol": "http",
@@ -255,22 +247,22 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"cliente\": {\n\t\t\"id\":1\n\t},\n\t\"comentario\":\"Maso Maso\",\n\t\"calificacion\":3\n}"
+					"raw": "{\n\t\"cliente\": {\n\t\t\"id\":45\n\t},\n\t\"comentario\":\"Maso Maso\",\n\t\"calificacion\":3\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones/1/calificaciones/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/animaciones/{{id-animacion}}/calificaciones/{{id-nuevo}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{port}}",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_animaciones-api",
 						"api",
 						"animaciones",
-						"1",
+						"{{id-animacion}}",
 						"calificaciones",
-						"1"
+						"{{id-nuevo}}"
 					]
 				}
 			},
@@ -357,6 +349,52 @@
 						"s3_animaciones-api",
 						"api",
 						"artistas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "065e8496-a209-4bc6-9c0e-551b41916ba3",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id-nuevo\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n\"nombre\": \"Juanito Nieves\" , \n\"informacion\": \"The king in the north\",\n\"usuario\":\"Aegon Targaryen\", \n\n\"contrasenia\": \"lordcomander123\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"clientes"
 					]
 				}
 			},

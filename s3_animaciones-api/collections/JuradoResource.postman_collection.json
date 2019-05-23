@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "POST Jurados",
+			"name": "Create Jurado",
 			"event": [
 				{
 					"listen": "test",
@@ -33,7 +33,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"usuario\": \"usuario1\",\r\n    \"contrasena\": \"contrasena1\",\r\n    \"id\": 1,\r\n    \"concurso\":\"\",\r\n    \"votaciones\": \"\",\r\n    \"credencial\": \"holaHijeuputa\"\r\n  }"
+					"raw": "{\r\n    \"usuario\": \"usuario1\",\r\n    \"contrasena\": \"contrasena1\",\r\n    \"id\": 1,\r\n    \"credencial\": \"ADMINISTRADOR\"\r\n  }"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/jurados",
@@ -68,10 +68,41 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/jurados/detail/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"jurados",
+						"detail",
+						"{{new_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Jurados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6923bb75-c978-48e9-aff9-d6f30a327a3d",
+						"exec": [
+							"tests[\"No genera error\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/jurados/all",
 					"protocol": "http",
@@ -84,6 +115,41 @@
 						"api",
 						"jurados",
 						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Jurado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "34947a62-b90d-48b1-98f4-d03667636af5",
+						"exec": [
+							"tests[\"No genera error\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/jurados/delete/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_animaciones-api",
+						"api",
+						"jurados",
+						"delete",
+						"{{new_id}}"
 					]
 				}
 			},

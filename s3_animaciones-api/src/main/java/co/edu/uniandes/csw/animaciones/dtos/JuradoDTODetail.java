@@ -1,28 +1,15 @@
 package co.edu.uniandes.csw.animaciones.dtos;
+
 import co.edu.uniandes.csw.animaciones.entities.JuradoEntity;
 import java.io.Serializable;
 import java.util.List;
 
 /**
  *
- * @author by.cuta10
+ * @author  by.cuta10
  */
-public class JuradoDTO implements Serializable{
-
-    /**
-     * @return the concurso
-     */
-    public ConcursoDTO getConcurso() {
-        return concurso;
-    }
-
-    /**
-     * @param concurso the concurso to set
-     */
-    public void setConcurso(ConcursoDTO concurso) {
-        this.concurso = concurso;
-    }
-    
+public class JuradoDTODetail implements Serializable {
+        
     /**
      * Atributo que contien la credencial del jurado
      */
@@ -38,56 +25,50 @@ public class JuradoDTO implements Serializable{
     /**
      * Atributo que contiene el id del jurado
      */
-
     Long id;
     /**
      * Atributo que contiene el DTOConcurso
      */
-    private ConcursoDTO concurso;
+    ConcursoDTO concurso;
     /**
      * Atributo que contiene las votaciones que el jurado ha hecho
      */
     private List<VotacionDTO> votaciones;
     
-
     /**
      * Contructor vacio de Jurado DTO
      */
-    public JuradoDTO (){}
+    public JuradoDTODetail (){}
     
     /**
      * Metodo que permite la creacion de un JuradoDTO a partir de un jurado
      * entity
      * @param j JuradEntity que entra como parametro
      */
-    public JuradoDTO (JuradoEntity j){
-        if(j!=null)
+    public JuradoDTODetail (JuradoEntity j){
         this.credencial=j.getCredencial();
         this.usuario=j.getUsuario();
         this.id=j.getId(); 
-        this.contrasena=j.getContrasena();
     }
     
     /**
      * Metodo que genera un Enitty de Jurado
      * @return el Entity de Jurado
      */
-    public JuradoEntity toEntity() {
+    public JuradoEntity toentity(){
      JuradoEntity r=new JuradoEntity();
      r.setContrasena(this.contrasena);
      r.setUsuario(this.usuario);
      r.setCredencial(this.credencial);
-
      return r;
     }
-
     
     /**
      * Metodo que retorna el conccursoDTO
      * @return el atributo concurso
      */
     public ConcursoDTO getConcursoDTO (){
-        return getConcurso();
+        return concurso;
     }
     
     /**
@@ -95,10 +76,9 @@ public class JuradoDTO implements Serializable{
      * @param pConcurso nuevo concursoDTO 
      */
     public void setConcursoDTO (ConcursoDTO pConcurso){
-        setConcurso(pConcurso);
+        concurso = pConcurso;
     }
     
-
     /**
      * 
      * @return  la credencial 
@@ -156,6 +136,20 @@ public class JuradoDTO implements Serializable{
         id = pId;
     }
     /**
+     * Retorna la lista de votaciones del jurado
+     * @return Lista de votaciones
+     */
+    public List<VotacionDTO> getVotaciones (){
+        return votaciones;
+    }
+    /**
+     * Agrega una votacion a la lista de votaciones del jurado con la votaciones
+     * @param pVotacion 
+     */
+    public void setVotaciones (VotacionDTO pVotacion){
+        votaciones.add(pVotacion);
+    }
+    /**
      * Da un nuevo jurado entity
      * @return  jurado entity
      */
@@ -163,7 +157,5 @@ public class JuradoDTO implements Serializable{
     return new JuradoEntity();
 
     }
-    
-
     
 }
