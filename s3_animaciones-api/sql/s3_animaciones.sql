@@ -20,6 +20,7 @@ insert into ConcursoEntity (id, tema, tecnica, organizador, reglas) values (82, 
 
 insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (1, 0, 'David Firth', 'Candice', 'Erin', 'DavidFirth', 'fZR73XIKI');
 insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (2, 0, 'Becky and Joe', 'Normy', 'Trevar', 'beckyandjoe', 'p77HvSdgaO');
+insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (89, 0, '0zzy 0sbourne', 'Pinscreen', 'krazy Tr4in', '0zzy0sbourne', '0zzy0sbourne123');
 
 insert into AnimacionEntity (id, nombre, descripcion, precio, tecnica, tags, calificacion, link, fecha, artista_id, typeofanimation) values (89, 'Salad Fingers 1: Spoons', 'The very first episode of Salad Fingers', 867, 'Striped hyena', 'Hyaena hyaena', 5, 'OWBFKL6H7rI', '9/3/2013', 1, 'A');
 insert into AnimacionEntity (id, nombre, descripcion, precio, tecnica, tags, calificacion, link, fecha, artista_id, typeofanimation) values (90, 'Salad Fingers 2: Friends', 'Salad Fingers has a few friends over for a fish supper', 385, 'Long-necked turtle', 'Chelodina longicollis', 1, 'cuCw5k-Lph0', '7/4/2008', 1, 'A');
@@ -107,15 +108,12 @@ insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, califi
 insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (76, 11, 46, 'Meh, aguanta', 7);
 insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (77, 8, 40, 'Le daría me encorazona si pudiera xd :v', 8);
 
-
-
-
-insert into AnimacionEntity ( id, typeofanimation, ronda_id, puntaje, puesto, finalista, dinero, nombre, fecha, descripcion, precio, tecnica, tags, calificacion, link ) values (83, 'P', 18, 5, 0, 0, 0,'buho','9/3/2013', 'las creaciones de Hagrid', 0, 'rotoscópia', 'Hedwig volando', 5, 'cococo.png');
-insert into AnimacionEntity ( id, typeofanimation, ronda_id, puntaje, puesto, finalista, dinero, nombre, fecha, descripcion, precio, tecnica, tags, calificacion, link ) values (84, 'P', 19, 5, 0, 0, 0,'matik matik','9/3/2013', 'punkeritas y el ron de sabores', 0, 'Animacion de punto', 'nuncaOldJhon', 5, 'hip.png');
-insert into AnimacionEntity ( id, typeofanimation, ronda_id, puntaje, puesto, finalista, dinero, nombre, fecha, descripcion, precio, tecnica, tags, calificacion, link ) values (85, 'P', 20, 5, 0, 0, 0,'superHot','9/3/2013', 'mind is software', 0, 'stopMotion', 'gente volando', 5, 'katanaOnly.png');
-insert into AnimacionEntity ( id, typeofanimation, ronda_id, puntaje, puesto, finalista, dinero, nombre, fecha, descripcion, precio, tecnica, tags, calificacion, link ) values (86, 'P', 21, 5, 0, 0, 0,'KatanaZero','9/3/2013', 'NO LE HABLES A ELECTROHEAD', 0, 'pixelation', 'cabezas volando', 5, 'splash.png');
-insert into AnimacionEntity ( id, typeofanimation, ronda_id, puntaje, puesto, finalista, dinero, nombre, fecha, descripcion, precio, tecnica, tags, calificacion, link ) values (87, 'P', 22, 5, 0, 0, 0,'nynph()maniac','9/3/2013', 'Ramsteim gratuito y en la cara', 0, 'Live-action', 'Lars Von trier', 5, 'laCajaDePandora.png');
-insert into AnimacionEntity ( id, typeofanimation, ronda_id, puntaje, puesto, finalista, dinero, nombre, fecha, descripcion, precio, tecnica, tags, calificacion, link ) values (88, 'P', 18, 5, 0, 0, 0,'Brisa','9/3/2013', 'un vive100 en Melgar (el paraiso)', 0, 'Con recortes', 'kim Gordon', 5, 'laDeSonicYouth.png');
+insert into AnimacionEntity ( id, typeofanimation, artista_id, ronda_id, puntaje, puesto, finalista, dinero, nombre, fecha, descripcion, precio, tecnica, tags, calificacion, link ) values (83, 'P', 89, 18, 5, 0, 0, 0,'Hedwig','9/3/2013', 'las creaciones de Hagrid', 0, 'rotoscópia', 'Hedwig volando', 5, 'qTVhf81D9NY');
+insert into AnimacionEntity ( id, typeofanimation, artista_id, ronda_id, puntaje, puesto, finalista, dinero, nombre, fecha, descripcion, precio, tecnica, tags, calificacion, link ) values (84, 'P', 89, 19, 5, 0, 0, 0,'Matik Matik','9/3/2013', 'punkeritas y el ron de sabores', 0, 'Animacion de punto', 'nuncaOldJhon', 5, 'TLRIBWgW8LA');
+insert into AnimacionEntity ( id, typeofanimation, artista_id, ronda_id, puntaje, puesto, finalista, dinero, nombre, fecha, descripcion, precio, tecnica, tags, calificacion, link ) values (85, 'P', 89, 20, 5, 0, 0, 0,'SuperHot','9/3/2013', 'mind is software', 0, 'stopMotion', 'gente volando', 5, 'AVblOqZBlJw');
+insert into AnimacionEntity ( id, typeofanimation, artista_id, ronda_id, puntaje, puesto, finalista, dinero, nombre, fecha, descripcion, precio, tecnica, tags, calificacion, link ) values (86, 'P', 89, 21, 5, 0, 0, 0,'KatanaZero','9/3/2013', 'NO LE HABLES A ELECTROHEAD', 0, 'pixelation', 'cabezas volando', 5, 'ebY7byYOwHI');
+insert into AnimacionEntity ( id, typeofanimation, artista_id, ronda_id, puntaje, puesto, finalista, dinero, nombre, fecha, descripcion, precio, tecnica, tags, calificacion, link ) values (87, 'P', 89, 22, 5, 0, 0, 0,'Nynph()maniac','9/3/2013', 'Ramsteim gratuito y en la cara', 0, 'Live-action', 'Lars Von trier', 5, 'NeQM1c-XCDc');
+insert into AnimacionEntity ( id, typeofanimation, artista_id, ronda_id, puntaje, puesto, finalista, dinero, nombre, fecha, descripcion, precio, tecnica, tags, calificacion, link ) values (88, 'P', 89, 18, 5, 0, 0, 0,'Brisa','9/3/2013', 'un vive100 en Melgar (el paraiso)', 0, 'Con recortes', 'kim Gordon', 5, 'lYls36SWdbc');
 
 --select * from AnimacionEntity;
 --select * from ArtistaEntity;
