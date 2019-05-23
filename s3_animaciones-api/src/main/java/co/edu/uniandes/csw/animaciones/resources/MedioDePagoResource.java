@@ -105,7 +105,7 @@ public class MedioDePagoResource {
     @DELETE
     @Path("{medioDePagoIdId: \\d+}")
 
-    public String eliminarMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId){
+    public void eliminarMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId){
                MedioDePagoEntity mdpe = medioDePagoLogic.getMedioDePago(medioDePagoId);
         if(mdpe == null)
         {
@@ -113,7 +113,7 @@ public class MedioDePagoResource {
         }
 
        medioDePagoLogic.deleteMedioDePago(medioDePagoId);
-       return new EstadoDTO("Eliminado Medio de Pago");
+       //return new EstadoDTO("Eliminado Medio de Pago");
     }
 
 }

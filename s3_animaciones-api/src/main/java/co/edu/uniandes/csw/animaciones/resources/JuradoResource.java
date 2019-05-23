@@ -78,6 +78,6 @@ public class JuradoResource {
         }
 
         logic.deleteJurado(id);
-        return new EstadoDTO("Jurado "+id+" eliminado");
+        //return new EstadoDTO("Jurado "+id+" eliminado");
     }
 }

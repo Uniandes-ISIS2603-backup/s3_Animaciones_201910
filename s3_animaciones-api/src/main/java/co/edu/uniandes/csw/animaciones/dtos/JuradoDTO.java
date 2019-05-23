@@ -1,6 +1,7 @@
 package co.edu.uniandes.csw.animaciones.dtos;
 import co.edu.uniandes.csw.animaciones.entities.JuradoEntity;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -60,7 +61,7 @@ public class JuradoDTO implements Serializable{
      * @param j JuradEntity que entra como parametro
      */
     public JuradoDTO (JuradoEntity j){
-        if(j!=null){
+        if(j!=null)
         this.credencial=j.getCredencial();
         this.usuario=j.getUsuario();
         this.id=j.getId(); 
@@ -71,7 +72,7 @@ public class JuradoDTO implements Serializable{
      * Metodo que genera un Enitty de Jurado
      * @return el Entity de Jurado
      */
-    public JuradoEntity toEntity(){
+    public JuradoEntity toEntity() {
      JuradoEntity r=new JuradoEntity();
      r.setContrasena(this.contrasena);
      r.setUsuario(this.usuario);
@@ -162,5 +163,7 @@ public class JuradoDTO implements Serializable{
     return new JuradoEntity();
 
     }
+    
+
     
 }
