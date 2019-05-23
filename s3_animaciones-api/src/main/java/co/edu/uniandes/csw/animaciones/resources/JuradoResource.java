@@ -17,6 +17,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -36,31 +37,46 @@ public class JuradoResource {
     public List<JuradoDTO> darJurados(){
        List<JuradoEntity> sl= logic.getJurados();
        List<JuradoDTO> out=new ArrayList<>();
-       for(JuradoEntity ls:sl){
-           out.add(new JuradoDTO(ls));
+       if(sl != null)
+       {
+          for(JuradoEntity ls:sl){
+          out.add(new JuradoDTO(ls));
+       }
        }
        return out;
     }
     
     @POST
     public JuradoDTO crearJurado (JuradoDTO jurado) throws BusinessLogicException{
-        return new JuradoDTO(logic.createJurado(jurado.toentity()));
+        return new JuradoDTO(logic.createJurado(jurado.toEntity()));
     }
    
     @PUT
     public JuradoDTO updateJurado (JuradoDTO jurado){
-        return new JuradoDTO(logic.updateJurado(jurado.toentity()));
+        return new JuradoDTO(logic.updateJurado(jurado.toEntity()));
     }
     
     @GET    
     @Path("/detail/{id: \\d+}")
     public JuradoDTO darUnJurado (@PathParam("id") Long id){
-        return  new JuradoDTO(logic.getJurado(id));
+        JuradoEntity je = logic.getJurado(id);
+        if(je == null)
+        {
+            throw new WebApplicationException("El jurado no existe");
+        }
+        return  new JuradoDTO(je);
     }
  
     @DELETE
-    @Path("/delete/{id : \\d+}")
-    public EstadoDTO eliminarJurado (@PathParam("id") Long id) throws BusinessLogicException{
+
+    @Path("concursos/{id : \\d+}")
+    public void eliminarJurado (@PathParam("id") Long id) throws BusinessLogicException{
+                JuradoEntity je = logic.getJurado(id);
+        if(je == null)
+        {
+            throw new WebApplicationException("El jurado no existe");
+        }
+
         logic.deleteJurado(id);
         return new EstadoDTO("Jurado "+id+" eliminado");
     }

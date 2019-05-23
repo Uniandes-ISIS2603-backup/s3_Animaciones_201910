@@ -24,6 +24,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 /**
  *
  * @author by.cuta
@@ -45,8 +46,10 @@ public class MedioDePagoResource {
     public List <MedioDePagoDTO> darMediosDePago(){
         List<MedioDePagoDTO> n = new ArrayList<>();
         List<MedioDePagoEntity> n2 =  medioDePagoLogic.getAll();
-        for (MedioDePagoEntity a : n2){
+        if(n2 != null){
+            for (MedioDePagoEntity a : n2){
             n.add(new MedioDePagoDTO(a));
+        }
         }
         return n;
     }
@@ -58,7 +61,13 @@ public class MedioDePagoResource {
     @GET
     @Path("{medioDePagoId: \\d+}")
     public MedioDePagoDTO darMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId){
-        return new MedioDePagoDTO( medioDePagoLogic.getMedioDePago(medioDePagoId));
+        MedioDePagoEntity mdpe = medioDePagoLogic.getMedioDePago(medioDePagoId);
+        if(mdpe == null)
+        {
+            throw new WebApplicationException("Medio de Pago with id: " + medioDePagoId + " does not exists", 404);
+        }
+        return new MedioDePagoDTO(mdpe);
+
     }    
     /**
      * Crea un nuevo pago
@@ -78,7 +87,15 @@ public class MedioDePagoResource {
     @PUT
        @Path("{medioDePagoId: \\d+}")
     public MedioDePagoDTO cambiarMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId, MedioDePagoDTO medioDePago){
-        return new MedioDePagoDTO(medioDePagoLogic.updateMedioDePago(medioDePagoId,medioDePago.toEntity()));
+
+        MedioDePagoEntity mdpe = medioDePagoLogic.getMedioDePago(medioDePagoId);
+        if(mdpe == null)
+        {
+            throw new WebApplicationException("Medio de Pago with id: " + medioDePagoId + " does not exists", 404); 
+        }
+        MedioDePagoEntity mdpe2 = medioDePagoLogic.updateMedioDePago(medioDePagoId, medioDePago.toEntity());
+        return new MedioDePagoDTO(mdpe2);
+
     }
     /**
      * Elmina un medio de pago
@@ -87,7 +104,14 @@ public class MedioDePagoResource {
      */
     @DELETE
     @Path("{medioDePagoIdId: \\d+}")
-    public EstadoDTO eliminarMedioDePago(@PathParam("medioDePagoIdId") Long medioDePagoId){
+
+    public String eliminarMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId){
+               MedioDePagoEntity mdpe = medioDePagoLogic.getMedioDePago(medioDePagoId);
+        if(mdpe == null)
+        {
+            throw new WebApplicationException("Medio de Pago with id: " + medioDePagoId + " does not exists", 404); 
+        }
+
        medioDePagoLogic.deleteMedioDePago(medioDePagoId);
        return new EstadoDTO("Eliminado Medio de Pago");
     }

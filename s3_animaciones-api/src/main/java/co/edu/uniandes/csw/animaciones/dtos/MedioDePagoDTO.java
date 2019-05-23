@@ -61,11 +61,14 @@ public class MedioDePagoDTO implements Serializable {
     }
     
     public MedioDePagoDTO (MedioDePagoEntity mDPE){
-        this.id = mDPE.getId();
-        this.codigo = mDPE.getCodigo();
-        this.fechaVencimiento = mDPE.getFechaVencimiento();
-        this.formaDePago = mDPE.getFormaDePago();
-        this.numeroTarjeta = mDPE.getNumeroTarjeta();
+        if(mDPE != null)
+        {
+        setId(mDPE.getId());
+        setCodigo(mDPE.getCodigo());
+        setFechaVencimiento( mDPE.getFechaVencimiento());
+        setFormaDePago(mDPE.getFormaDePago());
+        setNumeroTarjeta ( mDPE.getNumeroTarjeta());
+        }
     }
 
     /**

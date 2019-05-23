@@ -7,6 +7,20 @@ import java.io.Serializable;
  * @author by.cuta10
  */
 public class JuradoDTO implements Serializable{
+
+    /**
+     * @return the concurso
+     */
+    public ConcursoDTO getConcurso() {
+        return concurso;
+    }
+
+    /**
+     * @param concurso the concurso to set
+     */
+    public void setConcurso(ConcursoDTO concurso) {
+        this.concurso = concurso;
+    }
     
     /**
      * Atributo que contien la credencial del jurado
@@ -23,7 +37,18 @@ public class JuradoDTO implements Serializable{
     /**
      * Atributo que contiene el id del jurado
      */
-    Long id; 
+
+    Long id;
+    /**
+     * Atributo que contiene el DTOConcurso
+     */
+    private ConcursoDTO concurso;
+    /**
+     * Atributo que contiene las votaciones que el jurado ha hecho
+     */
+    private List<VotacionDTO> votaciones;
+    
+
     /**
      * Contructor vacio de Jurado DTO
      */
@@ -35,6 +60,7 @@ public class JuradoDTO implements Serializable{
      * @param j JuradEntity que entra como parametro
      */
     public JuradoDTO (JuradoEntity j){
+        if(j!=null){
         this.credencial=j.getCredencial();
         this.usuario=j.getUsuario();
         this.id=j.getId(); 
@@ -45,13 +71,33 @@ public class JuradoDTO implements Serializable{
      * Metodo que genera un Enitty de Jurado
      * @return el Entity de Jurado
      */
-    public JuradoEntity toentity(){
+    public JuradoEntity toEntity(){
      JuradoEntity r=new JuradoEntity();
      r.setContrasena(this.contrasena);
      r.setUsuario(this.usuario);
      r.setCredencial(this.credencial);
+
      return r;
     }
+
+    
+    /**
+     * Metodo que retorna el conccursoDTO
+     * @return el atributo concurso
+     */
+    public ConcursoDTO getConcursoDTO (){
+        return getConcurso();
+    }
+    
+    /**
+     * Cambia el valor de concurso con el nuevo concurso que entra como parametro
+     * @param pConcurso nuevo concursoDTO 
+     */
+    public void setConcursoDTO (ConcursoDTO pConcurso){
+        setConcurso(pConcurso);
+    }
+    
+
     /**
      * 
      * @return  la credencial 

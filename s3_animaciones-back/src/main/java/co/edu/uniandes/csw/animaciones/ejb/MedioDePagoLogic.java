@@ -12,11 +12,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author estudiante
  */
+@Stateless
 public class MedioDePagoLogic {
     
     private static final Logger LOGGER = Logger.getLogger(MedioDePagoLogic.class.getName());

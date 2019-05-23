@@ -16,6 +16,20 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class CalificacionDTO implements Serializable {
 
+    /**
+     * @return the animacion
+     */
+    public AnimacionDTO getAnimacion() {
+        return animacion;
+    }
+
+    /**
+     * @param animacion the animacion to set
+     */
+    public void setAnimacion(AnimacionDTO animacion) {
+        this.animacion = animacion;
+    }
+
     private Long id;
 
     private String comentario;
@@ -117,11 +131,12 @@ public class CalificacionDTO implements Serializable {
        entity.setId(this.id);
         entity.setCalificacion(this.calificacion);
         entity.setComentario(this.comentario);
+
            if (this.animacion != null) {
             entity.setAnimacion(this.animacion.toEntity());}
              if (this.cliente != null) {
             entity.setCliente(this.cliente.toEntity());}
-        
+       
         return entity;
     }
 

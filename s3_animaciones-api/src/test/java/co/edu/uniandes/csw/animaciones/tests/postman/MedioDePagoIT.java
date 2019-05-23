@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.animaciones.tests.postman;
 
-import co.edu.uniandes.csw.animaciones.dtos.CascaraDTO;
 import co.edu.uniandes.csw.animaciones.mappers.BusinessLogicExceptionMapper;
 import co.edu.uniandes.csw.animaciones.resources.RestConfig;
 import co.edu.uniandes.csw.postman.tests.PostmanTestBuilder;
@@ -38,8 +37,7 @@ public class MedioDePagoIT {
                         .importRuntimeDependencies().resolve()
                         .withTransitivity().asFile())
                 // Se agregan los compilados de los paquetes de servicios
-                .addPackage(RestConfig.class.getPackage()) //No importa cual recurso usar, lo importante es agregar el paquet
-                .addPackage(CascaraDTO.class.getPackage()) //No importa cual dto usar, lo importante es agregar el paquete.
+                .addPackage(RestConfig.class.getPackage()) //No importa cual recurso usar, lo importante es agregar el paquete
                 .addPackage(BusinessLogicExceptionMapper.class.getPackage())
                 // El archivo que contiene la configuracion a la base de datos.
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
