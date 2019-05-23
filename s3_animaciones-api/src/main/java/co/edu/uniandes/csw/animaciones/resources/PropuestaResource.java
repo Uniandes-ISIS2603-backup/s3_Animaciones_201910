@@ -105,6 +105,7 @@ public class PropuestaResource {
             FacturaEntity fact = fl.createF(yo.toEntity());
             fe.setFactura(fact);
             fact.setPropuesta(fe);
+            fact = fl.updateF(fact);
             fe = pl.updateP(fe);
             return new PropuestaDTO(fe);
         }
