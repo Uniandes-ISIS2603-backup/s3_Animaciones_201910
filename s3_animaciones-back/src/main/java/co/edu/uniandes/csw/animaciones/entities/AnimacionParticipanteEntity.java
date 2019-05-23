@@ -42,11 +42,12 @@ public class AnimacionParticipanteEntity extends AnimacionEntity implements Seri
      */
     private Integer dinero;
 
+    /**
+     * Constructor vacío
+     */
     public AnimacionParticipanteEntity(){
         
     }
-
-
     /**
      * metodo que retorna el puntaje de la animacion participante correspondiente a la entidad
      * @return the puntaje asignado por los jurados

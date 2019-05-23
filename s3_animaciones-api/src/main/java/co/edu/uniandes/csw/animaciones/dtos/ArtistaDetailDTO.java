@@ -13,8 +13,8 @@ import java.util.List;
  */
 public class ArtistaDetailDTO extends ArtistaDTO implements Serializable {
     
-    List<AnimacionDTO> animaciones;
-    List<PropuestaDTO> propuestas;
+    private List<AnimacionDTO> animaciones;
+    private List<PropuestaDTO> propuestas;
     
     public ArtistaDetailDTO () {
         

@@ -33,7 +33,9 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     private String comentario;
             
     private Integer calificacion;
-            
+     /**
+     * Constructor vacío
+     */
             public CalificacionEntity()
             {
                 

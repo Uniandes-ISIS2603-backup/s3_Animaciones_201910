@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class AnimacionDetailDTO extends AnimacionDTO implements Serializable {
     
-    List<CalificacionDTO> calificaciones;
+    private List<CalificacionDTO> calificaciones;
     
     public AnimacionDetailDTO () {
         
@@ -20,16 +20,13 @@ public class AnimacionDetailDTO extends AnimacionDTO implements Serializable {
     
     public AnimacionDetailDTO(AnimacionEntity ae){
         super(ae);
-        if(ae != null){
-            if(ae.getCalificaciones() != null){
+        if(ae != null && ae.getCalificaciones() != null){
                 this.calificaciones = new ArrayList<>();
                 for(CalificacionEntity ce : ae.getCalificaciones()){
                     calificaciones.add(new CalificacionDTO(ce));
                 }
             }
         }
-    }
-
     public List<CalificacionDTO> getCalificaciones() {
         return calificaciones;
     }

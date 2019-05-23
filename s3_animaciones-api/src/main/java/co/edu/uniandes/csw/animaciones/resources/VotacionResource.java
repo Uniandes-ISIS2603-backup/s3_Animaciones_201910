@@ -37,6 +37,7 @@ import javax.ws.rs.WebApplicationException;
  */
 public class VotacionResource {
     private static final Logger LOGGER = Logger.getLogger(VotacionResource.class.getName());
+    private static final String A = "La votación no existe";
     @Inject
     private VotacionLogic vl;
     @GET
@@ -55,7 +56,7 @@ public class VotacionResource {
         VotacionEntity ve = vl.getVotacion(votacionId);
         if(ve == null)
         {
-            throw new WebApplicationException("La votacion no existe", 404);
+            throw new WebApplicationException(A, 404);
         }
         return new VotacionDTO(ve);
     }    
@@ -71,7 +72,7 @@ public class VotacionResource {
         VotacionEntity ve = vl.getVotacion(votacionId);
         if(ve == null)
         {
-            throw new WebApplicationException("La votacion no existe", 404);
+            throw new WebApplicationException(A, 404);
         }
         votacion.setId(votacionId);
         return new VotacionDTO (vl.updateVotacion(votacion.toEntity()));
@@ -82,7 +83,7 @@ public class VotacionResource {
         VotacionEntity ve = vl.getVotacion(votacionId);
         if(ve == null)
         {
-             throw new WebApplicationException("La votacion no existe",404);
+             throw new WebApplicationException(A,404);
         }
         vl.deleteVotacion(votacionId);
 

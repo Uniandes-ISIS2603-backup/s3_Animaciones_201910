@@ -40,7 +40,8 @@ public class ClienteResource {
     private ClienteLogic logic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
     private static final Logger LOGGER = Logger.getLogger(co.edu.uniandes.csw.animaciones.resources.ClienteResource.class.getName());
-    
+    private static final String A = "No existe";
+    private static final String B = "El Cliente";
     @POST
     public ClienteDTO crearCliente(ClienteDTO dto) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "ClientenResource create: input: {0}", dto);
@@ -69,7 +70,7 @@ public class ClienteResource {
         LOGGER.log(Level.INFO, "ClienteResource getCliente: input: {0}", clienteId);
         ClienteEntity entity = logic.getCliente(clienteId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /cliente/" + clienteId + " no existe.", 404);
+            throw new WebApplicationException(B + clienteId + A, 404);
         }
         ClienteDetailDTO detailDTO = new ClienteDetailDTO(entity);
         LOGGER.log(Level.INFO, "ClienteResource getCliente: output: {0}", detailDTO);
@@ -122,7 +123,7 @@ public class ClienteResource {
         LOGGER.log(Level.INFO, "ClienteResource updateCliente: input: clienteId: {0} , cliente: {1}", new Object[]{clienteId, cliente});
         cliente.setId(clienteId);
         if (logic.getCliente(clienteId) == null) {
-            throw new WebApplicationException("El recurso /cliente/" + clienteId + " no existe.", 404);
+            throw new WebApplicationException(B + clienteId + A, 404);
         }
         ClienteDetailDTO detailDTO = new ClienteDetailDTO(logic.update( cliente.toEntity()));
         LOGGER.log(Level.INFO, "ClienteResource updateCliente: output: {0}", detailDTO);
@@ -144,7 +145,7 @@ public class ClienteResource {
     public void deleteCliente(@PathParam("clienteId") Long clienteId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ClienteResource deleteCliente: input: {0}", clienteId);
         if (logic.getCliente(clienteId) == null) {
-            throw new WebApplicationException("El recurso /cliente/" + clienteId + " no existe.", 404);
+            throw new WebApplicationException(B + clienteId + A, 404);
         }
         logic.delete(clienteId);
         LOGGER.info("ClienteResource deleteCliente: output: void");

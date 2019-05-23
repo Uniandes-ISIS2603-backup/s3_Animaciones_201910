@@ -19,8 +19,8 @@ import java.util.List;
 public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     
  
-    ArrayList<PropuestaDTO> propuestas;
-    ArrayList<CalificacionDTO> calificaciones;
+    private ArrayList<PropuestaDTO> propuestas;
+    private ArrayList<CalificacionDTO> calificaciones;
     
     
     public ClienteDetailDTO()

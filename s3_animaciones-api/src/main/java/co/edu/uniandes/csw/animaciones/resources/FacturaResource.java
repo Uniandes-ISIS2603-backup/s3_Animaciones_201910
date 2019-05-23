@@ -29,7 +29,8 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class FacturaResource {
     private static final Logger LOGGER = Logger.getLogger(FacturaResource.class.getName());
-    
+     private static final String A = "No existe";
+    private static final String B = "La factura";
     @Inject
     private FacturaLogic fl;
     
@@ -44,31 +45,18 @@ public class FacturaResource {
     public FacturaDTO actualizar(FacturaDTO yo, @PathParam("facturaID") Long id) throws BusinessLogicException{
         FacturaEntity fe2 = fl.getF(id);
         if(fe2==null){
-            throw new WebApplicationException("El recurso con id "+id+" no existe.",404);
+            throw new WebApplicationException(B+id+A,404);
         }
         FacturaEntity fe = fl.updateF(yo.toEntity());
         return new FacturaDTO(fe);
     }
-    /*
-    @PUT
-    @Path("{facturaID: \\d+}/mdp")
-    public FacturaDTO cambiarMDP(MedioDePagoDTO yo, @PathParam("facturaID") Long id) throws BusinessLogicException{
-        FacturaEntity fe = fl.getF(id);
-        if(fe==null){
-            throw new WebApplicationException("El recurso con id "+id+" no existe.",404);
-        }
-        MedioDePagoEntity mdp = yo.toEntity();
-        fe.setMedioDePago(mdp);
-        fe = fl.updateF(mdp);
-        return new FacturaDTO(fe);
-    }*/
     
     @GET
     @Path("{facturaID: \\d+}/mdp")
     public MedioDePagoDTO darMDP(@PathParam("facturaID") Long id){
         FacturaEntity fe = fl.getF(id);
         if(fe==null){
-            throw new WebApplicationException("El recurso con id "+id+" no existe.",404);
+            throw new WebApplicationException(B+id+A,404);
         }
         MedioDePagoEntity mdpe = fe.getMedioDePago();
         //return new MedioDePagoDTO(mdpe);
@@ -80,7 +68,7 @@ public class FacturaResource {
     public FacturaDTO dar(@PathParam("facturaID") Long id){
         FacturaEntity fe = fl.getF(id);
         if(fe==null){
-            throw new WebApplicationException("El recurso con id "+id+" no existe.",404);
+            throw new WebApplicationException(B+id+A,404);
         }else{
             return new FacturaDTO(fe);  
         } 

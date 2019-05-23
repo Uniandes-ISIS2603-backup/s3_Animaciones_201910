@@ -25,6 +25,7 @@ import javax.ws.rs.*;
 @RequestScoped
 public class AnimacionResource {
     
+    private final static String NO = "La animación no existe";
     @Inject
     private AnimacionLogic animacionl;
     
@@ -56,7 +57,7 @@ public class AnimacionResource {
     public AnimacionDetailDTO getAnimacion(@PathParam("animacionId") Long animacionID){
         AnimacionEntity ae = animacionl.getAnimacion(animacionID);
         if(ae == null){
-            throw new WebApplicationException("La animacion no existe",404);
+            throw new WebApplicationException(NO,404);
         }
         AnimacionDetailDTO re = new AnimacionDetailDTO(ae);
         return re;
@@ -84,7 +85,7 @@ public class AnimacionResource {
     public AnimacionDTO updateAnnimacion(@PathParam("animacionId") Long animacionID, AnimacionDTO adto) throws BusinessLogicException{
         adto.setId(animacionID);
         if(animacionl.getAnimacion(animacionID) == null){
-            throw new WebApplicationException("La animacion no existe",404);
+            throw new WebApplicationException(NO,404);
         }
         AnimacionDTO re = new AnimacionDTO(animacionl.updateAnimacion(adto.toEntity()));
         return re;
@@ -120,7 +121,7 @@ public class AnimacionResource {
     public ArrayList<CalificacionDTO> getCalificaciones(@PathParam("animacionId") Long animacionID){
         ArrayList<CalificacionDTO> list = CalificacionEntity2DTO(acl.getAnimaciones(animacionID));
         if(list == null){
-            throw new WebApplicationException("La animacion no existe",404);
+            throw new WebApplicationException(NO,404);
         }
         return list;
     }
@@ -129,7 +130,7 @@ public class AnimacionResource {
     @Path("{animacionId: \\d+}/calificaciones")
     public CalificacionDTO createCalificacion(@PathParam("animacionId") Long animacionId, CalificacionDTO calificacion) throws BusinessLogicException {
        if ( animacionl.getAnimacion(animacionId) == null)
-           throw new WebApplicationException("Error la animacion no existe",404);
+           throw new WebApplicationException(NO, 404);
        
         CalificacionDTO nuevoCalificacionDTO = new CalificacionDTO(acl.addCalificacion( animacionId, calificacion.toEntity()));
         if(nuevoCalificacionDTO == null){

@@ -38,7 +38,7 @@ public class CalificacionResource {
     private CalificacionLogic logic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
     private static final Logger LOGGER = Logger.getLogger(co.edu.uniandes.csw.animaciones.resources.CalificacionResource.class.getName());
-    
+    private static final String A = "No existe";
    /**
      * Crea una nueva calificacion con la informacion que se recibe en el cuerpo de la
      * petición y se regresa un objeto identico con un id auto-generado por la
@@ -92,7 +92,7 @@ public class CalificacionResource {
         LOGGER.log(Level.INFO, "ReviewResource getCalificacion: input: {0}", calificacionId);
         CalificacionEntity entity = logic.getCalificacion(animacionId, calificacionId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /animacion/" + animacionId + "/calificacion/" + calificacionId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /animacion/" + animacionId + "/calificacion/" + calificacionId + A, 404);
         }
         CalificacionDTO calificacionDTO = new CalificacionDTO(entity);
         LOGGER.log(Level.INFO, "ReviewResource getCalificacion: output: {0}", calificacionDTO);
@@ -121,7 +121,7 @@ public class CalificacionResource {
         }
         CalificacionEntity entity = logic.getCalificacion(animacionId, calificacionId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /animaciones/" + animacionId + "/reviews/" + calificacionId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /animaciones/" + animacionId + "/reviews/" + calificacionId + A, 404);
 
         }
         CalificacionDTO reviewDTO = new CalificacionDTO(logic.update(animacionId, calificacion.toEntity()));
@@ -145,7 +145,7 @@ public class CalificacionResource {
     public void delete(@PathParam("animacionId") Long animacionId, @PathParam("calificacionId") Long calificacionId) throws BusinessLogicException {
         CalificacionEntity entity = logic.getCalificacion(animacionId, calificacionId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /animaciones/" + animacionId + "/calificacion/" + calificacionId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /animaciones/" + animacionId + "/calificacion/" + calificacionId + A, 404);
         }
         logic.delete(animacionId, calificacionId);
     }

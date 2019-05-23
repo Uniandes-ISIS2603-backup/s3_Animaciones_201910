@@ -45,6 +45,8 @@ public class ArtistaResource {
     @Inject
     private ArtistaPropuestaLogic apl;
     
+    private final static String A = "El artista no existe";
+    private final static String B = "La propuesta no existe";
     /**
      * Metodo que crea un artista llamando a la persistencia 
      * @param artista, el artista que se quiere crear
@@ -67,7 +69,7 @@ public class ArtistaResource {
     public ArtistaDetailDTO getArtista(@PathParam("artistaId") Long artistaId){
         ArtistaEntity ae = artistal.getArtista(artistaId);
         if(ae == null){
-            throw new WebApplicationException("El artista no existe",404);
+            throw new WebApplicationException(A,404);
         }
         ArtistaDetailDTO re = new ArtistaDetailDTO(ae);
         return re;
@@ -95,7 +97,7 @@ public class ArtistaResource {
     public ArtistaDTO updateArtista(@PathParam("artistaId") Long artistaId, ArtistaDTO adto) throws BusinessLogicException{
         adto.setId(artistaId);
         if(artistal.getArtista(artistaId) == null){
-            throw new WebApplicationException("El artista no existe",404);
+            throw new WebApplicationException(A,404);
         }
         ArtistaDTO re = new ArtistaDTO(artistal.updateArtista(adto.toEntity()));
         return re;
@@ -110,7 +112,7 @@ public class ArtistaResource {
     public void deleteArtista(@PathParam("artistaId") Long artistaId){
         ArtistaEntity ae = artistal.getArtista(artistaId);
         if(ae == null){
-            throw new WebApplicationException("El artista no existe",404);
+            throw new WebApplicationException(A,404);
         }
         artistal.deleteArtista(artistaId);
     }
@@ -131,7 +133,7 @@ public class ArtistaResource {
     public PropuestaDTO addPropuesta(@PathParam("artistaId") Long artistaId, @PathParam("propuestaId") Long PropuestaId){
         PropuestaEntity pe = propuestal.getP(PropuestaId);
         if(pe == null){
-            throw new WebApplicationException("La propuesta no existe",404);
+            throw new WebApplicationException(B,404);
         }
         PropuestaDTO re = new PropuestaDTO(apl.addPropuesta(artistaId, PropuestaId));
         return re;
@@ -153,7 +155,7 @@ public class ArtistaResource {
     public ArrayList<AnimacionDetailDTO> getAnimaciones(@PathParam("artistaId") Long artistaId){
         ArrayList<AnimacionDetailDTO> re = AnimacionEntity2DetailDTO(aal.getAnimaciones(artistaId));
         if(re == null){
-            throw new WebApplicationException("El artista no existe",404);
+            throw new WebApplicationException(A,404);
         }
         return re;
     }
@@ -163,7 +165,7 @@ public class ArtistaResource {
     public PropuestaDTO getPropuesta(@PathParam("artistaId") Long artistaId, @PathParam("propuestaId") Long PropuestaId){
         PropuestaEntity pe = propuestal.getP(PropuestaId);
         if(pe == null){
-            throw new WebApplicationException("La propuesta no existe",404);
+            throw new WebApplicationException(B,404);
         }
         PropuestaDTO re = new PropuestaDTO(apl.getPropuesta(artistaId, PropuestaId));
         return re;
@@ -174,7 +176,7 @@ public class ArtistaResource {
     public ArrayList<PropuestaDTO> getPropuestas(@PathParam("artistaId") Long artistaId){
         ArrayList<PropuestaDTO> re = PropuestaEntity2DTO(apl.getPropuestas(artistaId));
         if(re == null){
-            throw new WebApplicationException("El artista no existe",404);
+            throw new WebApplicationException(A,404);
         }
         return re;
     }
@@ -194,7 +196,7 @@ public class ArtistaResource {
     public void deletePropuesta(@PathParam("artistaId") Long artistaId, @PathParam("propuestaId") Long PropuestaId){
         PropuestaEntity pe = propuestal.getP(PropuestaId);
         if(pe == null){
-            throw new WebApplicationException("La propuesta no existe",404);
+            throw new WebApplicationException(B,404);
         }
         apl.removePropuesta(artistaId, PropuestaId);
     }

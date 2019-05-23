@@ -33,6 +33,7 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class RondaResource {
     private static final Logger LOGGER = Logger.getLogger(RondaResource.class.getName());
+    private static final String A = "La ronda no existe";
     @Inject
     private RondaLogic rl;
     @GET
@@ -51,7 +52,7 @@ public class RondaResource {
         RondaEntity re = rl.getRonda(rondaId);
         if(re == null)
         {
-            throw new WebApplicationException("La ronda no existe",404);
+            throw new WebApplicationException(A,404);
         }
         return new RondaDetailDTO(re);
     }    
@@ -67,7 +68,7 @@ public class RondaResource {
         ronda.setId(rondaId);
         if(rl.getRonda(rondaId)==null)
         {
-            throw new WebApplicationException("La ronda no existe",404);
+            throw new WebApplicationException(A,404);
         }
         return new RondaDTO(rl.updateRonda(ronda.toEntity()));
     }
@@ -77,7 +78,7 @@ public class RondaResource {
         RondaEntity re = rl.getRonda(rondaId);
         if(re == null)
         {
-             throw new WebApplicationException("La ronda no existe",404);
+             throw new WebApplicationException(A,404);
         }
         rl.deleteRonda(rondaId);
     }
