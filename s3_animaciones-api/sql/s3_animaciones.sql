@@ -12,7 +12,11 @@ delete from ClienteEntity;
 delete from facturaEntity;
 delete from ConcursoEntity;
 
-
+insert into ConcursoEntity (id, tema, tecnica, organizador, reglas) values (78, 'Animaciones de Naturaleza', 'Rotoscopía', 0, 'No maltratar animales' );
+insert into ConcursoEntity (id, tema, tecnica, organizador, reglas) values (79, 'Animaciones en la ciudad', 'Animacion de punto', 3, 'No grabar en espacios no permitidos' );
+insert into ConcursoEntity (id, tema, tecnica, organizador, reglas) values (80, 'Animacion fantástica', 'Stopmotion', 3, 'usar más de 80 frames' );
+insert into ConcursoEntity (id, tema, tecnica, organizador, reglas) values (81, 'El Cronos', 'Pixelation', 3, 'No maltratar animales' );
+insert into ConcursoEntity (id, tema, tecnica, organizador, reglas) values (82, 'Tributo a Les Claypool', 'Claymotion', 3, 'Usar plastilina psicodélica' );
 
 insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (1, 0, 'David Firth', 'Candice', 'Erin', 'DavidFirth', 'fZR73XIKI');
 insert into ArtistaEntity (id, privado, nombre, tecnina, tema, usuario, contrasenia) values (2, 0, 'Becky and Joe', 'Normy', 'Trevar', 'beckyandjoe', 'p77HvSdgaO');
@@ -36,17 +40,17 @@ insert into AnimacionEntity (id, nombre, descripcion, precio, tecnica, tags, cal
 insert into AnimacionEntity (id, nombre, descripcion, precio, tecnica, tags, calificacion, link, fecha, artista_id, typeofanimation) values (16, 'Dont Hug me Im Scared 5', 'You look to be a bit hungry?', 867, 'Striped hyena', 'Hyaena hyaena', 5, 'tS_Xq7gSCBM', '10/14/2015', 2, 'A');
 insert into AnimacionEntity (id, nombre, descripcion, precio, tecnica, tags, calificacion, link, fecha, artista_id, typeofanimation) values (17, 'Dont Hug me Im Scared 6', 'Looks like someones having a bad dream?', 867, 'Striped hyena', 'Hyaena hyaena', 5, 'dbL-NSkXnl8', '6/19/2016', 2, 'A');
 
-insert into RondaEntity (id, numero, fechaInicio, fechaFin) values (18, 2, '4/14/2018', '5/6/2018');
-insert into RondaEntity (id, numero, fechaInicio, fechaFin) values (19, 1, '4/30/2018', '5/8/2018');
-insert into RondaEntity (id, numero, fechaInicio, fechaFin) values (20, 2, '5/8/2018', '5/19/2018');
-insert into RondaEntity (id, numero, fechaInicio, fechaFin) values (21, 2, '4/28/2018', '5/1/2018');
-insert into RondaEntity (id, numero, fechaInicio, fechaFin) values (22, 1, '4/11/2018', '5/2/2018');
+insert into RondaEntity (id, concurso_id, numero, fechaInicio, fechaFin) values (18, 78, 2, '4/14/2018', '5/6/2018');
+insert into RondaEntity (id, concurso_id, numero, fechaInicio, fechaFin) values (19, 78, 1, '4/30/2018', '5/8/2018');
+insert into RondaEntity (id, concurso_id, numero, fechaInicio, fechaFin) values (20, 79, 2, '5/8/2018', '5/19/2018');
+insert into RondaEntity (id, concurso_id, numero, fechaInicio, fechaFin) values (21, 79, 2, '4/28/2018', '5/1/2018');
+insert into RondaEntity (id, concurso_id, numero, fechaInicio, fechaFin) values (22, 80, 1, '4/11/2018', '5/2/2018');
 
-insert into JuradoEntity (id, credencial, usuario, contrasena) values (23, 'Jurado1', 'J1', 'J1');
-insert into JuradoEntity (id, credencial, usuario, contrasena) values (24, 'Jurado2', 'J2', 'J2');
-insert into JuradoEntity (id, credencial, usuario, contrasena) values (25, 'Jurado3', 'J3', 'J3');
-insert into JuradoEntity (id, credencial, usuario, contrasena) values (26, 'Jurado4', 'J4', 'J4');
-insert into JuradoEntity (id, credencial, usuario, contrasena) values (27, 'Jurado5', 'J5', 'J5');
+insert into JuradoEntity (id, concurso_id, credencial, usuario, contrasena) values (23, 78, 'Jurado1', 'J1', 'J1');
+insert into JuradoEntity (id, concurso_id, credencial, usuario, contrasena) values (24, 78, 'Jurado2', 'J2', 'J2');
+insert into JuradoEntity (id, concurso_id, credencial, usuario, contrasena) values (25, 78, 'Jurado3', 'J3', 'J3');
+insert into JuradoEntity (id, concurso_id, credencial, usuario, contrasena) values (26, 78, 'Jurado4', 'J4', 'J4');
+insert into JuradoEntity (id, concurso_id, credencial, usuario, contrasena) values (27, 78, 'Jurado5', 'J5', 'J5');
 
 insert into VotacionEntity (id, idAnimacion, puntos, numRonda, ronda_id, jurado_id) values (28, 1, 4, 2, 22, 27);
 insert into VotacionEntity (id, idAnimacion, puntos, numRonda, ronda_id, jurado_id) values (29, 1, 1, 1, 20, 23);
@@ -104,11 +108,7 @@ insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, califi
 insert into CalificacionEntity (id, animacion_id, cliente_id, comentario, calificacion) values (77, 8, 40, 'Le daría me encorazona si pudiera xd :v', 8);
 
 
-insert into ConcursoEntity (id, tema, tecnica, organizador, reglas) values (78, 'Animaciones de Naturaleza', 'Rotoscopía', 0, 'No maltratar animales' );
-insert into ConcursoEntity (id, tema, tecnica, organizador, reglas) values (79, 'Animaciones en la ciudad', 'Animacion de punto', 3, 'No grabar en espacios no permitidos' );
-insert into ConcursoEntity (id, tema, tecnica, organizador, reglas) values (80, 'Animacion fantástica', 'Stopmotion', 3, 'usar más de 80 frames' );
-insert into ConcursoEntity (id, tema, tecnica, organizador, reglas) values (81, 'El Cronos', 'Pixelation', 3, 'No maltratar animales' );
-insert into ConcursoEntity (id, tema, tecnica, organizador, reglas) values (82, 'Tributo a Les Claypool', 'Claymotion', 3, 'Usar plastilina psicodélica' );
+
 
 insert into AnimacionEntity ( id, typeofanimation, ronda_id, puntaje, puesto, finalista, dinero, nombre, fecha, descripcion, precio, tecnica, tags, calificacion, link ) values (83, 'P', 18, 5, 0, 0, 0,'buho','9/3/2013', 'las creaciones de Hagrid', 0, 'rotoscópia', 'Hedwig volando', 5, 'cococo.png');
 insert into AnimacionEntity ( id, typeofanimation, ronda_id, puntaje, puesto, finalista, dinero, nombre, fecha, descripcion, precio, tecnica, tags, calificacion, link ) values (84, 'P', 19, 5, 0, 0, 0,'matik matik','9/3/2013', 'punkeritas y el ron de sabores', 0, 'Animacion de punto', 'nuncaOldJhon', 5, 'hip.png');
