@@ -69,9 +69,9 @@ public class ConcursoLogic {
      * @param ce la entidad que va a actualizar el concurso
      * @return la entidad actualizada
      */
-    // public ConcursoEntity update(ConcursoEntity ce){
-    //    return cp.update(ce);
-    //}el concurso no debe modificarse
+     public ConcursoEntity update(ConcursoEntity ce){
+        return cp.update(ce);
+    }
     /**
      * metodo que borra la entidad de un concurso teniendo su id
      *

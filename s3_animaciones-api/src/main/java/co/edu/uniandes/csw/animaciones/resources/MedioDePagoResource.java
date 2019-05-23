@@ -6,6 +6,7 @@
 
 package co.edu.uniandes.csw.animaciones.resources;
 
+import co.edu.uniandes.csw.animaciones.dtos.EstadoDTO;
 import co.edu.uniandes.csw.animaciones.dtos.MedioDePagoDTO;
 import co.edu.uniandes.csw.animaciones.ejb.MedioDePagoLogic;
 import co.edu.uniandes.csw.animaciones.entities.MedioDePagoEntity;
@@ -26,7 +27,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 /**
  *
- * @author df.serrano
+ * @author by.cuta
  */
 @Path("mediosDePago")
 @Produces("application/json")
@@ -66,6 +67,7 @@ public class MedioDePagoResource {
             throw new WebApplicationException("Medio de Pago with id: " + medioDePagoId + " does not exists", 404);
         }
         return new MedioDePagoDTO(mdpe);
+
     }    
     /**
      * Crea un nuevo pago
@@ -83,8 +85,9 @@ public class MedioDePagoResource {
      * @return MediodePago que fue cambiado 
      */
     @PUT
-       @Path("{medioDePagoIdId: \\d+}")
+       @Path("{medioDePagoId: \\d+}")
     public MedioDePagoDTO cambiarMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId, MedioDePagoDTO medioDePago){
+
         MedioDePagoEntity mdpe = medioDePagoLogic.getMedioDePago(medioDePagoId);
         if(mdpe == null)
         {
@@ -92,6 +95,7 @@ public class MedioDePagoResource {
         }
         MedioDePagoEntity mdpe2 = medioDePagoLogic.updateMedioDePago(medioDePagoId, medioDePago.toEntity());
         return new MedioDePagoDTO(mdpe2);
+
     }
     /**
      * Elmina un medio de pago
@@ -100,14 +104,16 @@ public class MedioDePagoResource {
      */
     @DELETE
     @Path("{medioDePagoIdId: \\d+}")
+
     public String eliminarMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId){
                MedioDePagoEntity mdpe = medioDePagoLogic.getMedioDePago(medioDePagoId);
         if(mdpe == null)
         {
             throw new WebApplicationException("Medio de Pago with id: " + medioDePagoId + " does not exists", 404); 
         }
+
        medioDePagoLogic.deleteMedioDePago(medioDePagoId);
-       return "eliminado";
+       return new EstadoDTO("Eliminado Medio de Pago");
     }
 
 }

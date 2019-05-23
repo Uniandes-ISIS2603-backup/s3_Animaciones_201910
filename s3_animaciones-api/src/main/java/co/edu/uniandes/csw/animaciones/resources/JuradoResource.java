@@ -1,6 +1,7 @@
 
 package co.edu.uniandes.csw.animaciones.resources;
 
+import co.edu.uniandes.csw.animaciones.dtos.EstadoDTO;
 import co.edu.uniandes.csw.animaciones.dtos.JuradoDTO;
 import co.edu.uniandes.csw.animaciones.ejb.JuradoLogic;
 import co.edu.uniandes.csw.animaciones.entities.JuradoEntity;
@@ -27,10 +28,7 @@ import javax.ws.rs.WebApplicationException;
 @Produces("application/json")
 @Consumes("application/json")
 public class JuradoResource {
-    
-    /**
-     * 
-     */
+   
     @Inject
     private JuradoLogic logic;
     
@@ -59,7 +57,7 @@ public class JuradoResource {
     }
     
     @GET    
-    @Path("concursos/jurados/{id: \\d+}")
+    @Path("/detail/{id: \\d+}")
     public JuradoDTO darUnJurado (@PathParam("id") Long id){
         JuradoEntity je = logic.getJurado(id);
         if(je == null)
@@ -70,6 +68,7 @@ public class JuradoResource {
     }
  
     @DELETE
+
     @Path("concursos/{id : \\d+}")
     public void eliminarJurado (@PathParam("id") Long id) throws BusinessLogicException{
                 JuradoEntity je = logic.getJurado(id);
@@ -77,6 +76,8 @@ public class JuradoResource {
         {
             throw new WebApplicationException("El jurado no existe");
         }
+
         logic.deleteJurado(id);
+        return new EstadoDTO("Jurado "+id+" eliminado");
     }
 }

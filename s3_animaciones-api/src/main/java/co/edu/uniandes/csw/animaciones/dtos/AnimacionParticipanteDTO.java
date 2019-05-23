@@ -50,7 +50,8 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
             this.puesto = ape.getPuesto();
             this.finalista = ape.getFinalista();
             this.dinero = ape.getDinero();
-                    if (ape.getRonda()!= null)
+
+        if (ape.getRonda()!= null)
         {
             this.ronda = new RondaDTO(ape.getRonda());
         }
@@ -68,6 +69,14 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
         ape.setPuesto(puesto);
         ape.setFinalista(finalista);
         ape.setDinero(dinero);
+        ape.setNombre(this.getNombre());
+        ape.setFecha(this.getFecha());
+        ape.setDescripcion(this.getDescripcionn());
+        ape.setPrecio(this.getPrecio());
+        ape.setTecnica(this.getTecnica());
+        ape.setTags(this.getTags());
+        ape.setLink(this.getLink());
+        ape.setArtista(this.getArtista().toEntity());
         if(ronda != null){
             ape.setRonda(ronda.toEntity());
         }
