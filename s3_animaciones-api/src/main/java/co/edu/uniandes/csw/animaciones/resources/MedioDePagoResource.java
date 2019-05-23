@@ -23,6 +23,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 /**
  *
  * @author df.serrano
@@ -44,8 +45,10 @@ public class MedioDePagoResource {
     public List <MedioDePagoDTO> darMediosDePago(){
         List<MedioDePagoDTO> n = new ArrayList<>();
         List<MedioDePagoEntity> n2 =  medioDePagoLogic.getAll();
-        for (MedioDePagoEntity a : n2){
+        if(n2 != null){
+            for (MedioDePagoEntity a : n2){
             n.add(new MedioDePagoDTO(a));
+        }
         }
         return n;
     }
@@ -57,7 +60,12 @@ public class MedioDePagoResource {
     @GET
     @Path("{medioDePagoId: \\d+}")
     public MedioDePagoDTO darMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId){
-        return null;
+        MedioDePagoEntity mdpe = medioDePagoLogic.getMedioDePago(medioDePagoId);
+        if(mdpe == null)
+        {
+            throw new WebApplicationException("Medio de Pago with id: " + medioDePagoId + " does not exists", 404);
+        }
+        return new MedioDePagoDTO(mdpe);
     }    
     /**
      * Crea un nuevo pago
@@ -77,7 +85,13 @@ public class MedioDePagoResource {
     @PUT
        @Path("{medioDePagoIdId: \\d+}")
     public MedioDePagoDTO cambiarMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId, MedioDePagoDTO medioDePago){
-        return medioDePago;
+        MedioDePagoEntity mdpe = medioDePagoLogic.getMedioDePago(medioDePagoId);
+        if(mdpe == null)
+        {
+            throw new WebApplicationException("Medio de Pago with id: " + medioDePagoId + " does not exists", 404); 
+        }
+        MedioDePagoEntity mdpe2 = medioDePagoLogic.updateMedioDePago(medioDePagoId, medioDePago.toEntity());
+        return new MedioDePagoDTO(mdpe2);
     }
     /**
      * Elmina un medio de pago
@@ -87,6 +101,11 @@ public class MedioDePagoResource {
     @DELETE
     @Path("{medioDePagoIdId: \\d+}")
     public String eliminarMedioDePago(@PathParam("medioDePagoId") Long medioDePagoId){
+               MedioDePagoEntity mdpe = medioDePagoLogic.getMedioDePago(medioDePagoId);
+        if(mdpe == null)
+        {
+            throw new WebApplicationException("Medio de Pago with id: " + medioDePagoId + " does not exists", 404); 
+        }
        medioDePagoLogic.deleteMedioDePago(medioDePagoId);
        return "eliminado";
     }

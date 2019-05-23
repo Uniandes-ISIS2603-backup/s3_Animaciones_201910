@@ -13,6 +13,20 @@ import java.util.List;
  * @author by.cuta10
  */
 public class JuradoDTO implements Serializable{
+
+    /**
+     * @return the concurso
+     */
+    public ConcursoDTO getConcurso() {
+        return concurso;
+    }
+
+    /**
+     * @param concurso the concurso to set
+     */
+    public void setConcurso(ConcursoDTO concurso) {
+        this.concurso = concurso;
+    }
     
     /**
      * Atributo que contien la credencial del jurado
@@ -33,7 +47,7 @@ public class JuradoDTO implements Serializable{
     /**
      * Atributo que contiene el DTOConcurso
      */
-    ConcursoDTO concurso;
+    private ConcursoDTO concurso;
     /**
      * Atributo que contiene las votaciones que el jurado ha hecho
      */
@@ -50,20 +64,23 @@ public class JuradoDTO implements Serializable{
      * @param j JuradEntity que entra como parametro
      */
     public JuradoDTO (JuradoEntity j){
+        if(j!=null){
         this.credencial=j.getCredencial();
         this.usuario=j.getUsuario();
         this.id=j.getId(); 
+        }
     }
     
     /**
      * Metodo que genera un Enitty de Jurado
      * @return el Entity de Jurado
      */
-    public JuradoEntity toentity(){
+    public JuradoEntity toEntity(){
      JuradoEntity r=new JuradoEntity();
      r.setContrasena(this.contrasena);
      r.setUsuario(this.usuario);
      r.setCredencial(this.credencial);
+
      return r;
     }
     
@@ -72,7 +89,7 @@ public class JuradoDTO implements Serializable{
      * @return el atributo concurso
      */
     public ConcursoDTO getConcursoDTO (){
-        return concurso;
+        return getConcurso();
     }
     
     /**
@@ -80,7 +97,7 @@ public class JuradoDTO implements Serializable{
      * @param pConcurso nuevo concursoDTO 
      */
     public void setConcursoDTO (ConcursoDTO pConcurso){
-        concurso = pConcurso;
+        setConcurso(pConcurso);
     }
     
     /**

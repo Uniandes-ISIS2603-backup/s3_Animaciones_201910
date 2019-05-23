@@ -36,11 +36,7 @@ public class RondaDetailDTO extends RondaDTO implements Serializable {
     }
     @Override
     public RondaEntity toEntity(){
-        RondaEntity re = new RondaEntity();
-        re.setId(this.getId());
-        re.setFechaInicio(this.getFechaInicio());
-        re.setFechaFin(this.getFechaFin());
-        re.setNumero(this.getNumero());
+        RondaEntity re = super.toEntity();
         ArrayList<VotacionEntity> votacionesEntity = new ArrayList();
         for(VotacionDTO v : votaciones)
         {

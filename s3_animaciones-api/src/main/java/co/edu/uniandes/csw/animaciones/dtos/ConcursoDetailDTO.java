@@ -79,7 +79,7 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
         if (jurados != null) {
             ArrayList<JuradoEntity> listJus = new ArrayList<>();
             for (JuradoDTO cj : jurados) {
-                listJus.add(cj.toentity());
+                listJus.add(cj.toEntity());
             }
             ce.setJurados(listJus);
         }

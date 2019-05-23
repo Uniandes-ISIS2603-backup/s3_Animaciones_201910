@@ -50,11 +50,12 @@ public class AnimacionParticipanteDTO extends AnimacionDTO implements Serializab
             this.puesto = ape.getPuesto();
             this.finalista = ape.getFinalista();
             this.dinero = ape.getDinero();
-        }
-        if (ape.getRonda()!= null)
+                    if (ape.getRonda()!= null)
         {
             this.ronda = new RondaDTO(ape.getRonda());
         }
+        }
+
         
     }
     //
