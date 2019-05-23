@@ -124,7 +124,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\n\t\"comentario\":\"orrrrrrible\",\n\t\"calificacion\":2,\n\t\"animacion\": { \"id\":{{id-animacion}}},\n\t\"cliente\": { \"id\":{{id-cliente}}}\n\t\n}"
+					"raw": "{\n\t\n\t\"comentario\":\"horrrrrrible\",\n\t\"calificacion\":2,\n\t\"animacion\": { \"id\":{{id-animacion}}},\n\t\"cliente\": { \"id\":{{id-cliente}}}\n\t\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/animaciones/{{id-animacion}}/calificaciones/",
@@ -247,22 +247,22 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"cliente\": {\n\t\t\"id\":1\n\t},\n\t\"comentario\":\"Maso Maso\",\n\t\"calificacion\":3\n}"
+					"raw": "{\n\t\"cliente\": {\n\t\t\"id\":45\n\t},\n\t\"comentario\":\"Maso Maso\",\n\t\"calificacion\":3\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{port}}/s3_animaciones-api/api/animaciones/1/calificaciones/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_animaciones-api/api/animaciones/{{id-animacion}}/calificaciones/{{id-nuevo}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{port}}",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_animaciones-api",
 						"api",
 						"animaciones",
-						"1",
+						"{{id-animacion}}",
 						"calificaciones",
-						"1"
+						"{{id-nuevo}}"
 					]
 				}
 			},
