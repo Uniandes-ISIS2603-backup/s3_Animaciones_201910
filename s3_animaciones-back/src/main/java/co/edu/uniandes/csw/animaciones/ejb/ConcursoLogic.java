@@ -32,8 +32,11 @@ public class ConcursoLogic {
      * @throws BusinessLogicException se lanza si el tema es demasiado largo
      */
     public ConcursoEntity create(ConcursoEntity ce) throws BusinessLogicException {
-        if (ce==null||ce.getTecnica() == null || ce.getTema() == null || ce.getId() == null || ce.getOrganizador() == null || ce.getReglas() == null) {
-            throw new BusinessLogicException("ningun atributo debe ser null");
+        if (ce==null) {
+            throw new BusinessLogicException("Entidad concurso nula 2378");
+        }
+        if (ce.getTecnica() == null || ce.getTema() == null || ce.getReglas() == null) {
+            throw new BusinessLogicException("ningun atributo debe ser null 2378");
         }
         if (ce.getTema().length() <= 1) {
             throw new BusinessLogicException("el concurso debe tener un tema " + ce.getTema());
